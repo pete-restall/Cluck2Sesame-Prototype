@@ -1,5 +1,5 @@
 MPLINK 4.44, Linker
-Linker Map File - Created Sat Jun 18 15:42:38 2016
+Linker Map File - Created Sun Jul  3 15:43:40 2016
 
                                  Section Info
                   Section       Type    Address   Location Size(Bytes)
@@ -7,7 +7,7 @@ Linker Map File - Created Sat Jun 18 15:42:38 2016
                      boot       code   0x000000    program   0x000008
                       isr       code   0x000004    program   0x000002
                    .cinit    romdata   0x000005    program   0x000004
-                    .code       code   0x000007    program   0x000080
+                    .code       code   0x000007    program   0x0000a4
                    idlocs       code   0x002000    program   0x000008
                configword       code   0x002007    program   0x000002
 
@@ -16,10 +16,10 @@ Linker Map File - Created Sat Jun 18 15:42:38 2016
                               Program Memory Usage 
                                Start         End      
                            ---------   ---------      
-                            0x000000    0x000046      
+                            0x000000    0x000058      
                             0x002000    0x002003      
                             0x002007    0x002007      
-            76 out of 4359 program addresses used, program memory utilization is 1%
+            94 out of 4359 program addresses used, program memory utilization is 2%
 
 
 
@@ -27,12 +27,12 @@ Linker Map File - Created Sat Jun 18 15:42:38 2016
                      Name    Address   Location    Storage File                     
                 ---------  ---------  ---------  --------- ---------                
                breadboard   0x000016    program     static ../Main.asm              
-              idleCurrent   0x00003d    program     static ../Main.asm              
+              idleCurrent   0x00004f    program     static ../Main.asm              
 initialiseAfterBrownOutReset   0x000007    program     extern ../BrownOutReset.asm     
 initialiseAfterPowerOnReset   0x00000c    program     extern ../PowerOnReset.asm      
-                     loop   0x00002b    program     static ../Main.asm              
+                     loop   0x00003d    program     static ../Main.asm              
                      main   0x000011    program     extern ../Main.asm              
-             stallCurrent   0x000042    program     static ../Main.asm              
+             stallCurrent   0x000054    program     static ../Main.asm              
 
 
 
@@ -43,8 +43,8 @@ initialiseAfterBrownOutReset   0x000007    program     extern ../BrownOutReset.a
 initialiseAfterPowerOnReset   0x00000c    program     extern ../PowerOnReset.asm      
                      main   0x000011    program     extern ../Main.asm              
                breadboard   0x000016    program     static ../Main.asm              
-                     loop   0x00002b    program     static ../Main.asm              
-              idleCurrent   0x00003d    program     static ../Main.asm              
-             stallCurrent   0x000042    program     static ../Main.asm              
+                     loop   0x00003d    program     static ../Main.asm              
+              idleCurrent   0x00004f    program     static ../Main.asm              
+             stallCurrent   0x000054    program     static ../Main.asm              
 
 

@@ -15,6 +15,29 @@ main:
 
 ; ******** TEMPORARY BREADBOARDING CODE BELOW ********
 breadboard:
+	; PWM stuff for measuring current consumption:
+
+	banksel CCPR1L
+	movlw 50 >> 2
+	movwf CCPR1L
+
+	banksel CCP1CON
+	movlw b'10001100'
+	movwf CCP1CON
+
+	banksel PR2
+	movlw 24
+	movwf PR2 ; 80kHz
+
+	banksel T2CON
+	bsf T2CON, TMR2ON
+
+	banksel TRISC
+	bcf TRISC, TRISC5
+
+
+	; ADC sampling stuff for testing motor currents:
+
 	banksel ANSEL
 	bcf ANSEL, ANS5
 
@@ -45,12 +68,12 @@ loop:
 	bsf ADCON0, GO
 
 	banksel ADRESH
-	movlw b'00011110' ; IDLE CURRENT - TODO: WORK THIS OUT
+	movlw b'00011110' ; Idle current
 	subwf ADRESH, W
 	btfss STATUS, C
 	goto idleCurrent
 
-	movlw b'01100100' ; STALL CURRENT - TODO: WORK THIS OUT
+	movlw b'01100100' ; Stall current
 	subwf ADRESH, W
 	btfsc STATUS, C
 	goto stallCurrent
