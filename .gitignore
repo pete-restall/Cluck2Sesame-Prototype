@@ -2,3 +2,5 @@
 /src/firmware/Cluck2Sesame.X/dist
 /**/.~*
 /src/schematics/~*.sch
+/src/schematics/Plots
+/src/schematics/Reports
