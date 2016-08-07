@@ -2,5 +2,7 @@
 /src/firmware/Cluck2Sesame.X/dist
 /**/.~*
 /src/schematics/~*.sch
+/src/schematics/~*.pcb
+/src/schematics/Cluck2Sesame (*.txt
 /src/schematics/Plots
 /src/schematics/Reports
