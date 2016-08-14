@@ -1,0 +1,20 @@
+Discontinued, no datasheet or manufacturer name.  However, from what's left
+of the page on www.rapidonline.com:
+
+	Watch Crystal, 32.768KHz Frequency, 10ppm Tolerance, 3x8, 2 Pins,
+	12.5pF Laod Capacitance, Offers High Stability and Excellent Ageing,
+	Shock and Vibration Characteristics, Available in Various Package Sizes,
+	Suitable for a Wide Range of Applications Such as Watches, Clocks,
+	Microprocessors, Communications Equipment, Timing, Frequency Generation,
+	etc 
+
+	Offers high stability and excellent ageing, shock and vibration
+	characteristics
+
+	Suitable for a wide range of applications such as watches, clocks,
+	microprocessors, communications equipment, timing, frequency generation,
+	etc.
+
+	Available in various package sizes
+
+I have a few spare so will use these up.
