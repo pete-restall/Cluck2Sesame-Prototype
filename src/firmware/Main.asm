@@ -15,6 +15,53 @@ main:
 
 ; ******** TEMPORARY BREADBOARDING CODE BELOW ********
 breadboard:
+	; LCD V0 DAC counter:
+
+	banksel PORTA
+	bcf PORTA, RA1
+	bcf PORTA, RA2
+
+	banksel TRISA
+	bcf TRISA, TRISA1
+	bcf TRISA, TRISA2
+
+	banksel ANSEL
+	bcf ANSEL, ANS2
+	bcf ANSEL, ANS7
+
+	banksel ANSELH
+	bcf ANSEL, ANS8
+	bcf ANSEL, ANS9
+
+
+	; LCD E = RB7
+	; LCD RS = RC2
+	; LCD D4 = RC7
+	; LCD D5 = RC6
+	; LCD D6 = RC3
+	; LCD D7 = RC4
+	banksel PORTB
+	bcf PORTB, RB7
+
+	banksel PORTC
+	bcf PORTC, RC2
+	bcf PORTC, RC3
+	bcf PORTC, RC4
+	bcf PORTC, RC6
+	bcf PORTC, RC7
+
+	banksel TRISB
+	bcf TRISB, TRISB7
+
+	banksel TRISC
+	bcf TRISC, TRISC2
+	bcf TRISC, TRISC3
+	bcf TRISC, TRISC4
+	bcf TRISC, TRISC6
+	bcf TRISC, TRISC7
+	call lcdEnterNibbleMode
+
+
 	; PWM stuff for measuring current consumption:
 
 	banksel CCPR1L
@@ -53,47 +100,190 @@ breadboard:
 	movwf ADCON0
 
 	banksel ADCON1
-	movlw b'00010000'
+	movlw b'00100000'
 	movwf ADCON1
+
+	banksel PIE1
+	bsf PIE1, ADIE
+
+	banksel INTCON
+	bsf INTCON, PEIE
+	bsf INTCON, GIE
 
 	banksel ADCON0
 	bsf ADCON0, GO
 
-	; Continually take ADC samples of the current sense resistor (minimum 22us per sample), setting pins:
-	;     RB5 = 1 if sample > STALL CURRENT, else 0
-	;     RB4 = 1 if sample < IDLE CURRENT, else 0
 loop:
-	btfsc ADCON0, GO
 	goto loop
-	bsf ADCON0, GO
 
-	banksel ADRESH
-	movlw b'00011110' ; Idle current
-	subwf ADRESH, W
-	btfss STATUS, C
-	goto idleCurrent
+lcdEnterNibbleMode:
+	movlw 40
+	call delayNominalMilliseconds
 
-	movlw b'01100100' ; Stall current
-	subwf ADRESH, W
-	btfsc STATUS, C
-	goto stallCurrent
+	movlw b'00000011'
+	call lcdSendNibble
+	movlw 5
+	call delayNominalMilliseconds
 
+	movlw b'00000011'
+	call lcdSendNibble
+	movlw 1
+	call delayNominalMilliseconds
+
+	movlw b'00000011'
+	call lcdSendNibble
+	movlw 1
+	call delayNominalMilliseconds
+
+	movlw b'00000010'
+	call lcdSendNibble
+	movlw 1
+	call delayNominalMilliseconds
+
+
+	; Now in 4-bit mode:
+
+	movlw b'00000010'
+	call lcdSendNibble
+	movlw b'00001000'
+	call lcdSendNibble
+	movlw 1
+	call delayNominalMilliseconds
+
+	movlw b'00000000'
+	call lcdSendNibble
+	movlw b'00001000'
+	call lcdSendNibble
+	movlw 1
+	call delayNominalMilliseconds
+
+	movlw b'00000000'
+	call lcdSendNibble
+	movlw b'00000001'
+	call lcdSendNibble
+	movlw 2
+	call delayNominalMilliseconds
+
+	movlw b'00000000'
+	call lcdSendNibble
+	movlw b'00000100'
+	call lcdSendNibble
+	movlw 1
+	call delayNominalMilliseconds
+
+
+	; Initialisation done, turn on the screen and blinking cursor:
+
+	movlw b'00000000'
+	call lcdSendNibble
+	movlw b'00001110'
+	call lcdSendNibble
+	movlw 1
+	call delayNominalMilliseconds
+
+	return
+
+delayNominalMilliseconds:
+	movwf wTemp
+delayOneMillisecond:
+	movlw 50
+delayOneMillisecondLoop:
+	call delayTenMicroseconds
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	addlw -1
+	btfss STATUS, Z
+	goto delayOneMillisecondLoop
+
+	decfsz wTemp
+	goto delayOneMillisecond
+	return
+
+delayTenMicroseconds:
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	return
+
+lcdSendNibble:
+	; LCD E = RB7
+	; LCD RS = RC2
+	; LCD D4 = RC7
+	; LCD D5 = RC6
+	; LCD D6 = RC3
+	; LCD D7 = RC4
+	movwf wTemp
+	btfss wTemp, 5
+	goto lcdResetRs
+
+lcdSetRs:
+	banksel PORTC
+	bsf PORTC, RC2
+	goto lcdTestD4
+
+lcdResetRs:
+	banksel PORTC
+	bcf PORTC, RC2
+
+lcdTestD4:
+	btfss wTemp, 0
+	goto lcdResetD4
+
+lcdSetD4:
+	bsf PORTC, RC7
+	goto lcdTestD5
+
+lcdResetD4:
+	bcf PORTC, RC7
+
+lcdTestD5:
+	btfss wTemp, 1
+	goto lcdResetD5
+
+lcdSetD5:
+	bsf PORTC, RC6
+	goto lcdTestD6
+
+lcdResetD5:
+	bcf PORTC, RC6
+
+lcdTestD6:
+	btfss wTemp, 2
+	goto lcdResetD6
+
+lcdSetD6:
+	bsf PORTC, RC3
+	goto lcdTestD7
+
+lcdResetD6:
+	bcf PORTC, RC3
+
+lcdTestD7:
+	btfss wTemp, 3
+	goto lcdResetD7
+
+lcdSetD7:
+	bsf PORTC, RC4
+	goto lcdPulseEnable
+
+lcdResetD7:
+	bcf PORTC, RC4
+
+lcdPulseEnable:
 	banksel PORTB
-	bcf PORTB, RB4
-	bcf PORTB, RB5
+	bsf PORTB, RB7
+	nop
+	bcf PORTB, RB7
+	return
 
-	goto loop
-
-idleCurrent:
-	banksel PORTB
-	bsf PORTB, RB4
-	bcf PORTB, RB5
-	goto loop
-
-stallCurrent:
-	banksel PORTB
-	bcf PORTB, RB4
-	bsf PORTB, RB5
-	goto loop
+	udata_shr
+wTemp res 1
 
 	end

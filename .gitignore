@@ -3,6 +3,8 @@
 /**/.~*
 /src/schematics/~*.sch
 /src/schematics/~*.pcb
+/src/schematics/*.net
 /src/schematics/Cluck2Sesame (*.txt
 /src/schematics/Plots
 /src/schematics/Reports
+/src/firmware-tests
