@@ -6,14 +6,21 @@ PLOT_DIR="../Plots";
 ZIP_DIR="${PROJECT}";
 ZIP_FILE="${PROJECT}.zip";
 
-rm ${ZIP_DIR}/*;
-rm ${ZIP_FILE};
+if [[ -d ${ZIP_DIR} ]]; then
+	rm ${ZIP_DIR}/*;
+else
+	mkdir ${ZIP_DIR};
+fi;
+
+if [[ -a ${ZIP_FILE} ]]; then
+	rm ${ZIP_FILE};
+fi;
 
 cp "${PLOT_DIR}/${PROJECT} - Bottom Copper.gbr" "${ZIP_DIR}/Bottom Layer.GBL";
 cp "${PLOT_DIR}/${PROJECT} - Bottom Copper (Paste).gbr" "${ZIP_DIR}/Bottom Paste Mask.GBP";
 cp "${PLOT_DIR}/${PROJECT} - Bottom Copper (Resist).gbr" "${ZIP_DIR}/Bottom Solder Mask.GBS";
 cp "${PLOT_DIR}/${PROJECT} - Bottom Silkscreen.gbr" "${ZIP_DIR}/Bottom Overlay.GBO";
-cp "${PLOT_DIR}/${PROJECT} - Drill Data - Through Hole.drl" "${ZIP_DIR}/Drill Drawing.GDD";
+cp "${PLOT_DIR}/${PROJECT} - Drill Data - [Through Hole].drl" "${ZIP_DIR}/Drill Drawing.GDD";
 cp "${PLOT_DIR}/${PROJECT} - PCB.pdf" "${ZIP_DIR}/${PROJECT} Layers.pdf";
 cp "${PLOT_DIR}/${PROJECT} - Top Copper.gbr" "${ZIP_DIR}/Top Layer.GTL";
 cp "${PLOT_DIR}/${PROJECT} - Top Copper (Paste).gbr" "${ZIP_DIR}/Top Paste Mask.GTP";
