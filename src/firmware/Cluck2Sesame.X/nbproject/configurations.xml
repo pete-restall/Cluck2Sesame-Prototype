@@ -59,7 +59,7 @@
       </makeCustomizationType>
       <MPASMWIN-AS>
         <property key="cross.reference.file" value=""/>
-        <property key="default.radix" value="HEX"/>
+        <property key="default.radix" value="DEC"/>
         <property key="enable.case.sensitivity" value="true"/>
         <property key="hex.output.format" value="INHX32"/>
         <property key="preprocessor.macros" value=""/>
@@ -101,6 +101,8 @@
         <property key="programoptions.uselvpprogramming" value="false"/>
         <property key="voltagevalue" value="3.375"/>
       </PICkit3PlatformTool>
+      <SDCCToolchain>
+      </SDCCToolchain>
       <mpasmsuite>
         <property key="absolute-mode" value="false"/>
         <property key="eeprom-width" value="8"/>
@@ -108,6 +110,24 @@
         <property key="extended-mode-mpasm" value="false"/>
         <property key="extended-mode-mplink" value="false"/>
       </mpasmsuite>
+      <sdcc>
+        <property key="V-show-commands-compiler" value="false"/>
+        <property key="Werror" value="true"/>
+        <property key="debug-xtra14" value="false"/>
+        <property key="debug-xtra16" value="false"/>
+        <property key="extended" value="false"/>
+        <property key="no-c-code-in-asm" value="false"/>
+        <property key="no-optimize-goto" value="false"/>
+        <property key="no-pcode-opt" value="false"/>
+        <property key="obanksel" value="0"/>
+        <property key="optimize-cmp" value="false"/>
+        <property key="optimize-df" value="false"/>
+        <property key="pcode-verbose" value="false"/>
+        <property key="pno-banksel" value="false"/>
+        <property key="pstack-model" value="small"/>
+        <property key="use-non-free" value="false"/>
+        <property key="verbose" value="false"/>
+      </sdcc>
     </conf>
   </confs>
 </configurationDescriptor>

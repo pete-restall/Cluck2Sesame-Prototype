@@ -8,4 +8,9 @@
 /src/schematics/Plots
 /src/schematics/Reports
 /src/schematics/pcbtrain/Cluck2Sesame
-/src/firmware-tests
+*.lst
+*.map
+*.cod
+*.cof
+*.hex
+*.o

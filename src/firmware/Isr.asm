@@ -1,4 +1,4 @@
-	#include "P16F685.INC"
+	#include "p16f685.inc"
 	radix decimal
 
 	udata_shr
@@ -40,7 +40,7 @@ isr code 0x0004
 
 	banksel PORTA
 	movlw 1 << RA2
-	;xorwf PORTA, F
+	;xorwf PORTA
 
 	; LCD DELTA SIGMA START
 	; ISR frequency is halved to allow rising and falling edges to be generated.

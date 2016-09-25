@@ -1,4 +1,4 @@
-	#include "P16F685.INC"
+	#include "p16f685.inc"
 	radix decimal
 
 	code

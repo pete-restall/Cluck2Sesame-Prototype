@@ -72,62 +72,62 @@ ifeq ($(TYPE_IMAGE), DEBUG_RUN)
 ${OBJECTDIR}/_ext/1472/BrownOutReset.o: ../BrownOutReset.asm  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR}/_ext/1472 
 	@${RM} ${OBJECTDIR}/_ext/1472/BrownOutReset.o.d 
-	@${FIXDEPS} dummy.d -e "${OBJECTDIR}/_ext/1472/BrownOutReset.err" $(SILENT) -rsi ${MP_CC_DIR}  -c ${MP_AS} $(MP_EXTRA_AS_PRE) -d__DEBUG -d__MPLAB_DEBUGGER_PK3=1 -q -p$(MP_PROCESSOR_OPTION) -u  -l\"${OBJECTDIR}/_ext/1472/BrownOutReset.lst\" -e\"${OBJECTDIR}/_ext/1472/BrownOutReset.err\" $(ASM_OPTIONS)   -o\"${OBJECTDIR}/_ext/1472/BrownOutReset.o\" ../BrownOutReset.asm 
+	@${FIXDEPS} dummy.d -e "${OBJECTDIR}/_ext/1472/BrownOutReset.err" $(SILENT) -rsi ${MP_CC_DIR}  -c ${MP_AS} $(MP_EXTRA_AS_PRE) -d__DEBUG -d__MPLAB_DEBUGGER_PK3=1 -q -p$(MP_PROCESSOR_OPTION) -u  -l\"${OBJECTDIR}/_ext/1472/BrownOutReset.lst\" -e\"${OBJECTDIR}/_ext/1472/BrownOutReset.err\" $(ASM_OPTIONS)-rDEC   -o\"${OBJECTDIR}/_ext/1472/BrownOutReset.o\" ../BrownOutReset.asm 
 	@${DEP_GEN} -d ${OBJECTDIR}/_ext/1472/BrownOutReset.o 
 	
 ${OBJECTDIR}/_ext/1472/PowerOnReset.o: ../PowerOnReset.asm  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR}/_ext/1472 
 	@${RM} ${OBJECTDIR}/_ext/1472/PowerOnReset.o.d 
-	@${FIXDEPS} dummy.d -e "${OBJECTDIR}/_ext/1472/PowerOnReset.err" $(SILENT) -rsi ${MP_CC_DIR}  -c ${MP_AS} $(MP_EXTRA_AS_PRE) -d__DEBUG -d__MPLAB_DEBUGGER_PK3=1 -q -p$(MP_PROCESSOR_OPTION) -u  -l\"${OBJECTDIR}/_ext/1472/PowerOnReset.lst\" -e\"${OBJECTDIR}/_ext/1472/PowerOnReset.err\" $(ASM_OPTIONS)   -o\"${OBJECTDIR}/_ext/1472/PowerOnReset.o\" ../PowerOnReset.asm 
+	@${FIXDEPS} dummy.d -e "${OBJECTDIR}/_ext/1472/PowerOnReset.err" $(SILENT) -rsi ${MP_CC_DIR}  -c ${MP_AS} $(MP_EXTRA_AS_PRE) -d__DEBUG -d__MPLAB_DEBUGGER_PK3=1 -q -p$(MP_PROCESSOR_OPTION) -u  -l\"${OBJECTDIR}/_ext/1472/PowerOnReset.lst\" -e\"${OBJECTDIR}/_ext/1472/PowerOnReset.err\" $(ASM_OPTIONS)-rDEC   -o\"${OBJECTDIR}/_ext/1472/PowerOnReset.o\" ../PowerOnReset.asm 
 	@${DEP_GEN} -d ${OBJECTDIR}/_ext/1472/PowerOnReset.o 
 	
 ${OBJECTDIR}/_ext/1472/Main.o: ../Main.asm  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR}/_ext/1472 
 	@${RM} ${OBJECTDIR}/_ext/1472/Main.o.d 
-	@${FIXDEPS} dummy.d -e "${OBJECTDIR}/_ext/1472/Main.err" $(SILENT) -rsi ${MP_CC_DIR}  -c ${MP_AS} $(MP_EXTRA_AS_PRE) -d__DEBUG -d__MPLAB_DEBUGGER_PK3=1 -q -p$(MP_PROCESSOR_OPTION) -u  -l\"${OBJECTDIR}/_ext/1472/Main.lst\" -e\"${OBJECTDIR}/_ext/1472/Main.err\" $(ASM_OPTIONS)   -o\"${OBJECTDIR}/_ext/1472/Main.o\" ../Main.asm 
+	@${FIXDEPS} dummy.d -e "${OBJECTDIR}/_ext/1472/Main.err" $(SILENT) -rsi ${MP_CC_DIR}  -c ${MP_AS} $(MP_EXTRA_AS_PRE) -d__DEBUG -d__MPLAB_DEBUGGER_PK3=1 -q -p$(MP_PROCESSOR_OPTION) -u  -l\"${OBJECTDIR}/_ext/1472/Main.lst\" -e\"${OBJECTDIR}/_ext/1472/Main.err\" $(ASM_OPTIONS)-rDEC   -o\"${OBJECTDIR}/_ext/1472/Main.o\" ../Main.asm 
 	@${DEP_GEN} -d ${OBJECTDIR}/_ext/1472/Main.o 
 	
 ${OBJECTDIR}/_ext/1472/Isr.o: ../Isr.asm  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR}/_ext/1472 
 	@${RM} ${OBJECTDIR}/_ext/1472/Isr.o.d 
-	@${FIXDEPS} dummy.d -e "${OBJECTDIR}/_ext/1472/Isr.err" $(SILENT) -rsi ${MP_CC_DIR}  -c ${MP_AS} $(MP_EXTRA_AS_PRE) -d__DEBUG -d__MPLAB_DEBUGGER_PK3=1 -q -p$(MP_PROCESSOR_OPTION) -u  -l\"${OBJECTDIR}/_ext/1472/Isr.lst\" -e\"${OBJECTDIR}/_ext/1472/Isr.err\" $(ASM_OPTIONS)   -o\"${OBJECTDIR}/_ext/1472/Isr.o\" ../Isr.asm 
+	@${FIXDEPS} dummy.d -e "${OBJECTDIR}/_ext/1472/Isr.err" $(SILENT) -rsi ${MP_CC_DIR}  -c ${MP_AS} $(MP_EXTRA_AS_PRE) -d__DEBUG -d__MPLAB_DEBUGGER_PK3=1 -q -p$(MP_PROCESSOR_OPTION) -u  -l\"${OBJECTDIR}/_ext/1472/Isr.lst\" -e\"${OBJECTDIR}/_ext/1472/Isr.err\" $(ASM_OPTIONS)-rDEC   -o\"${OBJECTDIR}/_ext/1472/Isr.o\" ../Isr.asm 
 	@${DEP_GEN} -d ${OBJECTDIR}/_ext/1472/Isr.o 
 	
 ${OBJECTDIR}/_ext/1472/Cluck2Sesame.o: ../Cluck2Sesame.asm  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR}/_ext/1472 
 	@${RM} ${OBJECTDIR}/_ext/1472/Cluck2Sesame.o.d 
-	@${FIXDEPS} dummy.d -e "${OBJECTDIR}/_ext/1472/Cluck2Sesame.err" $(SILENT) -rsi ${MP_CC_DIR}  -c ${MP_AS} $(MP_EXTRA_AS_PRE) -d__DEBUG -d__MPLAB_DEBUGGER_PK3=1 -q -p$(MP_PROCESSOR_OPTION) -u  -l\"${OBJECTDIR}/_ext/1472/Cluck2Sesame.lst\" -e\"${OBJECTDIR}/_ext/1472/Cluck2Sesame.err\" $(ASM_OPTIONS)   -o\"${OBJECTDIR}/_ext/1472/Cluck2Sesame.o\" ../Cluck2Sesame.asm 
+	@${FIXDEPS} dummy.d -e "${OBJECTDIR}/_ext/1472/Cluck2Sesame.err" $(SILENT) -rsi ${MP_CC_DIR}  -c ${MP_AS} $(MP_EXTRA_AS_PRE) -d__DEBUG -d__MPLAB_DEBUGGER_PK3=1 -q -p$(MP_PROCESSOR_OPTION) -u  -l\"${OBJECTDIR}/_ext/1472/Cluck2Sesame.lst\" -e\"${OBJECTDIR}/_ext/1472/Cluck2Sesame.err\" $(ASM_OPTIONS)-rDEC   -o\"${OBJECTDIR}/_ext/1472/Cluck2Sesame.o\" ../Cluck2Sesame.asm 
 	@${DEP_GEN} -d ${OBJECTDIR}/_ext/1472/Cluck2Sesame.o 
 	
 else
 ${OBJECTDIR}/_ext/1472/BrownOutReset.o: ../BrownOutReset.asm  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR}/_ext/1472 
 	@${RM} ${OBJECTDIR}/_ext/1472/BrownOutReset.o.d 
-	@${FIXDEPS} dummy.d -e "${OBJECTDIR}/_ext/1472/BrownOutReset.err" $(SILENT) -rsi ${MP_CC_DIR}  -c ${MP_AS} $(MP_EXTRA_AS_PRE) -q -p$(MP_PROCESSOR_OPTION) -u  -l\"${OBJECTDIR}/_ext/1472/BrownOutReset.lst\" -e\"${OBJECTDIR}/_ext/1472/BrownOutReset.err\" $(ASM_OPTIONS)   -o\"${OBJECTDIR}/_ext/1472/BrownOutReset.o\" ../BrownOutReset.asm 
+	@${FIXDEPS} dummy.d -e "${OBJECTDIR}/_ext/1472/BrownOutReset.err" $(SILENT) -rsi ${MP_CC_DIR}  -c ${MP_AS} $(MP_EXTRA_AS_PRE) -q -p$(MP_PROCESSOR_OPTION) -u  -l\"${OBJECTDIR}/_ext/1472/BrownOutReset.lst\" -e\"${OBJECTDIR}/_ext/1472/BrownOutReset.err\" $(ASM_OPTIONS)-rDEC   -o\"${OBJECTDIR}/_ext/1472/BrownOutReset.o\" ../BrownOutReset.asm 
 	@${DEP_GEN} -d ${OBJECTDIR}/_ext/1472/BrownOutReset.o 
 	
 ${OBJECTDIR}/_ext/1472/PowerOnReset.o: ../PowerOnReset.asm  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR}/_ext/1472 
 	@${RM} ${OBJECTDIR}/_ext/1472/PowerOnReset.o.d 
-	@${FIXDEPS} dummy.d -e "${OBJECTDIR}/_ext/1472/PowerOnReset.err" $(SILENT) -rsi ${MP_CC_DIR}  -c ${MP_AS} $(MP_EXTRA_AS_PRE) -q -p$(MP_PROCESSOR_OPTION) -u  -l\"${OBJECTDIR}/_ext/1472/PowerOnReset.lst\" -e\"${OBJECTDIR}/_ext/1472/PowerOnReset.err\" $(ASM_OPTIONS)   -o\"${OBJECTDIR}/_ext/1472/PowerOnReset.o\" ../PowerOnReset.asm 
+	@${FIXDEPS} dummy.d -e "${OBJECTDIR}/_ext/1472/PowerOnReset.err" $(SILENT) -rsi ${MP_CC_DIR}  -c ${MP_AS} $(MP_EXTRA_AS_PRE) -q -p$(MP_PROCESSOR_OPTION) -u  -l\"${OBJECTDIR}/_ext/1472/PowerOnReset.lst\" -e\"${OBJECTDIR}/_ext/1472/PowerOnReset.err\" $(ASM_OPTIONS)-rDEC   -o\"${OBJECTDIR}/_ext/1472/PowerOnReset.o\" ../PowerOnReset.asm 
 	@${DEP_GEN} -d ${OBJECTDIR}/_ext/1472/PowerOnReset.o 
 	
 ${OBJECTDIR}/_ext/1472/Main.o: ../Main.asm  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR}/_ext/1472 
 	@${RM} ${OBJECTDIR}/_ext/1472/Main.o.d 
-	@${FIXDEPS} dummy.d -e "${OBJECTDIR}/_ext/1472/Main.err" $(SILENT) -rsi ${MP_CC_DIR}  -c ${MP_AS} $(MP_EXTRA_AS_PRE) -q -p$(MP_PROCESSOR_OPTION) -u  -l\"${OBJECTDIR}/_ext/1472/Main.lst\" -e\"${OBJECTDIR}/_ext/1472/Main.err\" $(ASM_OPTIONS)   -o\"${OBJECTDIR}/_ext/1472/Main.o\" ../Main.asm 
+	@${FIXDEPS} dummy.d -e "${OBJECTDIR}/_ext/1472/Main.err" $(SILENT) -rsi ${MP_CC_DIR}  -c ${MP_AS} $(MP_EXTRA_AS_PRE) -q -p$(MP_PROCESSOR_OPTION) -u  -l\"${OBJECTDIR}/_ext/1472/Main.lst\" -e\"${OBJECTDIR}/_ext/1472/Main.err\" $(ASM_OPTIONS)-rDEC   -o\"${OBJECTDIR}/_ext/1472/Main.o\" ../Main.asm 
 	@${DEP_GEN} -d ${OBJECTDIR}/_ext/1472/Main.o 
 	
 ${OBJECTDIR}/_ext/1472/Isr.o: ../Isr.asm  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR}/_ext/1472 
 	@${RM} ${OBJECTDIR}/_ext/1472/Isr.o.d 
-	@${FIXDEPS} dummy.d -e "${OBJECTDIR}/_ext/1472/Isr.err" $(SILENT) -rsi ${MP_CC_DIR}  -c ${MP_AS} $(MP_EXTRA_AS_PRE) -q -p$(MP_PROCESSOR_OPTION) -u  -l\"${OBJECTDIR}/_ext/1472/Isr.lst\" -e\"${OBJECTDIR}/_ext/1472/Isr.err\" $(ASM_OPTIONS)   -o\"${OBJECTDIR}/_ext/1472/Isr.o\" ../Isr.asm 
+	@${FIXDEPS} dummy.d -e "${OBJECTDIR}/_ext/1472/Isr.err" $(SILENT) -rsi ${MP_CC_DIR}  -c ${MP_AS} $(MP_EXTRA_AS_PRE) -q -p$(MP_PROCESSOR_OPTION) -u  -l\"${OBJECTDIR}/_ext/1472/Isr.lst\" -e\"${OBJECTDIR}/_ext/1472/Isr.err\" $(ASM_OPTIONS)-rDEC   -o\"${OBJECTDIR}/_ext/1472/Isr.o\" ../Isr.asm 
 	@${DEP_GEN} -d ${OBJECTDIR}/_ext/1472/Isr.o 
 	
 ${OBJECTDIR}/_ext/1472/Cluck2Sesame.o: ../Cluck2Sesame.asm  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR}/_ext/1472 
 	@${RM} ${OBJECTDIR}/_ext/1472/Cluck2Sesame.o.d 
-	@${FIXDEPS} dummy.d -e "${OBJECTDIR}/_ext/1472/Cluck2Sesame.err" $(SILENT) -rsi ${MP_CC_DIR}  -c ${MP_AS} $(MP_EXTRA_AS_PRE) -q -p$(MP_PROCESSOR_OPTION) -u  -l\"${OBJECTDIR}/_ext/1472/Cluck2Sesame.lst\" -e\"${OBJECTDIR}/_ext/1472/Cluck2Sesame.err\" $(ASM_OPTIONS)   -o\"${OBJECTDIR}/_ext/1472/Cluck2Sesame.o\" ../Cluck2Sesame.asm 
+	@${FIXDEPS} dummy.d -e "${OBJECTDIR}/_ext/1472/Cluck2Sesame.err" $(SILENT) -rsi ${MP_CC_DIR}  -c ${MP_AS} $(MP_EXTRA_AS_PRE) -q -p$(MP_PROCESSOR_OPTION) -u  -l\"${OBJECTDIR}/_ext/1472/Cluck2Sesame.lst\" -e\"${OBJECTDIR}/_ext/1472/Cluck2Sesame.err\" $(ASM_OPTIONS)-rDEC   -o\"${OBJECTDIR}/_ext/1472/Cluck2Sesame.o\" ../Cluck2Sesame.asm 
 	@${DEP_GEN} -d ${OBJECTDIR}/_ext/1472/Cluck2Sesame.o 
 	
 endif
