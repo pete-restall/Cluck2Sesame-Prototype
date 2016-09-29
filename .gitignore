@@ -8,6 +8,8 @@
 /src/schematics/Plots
 /src/schematics/Reports
 /src/schematics/pcbtrain/Cluck2Sesame
+.*.swp
+*.log
 *.lst
 *.map
 *.cod

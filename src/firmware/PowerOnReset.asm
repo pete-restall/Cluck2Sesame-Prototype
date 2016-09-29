@@ -1,4 +1,6 @@
 	#include "p16f685.inc"
+	#include "FarCalls.inc"
+	#include "TailCalls.inc"
 	radix decimal
 
 	code
@@ -11,7 +13,6 @@ initialiseAfterPowerOnReset:
 	bsf PCON, NOT_POR
 	bsf PCON, NOT_BOR
 
-	call isrInitialise
-	return
+	tcall isrInitialise
 
 	end

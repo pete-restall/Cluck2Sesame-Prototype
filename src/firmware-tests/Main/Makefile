@@ -1,5 +1,5 @@
 all:
-	$(MAKE) -C PowerOnReset all
+	$(MAKE) -C Reset all
 
 clean:
-	$(MAKE) -C PowerOnReset clean
+	$(MAKE) -C Reset clean

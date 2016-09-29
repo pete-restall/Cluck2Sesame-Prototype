@@ -1,9 +1,10 @@
 export BASE_DIR=$(CURDIR)
-export LKR_FILENAME=$(BASE_DIR)/firmware/Cluck2Sesame.lkr
+export FIRMWARE_DIR=$(BASE_DIR)/firmware
+export LKR_FILENAME=$(FIRMWARE_DIR)/Cluck2Sesame.lkr
 export MAKEFILE_RULES=$(BASE_DIR)/Makefile.rules
 export MAKE=make
 export AS=gpasm
-export ASARGS=-c -p p16f685
+export ASARGS=-c -p p16f685 -I $(FIRMWARE_DIR)
 export LD=gplink
 export LDARGS=-s $(LKR_FILENAME) -m -c
 export BUILD_ARTEFACT_PATTERN=*.hex *.cod *.cof *.map *.lst *.o
