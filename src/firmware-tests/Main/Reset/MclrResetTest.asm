@@ -25,11 +25,11 @@ testAct:
 	fcall main
 
 testAssert:
-	.assert "calledInitialiseAfterBrownOutReset != 0, \"BOR condition did not call initialiseAfterBrownOutReset.\""
+	.assert "calledInitialiseAfterMclrReset != 0, \"MCLR condition did not call initialiseAfterMclrReset.\""
 
-	.assert "calledInitialiseAfterPowerOnReset == 0, \"BOR condition called initialiseAfterPowerOnReset.\""
+	.assert "calledInitialiseAfterPowerOnReset == 0, \"MCLR condition called initialiseAfterPowerOnReset.\""
 
-	.assert "calledInitialiseAfterMclrReset == 0, \"BOR condition called initialiseAfterMclrReset.\""
+	.assert "calledInitialiseAfterBrownOutReset == 0, \"MCLR condition called initialiseAfterBrownOutReset.\""
 
 	.done
 

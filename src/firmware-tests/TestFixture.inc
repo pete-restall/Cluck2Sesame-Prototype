@@ -3,5 +3,6 @@
 	endm
 
 .done macro
+	.direct "c", "echo [PASSED]"
 	.direct "c", "quit"
 	endm

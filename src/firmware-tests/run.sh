@@ -27,12 +27,13 @@ for fixture in `find ${module} -name "*.stc"`; do
 	echo "${runTest};";
 	${runTest} | tee -a run.log;
 done;
-failedTestCount=`cat run.log | grep "Hit a Breakpoint" | wc -l`;
+
+passedTestCount=`cat run.log | grep "\[PASSED\]" | wc -l`;
 totalTestCount=`cat run.log | grep "gpsim - the GNUPIC simulator" | wc -l`;
 
-echo "${totalTestCount} tests run for module ${module}, ${failedTestCount} of which failed";
+echo "${totalTestCount} tests run for module ${module}, ${passedTestCount} of which passed.";
 
-if [ $failedTestCount -eq 0 ]; then
+if [ ${passedTestCount} -eq ${totalTestCount} ]; then
 	exit 0;
 else
 	exit 1;

@@ -1,26 +1,30 @@
 	#include "p16f685.inc"
+	#include "TestDoubles.inc"
 	radix decimal
 
 	global calledInitialiseAfterPowerOnReset
 	global calledInitialiseAfterBrownOutReset
+	global calledInitialiseAfterMclrReset
 	global initialiseAfterPowerOnReset
 	global initialiseAfterBrownOutReset
+	global initialiseAfterMclrReset
 
 	udata
 calledInitialiseAfterPowerOnReset res 1
 calledInitialiseAfterBrownOutReset res 1
+calledInitialiseAfterMclrReset res 1
 
 	code
 initialiseAfterPowerOnReset:
-	banksel calledInitialiseAfterPowerOnReset
-	movlw -1
-	movwf calledInitialiseAfterPowerOnReset
+	spyCalled calledInitialiseAfterPowerOnReset
 	return
 
 initialiseAfterBrownOutReset:
-	banksel calledInitialiseAfterBrownOutReset
-	movlw -1
-	movwf calledInitialiseAfterBrownOutReset
+	spyCalled calledInitialiseAfterBrownOutReset
+	return
+
+initialiseAfterMclrReset:
+	spyCalled calledInitialiseAfterMclrReset
 	return
 
 	end

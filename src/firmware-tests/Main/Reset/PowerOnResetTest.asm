@@ -5,6 +5,7 @@
 
 	extern calledInitialiseAfterPowerOnReset
 	extern calledInitialiseAfterBrownOutReset
+	extern calledInitialiseAfterMclrReset
 	extern main
 
 	global testArrange
@@ -17,6 +18,9 @@ testArrange:
 	banksel calledInitialiseAfterBrownOutReset
 	clrf calledInitialiseAfterBrownOutReset
 
+	banksel calledInitialiseAfterMclrReset
+	clrf calledInitialiseAfterMclrReset
+
 testAct:
 	fcall main
 
@@ -24,6 +28,8 @@ testAssert:
 	.assert "calledInitialiseAfterPowerOnReset != 0, \"POR condition did not call initialiseAfterPowerOnReset.\""
 
 	.assert "calledInitialiseAfterBrownOutReset == 0, \"POR condition called initialiseAfterBrownOutReset.\""
+
+	.assert "calledInitialiseAfterMclrReset == 0, \"POR condition called initialiseAfterMclrReset.\""
 
 	.done
 

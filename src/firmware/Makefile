@@ -3,8 +3,9 @@ OBJ_FILES=\
 	Cluck2Sesame.o \
 	ConfigWords.o \
 	Main.o \
-	BrownOutReset.o \
 	PowerOnReset.o \
+	BrownOutReset.o \
+	MclrReset.o \
 	Isr.o
 
 all: $(HEX_FILENAME)
