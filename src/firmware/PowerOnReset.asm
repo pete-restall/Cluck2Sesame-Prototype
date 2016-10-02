@@ -1,9 +1,8 @@
 	#include "p16f685.inc"
-	#include "FarCalls.inc"
 	#include "TailCalls.inc"
 	radix decimal
 
-	code
+PowerOnReset code
 	global initialiseAfterPowerOnReset
 
 initialiseAfterPowerOnReset:

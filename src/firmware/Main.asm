@@ -5,10 +5,11 @@
 	extern initialiseAfterPowerOnReset
 	extern initialiseAfterBrownOutReset
 	extern initialiseAfterMclrReset
-	extern pollTemperatureSensor
+	extern pollForWork
+
+Main code
 	global main
 
-	code
 main:
 	banksel PCON
 	btfss PCON, NOT_POR
@@ -28,7 +29,7 @@ brownOutReset:
 	fcall initialiseAfterBrownOutReset
 
 pollingLoop:
-	fcall pollTemperatureSensor
+	fcall pollForWork
 	goto pollingLoop
 
 	end

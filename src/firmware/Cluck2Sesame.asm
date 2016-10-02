@@ -3,7 +3,7 @@
 
 	extern main
 
-boot code 0x0000
+Cluck2Sesame code 0x0000
 	pagesel main
 	goto main
 

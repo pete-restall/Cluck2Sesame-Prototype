@@ -10,7 +10,7 @@ lcdDacValue res 1
 lcdDacError res 1
 lcdDacTimingEdge res 1
 
-	code
+Isr code
 	global isrInitialise
 
 isrInitialise:
