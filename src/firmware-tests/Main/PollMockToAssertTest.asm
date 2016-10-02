@@ -1,26 +1,26 @@
 	#include "p16f685.inc"
-	#include "FarCalls.inc"
 	#include "TailCalls.inc"
 	#include "TestDoubles.inc"
 	radix decimal
 
 	extern testAssert
 
-	global calledPollTemperatureSensor
-	global initialisePollMock
-	global pollTemperatureSensor
+	global calledPollForWork
 
 	udata
-calledPollTemperatureSensor res 1
+calledPollForWork res 1
 
-	code
+PollMockToAssertTest code
+	global initialisePollMock
+	global pollForWork
+
 initialisePollMock:
-	banksel calledPollTemperatureSensor
-	clrf calledPollTemperatureSensor
+	banksel calledPollForWork
+	clrf calledPollForWork
 	return
 
-pollTemperatureSensor:
-	mockCalled calledPollTemperatureSensor
+pollForWork:
+	mockCalled calledPollForWork
 	tcall testAssert
 
 	end

@@ -1,3 +1,6 @@
+	#ifndef __CLUCK2SESAME_TESTS_TESTDOUBLES_INC
+	#define __CLUCK2SESAME_TESTS_TESTDOUBLES_INC
+
 	extern mockCallCounter
 
 mockCalled macro counter
@@ -8,3 +11,5 @@ mockCalled macro counter
 	banksel counter
 	movwf counter
 	endm
+
+	#endif

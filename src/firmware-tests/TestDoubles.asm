@@ -1,13 +1,14 @@
 	#include "p16f685.inc"
 	radix decimal
 
-	global mockCallCounter
-	global initialiseTestDoubles
-
 	udata
+	global mockCallCounter
+
 mockCallCounter res 1
 
-	code
+TestDoubles code
+	global initialiseTestDoubles
+
 initialiseTestDoubles:
 	banksel mockCallCounter
 	clrf mockCallCounter

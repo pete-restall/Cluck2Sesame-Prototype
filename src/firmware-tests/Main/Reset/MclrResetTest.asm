@@ -6,10 +6,10 @@
 	extern initialiseResetMocks
 	extern main
 
+MclrResetTest code
 	global testArrange
 	global testAssert
 
-	code
 testArrange:
 	fcall initialiseResetMocks
 

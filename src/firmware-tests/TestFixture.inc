@@ -1,3 +1,6 @@
+	#ifndef __CLUCK2SESAME_TESTS_TESTFIXTURE_INC
+	#define __CLUCK2SESAME_TESTS_TESTFIXTURE_INC
+
 .assert macro expectation
 	nop
 	.direct "a", expectation
@@ -26,3 +29,5 @@
 	banksel to
 	movwf to
 	endm
+
+	#endif

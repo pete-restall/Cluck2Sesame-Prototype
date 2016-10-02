@@ -1,14 +1,13 @@
 	#include "p16f685.inc"
-	#include "FarCalls.inc"
 	#include "TailCalls.inc"
 	radix decimal
 
 	extern testAssert
 
-	global pollTemperatureSensor
+PollStubToAssertTest code
+	global pollForWork
 
-	code
-pollTemperatureSensor:
+pollForWork:
 	tcall testAssert
 
 	end

@@ -17,10 +17,10 @@ assertAliases udata
 _a res 1
 _b res 2
 
-boot code 0x0000
+TestFixtureBoot code 0x0000
 	fgoto runTest
 
-	code
+TestFixture code
 runTest:
 	fcall initialiseTestDoubles
 	fgoto testArrange

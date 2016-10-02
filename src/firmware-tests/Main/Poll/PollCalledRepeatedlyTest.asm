@@ -5,16 +5,16 @@
 
 	extern main
 
-	global testArrange
 	global pollCount
-	global pollTemperatureSensor
-
 NUMBER_OF_ITERATIONS equ 10
 
 	udata
 pollCount res 1
 
-	code
+PollCalledRepeatedlyTest code
+	global testArrange
+	global pollForWork
+
 testArrange:
 	banksel pollCount
 	movlw NUMBER_OF_ITERATIONS
@@ -24,10 +24,10 @@ testAct:
 	fcall main
 
 testAssert:
-	.assert "pollCount == 0, \"Main did not call pollTemperatureSensor repeatedly.\""
+	.assert "pollCount == 0, \"Main did not call pollForWork repeatedly.\""
 	.done
 
-pollTemperatureSensor:
+pollForWork:
 	banksel pollCount
 	decfsz pollCount
 	return

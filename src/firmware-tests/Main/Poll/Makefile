@@ -2,7 +2,8 @@ HEX_FILES=\
 	PollAfterPowerOnResetTest.hex \
 	PollAfterBrownOutResetTest.hex \
 	PollAfterMclrResetTest.hex \
-	PollCalledRepeatedlyTest.hex
+	PollCalledRepeatedlyTest.hex \
+	FirstPollInChainTest.hex
 
 POLL_AFTER_POR_OBJ_FILES=\
 	PollAfterPowerOnResetTest.o \
@@ -23,6 +24,11 @@ POLL_CALLED_REPEATEDLY_OBJ_FILES=\
 	PollCalledRepeatedlyTest.o \
 	../ResetDummies.o
 
+FIRST_POLL_IN_CHAIN_OBJ_FILES=\
+	FirstPollInChainTest.o \
+	../ResetDummies.o \
+	$(FIRMWARE_DIR)/TemperatureSensor.o
+
 all: $(HEX_FILES)
 
 clean:
@@ -39,5 +45,8 @@ PollAfterMclrResetTest.hex: $(OBJ_FILES) $(POLL_AFTER_MCLR_OBJ_FILES)
 
 PollCalledRepeatedlyTest.hex: $(OBJ_FILES) $(POLL_CALLED_REPEATEDLY_OBJ_FILES)
 	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(POLL_CALLED_REPEATEDLY_OBJ_FILES)
+
+FirstPollInChainTest.hex: $(OBJ_FILES) $(FIRST_POLL_IN_CHAIN_OBJ_FILES)
+	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(FIRST_POLL_IN_CHAIN_OBJ_FILES)
 
 include $(MAKEFILE_RULES)

@@ -6,10 +6,10 @@
 	extern initialiseResetMocks
 	extern main
 
+BrownOutResetTest code
 	global testArrange
 	global testAssert
 
-	code
 testArrange:
 	fcall initialiseResetMocks
 

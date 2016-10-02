@@ -3,16 +3,16 @@
 	#include "TestFixture.inc"
 	radix decimal
 
-	extern calledPollTemperatureSensor
+	extern calledPollForWork
 	extern calledInitialiseAfterPowerOnReset
 	extern initialiseResetMocks
 	extern initialisePollMock
 	extern main
 
+PollAfterPowerOnResetTest code
 	global testArrange
 	global testAssert
 
-	code
 testArrange:
 	fcall initialiseResetMocks
 	fcall initialisePollMock
@@ -21,9 +21,9 @@ testAct:
 	fcall main
 
 testAssert:
-	.aliasForAssert calledPollTemperatureSensor, _a
+	.aliasForAssert calledPollForWork, _a
 	.aliasForAssert calledInitialiseAfterPowerOnReset, _b
-	.assert "_a > _b, \"Main did not call pollTemperatureSensor after POR initialisation.\""
+	.assert "_a > _b, \"Main did not call pollForWork after POR initialisation.\""
 
 	.done
 

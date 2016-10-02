@@ -6,10 +6,10 @@
 	extern initialiseResetMocks
 	extern main
 
+PowerOnResetTest code
 	global testArrange
 	global testAssert
 
-	code
 testArrange:
 	fcall initialiseResetMocks
 

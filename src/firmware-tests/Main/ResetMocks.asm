@@ -5,17 +5,18 @@
 	global calledInitialiseAfterPowerOnReset
 	global calledInitialiseAfterBrownOutReset
 	global calledInitialiseAfterMclrReset
-	global initialiseResetMocks
-	global initialiseAfterPowerOnReset
-	global initialiseAfterBrownOutReset
-	global initialiseAfterMclrReset
 
 	udata
 calledInitialiseAfterPowerOnReset res 1
 calledInitialiseAfterBrownOutReset res 1
 calledInitialiseAfterMclrReset res 1
 
-	code
+ResetMocks code
+	global initialiseResetMocks
+	global initialiseAfterPowerOnReset
+	global initialiseAfterBrownOutReset
+	global initialiseAfterMclrReset
+
 initialiseResetMocks:
 	banksel calledInitialiseAfterPowerOnReset
 	clrf calledInitialiseAfterPowerOnReset
