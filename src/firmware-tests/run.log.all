@@ -1,0 +1,241 @@
+
+gpsim -i -e onbreak -c BrownOutReset/Pcon/NonBorPorBitsUnmodified0TestFixture.stc;
+
+gpsim - the GNUPIC simulator
+version: Release 0.26.1
+
+
+type help for help
+not using gui
+[?1034h**gpsim> directory is "BrownOutReset/Pcon"
+file_name is "NonBorPorBitsUnmodified0TestFixture.stc"
+**gpsim> running...
+[PASSED]
+Exiting gpsim
+gpsim -i -e onbreak -c BrownOutReset/Pcon/BorPorBitsSetTestFixture.stc;
+
+gpsim - the GNUPIC simulator
+version: Release 0.26.1
+
+
+type help for help
+not using gui
+[?1034h**gpsim> directory is "BrownOutReset/Pcon"
+file_name is "BorPorBitsSetTestFixture.stc"
+**gpsim> running...
+[PASSED]
+Exiting gpsim
+gpsim -i -e onbreak -c BrownOutReset/Pcon/NonBorPorBitsUnmodified1TestFixture.stc;
+
+gpsim - the GNUPIC simulator
+version: Release 0.26.1
+
+
+type help for help
+not using gui
+[?1034h**gpsim> directory is "BrownOutReset/Pcon"
+file_name is "NonBorPorBitsUnmodified1TestFixture.stc"
+**gpsim> 
+*************************************************************************
+CURRENTLY THIS DOES NOT WORK PROPERTY (THE TESTS STILL PASS) - gpsim PCON
+DOES NOT ALLOW SETTING OF THE SBOREN OR ULPWUE BITS !
+*************************************************************************
+running...
+[PASSED]
+Exiting gpsim
+[RESULT: SUCCESS] 3 tests run for module BrownOutReset, 3 of which passed.  There were 0 gpsim errors that didn't trigger breakpoints.
+gpsim -i -e onbreak -c Main/Reset/BrownOutResetTestFixture.stc;
+
+gpsim - the GNUPIC simulator
+version: Release 0.26.1
+
+
+type help for help
+not using gui
+[?1034h**gpsim> directory is "Main/Reset"
+file_name is "BrownOutResetTestFixture.stc"
+**gpsim> running...
+[PASSED]
+Exiting gpsim
+gpsim -i -e onbreak -c Main/Reset/MclrResetTestFixture.stc;
+
+gpsim - the GNUPIC simulator
+version: Release 0.26.1
+
+
+type help for help
+not using gui
+[?1034h**gpsim> directory is "Main/Reset"
+file_name is "MclrResetTestFixture.stc"
+**gpsim> running...
+[PASSED]
+Exiting gpsim
+gpsim -i -e onbreak -c Main/Reset/PowerOnResetTestFixture.stc;
+
+gpsim - the GNUPIC simulator
+version: Release 0.26.1
+
+
+type help for help
+not using gui
+[?1034h**gpsim> directory is "Main/Reset"
+file_name is "PowerOnResetTestFixture.stc"
+**gpsim> running...
+[PASSED]
+Exiting gpsim
+gpsim -i -e onbreak -c Main/Poll/FirstPollInChainTestFixture.stc;
+
+gpsim - the GNUPIC simulator
+version: Release 0.26.1
+
+
+type help for help
+not using gui
+[?1034h**gpsim> directory is "Main/Poll"
+file_name is "FirstPollInChainTestFixture.stc"
+**gpsim> running...
+[PASSED]
+Exiting gpsim
+gpsim -i -e onbreak -c Main/Poll/PollAfterPowerOnResetTestFixture.stc;
+
+gpsim - the GNUPIC simulator
+version: Release 0.26.1
+
+
+type help for help
+not using gui
+[?1034h**gpsim> directory is "Main/Poll"
+file_name is "PollAfterPowerOnResetTestFixture.stc"
+**gpsim> running...
+[PASSED]
+Exiting gpsim
+gpsim -i -e onbreak -c Main/Poll/PollAfterMclrResetTestFixture.stc;
+
+gpsim - the GNUPIC simulator
+version: Release 0.26.1
+
+
+type help for help
+not using gui
+[?1034h**gpsim> directory is "Main/Poll"
+file_name is "PollAfterMclrResetTestFixture.stc"
+**gpsim> running...
+[PASSED]
+Exiting gpsim
+gpsim -i -e onbreak -c Main/Poll/PollAfterBrownOutResetTestFixture.stc;
+
+gpsim - the GNUPIC simulator
+version: Release 0.26.1
+
+
+type help for help
+not using gui
+[?1034h**gpsim> directory is "Main/Poll"
+file_name is "PollAfterBrownOutResetTestFixture.stc"
+**gpsim> running...
+[PASSED]
+Exiting gpsim
+gpsim -i -e onbreak -c Main/Poll/PollCalledRepeatedlyTestFixture.stc;
+
+gpsim - the GNUPIC simulator
+version: Release 0.26.1
+
+
+type help for help
+not using gui
+[?1034h**gpsim> directory is "Main/Poll"
+file_name is "PollCalledRepeatedlyTestFixture.stc"
+**gpsim> running...
+[PASSED]
+Exiting gpsim
+[RESULT: SUCCESS] 8 tests run for module Main, 8 of which passed.  There were 0 gpsim errors that didn't trigger breakpoints.
+gpsim -i -e onbreak -c MclrReset/Pcon/NonBorPorBitsUnmodified0TestFixture.stc;
+
+gpsim - the GNUPIC simulator
+version: Release 0.26.1
+
+
+type help for help
+not using gui
+[?1034h**gpsim> directory is "MclrReset/Pcon"
+file_name is "NonBorPorBitsUnmodified0TestFixture.stc"
+**gpsim> running...
+[PASSED]
+Exiting gpsim
+gpsim -i -e onbreak -c MclrReset/Pcon/BorPorBitsSetTestFixture.stc;
+
+gpsim - the GNUPIC simulator
+version: Release 0.26.1
+
+
+type help for help
+not using gui
+[?1034h**gpsim> directory is "MclrReset/Pcon"
+file_name is "BorPorBitsSetTestFixture.stc"
+**gpsim> running...
+[PASSED]
+Exiting gpsim
+gpsim -i -e onbreak -c MclrReset/Pcon/NonBorPorBitsUnmodified1TestFixture.stc;
+
+gpsim - the GNUPIC simulator
+version: Release 0.26.1
+
+
+type help for help
+not using gui
+[?1034h**gpsim> directory is "MclrReset/Pcon"
+file_name is "NonBorPorBitsUnmodified1TestFixture.stc"
+**gpsim> 
+*************************************************************************
+CURRENTLY THIS DOES NOT WORK PROPERTY (THE TESTS STILL PASS) - gpsim PCON
+DOES NOT ALLOW SETTING OF THE SBOREN OR ULPWUE BITS !
+*************************************************************************
+running...
+[PASSED]
+Exiting gpsim
+[RESULT: SUCCESS] 3 tests run for module MclrReset, 3 of which passed.  There were 0 gpsim errors that didn't trigger breakpoints.
+gpsim -i -e onbreak -c PowerOnReset/Pcon/NonBorPorBitsUnmodified0TestFixture.stc;
+
+gpsim - the GNUPIC simulator
+version: Release 0.26.1
+
+
+type help for help
+not using gui
+[?1034h**gpsim> directory is "PowerOnReset/Pcon"
+file_name is "NonBorPorBitsUnmodified0TestFixture.stc"
+**gpsim> running...
+[PASSED]
+Exiting gpsim
+gpsim -i -e onbreak -c PowerOnReset/Pcon/BorPorBitsSetTestFixture.stc;
+
+gpsim - the GNUPIC simulator
+version: Release 0.26.1
+
+
+type help for help
+not using gui
+[?1034h**gpsim> directory is "PowerOnReset/Pcon"
+file_name is "BorPorBitsSetTestFixture.stc"
+**gpsim> running...
+[PASSED]
+Exiting gpsim
+gpsim -i -e onbreak -c PowerOnReset/Pcon/NonBorPorBitsUnmodified1TestFixture.stc;
+
+gpsim - the GNUPIC simulator
+version: Release 0.26.1
+
+
+type help for help
+not using gui
+[?1034h**gpsim> directory is "PowerOnReset/Pcon"
+file_name is "NonBorPorBitsUnmodified1TestFixture.stc"
+**gpsim> 
+*************************************************************************
+CURRENTLY THIS DOES NOT WORK PROPERTY (THE TESTS STILL PASS) - gpsim PCON
+DOES NOT ALLOW SETTING OF THE SBOREN OR ULPWUE BITS !
+*************************************************************************
+running...
+[PASSED]
+Exiting gpsim
+[RESULT: SUCCESS] 3 tests run for module PowerOnReset, 3 of which passed.  There were 0 gpsim errors that didn't trigger breakpoints.

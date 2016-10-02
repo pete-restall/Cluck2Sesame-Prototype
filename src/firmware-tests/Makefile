@@ -10,8 +10,17 @@ export ASSERT_NO_ISR_OBJ_FILE=$(FIRMWARE_TESTS_DIR)/AssertNoIsr.o
 
 ASARGS+=-I $(FIRMWARE_TESTS_DIR)
 
-all:
+all: TestFixture.o TestDoubles.o AssertNoIsr.o
 	$(MAKE) -C Main all
+	$(MAKE) -C PowerOnReset all
+	$(MAKE) -C BrownOutReset all
+	$(MAKE) -C MclrReset all
 
 clean:
+	$(RM) -f $(BUILD_ARTEFACT_PATTERN)
 	$(MAKE) -C Main clean
+	$(MAKE) -C PowerOnReset clean
+	$(MAKE) -C BrownOutReset clean
+	$(MAKE) -C MclrReset clean
+
+include $(MAKEFILE_RULES)

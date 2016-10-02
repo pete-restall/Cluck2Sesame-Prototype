@@ -5,13 +5,14 @@ GPSIM=gpsim;
 # If no arguments given then run this script for each directory:
 
 if [ $# != 1 ]; then
+	echo > run.log.all;
 	exitCode=0;
 	for module in [ * ]; do
 		if ! [[ -d ${module} ]]; then
 			continue;
 		fi;
 
-		${0} ${module};
+		${0} ${module} | tee -a run.log.all;
 		if [ $? -ne 0 ]; then exitCode=1; fi
 	done;
 	exit ${exitCode};
@@ -30,11 +31,21 @@ done;
 
 passedTestCount=`cat run.log | grep "\[PASSED\]" | wc -l`;
 totalTestCount=`cat run.log | grep "gpsim - the GNUPIC simulator" | wc -l`;
-
-echo "${totalTestCount} tests run for module ${module}, ${passedTestCount} of which passed.";
+spuriousFailureCount=`cat run.log | grep "ERROR" | wc -l`;
 
 if [ ${passedTestCount} -eq ${totalTestCount} ]; then
-	exit 0;
+	if [ ${spuriousFailureCount} -eq 0 ]; then
+		exitCode=0;
+		result="SUCCESS";
+	else
+		exitCode=2;
+		result="FAILURE";
+	fi;
 else
-	exit 1;
+	exitCode=1;
+	result="FAILURE";
 fi
+
+echo "[RESULT: ${result}] ${totalTestCount} tests run for module ${module}, ${passedTestCount} of which passed.  There were ${spuriousFailureCount} gpsim errors that didn't trigger breakpoints.";
+
+exit ${exitCode};

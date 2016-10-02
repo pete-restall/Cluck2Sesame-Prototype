@@ -26,6 +26,10 @@
 	banksel from
 	movf from, W
 
+	.aliasWForAssert to
+	endm
+
+.aliasWForAssert macro to
 	banksel to
 	movwf to
 	endm
