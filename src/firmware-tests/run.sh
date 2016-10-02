@@ -13,7 +13,7 @@ if [ $# != 1 ]; then
 		fi;
 
 		${0} ${module} | tee -a run.log.all;
-		if [ $? -ne 0 ]; then exitCode=1; fi
+		if [ ${PIPESTATUS[0]} -ne 0 ]; then exitCode=3; fi
 	done;
 	exit ${exitCode};
 fi;

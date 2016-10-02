@@ -5,18 +5,19 @@
 
 	extern initialiseAfterMclrReset
 
-BorPorBitsSetTest code
+BorDisabledTest code
 	global testArrange
 
 testArrange:
 	banksel PCON
-	clrf PCON
+	movlw -1
+	movwf PCON
 
 testAct:
 	fcall initialiseAfterMclrReset
 
 testAssert:
-	.assert "(pcon & 0x03) == 0x03, \"BOR / POR bits were not set.\""
+	.assert "(pcon & 0x10) == 0, \"SBOREN bit should not be set.\""
 
 	.done
 

@@ -1,10 +1,9 @@
 echo
 echo *************************************************************************
-echo CURRENTLY THIS DOES NOT WORK PROPERTY (THE TESTS STILL PASS) - gpsim PCON
+echo CURRENTLY THIS DOES NOT WORK PROPERLY (THE TESTS STILL PASS) - gpsim PCON
 echo DOES NOT ALLOW SETTING OF THE SBOREN OR ULPWUE BITS !
 echo *************************************************************************
 
-load NonBorPorBitsUnmodifiedTest.cod
-pcon = 0xff
+load BorDisabledTest.cod
 run
 quit

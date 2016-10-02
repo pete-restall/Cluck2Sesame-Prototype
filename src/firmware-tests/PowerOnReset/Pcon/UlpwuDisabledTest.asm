@@ -5,18 +5,19 @@
 
 	extern initialiseAfterPowerOnReset
 
-BorPorBitsSetTest code
+UlpwuDisabledTest code
 	global testArrange
 
 testArrange:
 	banksel PCON
-	clrf PCON
+	movlw -1
+	movwf PCON
 
 testAct:
 	fcall initialiseAfterPowerOnReset
 
 testAssert:
-	.assert "(pcon & 0x03) == 0x03, \"BOR / POR bits were not set.\""
+	.assert "(pcon & 0x20) == 0, \"ULPWUE bit should not be set.\""
 
 	.done
 

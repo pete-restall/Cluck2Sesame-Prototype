@@ -1,14 +1,17 @@
 	#include "p16f685.inc"
+	#include "TailCalls.inc"
 	radix decimal
+
+	extern initialiseAfterReset
 
 PowerOnReset code
 	global initialiseAfterPowerOnReset
 
 initialiseAfterPowerOnReset:
 	banksel PCON
-	bsf PCON, NOT_POR
-	bsf PCON, NOT_BOR
+	movlw (1 << NOT_BOR) | (1 << NOT_POR)
+	movwf PCON
 
-	return
+	tcall initialiseAfterReset
 
 	end

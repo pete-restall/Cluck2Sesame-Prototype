@@ -10,11 +10,12 @@ export ASSERT_NO_ISR_OBJ_FILE=$(FIRMWARE_TESTS_DIR)/AssertNoIsr.o
 
 ASARGS+=-I $(FIRMWARE_TESTS_DIR)
 
-all: TestFixture.o TestDoubles.o AssertNoIsr.o
+all: TestFixture.o TestDoubles.o AssertNoIsr.o InitialiseAfterResetMock.o InitialiseAfterResetDummy.o
 	$(MAKE) -C Main all
 	$(MAKE) -C PowerOnReset all
 	$(MAKE) -C BrownOutReset all
 	$(MAKE) -C MclrReset all
+	$(MAKE) -C InitialisationChain all
 
 clean:
 	$(RM) -f $(BUILD_ARTEFACT_PATTERN)
@@ -22,5 +23,6 @@ clean:
 	$(MAKE) -C PowerOnReset clean
 	$(MAKE) -C BrownOutReset clean
 	$(MAKE) -C MclrReset clean
+	$(MAKE) -C InitialisationChain clean
 
 include $(MAKEFILE_RULES)

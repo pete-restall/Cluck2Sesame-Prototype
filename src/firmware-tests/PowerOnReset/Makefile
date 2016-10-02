@@ -1,4 +1,4 @@
-export SUT_OBJ_FILE=$(FIRMWARE_DIR)/MclrReset.o
+export SUT_OBJ_FILE=$(FIRMWARE_DIR)/PowerOnReset.o
 export OBJ_FILES=\
 	$(SUT_OBJ_FILE) \
 	$(FIRMWARE_CORE_OBJ_FILES) \
@@ -7,9 +7,11 @@ export OBJ_FILES=\
 
 all:
 	$(MAKE) -C Pcon all
+	$(MAKE) -C Initialisation all
 
 clean:
 	$(RM) -f $(BUILD_ARTEFACT_PATTERN)
 	$(MAKE) -C Pcon clean
+	$(MAKE) -C Initialisation clean
 
 include $(MAKEFILE_RULES)

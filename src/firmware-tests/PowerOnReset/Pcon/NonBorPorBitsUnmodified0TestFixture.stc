@@ -1,4 +1,0 @@
-load NonBorPorBitsUnmodifiedTest.cod
-pcon = 0x00
-run
-quit
