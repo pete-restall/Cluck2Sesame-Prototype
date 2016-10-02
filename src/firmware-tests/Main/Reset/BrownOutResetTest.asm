@@ -3,23 +3,15 @@
 	#include "TestFixture.inc"
 	radix decimal
 
-	extern calledInitialiseAfterPowerOnReset
-	extern calledInitialiseAfterBrownOutReset
-	extern calledInitialiseAfterMclrReset
+	extern initialiseResetMocks
 	extern main
 
 	global testArrange
+	global testAssert
 
 	code
 testArrange:
-	banksel calledInitialiseAfterPowerOnReset
-	clrf calledInitialiseAfterPowerOnReset
-
-	banksel calledInitialiseAfterBrownOutReset
-	clrf calledInitialiseAfterBrownOutReset
-
-	banksel calledInitialiseAfterMclrReset
-	clrf calledInitialiseAfterMclrReset
+	fcall initialiseResetMocks
 
 testAct:
 	fcall main

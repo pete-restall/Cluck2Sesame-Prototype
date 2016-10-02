@@ -5,6 +5,7 @@
 	global calledInitialiseAfterPowerOnReset
 	global calledInitialiseAfterBrownOutReset
 	global calledInitialiseAfterMclrReset
+	global initialiseResetMocks
 	global initialiseAfterPowerOnReset
 	global initialiseAfterBrownOutReset
 	global initialiseAfterMclrReset
@@ -15,16 +16,27 @@ calledInitialiseAfterBrownOutReset res 1
 calledInitialiseAfterMclrReset res 1
 
 	code
+initialiseResetMocks:
+	banksel calledInitialiseAfterPowerOnReset
+	clrf calledInitialiseAfterPowerOnReset
+
+	banksel calledInitialiseAfterBrownOutReset
+	clrf calledInitialiseAfterBrownOutReset
+
+	banksel calledInitialiseAfterMclrReset
+	clrf calledInitialiseAfterMclrReset
+	return
+
 initialiseAfterPowerOnReset:
-	spyCalled calledInitialiseAfterPowerOnReset
+	mockCalled calledInitialiseAfterPowerOnReset
 	return
 
 initialiseAfterBrownOutReset:
-	spyCalled calledInitialiseAfterBrownOutReset
+	mockCalled calledInitialiseAfterBrownOutReset
 	return
 
 initialiseAfterMclrReset:
-	spyCalled calledInitialiseAfterMclrReset
+	mockCalled calledInitialiseAfterMclrReset
 	return
 
 	end

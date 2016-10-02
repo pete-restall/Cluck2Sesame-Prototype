@@ -1,0 +1,5 @@
+load PollAfterMclrResetTest.cod
+pcon = (pcon & b'11111111') | b'00000011'
+status = (status & b'11111111') | b'00000011'
+run
+quit

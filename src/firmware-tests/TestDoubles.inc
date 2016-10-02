@@ -1,9 +1,9 @@
-	extern spyCallCounter
+	extern mockCallCounter
 
-spyCalled macro counter
-	banksel spyCallCounter
-	incf spyCallCounter
-	movf spyCallCounter, W
+mockCalled macro counter
+	banksel mockCallCounter
+	incf mockCallCounter
+	movf mockCallCounter, W
 
 	banksel counter
 	movwf counter

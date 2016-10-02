@@ -6,7 +6,8 @@ OBJ_FILES=\
 	PowerOnReset.o \
 	BrownOutReset.o \
 	MclrReset.o \
-	Isr.o
+	Isr.o \
+	TemperatureSensor.o
 
 all: $(HEX_FILENAME)
 

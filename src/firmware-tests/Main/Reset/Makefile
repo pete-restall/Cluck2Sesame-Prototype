@@ -3,26 +3,33 @@ HEX_FILES=\
 	BrownOutResetTest.hex \
 	MclrResetTest.hex
 
-SUT_OBJ_FILE=$(FIRMWARE_DIR)/Main.o
-OBJ_FILES=\
-	$(SUT_OBJ_FILE) \
-	$(FIRMWARE_CORE_OBJ_FILES) \
-	$(TEST_FIXTURE_OBJ_FILES) \
-	$(ASSERT_NO_ISR_OBJ_FILE) \
-	InitialisationSpies.o
+POWER_ON_RESET_OBJ_FILES=\
+	PowerOnResetTest.o \
+	../ResetMocks.o \
+	../PollStubToAssertTest.o
+
+BROWN_OUT_RESET_OBJ_FILES=\
+	BrownOutResetTest.o \
+	../ResetMocks.o \
+	../PollStubToAssertTest.o
+
+MCLR_RESET_OBJ_FILES=\
+	MclrResetTest.o \
+	../ResetMocks.o \
+	../PollStubToAssertTest.o
 
 all: $(HEX_FILES)
 
 clean:
 	$(RM) -f $(BUILD_ARTEFACT_PATTERN)
 
-PowerOnResetTest.hex: $(OBJ_FILES) PowerOnResetTest.o
-	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) PowerOnResetTest.o
+PowerOnResetTest.hex: $(OBJ_FILES) $(POWER_ON_RESET_OBJ_FILES)
+	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(POWER_ON_RESET_OBJ_FILES)
 
-BrownOutResetTest.hex: $(OBJ_FILES) BrownOutResetTest.o
-	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) BrownOutResetTest.o
+BrownOutResetTest.hex: $(OBJ_FILES) $(BROWN_OUT_RESET_OBJ_FILES)
+	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(BROWN_OUT_RESET_OBJ_FILES)
 
-MclrResetTest.hex: $(OBJ_FILES) MclrResetTest.o
-	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) MclrResetTest.o
+MclrResetTest.hex: $(OBJ_FILES) $(MCLR_RESET_OBJ_FILES)
+	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(MCLR_RESET_OBJ_FILES)
 
 include $(MAKEFILE_RULES)

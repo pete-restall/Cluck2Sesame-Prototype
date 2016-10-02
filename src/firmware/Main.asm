@@ -5,6 +5,7 @@
 	extern initialiseAfterPowerOnReset
 	extern initialiseAfterBrownOutReset
 	extern initialiseAfterMclrReset
+	extern pollTemperatureSensor
 	global main
 
 	code
@@ -17,15 +18,17 @@ main:
 
 mclrReset:
 	fcall initialiseAfterMclrReset
-	return
+	goto pollingLoop
 
 powerOnReset:
 	fcall initialiseAfterPowerOnReset
-	return ; TODO: TEMPORARY !  JUST FOR TESTS AT PRESENT (TO ALLOW 'call main')
+	goto pollingLoop
 
 brownOutReset:
 	fcall initialiseAfterBrownOutReset
 
-	return ; TODO: TEMPORARY !  JUST FOR TESTS AT PRESENT (TO ALLOW 'call main')
+pollingLoop:
+	fcall pollTemperatureSensor
+	goto pollingLoop
 
 	end

@@ -1,16 +1,16 @@
 	#include "p16f685.inc"
 	radix decimal
 
-	global spyCallCounter
+	global mockCallCounter
 	global initialiseTestDoubles
 
 	udata
-spyCallCounter res 1
+mockCallCounter res 1
 
 	code
 initialiseTestDoubles:
-	banksel spyCallCounter
-	clrf spyCallCounter
+	banksel mockCallCounter
+	clrf mockCallCounter
 	return
 
 	end
