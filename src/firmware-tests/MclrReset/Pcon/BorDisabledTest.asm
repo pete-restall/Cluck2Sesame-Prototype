@@ -10,7 +10,7 @@ BorDisabledTest code
 
 testArrange:
 	banksel PCON
-	movlw -1
+	movlw 0xff
 	movwf PCON
 
 testAct:

@@ -16,6 +16,7 @@ all: TestFixture.o TestDoubles.o AssertNoIsr.o InitialiseAfterResetMock.o Initia
 	$(MAKE) -C BrownOutReset all
 	$(MAKE) -C MclrReset all
 	$(MAKE) -C InitialisationChain all
+	$(MAKE) -C Clock all
 
 clean:
 	$(RM) -f $(BUILD_ARTEFACT_PATTERN)
@@ -24,5 +25,6 @@ clean:
 	$(MAKE) -C BrownOutReset clean
 	$(MAKE) -C MclrReset clean
 	$(MAKE) -C InitialisationChain clean
+	$(MAKE) -C Clock clean
 
 include $(MAKEFILE_RULES)

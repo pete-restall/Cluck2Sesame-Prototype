@@ -1,0 +1,3 @@
+load Timer1DrivesExternalCrystalTest.cod
+run
+quit
