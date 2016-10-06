@@ -1,6 +1,9 @@
 sudo: required
 
 before_install:
+  - sudo apt-get install popt-devel
+  - sudo apt-get install flex
+  - sudo apt-get install bison
   - sudo ./install-gputils.sh
   - sudo ./install-gpsim.sh
 
