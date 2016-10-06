@@ -6,6 +6,7 @@ libtoolize --force
 aclocal
 autoheader
 automake --force-missing --add-missing
+patch src/Makefile.in < ../gpsim-patch/src/Makefile.in
 autoconf
 ./configure --disable-gui
 make

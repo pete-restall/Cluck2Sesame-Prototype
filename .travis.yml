@@ -4,8 +4,10 @@ before_install:
   - sudo apt-get install libpopt-dev
   - sudo apt-get install flex
   - sudo apt-get install bison
+  - cd build
   - sudo ./install-gputils.sh
   - sudo ./install-gpsim.sh
+  - cd ..
 
 install: true
 
