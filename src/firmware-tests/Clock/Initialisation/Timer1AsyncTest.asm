@@ -16,7 +16,7 @@ testAct:
 	fcall initialiseClock
 
 testAssert:
-	.assert "(t1con & 0x04) != 0, \"T1CON.T1SYNC is not asynchronous.\""
+	.assert "(t1con & 0x04) != 0, 'T1CON.T1SYNC is not asynchronous.'"
 	.done
 
 	end

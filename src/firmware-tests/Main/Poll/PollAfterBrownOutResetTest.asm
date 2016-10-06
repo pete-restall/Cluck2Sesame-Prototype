@@ -23,7 +23,7 @@ testAct:
 testAssert:
 	.aliasForAssert calledPollForWork, _a
 	.aliasForAssert calledInitialiseAfterBrownOutReset, _b
-	.assert "_a > _b, \"Main did not call pollForWork after BOR initialisation.\""
+	.assert "_a > _b, 'Main did not call pollForWork after BOR initialisation.'"
 
 	.done
 

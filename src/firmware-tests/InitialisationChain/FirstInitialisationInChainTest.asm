@@ -45,8 +45,8 @@ testAct:
 	pagesel testArrange
 
 testAssert:
-	.assert "initialiseAfterResetAddressHigh == initialiseClockAddressHigh, \"Expected first initialisation in chain to be initialiseClock.\""
-	.assert "initialiseAfterResetAddressLow == initialiseClockAddressLow, \"Expected first initialisation in chain to be initialiseClock.\""
+	.assert "initialiseAfterResetAddressHigh == initialiseClockAddressHigh, 'Expected first initialisation in chain to be initialiseClock.'"
+	.assert "initialiseAfterResetAddressLow == initialiseClockAddressLow, 'Expected first initialisation in chain to be initialiseClock.'"
 
 	.done
 

@@ -17,11 +17,11 @@ testAct:
 	fcall main
 
 testAssert:
-	.assert "calledInitialiseAfterMclrReset != 0, \"MCLR condition did not call initialiseAfterMclrReset.\""
+	.assert "calledInitialiseAfterMclrReset != 0, 'MCLR condition did not call initialiseAfterMclrReset.'"
 
-	.assert "calledInitialiseAfterPowerOnReset == 0, \"MCLR condition called initialiseAfterPowerOnReset.\""
+	.assert "calledInitialiseAfterPowerOnReset == 0, 'MCLR condition called initialiseAfterPowerOnReset.'"
 
-	.assert "calledInitialiseAfterBrownOutReset == 0, \"MCLR condition called initialiseAfterBrownOutReset.\""
+	.assert "calledInitialiseAfterBrownOutReset == 0, 'MCLR condition called initialiseAfterBrownOutReset.'"
 
 	.done
 

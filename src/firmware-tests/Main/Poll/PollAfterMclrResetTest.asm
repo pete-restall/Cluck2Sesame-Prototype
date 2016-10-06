@@ -23,7 +23,7 @@ testAct:
 testAssert:
 	.aliasForAssert calledPollForWork, _a
 	.aliasForAssert calledInitialiseAfterMclrReset, _b
-	.assert "_a > _b, \"Main did not call pollForWork after MCLR initialisation.\""
+	.assert "_a > _b, 'Main did not call pollForWork after MCLR initialisation.'"
 
 	.done
 

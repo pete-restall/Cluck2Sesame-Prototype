@@ -24,7 +24,7 @@ testAct:
 	fcall main
 
 testAssert:
-	.assert "pollCount == 0, \"Main did not call pollForWork repeatedly.\""
+	.assert "pollCount == 0, 'Main did not call pollForWork repeatedly.'"
 	.done
 
 pollForWork:

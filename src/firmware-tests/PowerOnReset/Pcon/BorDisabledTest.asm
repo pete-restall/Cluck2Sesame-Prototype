@@ -17,7 +17,7 @@ testAct:
 	fcall initialiseAfterPowerOnReset
 
 testAssert:
-	.assert "(pcon & 0x10) == 0, \"SBOREN bit should not be set.\""
+	.assert "(pcon & 0x10) == 0, 'SBOREN bit should not be set.'"
 
 	.done
 

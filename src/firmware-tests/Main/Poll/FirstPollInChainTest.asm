@@ -45,8 +45,8 @@ testAct:
 	pagesel testArrange
 
 testAssert:
-	.assert "pollForWorkAddressHigh == pollTemperatureSensorAddressHigh, \"Expected first poll in chain to be pollTemperatureSensor.\""
-	.assert "pollForWorkAddressLow == pollTemperatureSensorAddressLow, \"Expected first poll in chain to be pollTemperatureSensor.\""
+	.assert "pollForWorkAddressHigh == pollTemperatureSensorAddressHigh, 'Expected first poll in chain to be pollTemperatureSensor.'"
+	.assert "pollForWorkAddressLow == pollTemperatureSensorAddressLow, 'Expected first poll in chain to be pollTemperatureSensor.'"
 
 	.done
 

@@ -1,5 +1,10 @@
-install:
-  - sudo apt-get install gputils
+sudo: required
+
+before_install:
+  - sudo ./install-gputils.sh
+  - sudo ./install-gpsim.sh
+
+install: true
 
 script:
   - make -C src all

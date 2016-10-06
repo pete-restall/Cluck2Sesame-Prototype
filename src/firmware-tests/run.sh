@@ -24,7 +24,7 @@ fi;
 module="${1}";
 echo > run.log;
 for fixture in `find ${module} -name "*.stc"`; do
-	runTest="${GPSIM} -i -e onbreak -c ${fixture}";
+	runTest="${GPSIM} -i -c ${fixture}";
 	echo "${runTest};";
 	${runTest} | tee -a run.log;
 done;

@@ -17,7 +17,7 @@ testAct:
 	fcall initialiseAfterPowerOnReset
 
 testAssert:
-	.assert "calledInitialiseAfterReset != 0, \"Expected initialiseAfterReset to be called.\""
+	.assert "calledInitialiseAfterReset != 0, 'Expected initialiseAfterReset to be called.'"
 
 	.done
 

@@ -16,7 +16,7 @@ testAct:
 	fcall initialiseClock
 
 testAssert:
-	.assert "(t1con & 0x30) == 0x30, \"T1CON.T1CKPS* is not 1:8 prescaler.\""
+	.assert "(t1con & 0x30) == 0x30, 'T1CON.T1CKPS* is not 1:8 prescaler.'"
 	.done
 
 	end
