@@ -2,5 +2,6 @@ install:
   - sudo apt-get install gputils
 
 script:
-  - make all
-  - src/firmware-tests/run.sh
+  - make -C src all
+  - cd src/firmware-tests
+  - ./run.sh
