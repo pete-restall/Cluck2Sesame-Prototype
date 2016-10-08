@@ -1,0 +1,17 @@
+OBJ_FILES+=$(FIRMWARE_DIR)/Isr.o
+
+HEX_FILES=\
+	Timer1OverflowIncrementsTimeTest.hex
+
+TIMER1_OVERFLOW_INCREMENTS_TIME_OBJ_FILES=\
+	Timer1OverflowIncrementsTimeTest.o
+
+all: $(HEX_FILES)
+
+clean:
+	$(RM) -f $(BUILD_ARTEFACT_PATTERN)
+
+Timer1OverflowIncrementsTimeTest.hex: $(OBJ_FILES) $(TIMER1_OVERFLOW_INCREMENTS_TIME_OBJ_FILES)
+	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(TIMER1_OVERFLOW_INCREMENTS_TIME_OBJ_FILES)
+
+include $(MAKEFILE_RULES)

@@ -10,10 +10,10 @@
 	; variable names cause weird failures.  Use the .aliasForAssert macro in
 	; TestFixture.inc along with these variables to work around this.
 
+assertAliases udata
 	global _a
 	global _b
 
-assertAliases udata
 _a res 1
 _b res 2
 

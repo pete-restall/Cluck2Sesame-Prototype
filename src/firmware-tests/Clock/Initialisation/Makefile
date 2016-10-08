@@ -1,3 +1,5 @@
+OBJ_FILES+=$(ASSERT_NO_ISR_OBJ_FILE)
+
 HEX_FILES=\
 	Timer1SourceIsExternalCrystalTest.hex \
 	Timer1DrivesExternalCrystalTest.hex \
