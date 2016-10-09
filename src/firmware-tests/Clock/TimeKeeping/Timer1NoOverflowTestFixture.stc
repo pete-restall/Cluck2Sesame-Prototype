@@ -1,9 +1,9 @@
 load Timer1OverflowIncrementsTimeTest.cod
 
 numberOfClockPulsesA=0x00
-numberOfClockPulsesB=0x08
-numberOfClockPulsesC=0x00
-numberOfClockPulsesD=0x00
+numberOfClockPulsesB=0x07
+numberOfClockPulsesC=0xff
+numberOfClockPulsesD=0xff
 tmr1h=0x00
 tmr1l=0x00
 
@@ -19,7 +19,7 @@ expectedClockMonthBcd=0x01
 expectedClockDayBcd=0x01
 expectedClockHourBcd=0x00
 expectedClockMinuteBcd=0x00
-expectedClockSecondBcd=0x16
+expectedClockSecondBcd=0x00
 
 attach portc0 porta5
 run

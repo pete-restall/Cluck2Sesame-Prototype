@@ -1,6 +1,8 @@
 	#include "p16f685.inc"
 	radix decimal
 
+	extern clockSecondBcd ; TODO: TEMPORARY - UPDATE CLOCK FROM POLLING LOOP
+
 	udata_shr
 contextSavingW res 1
 contextSavingStatus res 1
@@ -17,10 +19,16 @@ Isr code 0x0004
 	movwf contextSavingPclath
 	clrf PCLATH
 
-	; TODO: ISR CODE GOES HERE...
+	; TODO: ISR CODE GOES HERE...THIS IS TEMPORARY CLOCK UPDATE CODE TO PASS TESTS
+	banksel clockSecondBcd
+	movlw 0x16
+	movwf clockSecondBcd
+
+	banksel PIR1
+	bcf PIR1, TMR1IF
 
 endOfIsr:
-	movf contextSavingPclath
+	movf contextSavingPclath, W
 	movwf PCLATH
 	swapf contextSavingStatus, W
 	movwf STATUS

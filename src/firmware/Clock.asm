@@ -37,9 +37,6 @@ initialiseClock:
 	return
 
 updateClock:
-	banksel clockSecondBcd
-	movlw 0x16
-	movwf clockSecondBcd
 	return
 
 	end

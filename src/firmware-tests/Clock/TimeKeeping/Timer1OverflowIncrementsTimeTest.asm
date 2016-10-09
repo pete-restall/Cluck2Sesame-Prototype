@@ -34,13 +34,33 @@ Timer1OverflowIncrementsTimeTest code
 	global testArrange
 
 testArrange:
+setRC0ToDigitalOutput:
 	banksel PORTC
 	bcf PORTC, 0
 
 	banksel TRISC
 	bcf TRISC, 0
 
+	banksel ANSEL
+	bcf ANSEL, ANS0
+
+initialiseSut:
 	fcall initialiseClock
+
+enableIsr:
+	banksel PIR1
+	bcf PIR1, TMR1IF
+
+	banksel PIE1
+	bsf PIE1, TMR1IE
+
+	banksel INTCON
+	bsf INTCON, PEIE
+	bsf INTCON, GIE
+
+setTimer1ToUseRC0:
+	banksel T1CON
+	bcf T1CON, T1OSCEN
 
 testAct:
 clockPulseLoop:
