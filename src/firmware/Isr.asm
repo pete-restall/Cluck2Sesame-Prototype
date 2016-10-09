@@ -1,7 +1,6 @@
 	#include "p16f685.inc"
+	#include "Clock.inc"
 	radix decimal
-
-	extern clockSecondBcd ; TODO: TEMPORARY - UPDATE CLOCK FROM POLLING LOOP
 
 	udata_shr
 contextSavingW res 1
@@ -19,10 +18,9 @@ Isr code 0x0004
 	movwf contextSavingPclath
 	clrf PCLATH
 
-	; TODO: ISR CODE GOES HERE...THIS IS TEMPORARY CLOCK UPDATE CODE TO PASS TESTS
-	banksel clockSecondBcd
-	movlw 0x16
-	movwf clockSecondBcd
+clockTicked:
+	banksel clockFlags
+	bsf clockFlags, CLOCK_FLAG_TICKED
 
 	banksel PIR1
 	bcf PIR1, TMR1IF

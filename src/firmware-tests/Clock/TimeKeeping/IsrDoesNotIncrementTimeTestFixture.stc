@@ -1,0 +1,4 @@
+load IsrDoesNotIncrementTimeTest.cod
+
+run
+quit
