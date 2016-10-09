@@ -16,7 +16,6 @@
 	global expectedCarry
 	global expectedZero
 	global carry
-	global digitCarry
 	global zero
 
 expectedRAA res 1
@@ -34,7 +33,6 @@ expectedZero res 1
 
 capturedStatus res 1
 carry res 1
-digitCarry res 1
 zero res 1
 
 AddTest code
@@ -43,7 +41,6 @@ AddTest code
 testArrange:
 	banksel carry
 	clrf carry
-	clrf digitCarry
 	clrf zero
 
 testAct:
@@ -56,9 +53,6 @@ testAct:
 
 	btfsc capturedStatus, C
 	bsf carry, 0
-
-	btfsc capturedStatus, DC
-	bsf digitCarry, 0
 
 	btfsc capturedStatus, Z
 	bsf zero, 0

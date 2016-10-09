@@ -4,6 +4,7 @@ OBJ_FILES=\
 	ConfigWords.o \
 	GeneralPurposeRegisters.o \
 	Arithmetic32.o \
+	ArithmeticBcd.o \
 	Main.o \
 	PowerOnReset.o \
 	BrownOutReset.o \

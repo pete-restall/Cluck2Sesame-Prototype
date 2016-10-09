@@ -1,0 +1,8 @@
+load IncrementTest.cod
+initialW=0x99
+expectedW=0x00
+expectedCarry=1
+expectedZero=1
+
+run
+quit
