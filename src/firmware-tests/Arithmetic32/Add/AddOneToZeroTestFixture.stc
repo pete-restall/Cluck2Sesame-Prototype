@@ -1,0 +1,26 @@
+load AddTest.cod
+RAA=0
+RAB=0
+RAC=0
+RAD=0
+
+RBA=0
+RBB=0
+RBC=0
+RBD=1
+
+expectedRAA=0
+expectedRAB=0
+expectedRAC=0
+expectedRAD=1
+
+expectedRBA=0
+expectedRBB=0
+expectedRBC=0
+expectedRBD=1
+
+expectedCarry=0
+expectedZero=0
+
+run
+quit

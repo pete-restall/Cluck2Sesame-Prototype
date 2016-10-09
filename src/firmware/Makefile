@@ -2,6 +2,8 @@ HEX_FILENAME=Cluck2Sesame.hex
 OBJ_FILES=\
 	Cluck2Sesame.o \
 	ConfigWords.o \
+	GeneralPurposeRegisters.o \
+	Arithmetic32.o \
 	Main.o \
 	PowerOnReset.o \
 	BrownOutReset.o \

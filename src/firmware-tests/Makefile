@@ -1,6 +1,7 @@
 export FIRMWARE_TESTS_DIR=$(BASE_DIR)/firmware-tests
 export FIRMWARE_CORE_OBJ_FILES=\
-	$(FIRMWARE_DIR)/ConfigWords.o
+	$(FIRMWARE_DIR)/ConfigWords.o \
+	$(FIRMWARE_DIR)/GeneralPurposeRegisters.o
 
 export TEST_FIXTURE_OBJ_FILES=\
 	$(FIRMWARE_TESTS_DIR)/TestFixture.o \
@@ -17,6 +18,7 @@ all: TestFixture.o TestDoubles.o AssertNoIsr.o InitialiseAfterResetMock.o Initia
 	$(MAKE) -C MclrReset all
 	$(MAKE) -C InitialisationChain all
 	$(MAKE) -C Clock all
+	$(MAKE) -C Arithmetic32 all
 
 clean:
 	$(RM) -f $(BUILD_ARTEFACT_PATTERN)
@@ -26,5 +28,6 @@ clean:
 	$(MAKE) -C MclrReset clean
 	$(MAKE) -C InitialisationChain clean
 	$(MAKE) -C Clock clean
+	$(MAKE) -C Arithmetic32 clean
 
 include $(MAKEFILE_RULES)
