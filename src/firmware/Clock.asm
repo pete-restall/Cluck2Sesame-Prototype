@@ -25,6 +25,7 @@ clockSecondBcd res 1
 Clock code
 	global initialiseAfterReset
 	global initialiseClock
+	global updateClock
 
 initialiseAfterReset:
 initialiseClock:
@@ -33,6 +34,12 @@ initialiseClock:
 
 	movwf T1CON
 
+	return
+
+updateClock:
+	banksel clockSecondBcd
+	movlw 0x16
+	movwf clockSecondBcd
 	return
 
 	end

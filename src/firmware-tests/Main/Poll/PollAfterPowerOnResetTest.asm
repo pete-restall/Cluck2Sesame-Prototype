@@ -1,12 +1,11 @@
 	#include "p16f685.inc"
 	#include "FarCalls.inc"
+	#include "PowerOnReset.inc"
 	#include "TestFixture.inc"
+	#include "../PollMockToAssertTest.inc"
+	#include "../ResetMocks.inc"
 	radix decimal
 
-	extern calledPollForWork
-	extern calledInitialiseAfterPowerOnReset
-	extern initialiseResetMocks
-	extern initialisePollMock
 	extern main
 
 PollAfterPowerOnResetTest code

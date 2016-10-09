@@ -1,11 +1,9 @@
 	#include "p16f685.inc"
 	#include "FarCalls.inc"
+	#include "MclrReset.inc"
 	#include "TestFixture.inc"
+	#include "InitialiseAfterResetMock.inc"
 	radix decimal
-
-	extern calledInitialiseAfterReset
-	extern initialiseAfterMclrReset
-	extern initialiseInitialiseAfterResetMock
 
 InitialiseAfterResetCalledTest code
 	global testArrange

@@ -1,9 +1,9 @@
 	#include "p16f685.inc"
 	#include "FarCalls.inc"
 	#include "TestFixture.inc"
+	#include "../ResetMocks.inc"
 	radix decimal
 
-	extern initialiseResetMocks
 	extern main
 
 MclrResetTest code

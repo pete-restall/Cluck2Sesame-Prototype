@@ -1,4 +1,6 @@
-OBJ_FILES+=$(FIRMWARE_DIR)/Isr.o
+OBJ_FILES+=\
+	$(FIRMWARE_DIR)/Isr.o \
+	$(FIRMWARE_DIR)/Arithmetic32.o
 
 HEX_FILES=\
 	Timer1OverflowIncrementsTimeTest.hex

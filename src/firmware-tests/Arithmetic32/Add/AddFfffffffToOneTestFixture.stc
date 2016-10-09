@@ -20,7 +20,7 @@ expectedRBC=0xff
 expectedRBD=0xff
 
 expectedCarry=1
-expectedZero=0
+expectedZero=1
 
 run
 quit

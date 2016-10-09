@@ -1,17 +1,8 @@
 	#include "p16f685.inc"
 	#include "FarCalls.inc"
+	#include "Arithmetic32.inc"
 	#include "TestFixture.inc"
 	radix decimal
-
-	extern RAA
-	extern RAB
-	extern RAC
-	extern RAD
-	extern RBA
-	extern RBB
-	extern RBC
-	extern RBD
-	extern add32
 
 	udata
 	global expectedRAA

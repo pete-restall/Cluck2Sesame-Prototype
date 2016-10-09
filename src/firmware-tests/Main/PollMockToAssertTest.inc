@@ -1,0 +1,7 @@
+	#ifndef __CLUCK2SESAME_TESTS_MAIN_POLLMOCKTOASSERTTEST_INC
+	#define __CLUCK2SESAME_TESTS_MAIN_POLLMOCKTOASSERTTEST_INC
+
+	extern initialisePollMock
+	extern calledPollForWork
+
+	#endif

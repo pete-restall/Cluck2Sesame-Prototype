@@ -1,17 +1,15 @@
 	#include "p16f685.inc"
 	#include "FarCalls.inc"
+	#include "Arithmetic32.inc"
+	#include "Clock.inc"
 	#include "TestFixture.inc"
 	radix decimal
 
-    extern clockYearBcd
-    extern clockMonthBcd
-    extern clockDayBcd
-    extern clockHourBcd
-    extern clockMinuteBcd
-    extern clockSecondBcd
-	extern initialiseClock
-
     udata
+	global numberOfClockPulsesA
+	global numberOfClockPulsesB
+	global numberOfClockPulsesC
+	global numberOfClockPulsesD
     global expectedClockYearBcd
     global expectedClockMonthBcd
     global expectedClockDayBcd
@@ -19,7 +17,12 @@
     global expectedClockMinuteBcd
     global expectedClockSecondBcd
 
-numberOfPulses res 3
+numberOfClockPulsesA res 1
+numberOfClockPulsesB res 1
+numberOfClockPulsesC res 1
+numberOfClockPulsesD res 1
+isZero res 1
+
 expectedClockYearBcd res 1
 expectedClockMonthBcd res 1
 expectedClockDayBcd res 1
@@ -31,12 +34,6 @@ Timer1OverflowIncrementsTimeTest code
 	global testArrange
 
 testArrange:
-	banksel numberOfPulses
-	clrf numberOfPulses + 2
-	clrf numberOfPulses + 1
-	clrf numberOfPulses + 0
-	bsf numberOfPulses, 0
-
 	banksel PORTC
 	bcf PORTC, 0
 
@@ -46,15 +43,18 @@ testArrange:
 	fcall initialiseClock
 
 testAct:
-	// TODO: Tie RC0 in gpsim script to the TIMER1 input pin, then run:
+clockPulseLoop:
+	banksel PORTC
+	bsf PORTC, RC0
+	bcf PORTC, RC0
 
-	for (i = 0; i < numberOfPulses; i++)
-	{
-		RC0 = 1;
-		RC0 = 0;
-		updateClockStuff();
-	}
-	updateClockStuff();
+	fcall updateClock
+
+	call decrementNumberOfClockPulses
+	btfss STATUS, Z
+	goto clockPulseLoop
+
+	fcall updateClock
 
 testAssert:
 	.assert "clockYearBcd == expectedClockYearBcd, 'Year mismatch.'"
@@ -64,5 +64,81 @@ testAssert:
 	.assert "clockMinuteBcd == expectedClockMinuteBcd, 'Minute mismatch.'"
 	.assert "clockSecondBcd == expectedClockSecondBcd, 'Second mismatch.'"
 	.done
+
+decrementNumberOfClockPulses:
+	banksel isZero
+	clrf isZero
+
+	call copyNumberOfClockPulsesIntoRa
+	call copyNegativeOneIntoRb
+	fcall add32
+
+	banksel isZero
+	btfsc STATUS, Z
+	bsf isZero, 0
+
+	call copyRaIntoNumberOfClockPulses
+
+	banksel isZero
+	bcf STATUS, Z
+	btfsc isZero, 0
+	bsf STATUS, Z
+
+	return
+
+copyNumberOfClockPulsesIntoRa:
+	banksel numberOfClockPulsesA
+	movf numberOfClockPulsesA, W
+	banksel RAA
+	movwf RAA
+
+	banksel numberOfClockPulsesB
+	movf numberOfClockPulsesB, W
+	banksel RAB
+	movwf RAB
+
+	banksel numberOfClockPulsesC
+	movf numberOfClockPulsesC, W
+	banksel RAC
+	movwf RAC
+
+	banksel numberOfClockPulsesD
+	movf numberOfClockPulsesD, W
+	banksel RAD
+	movwf RAD
+
+	return
+
+copyNegativeOneIntoRb:
+	banksel RBA
+	movlw 0xff
+	movwf RBA
+	movwf RBB
+	movwf RBC
+	movwf RBD
+	return
+
+copyRaIntoNumberOfClockPulses:
+	banksel RAA
+	movf RAA, W
+	banksel numberOfClockPulsesA
+	movwf numberOfClockPulsesA
+
+	banksel RAB
+	movf RAB, W
+	banksel numberOfClockPulsesB
+	movwf numberOfClockPulsesB
+
+	banksel RAC
+	movf RAC, W
+	banksel numberOfClockPulsesC
+	movwf numberOfClockPulsesC
+
+	banksel RAD
+	movf RAD, W
+	banksel numberOfClockPulsesD
+	movwf numberOfClockPulsesD
+
+	return
 
 	end

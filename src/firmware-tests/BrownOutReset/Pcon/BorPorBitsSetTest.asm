@@ -1,9 +1,8 @@
 	#include "p16f685.inc"
 	#include "FarCalls.inc"
+	#include "BrownOutReset.inc"
 	#include "TestFixture.inc"
 	radix decimal
-
-	extern initialiseAfterBrownOutReset
 
 BorPorBitsSetTest code
 	global testArrange

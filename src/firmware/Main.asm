@@ -1,10 +1,10 @@
 	#include "p16f685.inc"
 	#include "FarCalls.inc"
+	#include "PowerOnReset.inc"
+	#include "BrownOutReset.inc"
+	#include "MclrReset.inc"
 	radix decimal
 
-	extern initialiseAfterPowerOnReset
-	extern initialiseAfterBrownOutReset
-	extern initialiseAfterMclrReset
 	extern pollForWork
 
 Main code

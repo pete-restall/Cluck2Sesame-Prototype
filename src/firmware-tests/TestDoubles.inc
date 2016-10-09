@@ -1,6 +1,8 @@
 	#ifndef __CLUCK2SESAME_TESTS_TESTDOUBLES_INC
 	#define __CLUCK2SESAME_TESTS_TESTDOUBLES_INC
 
+	extern initialiseTestDoubles
+
 	extern mockCallCounter
 
 mockCalled macro counter

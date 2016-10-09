@@ -1,10 +1,10 @@
 	#include "p16f685.inc"
 	#include "FarCalls.inc"
+	#include "TemperatureSensor.inc"
 	#include "TestFixture.inc"
 	radix decimal
 
 	extern pollForWork
-	extern pollTemperatureSensor
 
 	global pollForWorkAddressHigh
 	global pollForWorkAddressLow

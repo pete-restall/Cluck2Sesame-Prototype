@@ -1,8 +1,11 @@
-# TODO: NEEDS WRITING, AFTER 32-BIT ARITHMETIC ROUTINES ARE IN PLACE
-echo [PASSED]
-quit
-
 load Timer1OverflowIncrementsTimeTest.cod
+
+numberOfClockPulsesA=0x00
+numberOfClockPulsesB=0x01
+numberOfClockPulsesC=0x00
+numberOfClockPulsesD=0x00
+tmr1h=0x00
+tmr1l=0x00
 
 clockYearBcd=0x00
 clockMonthBcd=0x01
@@ -18,8 +21,5 @@ expectedClockHourBcd=0x00
 expectedClockMinuteBcd=0x00
 expectedClockSecondBcd=0x16
 
-tmr1h=0x00
-tmr1l=0x00
 run
-
 quit

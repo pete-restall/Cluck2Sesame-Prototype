@@ -1,0 +1,9 @@
+	#ifndef __CLUCK2SESAME_TESTS_MAIN_RESETMOCKS_INC
+	#define __CLUCK2SESAME_TESTS_MAIN_RESETMOCKS_INC
+
+	extern initialiseResetMocks
+	extern calledInitialiseAfterPowerOnReset
+	extern calledInitialiseAfterBrownOutReset
+	extern calledInitialiseAfterMclrReset
+
+	#endif

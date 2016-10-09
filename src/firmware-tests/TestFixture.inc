@@ -19,8 +19,10 @@
 	; variable names cause weird failures.  These variables and macro allow
 	; shorter variable names to be used in assertions.
 
+	#ifndef __CLUCK2SESAME_TESTS_TESTFIXTURE_ASM
 	extern _a
 	extern _b
+	#endif
 
 .aliasForAssert macro from, to
 	banksel from

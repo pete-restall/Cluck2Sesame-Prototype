@@ -1,9 +1,8 @@
 	#include "p16f685.inc"
 	#include "FarCalls.inc"
+	#include "PowerOnReset.inc"
 	#include "TestFixture.inc"
 	radix decimal
-
-	extern initialiseAfterPowerOnReset
 
 BorPorBitsSetTest code
 	global testArrange

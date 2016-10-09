@@ -1,10 +1,14 @@
+	#define __CLUCK2SESAME_TESTS_TESTFIXTURE_ASM
+
 	#include "p16f685.inc"
 	#include "FarCalls.inc"
+	#include "TestFixture.inc"
+	#include "TestDoubles.inc"
 	radix decimal
 
-	extern initialiseTestDoubles
 	extern testArrange
-
+	extern testAct
+	extern testAssert
 
 	; Non-obvious - gpsim .assert expressions are limited in size, so long
 	; variable names cause weird failures.  Use the .aliasForAssert macro in

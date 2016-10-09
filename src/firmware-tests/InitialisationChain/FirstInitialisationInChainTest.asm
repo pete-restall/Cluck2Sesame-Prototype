@@ -1,10 +1,10 @@
 	#include "p16f685.inc"
 	#include "FarCalls.inc"
+	#include "Clock.inc"
 	#include "TestFixture.inc"
 	radix decimal
 
 	extern initialiseAfterReset
-	extern initialiseClock
 
 	global initialiseAfterResetAddressHigh
 	global initialiseAfterResetAddressLow

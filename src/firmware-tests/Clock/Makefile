@@ -6,8 +6,7 @@ export OBJ_FILES=\
 
 all:
 	$(MAKE) -C Initialisation all
-	# TODO: TIMEKEEPING NEEDS DOING PROPERLY - GPSIM STIMULI ARE NAFF...
-	# $(MAKE) -C TimeKeeping all
+	$(MAKE) -C TimeKeeping all
 
 clean:
 	$(RM) -f $(BUILD_ARTEFACT_PATTERN)
