@@ -13,31 +13,29 @@ T1CKPS_DIVIDE_BY_8_MASK equ (1 << T1CKPS1) | (1 << T1CKPS0)
 TMR1ON_MASK equ (1 << TMR1ON)
 SECONDS_PER_TIMER_OVERFLOW_BCD equ 0x16
 
-addQuantityTo macro timePartBcd, literalQuantityBcd
-	movf timePartBcd, W
-	banksel RAA
-	movwf RAA
-	movlw literalQuantityBcd
-	movwf RBA
-	fcall addBcd
+	#define increment RBA
+	#define modulus RBB
+
+setIncrement macro literalBcd
+	movlw literalBcd
+	movwf increment
 	endm
 
-storeAndThenReturnWhenNotOverflowed macro timePartBcd, overflowQuantityBcd
-	local overflowed
+setModulus macro literalBcd
+	movlw literalBcd
+	movwf modulus
+	endm
 
-	movlw overflowQuantityBcd
-	subwf RAA, W
-	btfsc STATUS, C
-	goto overflowed
+setTimePartPointer macro timePart
+	movlw low timePart
+	movwf FSR
+	endm
 
-	movf RAA, W
-	banksel timePartBcd
-	movwf timePartBcd
+incrementAndThenReturnIfNotOverflowed macro timePartBcd
+	setTimePartPointer timePartBcd
+	call addToTimePart
+	btfss STATUS, C
 	return
-
-overflowed:
-	banksel timePartBcd
-	movwf timePartBcd
 	endm
 
 	udata
@@ -81,21 +79,55 @@ updateClock:
 	bcf clockFlags, CLOCK_FLAG_TICKED
 
 addSecondsSinceLastTimerOverflow:
-	addQuantityTo clockSecondBcd, SECONDS_PER_TIMER_OVERFLOW_BCD
-	storeAndThenReturnWhenNotOverflowed clockSecondBcd, 0x60
+	banksel increment
+	bankisel clockSecondBcd
+	setIncrement SECONDS_PER_TIMER_OVERFLOW_BCD
+	setModulus 0x60
+	incrementAndThenReturnIfNotOverflowed clockSecondBcd
 
 overflowedIntoNextMinute:
-	addQuantityTo clockMinuteBcd, 0x01
-	storeAndThenReturnWhenNotOverflowed clockMinuteBcd, 0x60
+	setIncrement 0x01
+	incrementAndThenReturnIfNotOverflowed clockMinuteBcd
 
 overflowedIntoNextHour:
-	addQuantityTo clockHourBcd, 0x01
-	storeAndThenReturnWhenNotOverflowed clockHourBcd, 0x24
+	setModulus 0x24
+	incrementAndThenReturnIfNotOverflowed clockHourBcd
 
 overflowedIntoNextDay:
-	addQuantityTo clockDayBcd, 0x01
-	storeAndThenReturnWhenNotOverflowed clockDayBcd, 0xff
+	setModulus 0xff
+	incrementAndThenReturnIfNotOverflowed clockDayBcd
 
+	; TODO: OVERFLOWED INTO NEXT MONTH...ETC.
+
+	return
+
+;
+; Inputs:
+;     INDF = Pointer to the part of the (BCD) time to increment
+;     RBA  = The size of the increment (BCD)
+;     RBB  = The modulus for the increment
+;
+; Outputs:
+;     INDF     = The (modulus'd) incremented quantity
+;     STATUS.C = Set if the increment overflowed the modulus
+;
+
+addToTimePart:
+	movf INDF, W
+	movwf RAA
+	fcall addBcd
+
+	movf modulus, W
+	subwf RAA, W
+	btfsc STATUS, C
+	goto overflowed
+
+	movf RAA, W
+	movwf INDF
+	return
+
+overflowed:
+	movwf INDF
 	return
 
 	end
