@@ -6,10 +6,10 @@ export OBJ_FILES=\
 	$(ASSERT_NO_ISR_OBJ_FILE)
 
 all:
-	$(MAKE) -C Increment all
+	$(MAKE) -C Add all
 
 clean:
 	$(RM) -f $(BUILD_ARTEFACT_PATTERN)
-	$(MAKE) -C Increment clean
+	$(MAKE) -C Add clean
 
 include $(MAKEFILE_RULES)

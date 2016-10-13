@@ -5,24 +5,24 @@
 	radix decimal
 
 	udata
-	global initialW
-	global expectedW
+	global expectedRAA
+	global expectedRBA
 	global expectedCarry
 	global expectedZero
 	global carry
 	global zero
 
-initialW res 1
-expectedW res 1
+expectedRAA res 1
+expectedRBA res 1
+
 expectedCarry res 1
 expectedZero res 1
 
-capturedW res 1
 capturedStatus res 1
 carry res 1
 zero res 1
 
-IncrementTest code
+AddTest code
 	global testArrange
 
 testArrange:
@@ -31,13 +31,10 @@ testArrange:
 	clrf zero
 
 testAct:
-	movf initialW, W
-	fcall incBcd
-
-	banksel capturedW
-	movwf capturedW
+	fcall addBcd
 	swapf STATUS, W
 
+	banksel capturedStatus
 	movwf capturedStatus
 	swapf capturedStatus
 
@@ -48,7 +45,8 @@ testAct:
 	bsf zero, 0
 
 testAssert:
-	.assert "capturedW == expectedW, 'W expectation failure.'"
+	.assert "RAA == expectedRAA, 'RAA expectation failure.'"
+	.assert "RBA == expectedRBA, 'RBA expectation failure.'"
 	.assert "carry == expectedCarry, 'Carry expectation failure.'"
 	.assert "zero == expectedZero, 'Zero expectation failure.'"
 

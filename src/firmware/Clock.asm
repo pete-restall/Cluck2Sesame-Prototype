@@ -1,6 +1,8 @@
 	#define __CLUCK2SESAME_CLOCK_ASM
 
 	#include "p16f685.inc"
+	#include "FarCalls.inc"
+	#include "ArithmeticBcd.inc"
 	#include "Clock.inc"
 	radix decimal
 
@@ -9,6 +11,7 @@ T1OSCEN_MASK equ (1 << T1OSCEN)
 T1SYNC_ASYNC_MASK equ (1 << NOT_T1SYNC)
 T1CKPS_DIVIDE_BY_8_MASK equ (1 << T1CKPS1) | (1 << T1CKPS0)
 TMR1ON_MASK equ (1 << TMR1ON)
+SECONDS_PER_TIMER_OVERFLOW_BCD equ 0x16
 
 	udata
 	global clockFlags
@@ -51,15 +54,39 @@ updateClock:
 
 	bcf clockFlags, CLOCK_FLAG_TICKED
 
-	movlw 0x16
-	addwf clockSecondBcd
-	movlw 0x1a
-	subwf clockSecondBcd, W
-	btfss STATUS, Z
+incrementSeconds:
+	movf clockSecondBcd, W
+	banksel RAA
+	movwf RAA
+	movlw SECONDS_PER_TIMER_OVERFLOW_BCD
+	movwf RBA
+	fcall addBcd
+
+checkForSecondsOverflow:
+	movlw 0x60
+	subwf RAA, W
+	btfsc STATUS, C
+	goto overflowedIntoNextMinute
+
+	movf RAA, W
+	banksel clockSecondBcd
+	movwf clockSecondBcd
 	return
 
-	movlw 0x20
+overflowedIntoNextMinute:
+	banksel clockSecondBcd
 	movwf clockSecondBcd
+
+	movf clockMinuteBcd, W
+	banksel RAA
+	movwf RAA
+	movlw 0x01
+	movwf RBA
+	fcall addBcd
+
+	movf RAA, W
+	banksel clockMinuteBcd
+	movwf clockMinuteBcd
 
 	return
 

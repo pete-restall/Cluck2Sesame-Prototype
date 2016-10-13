@@ -2,6 +2,7 @@ export SUT_OBJ_FILE=$(FIRMWARE_DIR)/Clock.o
 export OBJ_FILES=\
 	$(SUT_OBJ_FILE) \
 	$(FIRMWARE_CORE_OBJ_FILES) \
+	$(FIRMWARE_DIR)/ArithmeticBcd.o \
 	$(TEST_FIXTURE_OBJ_FILES)
 
 all:

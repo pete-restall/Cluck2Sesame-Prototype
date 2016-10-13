@@ -1,0 +1,12 @@
+load AddTest.cod
+RAA=0x58
+RBA=0x60
+
+expectedRAA=0x18
+expectedRBA=0x60
+
+expectedCarry=1
+expectedZero=0
+
+run
+quit

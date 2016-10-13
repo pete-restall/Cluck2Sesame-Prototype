@@ -2,38 +2,46 @@
 	#include "GeneralPurposeRegisters.inc"
 	radix decimal
 
-NEGATIVE_9 equ (~0x09) + 1
-NEGATIVE_90 equ (~0x90) + 1
+NEGATIVE_10 equ (~0x0a) + 1
+NEGATIVE_100 equ (~0xa0) + 1
 
 ArithmeticBcd code
-	global incBcd
+	global addBcd
 
-incBcd:
-	banksel RBA
-	movwf RBA
-	andlw 0x0f
-	addlw NEGATIVE_9
-	btfsc STATUS, C
-	goto lsdGreaterThanOrEqualToNine
-	bcf STATUS, C
-	incf RBA, W
-	return
-
-lsdGreaterThanOrEqualToNine:
-	movlw 0xf0
-	andwf RBA, W
-	movwf RBA
-	addlw NEGATIVE_90
-	btfsc STATUS, C
-	goto overflow
+addBcd:
 	movf RBA, W
-	addlw 0x10
+	addwf RAA
+
+addCheckForLsdOverflow:
+	movlw 0x0f
+	andwf RAA, W
+	addlw NEGATIVE_10
+	btfss STATUS, C
+	goto addCheckForMsdOverflow
+
+addLsdOverflowed:
+	movlw 10
+	subwf RAA
+	movlw 0x10
+	addwf RAA
+
+addCheckForMsdOverflow:
+	movlw 0xf0
+	andwf RAA, W
+	addlw NEGATIVE_100
+	btfsc STATUS, C
+	goto addMsdOverflowed
+
+addAdjustZeroAfterNoOverflow:
+	movf RAA
 	return
 
-overflow:
-	movlw 0x00
-	bsf STATUS, Z
-	bsf STATUS, C
+addMsdOverflowed:
+	movlw 0xa0
+	subwf RAA
+
+addAdjustZeroAfterOverflow:
+	movf RAA
 	return
 
 	end

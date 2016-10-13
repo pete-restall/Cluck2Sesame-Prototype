@@ -1,8 +1,0 @@
-load IncrementTest.cod
-initialW=0x01
-expectedW=0x02
-expectedCarry=0
-expectedZero=0
-
-run
-quit
