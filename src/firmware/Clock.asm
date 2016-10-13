@@ -13,6 +13,33 @@ T1CKPS_DIVIDE_BY_8_MASK equ (1 << T1CKPS1) | (1 << T1CKPS0)
 TMR1ON_MASK equ (1 << TMR1ON)
 SECONDS_PER_TIMER_OVERFLOW_BCD equ 0x16
 
+addQuantityTo macro timePartBcd, literalQuantityBcd
+	movf timePartBcd, W
+	banksel RAA
+	movwf RAA
+	movlw literalQuantityBcd
+	movwf RBA
+	fcall addBcd
+	endm
+
+storeAndThenReturnWhenNotOverflowed macro timePartBcd, overflowQuantityBcd
+	local overflowed
+
+	movlw overflowQuantityBcd
+	subwf RAA, W
+	btfsc STATUS, C
+	goto overflowed
+
+	movf RAA, W
+	banksel timePartBcd
+	movwf timePartBcd
+	return
+
+overflowed:
+	banksel timePartBcd
+	movwf timePartBcd
+	endm
+
 	udata
 	global clockFlags
 	global clockYearBcd
@@ -42,7 +69,6 @@ initialiseClock:
 
 	banksel T1CON
 	movlw TMR1CS_MASK | T1OSCEN_MASK | T1CKPS_DIVIDE_BY_8_MASK | T1SYNC_ASYNC_MASK | TMR1ON_MASK
-
 	movwf T1CON
 
 	return
@@ -54,39 +80,21 @@ updateClock:
 
 	bcf clockFlags, CLOCK_FLAG_TICKED
 
-incrementSeconds:
-	movf clockSecondBcd, W
-	banksel RAA
-	movwf RAA
-	movlw SECONDS_PER_TIMER_OVERFLOW_BCD
-	movwf RBA
-	fcall addBcd
-
-checkForSecondsOverflow:
-	movlw 0x60
-	subwf RAA, W
-	btfsc STATUS, C
-	goto overflowedIntoNextMinute
-
-	movf RAA, W
-	banksel clockSecondBcd
-	movwf clockSecondBcd
-	return
+addSecondsSinceLastTimerOverflow:
+	addQuantityTo clockSecondBcd, SECONDS_PER_TIMER_OVERFLOW_BCD
+	storeAndThenReturnWhenNotOverflowed clockSecondBcd, 0x60
 
 overflowedIntoNextMinute:
-	banksel clockSecondBcd
-	movwf clockSecondBcd
+	addQuantityTo clockMinuteBcd, 0x01
+	storeAndThenReturnWhenNotOverflowed clockMinuteBcd, 0x60
 
-	movf clockMinuteBcd, W
-	banksel RAA
-	movwf RAA
-	movlw 0x01
-	movwf RBA
-	fcall addBcd
+overflowedIntoNextHour:
+	addQuantityTo clockHourBcd, 0x01
+	storeAndThenReturnWhenNotOverflowed clockHourBcd, 0x24
 
-	movf RAA, W
-	banksel clockMinuteBcd
-	movwf clockMinuteBcd
+overflowedIntoNextDay:
+	addQuantityTo clockDayBcd, 0x01
+	storeAndThenReturnWhenNotOverflowed clockDayBcd, 0xff
 
 	return
 
