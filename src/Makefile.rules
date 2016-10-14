@@ -1,2 +1,5 @@
 %.o: %.asm
 	$(AS) $(ASARGS) -o $@ $<
+
+%.a: %
+	$(MAKE) -C $< all

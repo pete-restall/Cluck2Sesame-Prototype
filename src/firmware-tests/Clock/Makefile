@@ -1,4 +1,4 @@
-export SUT_OBJ_FILE=$(FIRMWARE_DIR)/Clock.o
+export SUT_OBJ_FILE=$(FIRMWARE_DIR)/Clock.a
 export OBJ_FILES=\
 	$(SUT_OBJ_FILE) \
 	$(FIRMWARE_CORE_OBJ_FILES) \

@@ -11,12 +11,13 @@ OBJ_FILES=\
 	MclrReset.o \
 	Isr.o \
 	TemperatureSensor.o \
-	Clock.o
+	Clock.a
 
 all: $(HEX_FILENAME)
 
 clean:
 	$(RM) -f $(BUILD_ARTEFACT_PATTERN)
+	$(MAKE) -C Clock clean
 
 $(HEX_FILENAME): $(OBJ_FILES)
 	$(LD) $(LDARGS) -o $(HEX_FILENAME) $(OBJ_FILES)

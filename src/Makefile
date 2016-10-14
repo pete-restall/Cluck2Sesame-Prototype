@@ -5,9 +5,11 @@ export MAKEFILE_RULES=$(BASE_DIR)/Makefile.rules
 export MAKE=make
 export AS=gpasm
 export ASARGS=-c -p p16f685 -I $(FIRMWARE_DIR)
+export AR=gplib
+export ARARGS=-c
 export LD=gplink
 export LDARGS=-s $(LKR_FILENAME) -m -c
-export BUILD_ARTEFACT_PATTERN=*.hex *.cod *.cof *.map *.lst *.o
+export BUILD_ARTEFACT_PATTERN=*.hex *.cod *.cof *.map *.lst *.o *.a
 
 all:
 	$(MAKE) -C firmware all
