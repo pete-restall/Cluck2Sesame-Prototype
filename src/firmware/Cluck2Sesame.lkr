@@ -61,4 +61,3 @@ SECTION    NAME=PROG1      ROM=page1           // ROM code space - page1
 SECTION    NAME=IDLOCS     ROM=.idlocs         // ID locations
 SECTION    NAME=CALIBR     ROM=.calib          // Calibration bits location
 SECTION    NAME=DEEPROM    ROM=eedata          // Data EEPROM
-
