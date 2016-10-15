@@ -9,6 +9,7 @@
 
 SECONDS_PER_TIMER_OVERFLOW_BCD equ 0x16
 TWELVE_MONTHS_MODULUS equ 1 + 0x12
+YEAR99_MODULUS equ 0xa0
 
 	#define increment RBA
 	#define modulus RBB
@@ -130,10 +131,8 @@ overflowedIntoNextYear:
 	incf clockMonthBcd
 
 	banksel modulus
-	setModulus 0x44 ; TODO: OVERFLOW YEAR 99 (BACK TO 0)
+	setModulus YEAR99_MODULUS
 	incrementAndThenReturnIfNotOverflowed clockYearBcd
-
-	; TODO: FEBRUARY DAYS IN MONTH (LEAP YEAR)
 
 	return
 
