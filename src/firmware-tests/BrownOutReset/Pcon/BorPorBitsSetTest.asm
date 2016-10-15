@@ -2,6 +2,7 @@
 	#include "FarCalls.inc"
 	#include "BrownOutReset.inc"
 	#include "TestFixture.inc"
+
 	radix decimal
 
 BorPorBitsSetTest code

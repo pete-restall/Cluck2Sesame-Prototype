@@ -2,6 +2,7 @@
 	#include "FarCalls.inc"
 	#include "TemperatureSensor.inc"
 	#include "TestFixture.inc"
+
 	radix decimal
 
 	extern pollForWork

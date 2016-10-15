@@ -81,10 +81,35 @@ overflowedIntoNextHour:
 overflowedIntoNextDay:
 	banksel clockMonthBcd
 	movf clockMonthBcd, W
+	sublw 0x02
+	btfss STATUS, Z
+	goto lookupNonFebruaryNumberOfDaysInMonthBcd
+
+lookupFebruaryNumberOfDaysInMonthBcd:
+checkIfYearIsDivisibleByFour:
+	movf clockYearBcd, W
+	banksel RAA
+	movwf RAA
+	fcall bcdToBinary
+	andlw b'00000011'
+
+februaryHasTwentyEightOrNineDays:
+	movlw 0x28
+	btfsc STATUS, Z
+	movlw 0x29
+
+restoreRbbThatWasTrashedByBcdToBinaryCallThenResumeIncrementing:
+	clrf increment
+	incf increment
+	goto setModulusToDaysInMonthOffsetByOneAndIncrementDay
+
+lookupNonFebruaryNumberOfDaysInMonthBcd:
+	movf clockMonthBcd, W
+	banksel RBB
 	movwf RBB
 	fcall lookupNumberOfDaysInMonthBcd
 
-incrementDayUsingModulusOfDaysInMonthOffsetByOne:
+setModulusToDaysInMonthOffsetByOneAndIncrementDay:
 	banksel modulus
 	movwf modulus
 	incf modulus
@@ -92,6 +117,7 @@ incrementDayUsingModulusOfDaysInMonthOffsetByOne:
 
 overflowedIntoNextMonth:
 	banksel clockDayBcd
+	clrf clockDayBcd
 	incf clockDayBcd
 
 	banksel modulus
@@ -100,6 +126,7 @@ overflowedIntoNextMonth:
 
 overflowedIntoNextYear:
 	banksel clockMonthBcd
+	clrf clockMonthBcd
 	incf clockMonthBcd
 
 	banksel modulus
@@ -110,6 +137,9 @@ overflowedIntoNextYear:
 
 	return
 
+;
+; !!! Will not work for general BCD modulus / increment combinations !!!
+; This function does not generalise to non-date / time modulus addition.
 ;
 ; Inputs:
 ;     INDF = Pointer to the part of the (BCD) time to increment

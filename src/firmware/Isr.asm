@@ -1,5 +1,6 @@
 	#include "p16f685.inc"
 	#include "Clock.inc"
+
 	radix decimal
 
 	udata_shr

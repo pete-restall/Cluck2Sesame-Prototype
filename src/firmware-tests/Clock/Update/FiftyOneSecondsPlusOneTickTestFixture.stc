@@ -1,0 +1,18 @@
+load UpdateWithTickedFlagTest.cod
+
+clockYearBcd=0x00
+clockMonthBcd=0x01
+clockDayBcd=0x01
+clockHourBcd=0x00
+clockMinuteBcd=0x00
+clockSecondBcd=0x51
+
+expectedClockYearBcd=0x00
+expectedClockMonthBcd=0x01
+expectedClockDayBcd=0x01
+expectedClockHourBcd=0x00
+expectedClockMinuteBcd=0x01
+expectedClockSecondBcd=0x07
+
+run
+quit

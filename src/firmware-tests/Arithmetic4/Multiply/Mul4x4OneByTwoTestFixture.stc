@@ -1,0 +1,13 @@
+load Mul4x4Test.cod
+RAA=1
+RBA=2
+
+expectedRAA=1
+expectedRBA=2
+expectedW=2
+
+expectedCarry=0
+expectedZero=0
+
+run
+quit

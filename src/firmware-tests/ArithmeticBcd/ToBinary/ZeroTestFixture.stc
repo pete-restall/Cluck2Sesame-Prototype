@@ -1,0 +1,9 @@
+load ToBinaryTest.cod
+RAA=0x00
+
+expectedRAA=0x00
+expectedW=0
+expectedZero=1
+
+run
+quit

@@ -4,6 +4,7 @@
 	#include "FarCalls.inc"
 	#include "TestFixture.inc"
 	#include "TestDoubles.inc"
+
 	radix decimal
 
 	extern testArrange

@@ -18,6 +18,7 @@ all: TestFixture.o TestDoubles.o AssertNoIsr.o InitialiseAfterResetMock.o Initia
 	$(MAKE) -C MclrReset all
 	$(MAKE) -C InitialisationChain all
 	$(MAKE) -C Clock all
+	$(MAKE) -C Arithmetic4 all
 	$(MAKE) -C Arithmetic32 all
 	$(MAKE) -C ArithmeticBcd all
 
@@ -29,6 +30,7 @@ clean:
 	$(MAKE) -C MclrReset clean
 	$(MAKE) -C InitialisationChain clean
 	$(MAKE) -C Clock clean
+	$(MAKE) -C Arithmetic4 clean
 	$(MAKE) -C Arithmetic32 clean
 	$(MAKE) -C ArithmeticBcd clean
 

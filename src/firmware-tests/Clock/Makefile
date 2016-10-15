@@ -2,7 +2,8 @@ export SUT_OBJ_FILE=$(FIRMWARE_DIR)/Clock.a
 export OBJ_FILES=\
 	$(SUT_OBJ_FILE) \
 	$(FIRMWARE_CORE_OBJ_FILES) \
-	$(FIRMWARE_DIR)/ArithmeticBcd.o \
+	$(FIRMWARE_DIR)/Arithmetic4.o \
+	$(FIRMWARE_DIR)/ArithmeticBcd.a \
 	$(TEST_FIXTURE_OBJ_FILES)
 
 all:

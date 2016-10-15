@@ -3,5 +3,6 @@
 	#include "GeneralPurposeRegisters.inc"
 
 	extern addBcd
+	extern bcdToBinary
 
 	#endif

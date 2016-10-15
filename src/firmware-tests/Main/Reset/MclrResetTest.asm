@@ -2,6 +2,7 @@
 	#include "FarCalls.inc"
 	#include "TestFixture.inc"
 	#include "../ResetMocks.inc"
+
 	radix decimal
 
 	extern main

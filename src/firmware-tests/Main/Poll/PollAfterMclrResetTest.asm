@@ -4,6 +4,7 @@
 	#include "TestFixture.inc"
 	#include "../PollMockToAssertTest.inc"
 	#include "../ResetMocks.inc"
+
 	radix decimal
 
 	extern main

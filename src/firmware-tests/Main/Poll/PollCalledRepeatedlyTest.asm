@@ -1,6 +1,7 @@
 	#include "p16f685.inc"
 	#include "FarCalls.inc"
 	#include "TestFixture.inc"
+
 	radix decimal
 
 	extern main

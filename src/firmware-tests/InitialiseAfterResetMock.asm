@@ -1,5 +1,6 @@
 	#include "p16f685.inc"
 	#include "TestDoubles.inc"
+
 	radix decimal
 
 	global calledInitialiseAfterReset

@@ -2,6 +2,7 @@
 	#include "FarCalls.inc"
 	#include "Arithmetic32.inc"
 	#include "TestFixture.inc"
+
 	radix decimal
 
 	udata

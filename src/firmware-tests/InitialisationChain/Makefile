@@ -3,7 +3,8 @@ OBJ_FILES=\
 	$(TEST_FIXTURE_OBJ_FILES) \
 	$(ASSERT_NO_ISR_OBJ_FILE) \
 	$(FIRMWARE_DIR)/Clock.a \
-	$(FIRMWARE_DIR)/ArithmeticBcd.o \
+	$(FIRMWARE_DIR)/Arithmetic4.o \
+	$(FIRMWARE_DIR)/ArithmeticBcd.a \
 	FirstInitialisationInChainTest.o
 
 HEX_FILES=FirstInitialisationInChainTest.hex

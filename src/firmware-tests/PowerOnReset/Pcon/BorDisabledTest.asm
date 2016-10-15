@@ -2,6 +2,7 @@
 	#include "FarCalls.inc"
 	#include "PowerOnReset.inc"
 	#include "TestFixture.inc"
+
 	radix decimal
 
 BorDisabledTest code

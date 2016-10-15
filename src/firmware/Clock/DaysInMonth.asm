@@ -12,7 +12,7 @@ lookupNumberOfDaysInMonthBcd:
 	tableDefinitionToJumpWith RBB
 	retlw 0x00
 	retlw 0x31
-	retlw 0x02
+	retlw 0x28
 	retlw 0x31
 	retlw 0x30
 	retlw 0x31

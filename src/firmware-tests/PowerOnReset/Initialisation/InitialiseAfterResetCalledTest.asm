@@ -3,6 +3,7 @@
 	#include "PowerOnReset.inc"
 	#include "TestFixture.inc"
 	#include "InitialiseAfterResetMock.inc"
+
 	radix decimal
 
 InitialiseAfterResetCalledTest code

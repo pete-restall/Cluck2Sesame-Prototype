@@ -2,6 +2,7 @@
 	#include "FarCalls.inc"
 	#include "Clock.inc"
 	#include "TestFixture.inc"
+
 	radix decimal
 
 Timer1SourceIsExternalCrystalTest code

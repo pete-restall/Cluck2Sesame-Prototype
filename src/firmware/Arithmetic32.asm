@@ -1,14 +1,7 @@
 	#include "p16f685.inc"
-	radix decimal
+	#include "GeneralPurposeRegisters.inc"
 
-	extern RAA
-	extern RAB
-	extern RAC
-	extern RAD
-	extern RBA
-	extern RBB
-	extern RBC
-	extern RBD
+	radix decimal
 
 	udata
 statusMask res 1
