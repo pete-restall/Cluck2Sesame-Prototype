@@ -1,7 +1,7 @@
 LIB_FILENAME=../Clock.a
 OBJ_FILES=\
 	Initialise.o \
-	Update.o \
+	Poll.o \
 	DaysInMonth.o
 
 all: $(LIB_FILENAME)

@@ -1,0 +1,18 @@
+load PollWithTickedFlagTest.cod
+
+clockYearBcd=0x00
+clockMonthBcd=0x03
+clockDayBcd=0x30
+clockHourBcd=0x23
+clockMinuteBcd=0x59
+clockSecondBcd=0x59
+
+expectedClockYearBcd=0x00
+expectedClockMonthBcd=0x03
+expectedClockDayBcd=0x31
+expectedClockHourBcd=0x00
+expectedClockMinuteBcd=0x00
+expectedClockSecondBcd=0x15
+
+run
+quit

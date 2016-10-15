@@ -9,12 +9,12 @@ export OBJ_FILES=\
 all:
 	$(MAKE) -C Initialisation all
 	$(MAKE) -C TimerWiring all
-	$(MAKE) -C Update all
+	$(MAKE) -C Poll all
 
 clean:
 	$(RM) -f $(BUILD_ARTEFACT_PATTERN)
 	$(MAKE) -C Initialisation clean
 	$(MAKE) -C TimerWiring clean
-	$(MAKE) -C Update clean
+	$(MAKE) -C Poll clean
 
 include $(MAKEFILE_RULES)

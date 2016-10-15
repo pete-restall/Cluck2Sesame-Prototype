@@ -5,7 +5,7 @@ CLOCK_FLAG_TICKED equ 0
 
 	#ifndef __CLUCK2SESAME_CLOCK_ASM
 	extern initialiseClock
-	extern updateClock
+	extern pollClock
 
 	extern clockFlags
 	extern clockYearBcd

@@ -69,13 +69,13 @@ clockPulseLoop:
 	bsf PORTC, RC0
 	bcf PORTC, RC0
 
-	fcall updateClock
+	fcall pollClock
 
 	call decrementNumberOfClockPulses
 	btfss STATUS, Z
 	goto clockPulseLoop
 
-	fcall updateClock
+	fcall pollClock
 
 testAssert:
 	.assert "clockYearBcd == expectedClockYearBcd, 'Year mismatch.'"
