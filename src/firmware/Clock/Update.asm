@@ -84,7 +84,7 @@ overflowedIntoNextDay:
 	movwf RBB
 	fcall lookupNumberOfDaysInMonthBcd
 
-incrementDayUsingModulusOfDaysInMonthOffsetOne:
+incrementDayUsingModulusOfDaysInMonthOffsetByOne:
 	banksel modulus
 	movwf modulus
 	incf modulus
