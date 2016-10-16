@@ -19,11 +19,8 @@ testAct:
 
 testAssert:
 	.assert "calledInitialiseAfterPowerOnReset != 0, 'POR condition did not call initialiseAfterPowerOnReset.'"
-
 	.assert "calledInitialiseAfterBrownOutReset == 0, 'POR condition called initialiseAfterBrownOutReset.'"
-
 	.assert "calledInitialiseAfterMclrReset == 0, 'POR condition called initialiseAfterMclrReset.'"
-
 	.done
 
 	end

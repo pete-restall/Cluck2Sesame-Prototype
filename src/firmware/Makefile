@@ -12,7 +12,9 @@ OBJ_FILES=\
 	MclrReset.o \
 	Isr.o \
 	TemperatureSensor.o \
-	Clock.a
+	Clock.a \
+	ShiftRegister.a \
+	Motor.a
 
 all: $(HEX_FILENAME)
 
@@ -20,6 +22,8 @@ clean:
 	$(RM) -f $(BUILD_ARTEFACT_PATTERN)
 	$(MAKE) -C ArithmeticBcd clean
 	$(MAKE) -C Clock clean
+	$(MAKE) -C ShiftRegister clean
+	$(MAKE) -C Motor clean
 
 $(HEX_FILENAME): $(OBJ_FILES)
 	$(LD) $(LDARGS) -o $(HEX_FILENAME) $(OBJ_FILES)

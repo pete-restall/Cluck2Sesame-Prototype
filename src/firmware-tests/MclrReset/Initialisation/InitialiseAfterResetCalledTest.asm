@@ -17,7 +17,6 @@ testAct:
 
 testAssert:
 	.assert "calledInitialiseAfterReset != 0, 'Expected initialiseAfterReset to be called.'"
-
-	.done
+	return
 
 	end

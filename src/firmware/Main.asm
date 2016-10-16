@@ -10,6 +10,7 @@
 
 Main code
 	global main
+	global initialisationCompleted
 
 main:
 	banksel PCON
@@ -32,5 +33,8 @@ brownOutReset:
 pollingLoop:
 	fcall pollForWork
 	goto pollingLoop
+
+initialisationCompleted:
+	return
 
 	end

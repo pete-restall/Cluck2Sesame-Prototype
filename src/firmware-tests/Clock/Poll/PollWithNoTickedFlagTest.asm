@@ -66,6 +66,6 @@ testAssert:
 	.assert "clockHourBcd == initialClockHourBcd, 'Hour should not have been modified.'"
 	.assert "clockMinuteBcd == initialClockMinuteBcd, 'Minute should not have been modified.'"
 	.assert "clockSecondBcd == initialClockSecondBcd, 'Second should not have been modified.'"
-	.done
+	return
 
 	end

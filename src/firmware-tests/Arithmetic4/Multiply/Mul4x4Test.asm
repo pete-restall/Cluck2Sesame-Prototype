@@ -56,10 +56,8 @@ testAssert:
 	.assert "RAA == expectedRAA, 'RAA expectation failure.'"
 	.assert "RBA == expectedRBA, 'RBA expectation failure.'"
 	.assert "W == expectedW, 'W expectation failure.'"
-
 	.assert "carry == expectedCarry, 'Carry expectation failure.'"
 	.assert "zero == expectedZero, 'Zero expectation failure.'"
-
-	.done
+	return
 
 	end

@@ -7,7 +7,8 @@ HEX_FILES=\
 	Timer1AsyncTest.hex \
 	Timer1EnabledTest.hex \
 	Timer1NotGatedTest.hex \
-	ClockFlagsClearedTest.hex
+	ClockFlagsClearedTest.hex \
+	InitialisationChainTest.hex
 
 TIMER1_SOURCE_IS_EXTERNAL_CRYSTAL_OBJ_FILES=\
 	Timer1SourceIsExternalCrystalTest.o
@@ -29,6 +30,9 @@ TIMER1_NOT_GATED_OBJ_FILES=\
 
 CLOCK_FLAGS_CLEARED_OBJ_FILES=\
 	ClockFlagsClearedTest.o
+
+INITIALISATION_CHAIN_OBJ_FILES=\
+	InitialisationChainTest.o
 
 all: $(HEX_FILES)
 
@@ -55,5 +59,8 @@ Timer1NotGatedTest.hex: $(OBJ_FILES) $(TIMER1_NOT_GATED_OBJ_FILES)
 
 ClockFlagsClearedTest.hex: $(OBJ_FILES) $(CLOCK_FLAGS_CLEARED_OBJ_FILES)
 	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(CLOCK_FLAGS_CLEARED_OBJ_FILES)
+
+InitialisationChainTest.hex: $(OBJ_FILES) $(INITIALISATION_CHAIN_OBJ_FILES)
+	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(INITIALISATION_CHAIN_OBJ_FILES)
 
 include $(MAKEFILE_RULES)

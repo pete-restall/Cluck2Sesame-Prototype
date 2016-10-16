@@ -84,7 +84,7 @@ testAssert:
 	.assert "clockHourBcd == expectedClockHourBcd, 'Hour mismatch.'"
 	.assert "clockMinuteBcd == expectedClockMinuteBcd, 'Minute mismatch.'"
 	.assert "clockSecondBcd == expectedClockSecondBcd, 'Second mismatch.'"
-	.done
+	return
 
 decrementNumberOfClockPulses:
 	banksel isZero

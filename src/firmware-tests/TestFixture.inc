@@ -10,6 +10,7 @@
 .done macro
 	nop
 	.direct "c", "echo [PASSED]"
+	nop
 	.direct "c", "quit"
 	nop
 	endm

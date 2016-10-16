@@ -21,6 +21,8 @@ all: TestFixture.o TestDoubles.o AssertNoIsr.o InitialiseAfterResetMock.o Initia
 	$(MAKE) -C Arithmetic4 all
 	$(MAKE) -C Arithmetic32 all
 	$(MAKE) -C ArithmeticBcd all
+	$(MAKE) -C ShiftRegister all
+	$(MAKE) -C Motor all
 
 clean:
 	$(RM) -f $(BUILD_ARTEFACT_PATTERN)
@@ -33,5 +35,7 @@ clean:
 	$(MAKE) -C Arithmetic4 clean
 	$(MAKE) -C Arithmetic32 clean
 	$(MAKE) -C ArithmeticBcd clean
+	$(MAKE) -C ShiftRegister clean
+	$(MAKE) -C Motor clean
 
 include $(MAKEFILE_RULES)

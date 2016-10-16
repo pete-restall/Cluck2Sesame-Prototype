@@ -21,11 +21,7 @@ ResetMocks code
 initialiseResetMocks:
 	banksel calledInitialiseAfterPowerOnReset
 	clrf calledInitialiseAfterPowerOnReset
-
-	banksel calledInitialiseAfterBrownOutReset
 	clrf calledInitialiseAfterBrownOutReset
-
-	banksel calledInitialiseAfterMclrReset
 	clrf calledInitialiseAfterMclrReset
 	return
 

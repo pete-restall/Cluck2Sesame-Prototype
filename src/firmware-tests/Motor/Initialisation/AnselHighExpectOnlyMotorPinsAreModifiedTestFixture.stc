@@ -1,0 +1,9 @@
+load AnselTest.cod
+ansel=0xff
+anselh=0x0f
+
+expectedANSEL=0xff
+expectedANSELH=0x0e
+
+run
+quit

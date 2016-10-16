@@ -17,6 +17,6 @@ testAct:
 
 testAssert:
 	.assert "(t1con & 0x02) != 0, 'T1CON.TMR1CS is not T1CKI.'"
-	.done
+	return
 
 	end

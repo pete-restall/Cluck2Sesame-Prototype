@@ -40,6 +40,6 @@ testAct:
 
 testAssert:
 	.assert "clockSecondBcd == initialClockSecondBcd, 'Time should not have been modified.'"
-	.done
+	return
 
 	end

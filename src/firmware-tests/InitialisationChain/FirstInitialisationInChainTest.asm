@@ -1,5 +1,6 @@
 	#include "p16f685.inc"
 	#include "FarCalls.inc"
+	#include "InitialisationChain.inc"
 	#include "Clock.inc"
 	#include "TestFixture.inc"
 
@@ -7,6 +8,7 @@
 
 	extern initialiseAfterReset
 
+	global INITIALISE_AFTER_CLOCK
 	global initialiseAfterResetAddressHigh
 	global initialiseAfterResetAddressLow
 	global initialiseClockAddressHigh
@@ -43,12 +45,13 @@ storeInitialiseClockAddressLow:
 	movwf initialiseClockAddressLow
 
 testAct:
-	pagesel testArrange
 
 testAssert:
 	.assert "initialiseAfterResetAddressHigh == initialiseClockAddressHigh, 'Expected first initialisation in chain to be initialiseClock.'"
 	.assert "initialiseAfterResetAddressLow == initialiseClockAddressLow, 'Expected first initialisation in chain to be initialiseClock.'"
+	return
 
-	.done
+INITIALISE_AFTER_CLOCK:
+	return
 
 	end

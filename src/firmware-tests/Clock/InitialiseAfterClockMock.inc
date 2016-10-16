@@ -1,0 +1,7 @@
+	#ifndef __CLUCK2SESAME_TESTS_CLOCK_INITIALISEAFTERCLOCKMOCK_INC
+	#define __CLUCK2SESAME_TESTS_CLOCK_INITIALISEAFTERCLOCKMOCK_INC
+
+	extern initialiseInitialiseAfterClockMock
+	extern calledInitialiseAfterClock
+
+	#endif

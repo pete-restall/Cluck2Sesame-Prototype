@@ -45,7 +45,6 @@ testAssert:
 	.assert "RAA == expectedRAA, 'RAA expectation failure.'"
 	.assert "W == expectedW, 'W expectation failure.'"
 	.assert "zero == expectedZero, 'Zero expectation failure.'"
-
-	.done
+	return
 
 	end

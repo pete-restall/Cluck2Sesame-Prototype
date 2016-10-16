@@ -1,0 +1,9 @@
+load PortcTest.cod
+portc=0xff
+trisc=0xff
+
+expectedPORTC=0xf8
+expectedTRISC=0xf8
+
+run
+quit

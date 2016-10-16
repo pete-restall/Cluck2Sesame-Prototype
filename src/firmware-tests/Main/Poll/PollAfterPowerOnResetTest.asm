@@ -24,7 +24,6 @@ testAssert:
 	.aliasForAssert calledPollForWork, _a
 	.aliasForAssert calledInitialiseAfterPowerOnReset, _b
 	.assert "_a > _b, 'Main did not call pollForWork after POR initialisation.'"
-
 	.done
 
 	end

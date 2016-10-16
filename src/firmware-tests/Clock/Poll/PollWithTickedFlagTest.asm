@@ -41,6 +41,6 @@ testAssert:
 	.assert "clockMinuteBcd == expectedClockMinuteBcd, 'Minute mismatch.'"
 	.assert "clockSecondBcd == expectedClockSecondBcd, 'Second mismatch.'"
 	.assert "(clockFlags & 0x01) == 0, 'CLOCK_FLAG_TICKED was not reset.'"
-	.done
+	return
 
 	end

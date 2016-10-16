@@ -8,8 +8,7 @@
 	radix decimal
 
 	extern testArrange
-	extern testAct
-	extern testAssert
+
 
 	; Non-obvious - gpsim .assert expressions are limited in size, so long
 	; variable names cause weird failures.  Use the .aliasForAssert macro in
@@ -28,6 +27,7 @@ TestFixtureBoot code 0x0000
 TestFixture code
 runTest:
 	fcall initialiseTestDoubles
-	fgoto testArrange
+	fcall testArrange
+	.done
 
 	end

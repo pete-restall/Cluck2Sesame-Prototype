@@ -4,9 +4,10 @@ export OBJ_FILES=\
 	$(FIRMWARE_CORE_OBJ_FILES) \
 	$(FIRMWARE_DIR)/Arithmetic4.o \
 	$(FIRMWARE_DIR)/ArithmeticBcd.a \
-	$(TEST_FIXTURE_OBJ_FILES)
+	$(TEST_FIXTURE_OBJ_FILES) \
+	$(CURDIR)/InitialiseAfterClockMock.o
 
-all:
+all: InitialiseAfterClockMock.o
 	$(MAKE) -C Initialisation all
 	$(MAKE) -C TimerWiring all
 	$(MAKE) -C Poll all

@@ -1,0 +1,7 @@
+	#ifndef __CLUCK2SESAME_TESTS_CLOCK_INITIALISEAFTERSHIFTREGISTERMOCK_INC
+	#define __CLUCK2SESAME_TESTS_CLOCK_INITIALISEAFTERSHIFTREGISTERMOCK_INC
+
+	extern initialiseInitialiseAfterShiftRegisterMock
+	extern calledInitialiseAfterShiftRegister
+
+	#endif

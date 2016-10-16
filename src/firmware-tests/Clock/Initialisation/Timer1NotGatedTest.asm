@@ -18,6 +18,6 @@ testAct:
 
 testAssert:
 	.assert "(t1con & 0x40) == 0, 'T1CON.TMR1GE should not be set.'"
-	.done
+	return
 
 	end

@@ -18,6 +18,6 @@ testAct:
 
 testAssert:
 	.assert "clockFlags == 0, 'Expected clockFlags to be cleared.'"
-	.done
+	return
 
 	end
