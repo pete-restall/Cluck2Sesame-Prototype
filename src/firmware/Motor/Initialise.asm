@@ -6,11 +6,15 @@
 	radix decimal
 
 	extern INITIALISE_AFTER_MOTOR
+	extern enableMotorVddCount
 
 Motor code
 	global initialiseMotor
 
 initialiseMotor:
+	banksel enableMotorVddCount
+	clrf enableMotorVddCount
+
 setPortModes:
 	banksel ANSEL
 	bsf ANSEL, MOTOR_ISENSE_PIN_ANSL

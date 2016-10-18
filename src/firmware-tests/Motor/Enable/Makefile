@@ -1,15 +1,15 @@
 HEX_FILES=\
-#	AnselTest.hex
+	EnableDisableMotorVddTest.hex
 
-ANSEL_OBJ_FILES=\
-	AnselTest.o
+ENABLE_DISABLE_MOTOR_VDD_OBJ_FILES=\
+	EnableDisableMotorVddTest.o
 
 all: $(HEX_FILES)
 
 clean:
 	$(RM) -f $(BUILD_ARTEFACT_PATTERN)
 
-AnselTest.hex: $(OBJ_FILES) $(ANSEL_OBJ_FILES)
-	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(ANSEL_OBJ_FILES)
+EnableDisableMotorVddTest.hex: $(OBJ_FILES) $(ENABLE_DISABLE_MOTOR_VDD_OBJ_FILES)
+	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(ENABLE_DISABLE_MOTOR_VDD_OBJ_FILES)
 
 include $(MAKEFILE_RULES)

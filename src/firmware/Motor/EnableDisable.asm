@@ -1,17 +1,32 @@
 	#include "p16f685.inc"
+	#include "Motor.inc"
 
 	radix decimal
+
+	udata
+	global enableMotorVddCount
+
+enableMotorVddCount res 1
 
 Motor code
 	global enableMotorVdd
 	global disableMotorVdd
 
 enableMotorVdd:
-	; TODO: TURN ON VDD AND INCREMENT A COUNTER
+	banksel MOTOR_TRIS
+	bcf MOTOR_TRIS, MOTOR_VDD_EN_PIN_TRIS
+
+	banksel enableMotorVddCount
+	incf enableMotorVddCount
 	return
 
 disableMotorVdd:
-	; TODO: DECREMENT A COUNTER AND TURN OFF VDD ONLY IF ZERO
+	banksel enableMotorVddCount
+	decfsz enableMotorVddCount
+	return
+
+	banksel MOTOR_TRIS
+	bsf MOTOR_TRIS, MOTOR_VDD_EN_PIN_TRIS
 	return
 
 	end
