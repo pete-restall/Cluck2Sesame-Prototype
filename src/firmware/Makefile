@@ -14,6 +14,7 @@ OBJ_FILES=\
 	TemperatureSensor.o \
 	Clock.a \
 	ShiftRegister.a \
+	Smps.a \
 	Motor.a
 
 all: $(HEX_FILENAME)
@@ -23,6 +24,7 @@ clean:
 	$(MAKE) -C ArithmeticBcd clean
 	$(MAKE) -C Clock clean
 	$(MAKE) -C ShiftRegister clean
+	$(MAKE) -C Smps clean
 	$(MAKE) -C Motor clean
 
 $(HEX_FILENAME): $(OBJ_FILES)

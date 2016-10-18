@@ -1,0 +1,7 @@
+	#ifndef __CLUCK2SESAME_TESTS_CLOCK_INITIALISEAFTERSMPS_INC
+	#define __CLUCK2SESAME_TESTS_CLOCK_INITIALISEAFTERSMPS_INC
+
+	extern initialiseInitialiseAfterSmpsMock
+	extern calledInitialiseAfterSmps
+
+	#endif

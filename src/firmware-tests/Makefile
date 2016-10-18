@@ -22,6 +22,7 @@ all: TestFixture.o TestDoubles.o AssertNoIsr.o InitialiseAfterResetMock.o Initia
 	$(MAKE) -C Arithmetic32 all
 	$(MAKE) -C ArithmeticBcd all
 	$(MAKE) -C ShiftRegister all
+	$(MAKE) -C Smps all
 	$(MAKE) -C Motor all
 
 clean:
@@ -36,6 +37,7 @@ clean:
 	$(MAKE) -C Arithmetic32 clean
 	$(MAKE) -C ArithmeticBcd clean
 	$(MAKE) -C ShiftRegister clean
+	$(MAKE) -C Smps clean
 	$(MAKE) -C Motor clean
 
 include $(MAKEFILE_RULES)
