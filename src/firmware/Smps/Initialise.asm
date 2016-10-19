@@ -13,7 +13,8 @@ Smps code
 
 initialiseSmps:
 	banksel enableSmpsCount
-	clrf enableSmpsCount
+	movlw 1
+	movwf enableSmpsCount
 
 setPortModes:
 	banksel ANSELH

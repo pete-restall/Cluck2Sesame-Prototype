@@ -2,7 +2,7 @@ load EnableDisableSmpsTest.cod
 numberOfEnableCalls=1
 numberOfDisableCalls=0
 expectedPortValue=0
-expectedTrisValue=0
+expectedTrisValue=1
 
 run
 quit

@@ -14,7 +14,7 @@ Smps code
 
 enableSmps:
 	banksel SMPS_TRIS
-	bcf SMPS_TRIS, SMPS_EN_PIN_TRIS
+	bsf SMPS_TRIS, SMPS_EN_PIN_TRIS
 
 	banksel enableSmpsCount
 	incf enableSmpsCount
@@ -27,7 +27,7 @@ disableSmps:
 	return
 
 	banksel SMPS_TRIS
-	bsf SMPS_TRIS, SMPS_EN_PIN_TRIS
+	bcf SMPS_TRIS, SMPS_EN_PIN_TRIS
 	return
 
 	end
