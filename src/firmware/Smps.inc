@@ -4,5 +4,6 @@
 	extern initialiseSmps
 	extern enableSmps
 	extern disableSmps
+	extern isSmpsEnabled
 
 	#endif

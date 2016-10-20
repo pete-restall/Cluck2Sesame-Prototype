@@ -4,5 +4,6 @@
 	extern initialiseMotor
 	extern enableMotorVdd
 	extern disableMotorVdd
+	extern isMotorVddEnabled
 
 	#endif

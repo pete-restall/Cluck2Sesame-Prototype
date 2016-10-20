@@ -36,4 +36,8 @@ disableMotorVddReturn:
 	fcall disableSmps
 	return
 
+isMotorVddEnabled:
+	; TODO: NEED TO CALL isSmpsEnabled()
+	return
+
 	end

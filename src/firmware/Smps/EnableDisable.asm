@@ -30,4 +30,8 @@ disableSmps:
 	bcf SMPS_TRIS, SMPS_EN_PIN_TRIS
 	return
 
+isSmpsEnabled:
+	; TODO: THE +3.3V LINE IS ONLY AVAILABLE > 1ms AFTER SMPS_EN IS ASSERTED
+	return
+
 	end

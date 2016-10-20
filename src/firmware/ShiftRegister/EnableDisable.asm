@@ -14,4 +14,8 @@ enableShiftRegister:
 disableShiftRegister:
 	tcall disableMotorVdd
 
+isShiftRegisterEnabled:
+	; TODO: NEED TO CALL isMotorVddEnabled()
+	return
+
 	end
