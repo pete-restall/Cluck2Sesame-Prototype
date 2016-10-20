@@ -1,0 +1,8 @@
+	#ifndef __CLUCK2SESAME_TESTS_SHIFTREGISTER_ENABLEDISABLEMOTORVDDMOCKS_INC
+	#define __CLUCK2SESAME_TESTS_SHIFTREGISTER_ENABLEDISABLEMOTORVDDMOCKS_INC
+
+	extern initialiseEnableAndDisableMotorVddMocks
+	extern calledEnableMotorVddCount
+	extern calledDisableMotorVddCount
+
+	#endif

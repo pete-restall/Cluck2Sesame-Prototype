@@ -1,4 +1,6 @@
 	#include "p16f685.inc"
+	#include "TailCalls.inc"
+	#include "../Motor.inc"
 
 	radix decimal
 
@@ -7,9 +9,9 @@ ShiftRegister code
 	global disableShiftRegister
 
 enableShiftRegister:
-	return
+	tcall enableMotorVdd
 
 disableShiftRegister:
-	return
+	tcall disableMotorVdd
 
 	end

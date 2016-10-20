@@ -6,17 +6,15 @@ export OBJ_FILES=\
 	$(ASSERT_NO_ISR_OBJ_FILE) \
 	$(CURDIR)/InitialiseAfterShiftRegisterMock.o
 
-all: InitialiseAfterShiftRegisterMock.o
+all: InitialiseAfterShiftRegisterMock.o EnableDisableMotorVddMocks.o
 	$(MAKE) -C Initialisation all
-	$(MAKE) -C Enable all
-	$(MAKE) -C Disable all
+	$(MAKE) -C EnableDisable all
 	$(MAKE) -C ShiftOut all
 
 clean:
 	$(RM) -f $(BUILD_ARTEFACT_PATTERN)
 	$(MAKE) -C Initialisation clean
-	$(MAKE) -C Enable clean
-	$(MAKE) -C Disable clean
+	$(MAKE) -C EnableDisable clean
 	$(MAKE) -C ShiftOut clean
 
 include $(MAKEFILE_RULES)
