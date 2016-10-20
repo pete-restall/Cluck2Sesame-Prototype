@@ -4,13 +4,16 @@ HEX_FILES=\
 	InitialisationChainTest.hex
 
 ANSEL_OBJ_FILES=\
-	AnselTest.o
+	AnselTest.o \
+	../EnableDisableSmpsMocks.o
 
 PORTC_OBJ_FILES=\
-	PortcTest.o
+	PortcTest.o \
+	../EnableDisableSmpsMocks.o
 
 INITIALISATION_CHAIN_OBJ_FILES=\
-	InitialisationChainTest.o
+	InitialisationChainTest.o \
+	../EnableDisableSmpsMocks.o
 
 all: $(HEX_FILES)
 

@@ -1,0 +1,10 @@
+	#ifndef __CLUCK2SESAME_TESTS_MOTOR_ENABLEDISABLE_ENABLEDISABLESMPSMOCKS_INC
+	#define __CLUCK2SESAME_TESTS_MOTOR_ENABLEDISABLE_ENABLEDISABLESMPSMOCKS_INC
+
+	extern initialiseEnableAndDisableSmpsMocks
+	extern calledEnableSmpsCount
+	extern calledEnableSmpsTrisc
+	extern calledDisableSmpsCount
+	extern calledDisableSmpsTrisc
+
+	#endif

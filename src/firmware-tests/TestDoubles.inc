@@ -14,4 +14,9 @@ mockCalled macro counter
 	movwf counter
 	endm
 
+mockIncrementCallCounter macro counter
+	banksel counter
+	incf counter
+	endm
+
 	#endif

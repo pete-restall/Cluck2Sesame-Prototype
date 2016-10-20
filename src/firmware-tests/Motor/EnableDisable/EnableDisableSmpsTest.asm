@@ -1,6 +1,7 @@
 	#include "p16f685.inc"
 	#include "FarCalls.inc"
 	#include "Motor.inc"
+	#include "../EnableDisableSmpsMocks.inc"
 	#include "TestFixture.inc"
 
 	radix decimal
@@ -8,23 +9,19 @@
 	udata
 	global numberOfEnableCalls
 	global numberOfDisableCalls
-	global expectedPortValue
-	global expectedTrisValue
-	global portValue
-	global trisValue
+	global expectedCalledEnableSmpsCount
+	global expectedCalledDisableSmpsCount
 
 numberOfEnableCalls res 1
 numberOfDisableCalls res 1
-expectedPortValue res 1
-expectedTrisValue res 1
+expectedCalledEnableSmpsCount res 1
+expectedCalledDisableSmpsCount res 1
 
-portValue res 1
-trisValue res 1
-
-EnableMotorVddTest code
+EnableDisableSmpsTest code
 	global testArrange
 
 testArrange:
+	fcall initialiseEnableAndDisableSmpsMocks
 	fcall initialiseMotor
 
 testAct:
@@ -52,24 +49,8 @@ callDisableMotorVddInLoop:
 	goto callDisableMotorVddInLoop
 
 testAssert:
-	banksel PORTC
-	movlw 0
-	btfsc PORTC, RC6
-	movlw 1
-
-	banksel portValue
-	movwf portValue
-
-	banksel TRISC
-	movlw 0
-	btfsc TRISC, TRISC6
-	movlw 1
-
-	banksel trisValue
-	movwf trisValue
-
-	.assert "portValue == expectedPortValue, 'PORTC expectation failure.'"
-	.assert "trisValue == expectedTrisValue, 'TRISC expectation failure.'"
+	.assert "calledEnableSmpsCount == expectedCalledEnableSmpsCount, 'Expected calls to smpsEnable() did not match expectation.'"
+	.assert "calledDisableSmpsCount == expectedCalledDisableSmpsCount, 'Expected calls to smpsDisable() did not match expectation.'"
 	return
 
 	end

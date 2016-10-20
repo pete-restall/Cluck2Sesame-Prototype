@@ -7,6 +7,7 @@
 
 	udata
 	global numberOfEnableCalls
+	global numberOfDisableCalls
 	global expectedPortValue
 	global expectedTrisValue
 	global portValue

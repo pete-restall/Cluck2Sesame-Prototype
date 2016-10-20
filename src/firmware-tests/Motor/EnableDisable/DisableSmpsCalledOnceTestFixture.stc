@@ -1,0 +1,8 @@
+load EnableDisableSmpsTest.cod
+numberOfEnableCalls=0
+numberOfDisableCalls=1
+expectedCalledEnableSmpsCount=0
+expectedCalledDisableSmpsCount=1
+
+run
+quit

@@ -1,8 +1,19 @@
 HEX_FILES=\
-	EnableDisableMotorVddTest.hex
+	EnableDisableMotorVddTest.hex \
+	EnableDisableSmpsTest.hex \
+	EnableDisableSmpsOrderTest.hex
 
 ENABLE_DISABLE_MOTOR_VDD_OBJ_FILES=\
-	EnableDisableMotorVddTest.o
+	EnableDisableMotorVddTest.o \
+	../EnableDisableSmpsMocks.o
+
+ENABLE_DISABLE_SMPS_OBJ_FILES=\
+	EnableDisableSmpsTest.o \
+	../EnableDisableSmpsMocks.o
+
+ENABLE_DISABLE_SMPS_ORDER_OBJ_FILES=\
+	EnableDisableSmpsOrderTest.o \
+	../EnableDisableSmpsMocks.o
 
 all: $(HEX_FILES)
 
@@ -11,5 +22,11 @@ clean:
 
 EnableDisableMotorVddTest.hex: $(OBJ_FILES) $(ENABLE_DISABLE_MOTOR_VDD_OBJ_FILES)
 	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(ENABLE_DISABLE_MOTOR_VDD_OBJ_FILES)
+
+EnableDisableSmpsTest.hex: $(OBJ_FILES) $(ENABLE_DISABLE_SMPS_OBJ_FILES)
+	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(ENABLE_DISABLE_SMPS_OBJ_FILES)
+
+EnableDisableSmpsOrderTest.hex: $(OBJ_FILES) $(ENABLE_DISABLE_SMPS_ORDER_OBJ_FILES)
+	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(ENABLE_DISABLE_SMPS_ORDER_OBJ_FILES)
 
 include $(MAKEFILE_RULES)

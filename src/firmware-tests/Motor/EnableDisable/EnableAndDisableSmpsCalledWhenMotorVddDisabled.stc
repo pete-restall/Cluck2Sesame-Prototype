@@ -1,0 +1,3 @@
+load EnableDisableSmpsOrderTest.cod
+run
+quit

@@ -6,7 +6,7 @@ export OBJ_FILES=\
 	$(ASSERT_NO_ISR_OBJ_FILE) \
 	$(CURDIR)/InitialiseAfterMotorMock.o
 
-all: InitialiseAfterMotorMock.o
+all: InitialiseAfterMotorMock.o EnableDisableSmpsMocks.o
 	$(MAKE) -C Initialisation all
 	$(MAKE) -C EnableDisable all
 
