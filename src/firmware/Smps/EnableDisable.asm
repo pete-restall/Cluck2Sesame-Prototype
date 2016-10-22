@@ -11,6 +11,7 @@ enableSmpsCount res 1
 Smps code
 	global enableSmps
 	global disableSmps
+	global isSmpsEnabled
 
 enableSmps:
 	banksel SMPS_TRIS

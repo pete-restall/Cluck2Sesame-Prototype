@@ -14,6 +14,7 @@ EnableDisableMotorVdd code
 	global initialiseEnableAndDisableMotorVddMocks
 	global enableMotorVdd
 	global disableMotorVdd
+	global isMotorVddEnabled
 
 initialiseEnableAndDisableMotorVddMocks:
 	banksel calledEnableMotorVddCount
@@ -27,6 +28,10 @@ enableMotorVdd:
 
 disableMotorVdd:
 	mockIncrementCallCounter calledDisableMotorVddCount
+	return
+
+isMotorVddEnabled:
+	; TODO: MOCK RECORDING WHAT ?  REQUIRED TO PASS THE BUILD AT THE MOMENT, NOTHING MORE...
 	return
 
 	end

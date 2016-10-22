@@ -7,6 +7,7 @@
 ShiftRegister code
 	global enableShiftRegister
 	global disableShiftRegister
+	global isShiftRegisterEnabled
 
 enableShiftRegister:
 	tcall enableMotorVdd

@@ -13,6 +13,7 @@ enableMotorVddCount res 1
 Motor code
 	global enableMotorVdd
 	global disableMotorVdd
+	global isMotorVddEnabled
 
 enableMotorVdd:
 	fcall enableSmps
