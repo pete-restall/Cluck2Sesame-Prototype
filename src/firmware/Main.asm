@@ -35,6 +35,9 @@ pollingLoop:
 	goto pollingLoop
 
 initialisationCompleted:
+	banksel INTCON
+	movlw (1 << GIE) | (1 << PEIE)
+	iorwf INTCON
 	return
 
 	end

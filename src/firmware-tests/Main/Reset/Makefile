@@ -5,16 +5,19 @@ HEX_FILES=\
 
 POWER_ON_RESET_OBJ_FILES=\
 	PowerOnResetTest.o \
+	$(ASSERT_NO_ISR_OBJ_FILE) \
 	../ResetMocks.o \
 	../PollStubToAssertTest.o
 
 BROWN_OUT_RESET_OBJ_FILES=\
 	BrownOutResetTest.o \
+	$(ASSERT_NO_ISR_OBJ_FILE) \
 	../ResetMocks.o \
 	../PollStubToAssertTest.o
 
 MCLR_RESET_OBJ_FILES=\
 	MclrResetTest.o \
+	$(ASSERT_NO_ISR_OBJ_FILE) \
 	../ResetMocks.o \
 	../PollStubToAssertTest.o
 

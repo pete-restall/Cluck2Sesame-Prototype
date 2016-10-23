@@ -7,29 +7,34 @@ HEX_FILES=\
 
 POLL_AFTER_POR_OBJ_FILES=\
 	PollAfterPowerOnResetTest.o \
+	$(ASSERT_NO_ISR_OBJ_FILE) \
 	PollAfterFirstInChainDummy.o \
 	../ResetMocks.o \
 	../PollMockToAssertTest.o
 
 POLL_AFTER_BOR_OBJ_FILES=\
 	PollAfterBrownOutResetTest.o \
+	$(ASSERT_NO_ISR_OBJ_FILE) \
 	PollAfterFirstInChainDummy.o \
 	../ResetMocks.o \
 	../PollMockToAssertTest.o
 
 POLL_AFTER_MCLR_OBJ_FILES=\
 	PollAfterMclrResetTest.o \
+	$(ASSERT_NO_ISR_OBJ_FILE) \
 	PollAfterFirstInChainDummy.o \
 	../ResetMocks.o \
 	../PollMockToAssertTest.o
 
 POLL_CALLED_REPEATEDLY_OBJ_FILES=\
 	PollCalledRepeatedlyTest.o \
+	$(ASSERT_NO_ISR_OBJ_FILE) \
 	PollAfterFirstInChainDummy.o \
 	../ResetDummies.o
 
 FIRST_POLL_IN_CHAIN_OBJ_FILES=\
 	FirstPollInChainTest.o \
+	$(ASSERT_NO_ISR_OBJ_FILE) \
 	PollAfterFirstInChainDummy.o \
 	../ResetDummies.o \
 	$(FIRMWARE_DIR)/Smps.a

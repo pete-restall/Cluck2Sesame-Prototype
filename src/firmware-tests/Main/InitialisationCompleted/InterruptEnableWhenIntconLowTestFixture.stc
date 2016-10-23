@@ -1,0 +1,5 @@
+load InterruptEnableTest.cod
+intcon = 0x00
+expectedIntcon = b'11000000'
+run
+quit

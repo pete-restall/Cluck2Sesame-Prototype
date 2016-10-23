@@ -8,10 +8,11 @@ export TEST_FIXTURE_OBJ_FILES=\
 	$(FIRMWARE_TESTS_DIR)/TestDoubles.o
 
 export ASSERT_NO_ISR_OBJ_FILE=$(FIRMWARE_TESTS_DIR)/AssertNoIsr.o
+export DUMMY_ISR_OBJ_FILE=$(FIRMWARE_TESTS_DIR)/IsrDummy.o
 
 ASARGS+=-I $(FIRMWARE_TESTS_DIR)
 
-all: TestFixture.o TestDoubles.o AssertNoIsr.o InitialiseAfterResetMock.o InitialiseAfterResetDummy.o
+all: TestFixture.o TestDoubles.o AssertNoIsr.o IsrDummy.o InitialiseAfterResetMock.o InitialiseAfterResetDummy.o
 	$(MAKE) -C Main all
 	$(MAKE) -C PowerOnReset all
 	$(MAKE) -C BrownOutReset all
