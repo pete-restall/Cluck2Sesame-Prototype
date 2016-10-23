@@ -21,6 +21,7 @@ enableMotorVdd:
 
 	banksel MOTOR_TRIS
 	bcf MOTOR_TRIS, MOTOR_VDD_EN_PIN_TRIS
+	; TODO: BUG !  PORTC RMW OPERATION MEANS RC6 IS HIGH, SINCE SOMETHING ELSE HAS WRITTEN TO PORC AFTER initialiseMotor() !
 
 	banksel enableMotorVddCount
 	incf enableMotorVddCount
