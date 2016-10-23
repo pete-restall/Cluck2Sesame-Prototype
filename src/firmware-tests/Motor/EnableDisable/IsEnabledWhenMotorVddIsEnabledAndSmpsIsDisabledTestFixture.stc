@@ -1,5 +1,7 @@
 load IsEnabledTest.cod
 stubIsSmpsEnabled=0
+numberOfEnableCalls=1
+numberOfDisableCalls=0
 expectedIsMotorVddEnabled=0
 run
 quit

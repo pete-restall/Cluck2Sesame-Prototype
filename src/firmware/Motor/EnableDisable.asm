@@ -39,6 +39,12 @@ disableMotorVddReturn:
 	return
 
 isMotorVddEnabled:
+	movlw 0
+	banksel enableMotorVddCount
+	movf enableMotorVddCount
+	btfsc STATUS, Z
+	return
+
 	tcall isSmpsEnabled
 
 	end

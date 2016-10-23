@@ -1,5 +1,0 @@
-load IsEnabledTest.cod
-stubIsSmpsEnabled=123
-expectedIsMotorVddEnabled=123
-run
-quit

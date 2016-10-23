@@ -1,0 +1,7 @@
+load IsEnabledTest.cod
+stubIsSmpsEnabled=123
+numberOfEnableCalls=1
+numberOfDisableCalls=0
+expectedIsMotorVddEnabled=1
+run
+quit
