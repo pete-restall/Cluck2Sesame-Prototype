@@ -4,6 +4,7 @@
 	#define POLL_FIRST pollSmps
 	#define POLL_AFTER_SMPS pollTemperatureSensor
 	#define POLL_AFTER_TEMPERATURESENSOR pollClock
-	#define POLL_AFTER_CLOCK pollSleep
+	#define POLL_AFTER_CLOCK pollMotor
+	#define POLL_AFTER_MOTOR pollSleep
 
 	#endif
