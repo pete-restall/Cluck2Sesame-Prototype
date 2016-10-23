@@ -18,7 +18,6 @@ EnableDisableSmpsMocks code
 	global initialiseEnableAndDisableSmpsMocks
 	global enableSmps
 	global disableSmps
-	global isSmpsEnabled
 
 initialiseEnableAndDisableSmpsMocks:
 	banksel calledEnableSmpsCount
@@ -42,10 +41,6 @@ disableSmps:
 	movf TRISC, W
 	banksel calledDisableSmpsTrisc
 	movwf calledDisableSmpsTrisc
-	return
-
-isSmpsEnabled:
-	; TODO: CURRENTLY ONLY REQUIRED TO PASS THE BUILD, BUT WILL BE REQUIRED AT SOME POINT !
 	return
 
 	end

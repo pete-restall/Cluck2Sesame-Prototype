@@ -1,3 +1,5 @@
+	#define __CLUCK2SESAME_SMPS_ENABLEDISABLE_ASM
+
 	#include "p16f685.inc"
 	#include "Smps.inc"
 
@@ -5,8 +7,10 @@
 
 	udata
 	global enableSmpsCount
+	global smpsFlags
 
 enableSmpsCount res 1
+smpsFlags res 1
 
 Smps code
 	global enableSmps
@@ -32,6 +36,7 @@ disableSmps:
 	return
 
 isSmpsEnabled:
+	movlw 1
 	; TODO: THE +3.3V LINE IS ONLY AVAILABLE > 1ms AFTER SMPS_EN IS ASSERTED
 	; USE TIMER0 (1:256 PRESCALE) FOR THIS, SO FOUR TICKS SHOULD BE > 1ms,
 	; ALONG WITH AN updateSmps() POLL THAT CHECKS THE TIMER VALUES TO SET A

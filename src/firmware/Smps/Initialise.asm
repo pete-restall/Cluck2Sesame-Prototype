@@ -6,15 +6,19 @@
 	radix decimal
 
 	extern INITIALISE_AFTER_SMPS
-	extern enableSmpsCount
 
 Smps code
 	global initialiseSmps
 
 initialiseSmps:
+flagSmpsVddAsEnabledAndStableAtBoot:
 	banksel enableSmpsCount
 	movlw 1
 	movwf enableSmpsCount
+
+	banksel smpsFlags
+	movlw (1 << SMPS_FLAG_VDD_STABLE)
+	movwf smpsFlags
 
 setPortModes:
 	banksel ANSELH

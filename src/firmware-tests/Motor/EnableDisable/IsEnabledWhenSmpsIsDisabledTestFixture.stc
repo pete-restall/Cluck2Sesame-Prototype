@@ -1,0 +1,5 @@
+load IsEnabledTest.cod
+stubIsSmpsEnabled=0
+expectedIsMotorVddEnabled=0
+run
+quit

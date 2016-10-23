@@ -3,23 +3,23 @@ HEX_FILES=\
 	PortcTest.hex \
 	InitialisationChainTest.hex
 
-ANSEL_OBJ_FILES=\
-	AnselTest.o \
+TEST_DOUBLE_OBJ_FILES=\
 	../EnableDisableSmpsMocks.o \
+	../IsSmpsEnabledStub.o \
 	../PollSmpsDummy.o \
 	../PollAfterMotorMock.o
+
+ANSEL_OBJ_FILES=\
+	$(TEST_DOUBLE_OBJ_FILES) \
+	AnselTest.o
 
 PORTC_OBJ_FILES=\
-	PortcTest.o \
-	../EnableDisableSmpsMocks.o \
-	../PollSmpsDummy.o \
-	../PollAfterMotorMock.o
+	$(TEST_DOUBLE_OBJ_FILES) \
+	PortcTest.o
 
 INITIALISATION_CHAIN_OBJ_FILES=\
-	InitialisationChainTest.o \
-	../EnableDisableSmpsMocks.o \
-	../PollSmpsDummy.o \
-	../PollAfterMotorMock.o
+	$(TEST_DOUBLE_OBJ_FILES) \
+	InitialisationChainTest.o
 
 all: $(HEX_FILES)
 

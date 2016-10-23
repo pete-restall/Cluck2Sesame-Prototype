@@ -1,5 +1,6 @@
 	#include "p16f685.inc"
 	#include "FarCalls.inc"
+	#include "TailCalls.inc"
 	#include "../Smps.inc"
 	#include "Motor.inc"
 
@@ -38,7 +39,6 @@ disableMotorVddReturn:
 	return
 
 isMotorVddEnabled:
-	; TODO: NEED TO CALL isSmpsEnabled()
-	return
+	tcall isSmpsEnabled
 
 	end
