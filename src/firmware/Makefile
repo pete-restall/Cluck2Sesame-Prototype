@@ -13,7 +13,7 @@ OBJ_FILES=\
 	BrownOutReset.o \
 	MclrReset.o \
 	Timer0.o \
-	TemperatureSensor.o \
+	TemperatureSensor.a \
 	Clock.a \
 	ShiftRegister.a \
 	Smps.a \
@@ -29,6 +29,7 @@ clean:
 	$(MAKE) -C ShiftRegister clean
 	$(MAKE) -C Smps clean
 	$(MAKE) -C Motor clean
+	$(MAKE) -C TemperatureSensor clean
 
 $(HEX_FILENAME): $(OBJ_FILES)
 	$(LD) $(LDARGS) -o $(HEX_FILENAME) $(OBJ_FILES)

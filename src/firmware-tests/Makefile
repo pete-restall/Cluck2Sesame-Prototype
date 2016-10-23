@@ -26,6 +26,7 @@ all: TestFixture.o TestDoubles.o AssertNoIsr.o IsrDummy.o InitialiseAfterResetMo
 	$(MAKE) -C ShiftRegister all
 	$(MAKE) -C Smps all
 	$(MAKE) -C Motor all
+	$(MAKE) -C TemperatureSensor all
 
 clean:
 	$(RM) -f $(BUILD_ARTEFACT_PATTERN)
@@ -42,5 +43,6 @@ clean:
 	$(MAKE) -C ShiftRegister clean
 	$(MAKE) -C Smps clean
 	$(MAKE) -C Motor clean
+	$(MAKE) -C TemperatureSensor clean
 
 include $(MAKEFILE_RULES)
