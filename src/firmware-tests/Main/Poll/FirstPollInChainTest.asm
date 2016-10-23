@@ -1,22 +1,23 @@
 	#include "p16f685.inc"
 	#include "FarCalls.inc"
-	#include "TemperatureSensor.inc"
+	#include "PollChain.inc"
 	#include "TestFixture.inc"
 
 	radix decimal
 
 	extern pollForWork
+	extern POLL_FIRST
 
 	global pollForWorkAddressHigh
 	global pollForWorkAddressLow
-	global pollTemperatureSensorAddressHigh
-	global pollTemperatureSensorAddressLow
+	global pollFirstAddressHigh
+	global pollFirstAddressLow
 
 	udata
 pollForWorkAddressHigh res 1
 pollForWorkAddressLow res 1
-pollTemperatureSensorAddressHigh res 1
-pollTemperatureSensorAddressLow res 1
+pollFirstAddressHigh res 1
+pollFirstAddressLow res 1
 
 FirstPollInChainTest code
 	global testArrange
@@ -24,30 +25,30 @@ FirstPollInChainTest code
 testArrange:
 storePollForWorkAddressHigh:
 	banksel pollForWorkAddressHigh
-	movlw high pollForWork
+	movlw high(pollForWork)
 	movwf pollForWorkAddressHigh
 
 storePollForWorkAddressLow:
 	banksel pollForWorkAddressLow
-	movlw low pollForWork
+	movlw low(pollForWork)
 	movwf pollForWorkAddressLow
 
-storePollTemperatureSensorAddressHigh:
-	banksel pollTemperatureSensorAddressHigh
-	movlw high pollTemperatureSensor
-	movwf pollTemperatureSensorAddressHigh
+storePollFirstAddressHigh:
+	banksel pollFirstAddressHigh
+	movlw high(POLL_FIRST)
+	movwf pollFirstAddressHigh
 
-storePollTemperatureSensorAddressLow:
-	banksel pollTemperatureSensorAddressLow
-	movlw low pollTemperatureSensor
-	movwf pollTemperatureSensorAddressLow
+storePollFirstAddressLow:
+	banksel pollFirstAddressLow
+	movlw low(POLL_FIRST)
+	movwf pollFirstAddressLow
 
 testAct:
 	pagesel testArrange
 
 testAssert:
-	.assert "pollForWorkAddressHigh == pollTemperatureSensorAddressHigh, 'Expected first poll in chain to be pollTemperatureSensor.'"
-	.assert "pollForWorkAddressLow == pollTemperatureSensorAddressLow, 'Expected first poll in chain to be pollTemperatureSensor.'"
+	.assert "pollForWorkAddressHigh == pollFirstAddressHigh, 'Expected first poll in chain to be POLL_FIRST.'"
+	.assert "pollForWorkAddressLow == pollFirstAddressLow, 'Expected first poll in chain to be POLL_FIRST.'"
 	return
 
 	end

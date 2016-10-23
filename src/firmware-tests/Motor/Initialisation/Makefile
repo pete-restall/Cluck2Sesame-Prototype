@@ -5,15 +5,21 @@ HEX_FILES=\
 
 ANSEL_OBJ_FILES=\
 	AnselTest.o \
-	../EnableDisableSmpsMocks.o
+	../EnableDisableSmpsMocks.o \
+	../PollSmpsDummy.o \
+	../PollAfterMotorMock.o
 
 PORTC_OBJ_FILES=\
 	PortcTest.o \
-	../EnableDisableSmpsMocks.o
+	../EnableDisableSmpsMocks.o \
+	../PollSmpsDummy.o \
+	../PollAfterMotorMock.o
 
 INITIALISATION_CHAIN_OBJ_FILES=\
 	InitialisationChainTest.o \
-	../EnableDisableSmpsMocks.o
+	../EnableDisableSmpsMocks.o \
+	../PollSmpsDummy.o \
+	../PollAfterMotorMock.o
 
 all: $(HEX_FILES)
 

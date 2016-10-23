@@ -2,7 +2,9 @@
 
 	#include "p16f685.inc"
 	#include "FarCalls.inc"
+	#include "TailCalls.inc"
 	#include "ArithmeticBcd.inc"
+	#include "PollChain.inc"
 	#include "Clock.inc"
 
 	radix decimal
@@ -16,6 +18,7 @@ YEAR99_MODULUS equ 0xa0
 
 	extern lookupNumberOfDaysInMonthBcd
 	extern clockFlags
+	extern POLL_AFTER_CLOCK
 
 	udata
 	global clockYearBcd
@@ -54,13 +57,13 @@ incrementAndThenReturnIfNotOverflowed macro dateTimePartBcd
 	setDateTimePartPointer dateTimePartBcd
 	call addToDateTimePart
 	btfss STATUS, C
-	return
+	goto pollNext
 	endm
 
 pollClock:
 	banksel clockFlags
 	btfss clockFlags, CLOCK_FLAG_TICKED
-	return
+	goto pollNext
 
 	bcf clockFlags, CLOCK_FLAG_TICKED
 
@@ -134,7 +137,8 @@ overflowedIntoNextYear:
 	setModulus YEAR99_MODULUS
 	incrementAndThenReturnIfNotOverflowed clockYearBcd
 
-	return
+pollNext:
+	tcall POLL_AFTER_CLOCK
 
 ;
 ; !!! Will not work for general BCD modulus / increment combinations !!!

@@ -5,15 +5,21 @@ HEX_FILES=\
 
 ENABLE_DISABLE_MOTOR_VDD_OBJ_FILES=\
 	EnableDisableMotorVddTest.o \
-	../EnableDisableSmpsMocks.o
+	../EnableDisableSmpsMocks.o \
+	../PollSmpsDummy.o \
+	../PollAfterMotorMock.o
 
 ENABLE_DISABLE_SMPS_OBJ_FILES=\
 	EnableDisableSmpsTest.o \
-	../EnableDisableSmpsMocks.o
+	../EnableDisableSmpsMocks.o \
+	../PollSmpsDummy.o \
+	../PollAfterMotorMock.o
 
 ENABLE_DISABLE_SMPS_ORDER_OBJ_FILES=\
 	EnableDisableSmpsOrderTest.o \
-	../EnableDisableSmpsMocks.o
+	../EnableDisableSmpsMocks.o \
+	../PollSmpsDummy.o \
+	../PollAfterMotorMock.o
 
 all: $(HEX_FILES)
 

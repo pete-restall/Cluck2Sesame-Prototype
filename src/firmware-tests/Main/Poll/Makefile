@@ -7,27 +7,32 @@ HEX_FILES=\
 
 POLL_AFTER_POR_OBJ_FILES=\
 	PollAfterPowerOnResetTest.o \
+	PollAfterFirstInChainDummy.o \
 	../ResetMocks.o \
 	../PollMockToAssertTest.o
 
 POLL_AFTER_BOR_OBJ_FILES=\
 	PollAfterBrownOutResetTest.o \
+	PollAfterFirstInChainDummy.o \
 	../ResetMocks.o \
 	../PollMockToAssertTest.o
 
 POLL_AFTER_MCLR_OBJ_FILES=\
 	PollAfterMclrResetTest.o \
+	PollAfterFirstInChainDummy.o \
 	../ResetMocks.o \
 	../PollMockToAssertTest.o
 
 POLL_CALLED_REPEATEDLY_OBJ_FILES=\
 	PollCalledRepeatedlyTest.o \
+	PollAfterFirstInChainDummy.o \
 	../ResetDummies.o
 
 FIRST_POLL_IN_CHAIN_OBJ_FILES=\
 	FirstPollInChainTest.o \
+	PollAfterFirstInChainDummy.o \
 	../ResetDummies.o \
-	$(FIRMWARE_DIR)/TemperatureSensor.o
+	$(FIRMWARE_DIR)/Smps.a
 
 all: $(HEX_FILES)
 

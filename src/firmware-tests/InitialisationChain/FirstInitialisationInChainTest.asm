@@ -1,24 +1,23 @@
 	#include "p16f685.inc"
 	#include "FarCalls.inc"
 	#include "InitialisationChain.inc"
-	#include "Clock.inc"
 	#include "TestFixture.inc"
 
 	radix decimal
 
 	extern initialiseAfterReset
+	extern INITIALISE_FIRST
 
-	global INITIALISE_AFTER_CLOCK
 	global initialiseAfterResetAddressHigh
 	global initialiseAfterResetAddressLow
-	global initialiseClockAddressHigh
-	global initialiseClockAddressLow
+	global initialiseFirstAddressHigh
+	global initialiseFirstAddressLow
 
 	udata
 initialiseAfterResetAddressHigh res 1
 initialiseAfterResetAddressLow res 1
-initialiseClockAddressHigh res 1
-initialiseClockAddressLow res 1
+initialiseFirstAddressHigh res 1
+initialiseFirstAddressLow res 1
 
 FirstInitialisationInChainTest code
 	global testArrange
@@ -26,32 +25,29 @@ FirstInitialisationInChainTest code
 testArrange:
 storeInitialiseAfterResetAddressHigh:
 	banksel initialiseAfterResetAddressHigh
-	movlw high initialiseAfterReset
+	movlw high(initialiseAfterReset)
 	movwf initialiseAfterResetAddressHigh
 
 storeInitialiseAfterResetAddressLow:
 	banksel initialiseAfterResetAddressLow
-	movlw low initialiseAfterReset
+	movlw low(initialiseAfterReset)
 	movwf initialiseAfterResetAddressLow
 
-storeInitialiseClockAddressHigh:
-	banksel initialiseClockAddressHigh
-	movlw high initialiseClock
-	movwf initialiseClockAddressHigh
+storeInitialiseFirstAddressHigh:
+	banksel initialiseFirstAddressHigh
+	movlw high(INITIALISE_FIRST)
+	movwf initialiseFirstAddressHigh
 
-storeInitialiseClockAddressLow:
-	banksel initialiseClockAddressLow
-	movlw low initialiseClock
-	movwf initialiseClockAddressLow
+storeInitialiseFirstAddressLow:
+	banksel initialiseFirstAddressLow
+	movlw low(INITIALISE_FIRST)
+	movwf initialiseFirstAddressLow
 
 testAct:
 
 testAssert:
-	.assert "initialiseAfterResetAddressHigh == initialiseClockAddressHigh, 'Expected first initialisation in chain to be initialiseClock.'"
-	.assert "initialiseAfterResetAddressLow == initialiseClockAddressLow, 'Expected first initialisation in chain to be initialiseClock.'"
-	return
-
-INITIALISE_AFTER_CLOCK:
+	.assert "initialiseAfterResetAddressHigh == initialiseFirstAddressHigh, 'Expected first initialisation in chain to be INITIALISE_FIRST.'"
+	.assert "initialiseAfterResetAddressLow == initialiseFirstAddressLow, 'Expected first initialisation in chain to be INITIALISE_FIRST.'"
 	return
 
 	end

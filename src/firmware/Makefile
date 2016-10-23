@@ -1,7 +1,9 @@
 HEX_FILENAME=Cluck2Sesame.hex
+
 OBJ_FILES=\
 	Cluck2Sesame.o \
 	ConfigWords.o \
+	Isr.o \
 	GeneralPurposeRegisters.o \
 	Arithmetic4.o \
 	Arithmetic32.o \
@@ -10,12 +12,12 @@ OBJ_FILES=\
 	PowerOnReset.o \
 	BrownOutReset.o \
 	MclrReset.o \
-	Isr.o \
 	TemperatureSensor.o \
 	Clock.a \
 	ShiftRegister.a \
 	Smps.a \
-	Motor.a
+	Motor.a \
+	Sleep.o
 
 all: $(HEX_FILENAME)
 

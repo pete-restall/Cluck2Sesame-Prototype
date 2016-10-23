@@ -1,7 +1,8 @@
 LIB_FILENAME=../Motor.a
 OBJ_FILES=\
 	Initialise.o \
-	EnableDisable.o
+	EnableDisable.o \
+	Poll.o
 
 all: $(LIB_FILENAME)
 

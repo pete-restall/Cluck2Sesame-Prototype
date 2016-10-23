@@ -2,6 +2,7 @@
 	#include "FarCalls.inc"
 	#include "Clock.inc"
 	#include "TestFixture.inc"
+	#include "../PollAfterClockMock.inc"
 
 	radix decimal
 
@@ -24,6 +25,7 @@ PollWithNoTickedFlagTest code
 	global testArrange
 
 testArrange:
+	fcall initialisePollAfterClockMock
 	fcall initialiseClock
 
 	banksel initialClockYearBcd
@@ -66,6 +68,7 @@ testAssert:
 	.assert "clockHourBcd == initialClockHourBcd, 'Hour should not have been modified.'"
 	.assert "clockMinuteBcd == initialClockMinuteBcd, 'Minute should not have been modified.'"
 	.assert "clockSecondBcd == initialClockSecondBcd, 'Second should not have been modified.'"
+	.assert "calledPollAfterClock != 0, 'Next poll in chain was not called.'"
 	return
 
 	end

@@ -5,5 +5,6 @@
 	extern enableSmps
 	extern disableSmps
 	extern isSmpsEnabled
+	extern pollSmps
 
 	#endif

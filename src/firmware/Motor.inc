@@ -5,5 +5,6 @@
 	extern enableMotorVdd
 	extern disableMotorVdd
 	extern isMotorVddEnabled
+	extern pollMotor
 
 	#endif

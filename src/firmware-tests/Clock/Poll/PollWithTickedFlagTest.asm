@@ -2,6 +2,7 @@
 	#include "FarCalls.inc"
 	#include "Clock.inc"
 	#include "TestFixture.inc"
+	#include "../PollAfterClockMock.inc"
 
 	radix decimal
 
@@ -24,6 +25,7 @@ PollWithTickedFlagTest code
 	global testArrange
 
 testArrange:
+	fcall initialisePollAfterClockMock
 	fcall initialiseClock
 
 testAct:
@@ -41,6 +43,7 @@ testAssert:
 	.assert "clockMinuteBcd == expectedClockMinuteBcd, 'Minute mismatch.'"
 	.assert "clockSecondBcd == expectedClockSecondBcd, 'Second mismatch.'"
 	.assert "(clockFlags & 0x01) == 0, 'CLOCK_FLAG_TICKED was not reset.'"
+	.assert "calledPollAfterClock != 0, 'Next poll in chain was not called.'"
 	return
 
 	end

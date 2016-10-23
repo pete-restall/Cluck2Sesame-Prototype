@@ -4,9 +4,10 @@ export OBJ_FILES=\
 	$(FIRMWARE_CORE_OBJ_FILES) \
 	$(TEST_FIXTURE_OBJ_FILES) \
 	$(ASSERT_NO_ISR_OBJ_FILE) \
-	$(CURDIR)/InitialiseAfterShiftRegisterMock.o
+	$(CURDIR)/InitialiseAfterShiftRegisterMock.o \
+	$(CURDIR)/PollMotorMock.o
 
-all: InitialiseAfterShiftRegisterMock.o EnableDisableMotorVddMocks.o
+all: InitialiseAfterShiftRegisterMock.o EnableDisableMotorVddMocks.o PollMotorMock.o
 	$(MAKE) -C Initialisation all
 	$(MAKE) -C EnableDisable all
 	$(MAKE) -C ShiftOut all

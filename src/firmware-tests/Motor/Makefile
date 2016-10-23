@@ -6,13 +6,15 @@ export OBJ_FILES=\
 	$(ASSERT_NO_ISR_OBJ_FILE) \
 	$(CURDIR)/InitialiseAfterMotorMock.o
 
-all: InitialiseAfterMotorMock.o EnableDisableSmpsMocks.o
+all: InitialiseAfterMotorMock.o EnableDisableSmpsDummies.o EnableDisableSmpsMocks.o PollSmpsDummy.o PollAfterMotorMock.o
 	$(MAKE) -C Initialisation all
 	$(MAKE) -C EnableDisable all
+	$(MAKE) -C Poll all
 
 clean:
 	$(RM) -f $(BUILD_ARTEFACT_PATTERN)
 	$(MAKE) -C Initialisation clean
 	$(MAKE) -C EnableDisable clean
+	$(MAKE) -C Poll clean
 
 include $(MAKEFILE_RULES)
