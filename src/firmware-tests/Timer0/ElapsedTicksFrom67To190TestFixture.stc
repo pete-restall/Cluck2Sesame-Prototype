@@ -1,0 +1,6 @@
+load ElapsedTicksTest.cod
+firstTMR0=67
+secondTMR0=190
+expectedElapsedTicks=123
+run
+quit

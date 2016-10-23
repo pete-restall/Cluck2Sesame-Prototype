@@ -1,0 +1,5 @@
+load InitialiseTimer0Test.cod
+option_reg=0x00
+expectedOptionReg=b'00000110'
+run
+quit
