@@ -22,7 +22,7 @@ flagSmpsVddAsEnabledAndStableAtBoot:
 
 setPortModes:
 	banksel ANSELH
-	bcf ANSELH, SMPS_EN_PIN_ANSH
+	bcf ANSELH, SMPS_EN_PIN_ANSH ; TODO: I RECKON ANSEL NEEDS TO BE SET BECAUSE BATTERY / PIC VDD MAY VARY SOMEWHAT
 
 clearDigitalOutputs:
 	banksel SMPS_PORT

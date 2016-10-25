@@ -23,7 +23,6 @@ enableSmps:
 
 	banksel enableSmpsCount
 	incf enableSmpsCount
-
 	return
 
 disableSmps:
@@ -33,7 +32,9 @@ disableSmps:
 
 	banksel SMPS_TRIS
 	bcf SMPS_TRIS, SMPS_EN_PIN_TRIS
-	; TODO: BUG !  PORTC RMW OPERATION MEANS RC7 IS HIGH, SINCE SOMETHING ELSE HAS WRITTEN TO PORC AFTER initialiseSmps() !
+
+	banksel SMPS_PORT
+	bcf SMPS_PORT, SMPS_EN_PIN
 	return
 
 isSmpsEnabled:
