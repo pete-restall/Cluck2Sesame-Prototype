@@ -1,0 +1,14 @@
+load EnableDisableMotorVddRmwTest.cod
+module library libgpsim_modules
+module load pullup r
+r.voltage=3.3
+r.resistance=10000
+node n1
+attach n1 pin(8) r.pin
+
+numberOfEnableCalls=1
+numberOfDisableCalls=0
+expectedPortValue=0
+
+run
+quit
