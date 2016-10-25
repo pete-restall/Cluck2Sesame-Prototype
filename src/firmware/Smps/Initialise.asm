@@ -20,9 +20,9 @@ flagSmpsVddAsEnabledAndStableAtBoot:
 	movlw (1 << SMPS_FLAG_VDD_STABLE)
 	movwf smpsFlags
 
-setPortModes:
+setPortModeToAnalogue:
 	banksel ANSELH
-	bcf ANSELH, SMPS_EN_PIN_ANSH ; TODO: I RECKON ANSEL NEEDS TO BE SET BECAUSE BATTERY / PIC VDD MAY VARY SOMEWHAT
+	bsf ANSELH, SMPS_EN_PIN_ANSH
 
 clearDigitalOutputs:
 	banksel SMPS_PORT

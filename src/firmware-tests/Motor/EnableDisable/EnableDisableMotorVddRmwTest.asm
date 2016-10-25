@@ -53,6 +53,9 @@ afterEnableAndDisableCalls:
 	call triggerReadModifyWriteOnPortc
 
 testAssert:
+	banksel ANSELH
+	bcf ANSELH, ANS8
+
 	banksel PORTC
 	movlw 0
 	btfsc PORTC, RC6

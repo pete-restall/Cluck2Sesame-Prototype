@@ -15,12 +15,13 @@ initialiseMotor:
 	banksel enableMotorVddCount
 	clrf enableMotorVddCount
 
-setPortModes:
+setMotorCurrentSensePortToAnalogue:
 	banksel ANSEL
 	bsf ANSEL, MOTOR_ISENSE_PIN_ANSL
 
+setMotorVddEnablePortToAnalogue:
 	banksel ANSELH
-	bcf ANSELH, MOTOR_VDD_EN_PIN_ANSH ; TODO: I RECKON ANSEL NEEDS TO BE SET BECAUSE BATTERY / PIC VDD MAY VARY SOMEWHAT
+	bsf ANSELH, MOTOR_VDD_EN_PIN_ANSH
 
 clearDigitalOutputs:
 	banksel MOTOR_PORT
