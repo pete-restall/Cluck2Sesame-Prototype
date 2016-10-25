@@ -56,7 +56,6 @@ testAssert:
 	.aliasForAssert calledDisableMotorVddCount, _a
 	.aliasForAssert expectedCalledDisableMotorVddCount, _b
 	.assert "_a == _b, 'Expected calls to disableMotorVdd() did not match expectation.'"
-	;.assert "calledDisableMotorVddCount == expectedCalledDisableMotorVddCount, 'Expected calls to disableMotorVdd() did not match expectation.'"
 	return
 
 	end

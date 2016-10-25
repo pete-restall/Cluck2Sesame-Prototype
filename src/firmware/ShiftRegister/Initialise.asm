@@ -16,6 +16,8 @@ ShiftRegister code
 	global initialiseShiftRegister
 
 initialiseShiftRegister:
+	; TODO: CLEAR shiftRegisterBuffer
+
 setPortModes:
 	banksel ANSEL
 	movlw ~ANSEL_DIGITAL_MASK

@@ -1,15 +1,16 @@
 HEX_FILES=\
-#	PinsAreDigitalTest.hex
+	ShiftOutTest.hex
 
-PINS_ARE_DIGITAL_OBJ_FILES=\
-	Timer1SourceIsExternalCrystalTest.o
+SHIFT_OUT_OBJ_FILES=\
+	ShiftOutTest.o \
+	../EnableDisableMotorVddStubs.o
 
 all: $(HEX_FILES)
 
 clean:
 	$(RM) -f $(BUILD_ARTEFACT_PATTERN)
 
-PinsAreDigitalTest.hex: $(OBJ_FILES) $(PINS_ARE_DIGITAL_OBJ_FILES)
-	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(PINS_ARE_DIGITAL_OBJ_FILES)
+ShiftOutTest.hex: $(OBJ_FILES) $(SHIFT_OUT_OBJ_FILES)
+	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(SHIFT_OUT_OBJ_FILES)
 
 include $(MAKEFILE_RULES)

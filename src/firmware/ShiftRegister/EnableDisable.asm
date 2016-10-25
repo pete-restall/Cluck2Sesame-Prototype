@@ -13,6 +13,7 @@ enableShiftRegister:
 	tcall enableMotorVdd
 
 disableShiftRegister:
+	; TODO: ENSURE THAT ALL SHIFT REGISTER PINS ARE AT 0V BEFORE DISABLING VDD !
 	tcall disableMotorVdd
 
 isShiftRegisterEnabled:

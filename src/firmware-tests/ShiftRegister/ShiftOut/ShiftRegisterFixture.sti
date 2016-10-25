@@ -1,0 +1,37 @@
+module library libgpsim_modules
+module load ttl595 sr
+node ds
+node shcp
+node stcp
+attach ds portc2 sr.Ds
+attach shcp portc0 sr.SCK
+attach stcp portc1 sr.RCK
+
+module load pullup vdd
+vdd.voltage=3.3
+vdd.resistance=0
+node _mr
+attach _mr vdd sr.MR
+
+module load pullup r
+r.voltage=3.3
+r.resistance=10000
+node _oe
+attach _oe portc6 r sr.OE
+
+node q0
+node q1
+node q2
+node q3
+node q4
+node q5
+node q6
+node q7
+attach q0 porta0 sr.Q0
+attach q1 porta1 sr.Q1
+attach q2 porta2 sr.Q2
+attach q3 portc3 sr.Q3
+attach q4 portb4 sr.Q4
+attach q5 portb5 sr.Q5
+attach q6 portb6 sr.Q6
+attach q7 portb7 sr.Q7

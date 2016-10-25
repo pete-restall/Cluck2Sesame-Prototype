@@ -1,0 +1,6 @@
+load ShiftOutTest.cod
+load i ShiftRegisterFixture.sti
+initialShiftRegisterBuffer=0b01010101
+
+run
+quit

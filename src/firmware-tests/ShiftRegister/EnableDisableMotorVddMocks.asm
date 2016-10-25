@@ -10,7 +10,7 @@
 calledEnableMotorVddCount res 1
 calledDisableMotorVddCount res 1
 
-EnableDisableMotorVdd code
+EnableDisableMotorVddMocks code
 	global initialiseEnableAndDisableMotorVddMocks
 	global enableMotorVdd
 	global disableMotorVdd
