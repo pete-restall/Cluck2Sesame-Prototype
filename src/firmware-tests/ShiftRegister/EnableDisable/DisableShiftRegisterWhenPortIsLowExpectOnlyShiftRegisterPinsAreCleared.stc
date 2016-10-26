@@ -1,0 +1,8 @@
+load EnableDisablePortTest.cod
+forcePortcBeforeDisable=0x00
+numberOfEnableCalls=1
+numberOfDisableCalls=1
+expectedPortc=0x00
+
+run
+quit
