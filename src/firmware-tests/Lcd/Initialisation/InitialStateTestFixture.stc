@@ -1,0 +1,3 @@
+load InitialStateTest.cod
+run
+quit

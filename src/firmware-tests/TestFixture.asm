@@ -26,8 +26,18 @@ TestFixtureBoot code 0x0000
 
 TestFixture code
 runTest:
+	call enableTimer0ForTestNonDeterminism
 	fcall initialiseTestDoubles
 	fcall testArrange
 	.done
+
+enableTimer0ForTestNonDeterminism:
+	banksel OPTION_REG
+	bcf OPTION_REG, T0CS
+	bcf OPTION_REG, PSA
+	bcf OPTION_REG, PS0
+	bcf OPTION_REG, PS1
+	bcf OPTION_REG, PS2
+	return
 
 	end

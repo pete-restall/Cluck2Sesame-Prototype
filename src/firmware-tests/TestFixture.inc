@@ -28,13 +28,17 @@
 .aliasForAssert macro from, to
 	banksel from
 	movf from, W
-
 	.aliasWForAssert to
 	endm
 
 .aliasWForAssert macro to
 	banksel to
 	movwf to
+	endm
+
+.aliasLiteralForAssert macro literal, to
+	movlw literal
+	.aliasWForAssert to
 	endm
 
 	#endif

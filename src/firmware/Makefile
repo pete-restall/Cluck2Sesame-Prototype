@@ -18,6 +18,7 @@ OBJ_FILES=\
 	ShiftRegister.a \
 	Smps.a \
 	Motor.a \
+	Lcd.a \
 	Sleep.o
 
 all: $(HEX_FILENAME)
@@ -30,6 +31,7 @@ clean:
 	$(MAKE) -C Smps clean
 	$(MAKE) -C Motor clean
 	$(MAKE) -C TemperatureSensor clean
+	$(MAKE) -C Lcd clean
 
 $(HEX_FILENAME): $(OBJ_FILES)
 	$(LD) $(LDARGS) -o $(HEX_FILENAME) $(OBJ_FILES)

@@ -1,0 +1,8 @@
+	#ifndef __CLUCK2SESAME_TESTS_LCD_ENABLEDISABLESHIFTREGISTERMOCKS_INC
+	#define __CLUCK2SESAME_TESTS_LCD_ENABLEDISABLESHIFTREGISTERMOCKS_INC
+
+	extern initialiseEnableAndDisableShiftRegisterMocks
+	extern calledEnableShiftRegisterCount
+	extern calledDisableShiftRegisterCount
+
+	#endif

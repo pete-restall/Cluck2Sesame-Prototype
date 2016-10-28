@@ -1,0 +1,7 @@
+	#ifndef __CLUCK2SESAME_TESTS_LCD_INITIALISESHIFTREGISTERMOCK_INC
+	#define __CLUCK2SESAME_TESTS_LCD_INITIALISESHIFTREGISTERMOCK_INC
+
+	extern initialiseInitialiseShiftRegisterMock
+	extern calledInitialiseShiftRegister
+
+	#endif

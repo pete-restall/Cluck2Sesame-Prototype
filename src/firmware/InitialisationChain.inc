@@ -6,6 +6,7 @@
 	#define INITIALISE_AFTER_TIMER0 initialiseSmps
 	#define INITIALISE_AFTER_SMPS initialiseMotor
 	#define INITIALISE_AFTER_MOTOR initialiseShiftRegister
-	#define INITIALISE_AFTER_SHIFTREGISTER initialisationCompleted
+	#define INITIALISE_AFTER_SHIFTREGISTER initialiseLcd
+	#define INITIALISE_AFTER_LCD initialisationCompleted
 
 	#endif

@@ -1,0 +1,8 @@
+load EnableDisableShiftRegisterTest.cod
+numberOfEnableCalls=7
+numberOfDisableCalls=0
+expectedCalledEnableShiftRegisterCount=7
+expectedCalledDisableShiftRegisterCount=0
+
+run
+quit

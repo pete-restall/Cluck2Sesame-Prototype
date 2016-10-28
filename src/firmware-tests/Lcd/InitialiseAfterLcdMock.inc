@@ -1,0 +1,7 @@
+	#ifndef __CLUCK2SESAME_TESTS_LCD_INITIALISEAFTERLCD_INC
+	#define __CLUCK2SESAME_TESTS_LCD_INITIALISEAFTERLCD_INC
+
+	extern initialiseInitialiseAfterLcdMock
+	extern calledInitialiseAfterLcd
+
+	#endif

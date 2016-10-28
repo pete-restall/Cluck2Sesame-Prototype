@@ -1,0 +1,3 @@
+load StateAfterEnabledFirstTimeTest.cod
+run
+quit
