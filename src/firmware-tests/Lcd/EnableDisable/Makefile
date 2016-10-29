@@ -11,23 +11,28 @@ ENABLE_DISABLE_SHIFT_REGISTER_OBJ_FILES=\
 	EnableDisableShiftRegisterTest.o \
 	../EnableDisableShiftRegisterMocks.o \
 	../InitialiseShiftRegisterMock.o \
-	../ShiftOutMock.o
+	../ShiftOutMock.o \
+	../PollAfterLcdDummy.o
 
 STATE_AFTER_ENABLED_FIRST_TIME_OBJ_FILES=\
 	StateAfterEnabledFirstTimeTest.o \
-	../ShiftRegisterDummies.o
+	../ShiftRegisterDummies.o \
+	../PollAfterLcdDummy.o
 
 STATE_AFTER_ENABLED_SECOND_TIME_OBJ_FILES=\
 	StateAfterEnabledSecondTimeTest.o \
-	../ShiftRegisterDummies.o
+	../ShiftRegisterDummies.o \
+	../PollAfterLcdDummy.o
 
 STATE_AFTER_DISABLED_NOT_AS_MANY_TIMES_AS_ENABLED_OBJ_FILES=\
 	StateAfterDisabledNotAsManyTimesAsEnabledTest.o \
-	../ShiftRegisterDummies.o
+	../ShiftRegisterDummies.o \
+	../PollAfterLcdDummy.o
 
 STATE_AFTER_DISABLED_OBJ_FILES=\
 	StateAfterDisabledTest.o \
-	../ShiftRegisterDummies.o
+	../ShiftRegisterDummies.o \
+	../PollAfterLcdDummy.o
 
 all: $(HEX_FILES)
 

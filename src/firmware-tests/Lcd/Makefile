@@ -6,13 +6,28 @@ export OBJ_FILES=\
 	$(ASSERT_NO_ISR_OBJ_FILE) \
 	$(CURDIR)/InitialiseAfterLcdMock.o
 
-all: InitialiseAfterLcdMock.o InitialiseShiftRegisterMock.o EnableDisableShiftRegisterMocks.o ShiftOutMock.o ShiftRegisterDummies.o
+TEST_DOUBLE_OBJ_FILES=\
+	InitialiseAfterLcdMock.o \
+	InitialiseShiftRegisterDummy.o \
+	InitialiseShiftRegisterMock.o \
+	EnableShiftRegisterDummy.o \
+	DisableShiftRegisterDummy.o \
+	EnableDisableShiftRegisterMocks.o \
+	ShiftOutDummy.o \
+	ShiftOutMock.o \
+	ShiftRegisterDummies.o \
+	PollAfterLcdDummy.o \
+	PollAfterLcdMock.o
+
+all: $(TEST_DOUBLE_OBJ_FILES)
 	$(MAKE) -C Initialisation all
 	$(MAKE) -C EnableDisable all
+	$(MAKE) -C States all
 
 clean:
 	$(RM) -f $(BUILD_ARTEFACT_PATTERN)
 	$(MAKE) -C Initialisation clean
 	$(MAKE) -C EnableDisable clean
+	$(MAKE) -C States clean
 
 include $(MAKEFILE_RULES)

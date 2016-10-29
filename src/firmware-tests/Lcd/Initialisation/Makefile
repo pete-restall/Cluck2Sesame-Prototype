@@ -8,11 +8,13 @@ INITIALISATION_CHAIN_OBJ_FILES=\
 	InitialisationChainTest.o \
 	../InitialiseShiftRegisterMock.o \
 	../EnableDisableShiftRegisterMocks.o \
-	../ShiftOutMock.o
+	../ShiftOutMock.o \
+	../PollAfterLcdDummy.o
 
 INITIAL_STATE_OBJ_FILES=\
 	InitialStateTest.o \
-	../ShiftRegisterDummies.o
+	../ShiftRegisterDummies.o \
+	../PollAfterLcdDummy.o
 
 all: $(HEX_FILES)
 

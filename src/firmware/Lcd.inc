@@ -5,5 +5,6 @@
 	extern enableLcd
 	extern disableLcd
 	extern isLcdEnabled
+	extern pollLcd
 
 	#endif

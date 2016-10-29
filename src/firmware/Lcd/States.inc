@@ -1,6 +1,8 @@
 	#ifndef __CLUCK2SESAME_LCD_STATES_INC
 	#define __CLUCK2SESAME_LCD_STATES_INC
 
+	radix decimal
+
 LCD_STATE_DISABLED equ 0x00
 LCD_STATE_ENABLE_WAITFORSHIFTREGISTER equ 0x01
 LCD_STATE_ENABLE_WAITFORMORETHAN40MS equ 0x02
@@ -17,14 +19,40 @@ LCD_STATE_ENABLE_ENTRYMODE equ 0x0c
 LCD_STATE_ENABLE_SETCONTRAST equ 0x0d
 LCD_STATE_IDLE equ 0x0e
 
-	#ifndef __CLUCK2SESAME_LCD_INITIALISE_ASM
+LCD_STATE_LAST equ LCD_STATE_IDLE
+
+	#ifndef __CLUCK2SESAME_LCD_POLL_ASM
 	extern lcdState
+	extern pollNextInChainAfterLcd
 	#endif
 
 setLcdState macro state
 	banksel lcdState
 	movlw state
 	movwf lcdState
+	endm
+
+defineLcdState macro name
+Lcd code
+	global lcdState#v(name)
+
+lcdState#v(name):
+	endm
+
+defineLcdStateTableEntry macro i
+	if (i <= LCD_STATE_LAST)
+		extern lcdState#v(i)
+		goto lcdState#v(i)
+		defineLcdStateTableEntry i + 1
+	endif
+	endm
+
+createLcdStateTable macro
+	defineLcdStateTableEntry 0
+	endm
+
+returnFromLcdState macro
+	goto pollNextInChainAfterLcd
 	endm
 
 	#endif
