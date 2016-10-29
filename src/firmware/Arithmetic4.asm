@@ -8,7 +8,7 @@ Arithmetic4 code
 
 mul4x4:
 	banksel RAA
-	movlw 0
+	clrw
 	bcf STATUS, C
 	btfsc RAA, 0
 	addwf RBA, W

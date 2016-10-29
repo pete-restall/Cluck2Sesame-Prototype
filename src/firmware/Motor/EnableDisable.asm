@@ -42,7 +42,7 @@ disableMotorVddReturn:
 	return
 
 isMotorVddEnabled:
-	movlw 0
+	clrw
 	banksel enableMotorVddCount
 	movf enableMotorVddCount
 	btfsc STATUS, Z
