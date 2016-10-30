@@ -21,8 +21,13 @@ testAct:
 	fcall initialiseShiftRegister
 
 testAssert:
-	.assert "ansel == expectedANSEL, 'ANSEL expectation failure.'"
-	.assert "anselh == expectedANSELH, 'ANSELH expectation failure.'"
+	.aliasForAssert ANSEL, _a
+	.aliasForAssert expectedANSEL, _b
+	.assert "_a == _b, 'ANSEL expectation failure.'"
+
+	.aliasForAssert ANSELH, _a
+	.aliasForAssert expectedANSELH, _b
+	.assert "_a == _b, 'ANSELH expectation failure.'"
 	return
 
 	end

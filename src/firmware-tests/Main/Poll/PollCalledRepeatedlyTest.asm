@@ -25,6 +25,7 @@ testAct:
 	fcall main
 
 testAssert:
+	banksel pollCount
 	.assert "pollCount == 0, 'Main did not call pollForWork repeatedly.'"
 	.done
 

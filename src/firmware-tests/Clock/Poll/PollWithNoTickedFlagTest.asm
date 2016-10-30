@@ -62,12 +62,31 @@ testAct:
 	fcall pollClock
 
 testAssert:
-	.assert "clockYearBcd == initialClockYearBcd, 'Year should not have been modified.'"
-	.assert "clockMonthBcd == initialClockMonthBcd, 'Month should not have been modified.'"
-	.assert "clockDayBcd == initialClockDayBcd, 'Day should not have been modified.'"
-	.assert "clockHourBcd == initialClockHourBcd, 'Hour should not have been modified.'"
-	.assert "clockMinuteBcd == initialClockMinuteBcd, 'Minute should not have been modified.'"
+	.aliasForAssert clockYearBcd, _a
+	.aliasForAssert initialClockYearBcd, _b
+	.assert "_a == _b, 'Year should not have been modified.'"
+
+	.aliasForAssert clockMonthBcd, _a
+	.aliasForAssert initialClockMonthBcd, _b
+	.assert "_a == _b, 'Month should not have been modified.'"
+
+	.aliasForAssert clockDayBcd, _a
+	.aliasForAssert initialClockDayBcd, _b
+	.assert "_a == _b, 'Day should not have been modified.'"
+
+	.aliasForAssert clockHourBcd, _a
+	.aliasForAssert initialClockHourBcd, _b
+	.assert "_a == _b, 'Hour should not have been modified.'"
+
+	.aliasForAssert clockMinuteBcd, _a
+	.aliasForAssert initialClockMinuteBcd, _b
+	.assert "_a == _b, 'Minute should not have been modified.'"
+
+	.aliasForAssert clockSecondBcd, _a
+	.aliasForAssert initialClockSecondBcd, _b
 	.assert "clockSecondBcd == initialClockSecondBcd, 'Second should not have been modified.'"
+
+	banksel calledPollAfterClock
 	.assert "calledPollAfterClock != 0, 'Next poll in chain was not called.'"
 	return
 

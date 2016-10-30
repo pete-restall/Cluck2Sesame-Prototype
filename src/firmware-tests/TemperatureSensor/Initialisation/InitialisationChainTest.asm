@@ -16,6 +16,7 @@ testAct:
 	fcall initialiseTemperatureSensor
 
 testAssert:
+	banksel calledInitialiseAfterTemperatureSensor
 	.assert "calledInitialiseAfterTemperatureSensor != 0, 'Next initialiser in chain was not called.'"
 	return
 

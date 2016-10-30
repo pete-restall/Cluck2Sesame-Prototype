@@ -16,6 +16,7 @@ testAct:
 	fcall initialiseAfterBrownOutReset
 
 testAssert:
+	banksel calledInitialiseAfterReset
 	.assert "calledInitialiseAfterReset != 0, 'Expected initialiseAfterReset to be called.'"
 	return
 

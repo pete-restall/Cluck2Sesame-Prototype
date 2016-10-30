@@ -59,16 +59,39 @@ testAct:
 	bsf zero, 0
 
 testAssert:
-	.assert "RAA == expectedRAA, 'RAA expectation failure.'"
-	.assert "RAB == expectedRAB, 'RAB expectation failure.'"
-	.assert "RAC == expectedRAC, 'RAC expectation failure.'"
-	.assert "RAD == expectedRAD, 'RAD expectation failure.'"
+	.aliasForAssert RAA, _a
+	.aliasForAssert expectedRAA, _b
+	.assert "_a == _b, 'RAA expectation failure.'"
 
-	.assert "RBA == expectedRBA, 'RBA expectation failure.'"
-	.assert "RBB == expectedRBB, 'RBB expectation failure.'"
-	.assert "RBC == expectedRBC, 'RBC expectation failure.'"
-	.assert "RBD == expectedRBD, 'RBD expectation failure.'"
+	.aliasForAssert RAB, _a
+	.aliasForAssert expectedRAB, _b
+	.assert "_a == _b, 'RAB expectation failure.'"
 
+	.aliasForAssert RAC, _a
+	.aliasForAssert expectedRAC, _b
+	.assert "_a == _b, 'RAC expectation failure.'"
+
+	.aliasForAssert RAD, _a
+	.aliasForAssert expectedRAD, _b
+	.assert "_a == _b, 'RAD expectation failure.'"
+
+	.aliasForAssert RBA, _a
+	.aliasForAssert expectedRBA, _b
+	.assert "_a == _b, 'RBA expectation failure.'"
+
+	.aliasForAssert RBB, _a
+	.aliasForAssert expectedRBB, _b
+	.assert "_a == _b, 'RBB expectation failure.'"
+
+	.aliasForAssert RBC, _a
+	.aliasForAssert expectedRBC, _b
+	.assert "_a == _b, 'RBC expectation failure.'"
+
+	.aliasForAssert RBD, _a
+	.aliasForAssert expectedRBD, _b
+	.assert "_a == _b, 'RBD expectation failure.'"
+
+	banksel carry
 	.assert "carry == expectedCarry, 'Carry expectation failure.'"
 	.assert "zero == expectedZero, 'Zero expectation failure.'"
 

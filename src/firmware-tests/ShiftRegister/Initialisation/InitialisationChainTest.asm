@@ -16,6 +16,7 @@ testAct:
 	fcall initialiseShiftRegister
 
 testAssert:
+	banksel calledInitialiseAfterShiftRegister
 	.assert "calledInitialiseAfterShiftRegister != 0, 'Next initialiser in chain was not called.'"
 	return
 

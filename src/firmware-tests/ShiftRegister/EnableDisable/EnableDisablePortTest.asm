@@ -67,7 +67,9 @@ callDisableShiftRegisterInLoop:
 	goto callDisableShiftRegisterInLoop
 
 testAssert:
-	.assert "portc == expectedPortc, 'PORTC expectation failure.'"
+	.aliasForAssert PORTC, _a
+	.aliasForAssert expectedPortc, _b
+	.assert "_a == _b, 'PORTC expectation failure.'"
 	return
 
 	end

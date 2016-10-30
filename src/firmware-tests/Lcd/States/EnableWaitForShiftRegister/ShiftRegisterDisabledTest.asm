@@ -22,9 +22,11 @@ testAct:
 	fcall pollLcd
 
 testAssert:
-	.aliasLiteralForAssert LCD_STATE_ENABLE_WAITFORSHIFTREGISTER, _a
-	.assert "lcdState == _a, 'Expected state to be LCD_STATE_ENABLE_WAITFORSHIFTREGISTER.'"
+	.aliasForAssert lcdState, _a
+	.aliasLiteralForAssert LCD_STATE_ENABLE_WAITFORSHIFTREGISTER, _b
+	.assert "_a == _b, 'Expected state to be LCD_STATE_ENABLE_WAITFORSHIFTREGISTER.'"
 
+	banksel calledPollAfterLcd
 	.assert "calledPollAfterLcd != 0, 'Next poll in chain was not called.'"
 	return
 

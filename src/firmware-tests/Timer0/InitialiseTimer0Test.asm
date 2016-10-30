@@ -7,21 +7,30 @@
 	radix decimal
 
 	udata
+	global initialOptionReg
 	global expectedOptionReg
 
+initialOptionReg res 1
 expectedOptionReg res 1
 
 InitialiseTimer0Test code
 	global testArrange
 
 testArrange:
+	banksel initialOptionReg
+	movf initialOptionReg, W
+	banksel OPTION_REG
+	movwf OPTION_REG
+
 	fcall initialiseInitialiseAfterTimer0Mock
 
 testAct:
 	fcall initialiseTimer0
 
 testAssert:
-	.assert "option_reg == expectedOptionReg, 'OPTION_REG expectation failure.'"
+	.aliasForAssert OPTION_REG, _a
+	.aliasForAssert expectedOptionReg, _b
+	.assert "_a == _b, 'OPTION_REG expectation failure.'"
 	return
 
 	end

@@ -16,6 +16,7 @@ testAct:
 	fcall initialiseClock
 
 testAssert:
+	banksel T1CON
 	.assert "(t1con & 0x01) != 0, 'T1CON.TMR1ON is not set.'"
 	return
 

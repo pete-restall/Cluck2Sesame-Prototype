@@ -1,5 +1,5 @@
 load InitialiseTimer0Test.cod
-option_reg=0xff
+initialOptionReg=0xff
 expectedOptionReg=b'11000110'
 run
 quit

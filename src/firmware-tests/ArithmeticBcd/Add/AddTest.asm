@@ -46,8 +46,15 @@ testAct:
 	bsf zero, 0
 
 testAssert:
-	.assert "RAA == expectedRAA, 'RAA expectation failure.'"
-	.assert "RBA == expectedRBA, 'RBA expectation failure.'"
+	.aliasForAssert RAA, _a
+	.aliasForAssert expectedRAA, _b
+	.assert "_a == _b, 'RAA expectation failure.'"
+
+	.aliasForAssert RBA, _a
+	.aliasForAssert expectedRBA, _b
+	.assert "_a == _b, 'RBA expectation failure.'"
+
+	banksel carry
 	.assert "carry == expectedCarry, 'Carry expectation failure.'"
 	.assert "zero == expectedZero, 'Zero expectation failure.'"
 	return

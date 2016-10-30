@@ -16,6 +16,7 @@ testAct:
 	fcall initialiseAfterPowerOnReset
 
 testAssert:
+	banksel PCON
 	.assert "(pcon & 0x03) == 0x03, 'BOR / POR bits were not set.'"
 	return
 

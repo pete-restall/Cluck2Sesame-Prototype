@@ -16,6 +16,7 @@ testAct:
 	fcall initialiseSmps
 
 testAssert:
+	banksel calledInitialiseAfterSmps
 	.assert "calledInitialiseAfterSmps != 0, 'Next initialiser in chain was not called.'"
 	return
 

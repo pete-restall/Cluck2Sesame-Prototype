@@ -36,13 +36,34 @@ testAct:
 	fcall pollClock
 
 testAssert:
-	.assert "clockYearBcd == expectedClockYearBcd, 'Year mismatch.'"
-	.assert "clockMonthBcd == expectedClockMonthBcd, 'Month mismatch.'"
-	.assert "clockDayBcd == expectedClockDayBcd, 'Day mismatch.'"
-	.assert "clockHourBcd == expectedClockHourBcd, 'Hour mismatch.'"
-	.assert "clockMinuteBcd == expectedClockMinuteBcd, 'Minute mismatch.'"
-	.assert "clockSecondBcd == expectedClockSecondBcd, 'Second mismatch.'"
+	.aliasForAssert clockYearBcd, _a
+	.aliasForAssert expectedClockYearBcd, _b
+	.assert "_a == _b, 'Year mismatch.'"
+
+	.aliasForAssert clockMonthBcd, _a
+	.aliasForAssert expectedClockMonthBcd, _b
+	.assert "_a == _b, 'Month mismatch.'"
+
+	.aliasForAssert clockDayBcd, _a
+	.aliasForAssert expectedClockDayBcd, _b
+	.assert "_a == _b, 'Day mismatch.'"
+
+	.aliasForAssert clockHourBcd, _a
+	.aliasForAssert expectedClockHourBcd, _b
+	.assert "_a == _b, 'Hour mismatch.'"
+
+	.aliasForAssert clockMinuteBcd, _a
+	.aliasForAssert expectedClockMinuteBcd, _b
+	.assert "_a == _b, 'Minute mismatch.'"
+
+	.aliasForAssert clockSecondBcd, _a
+	.aliasForAssert expectedClockSecondBcd, _b
+	.assert "_a == _b, 'Second mismatch.'"
+
+	banksel clockFlags
 	.assert "(clockFlags & 0x01) == 0, 'CLOCK_FLAG_TICKED was not reset.'"
+
+	banksel calledPollAfterClock
 	.assert "calledPollAfterClock != 0, 'Next poll in chain was not called.'"
 	return
 

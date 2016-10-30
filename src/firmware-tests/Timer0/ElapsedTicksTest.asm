@@ -42,6 +42,7 @@ calculateNumberOfElapsedTicks:
 	elapsedSinceTimer0 startTicks
 
 testAssert:
+	banksel expectedElapsedTicks
 	.assert "W == expectedElapsedTicks, 'Elapsed number of ticks expectation failure.'"
 	return
 

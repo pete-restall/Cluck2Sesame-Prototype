@@ -59,7 +59,11 @@ callPollLcd:
 	banksel calledPollAfterLcd
 	clrf calledPollAfterLcd
 	fcall pollLcd
+
+	banksel calledPollAfterLcd
 	.assert "calledPollAfterLcd != 0, 'Next poll in chain was not called.'"
+
+	banksel lcdState
 	.assert "lcdState != lcdNextState, 'Expected lcdState != lcdNextState.'"
 
 	banksel timer0Increment
@@ -74,7 +78,10 @@ callPollLcd:
 	fcall pollLcd
 
 testAssert:
+	banksel calledPollAfterLcd
 	.assert "calledPollAfterLcd != 0, 'Next poll in chain was not called.'"
+
+	banksel lcdState
 	.assert "lcdState == lcdNextState, 'Expected lcdState == lcdNextState.'"
 	return
 

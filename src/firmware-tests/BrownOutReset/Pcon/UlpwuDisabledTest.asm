@@ -17,6 +17,7 @@ testAct:
 	fcall initialiseAfterBrownOutReset
 
 testAssert:
+	banksel PCON
 	.assert "(pcon & 0x20) == 0, 'ULPWUE bit should not be set.'"
 	return
 

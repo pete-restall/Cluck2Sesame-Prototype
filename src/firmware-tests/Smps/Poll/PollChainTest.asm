@@ -17,6 +17,7 @@ testAct:
 	fcall pollSmps
 
 testAssert:
+	banksel calledPollAfterSmps
 	.assert "calledPollAfterSmps != 0, 'Next poll in chain was not called.'"
 	return
 

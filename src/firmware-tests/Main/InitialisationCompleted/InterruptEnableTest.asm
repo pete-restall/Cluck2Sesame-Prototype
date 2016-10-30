@@ -19,7 +19,9 @@ testAct:
 	fcall initialisationCompleted
 
 testAssert:
-	.assert "intcon == expectedIntcon, 'INTCON expectation failure.'"
+	.aliasForAssert INTCON, _a
+	.aliasForAssert expectedIntcon, _b
+	.assert "_a == _b, 'INTCON expectation failure.'"
 	return
 
 pollForWork:

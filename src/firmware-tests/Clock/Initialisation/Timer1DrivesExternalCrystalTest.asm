@@ -16,6 +16,7 @@ testAct:
 	fcall initialiseClock
 
 testAssert:
+	banksel T1CON
 	.assert "(t1con & 0x08) != 0, 'T1CON.T1OSCEN is not enabled.'"
 	return
 

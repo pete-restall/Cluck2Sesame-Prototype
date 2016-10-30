@@ -16,6 +16,7 @@ testAct:
 	fcall initialiseLcd
 
 testAssert:
+	banksel calledInitialiseAfterLcd
 	.assert "calledInitialiseAfterLcd != 0, 'Next initialiser in chain was not called.'"
 	return
 

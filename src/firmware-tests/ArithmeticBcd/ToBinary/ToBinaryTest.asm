@@ -39,11 +39,13 @@ testAct:
 	btfsc capturedStatus, Z
 	bsf zero, 0
 
-	movf capturedW, W
-
 testAssert:
-	.assert "RAA == expectedRAA, 'RAA expectation failure.'"
-	.assert "W == expectedW, 'W expectation failure.'"
+	.aliasForAssert RAA, _a
+	.aliasForAssert expectedRAA, _b
+	.assert "_a == _b, 'RAA expectation failure.'"
+
+	banksel capturedW
+	.assert "capturedW == expectedW, 'W expectation failure.'"
 	.assert "zero == expectedZero, 'Zero expectation failure.'"
 	return
 

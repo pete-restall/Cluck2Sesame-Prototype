@@ -16,6 +16,7 @@ testAct:
 	fcall initialiseClock
 
 testAssert:
+	banksel calledInitialiseAfterClock
 	.assert "calledInitialiseAfterClock != 0, 'Next initialiser in chain was not called.'"
 	return
 

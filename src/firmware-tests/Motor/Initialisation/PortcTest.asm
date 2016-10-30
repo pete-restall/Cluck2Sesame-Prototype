@@ -26,8 +26,13 @@ testAct:
 	fcall initialiseMotor
 
 testAssert:
-	.assert "portc == expectedPORTC, 'PORTC expectation failure.'"
-	.assert "trisc == expectedTRISC, 'TRISC expectation failure.'"
+	.aliasForAssert PORTC, _a
+	.aliasForAssert expectedPORTC, _b
+	.assert "_a == _b, 'PORTC expectation failure.'"
+
+	.aliasForAssert TRISC, _a
+	.aliasForAssert expectedTRISC, _b
+	.assert "_a == _b, 'TRISC expectation failure.'"
 	return
 
 	end

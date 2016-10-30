@@ -17,6 +17,7 @@ testAct:
 	fcall pollMotor
 
 testAssert:
+	banksel calledPollAfterMotor
 	.assert "calledPollAfterMotor != 0, 'Next poll in chain was not called.'"
 	return
 

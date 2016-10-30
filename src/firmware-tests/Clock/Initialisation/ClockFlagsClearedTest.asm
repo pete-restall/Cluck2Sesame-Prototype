@@ -17,6 +17,7 @@ testAct:
 	fcall initialiseClock
 
 testAssert:
+	banksel clockFlags
 	.assert "clockFlags == 0, 'Expected clockFlags to be cleared.'"
 	return
 

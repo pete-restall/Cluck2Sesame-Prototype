@@ -10,9 +10,9 @@
 	extern testArrange
 
 
-	; Non-obvious - gpsim .assert expressions are limited in size, so long
-	; variable names cause weird failures.  Use the .aliasForAssert macro in
-	; TestFixture.inc along with these variables to work around this.
+	; Non-obvious - gpsim .assert expressions use the same bank as currently
+	; selected.  Use the .aliasForAssert macro in TestFixture.inc along with
+	; these variables to work around expressions asserting over several banks.
 
 assertAliases udata
 	global _a

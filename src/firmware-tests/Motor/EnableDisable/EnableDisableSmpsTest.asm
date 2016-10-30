@@ -49,8 +49,13 @@ callDisableMotorVddInLoop:
 	goto callDisableMotorVddInLoop
 
 testAssert:
-	.assert "calledEnableSmpsCount == expectedCalledEnableSmpsCount, 'Expected calls to enableSmps() did not match expectation.'"
-	.assert "calledDisableSmpsCount == expectedCalledDisableSmpsCount, 'Expected calls to disableSmps() did not match expectation.'"
+	.aliasForAssert calledEnableSmpsCount, _a
+	.aliasForAssert expectedCalledEnableSmpsCount, _b
+	.assert "_a == _b, 'Expected calls to enableSmps() did not match expectation.'"
+
+	.aliasForAssert calledDisableSmpsCount, _a
+	.aliasForAssert expectedCalledDisableSmpsCount, _b
+	.assert "_a == _b, 'Expected calls to disableSmps() did not match expectation.'"
 	return
 
 	end

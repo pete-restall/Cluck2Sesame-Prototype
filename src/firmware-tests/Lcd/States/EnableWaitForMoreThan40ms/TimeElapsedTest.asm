@@ -58,9 +58,13 @@ callPollLcd:
 	banksel calledPollAfterLcd
 	clrf calledPollAfterLcd
 	fcall pollLcd
+
+	banksel calledPollAfterLcd
 	.assert "calledPollAfterLcd != 0, 'Next poll in chain was not called.'"
-	.aliasLiteralForAssert LCD_STATE_ENABLE_TRYSETBYTEMODE1, _a
-	.assert "lcdState != _a, 'Expected state not to be LCD_STATE_ENABLE_TRYSETBYTEMODE1.'"
+
+	.aliasForAssert lcdState, _a
+	.aliasLiteralForAssert LCD_STATE_ENABLE_TRYSETBYTEMODE1, _b
+	.assert "_a != _b, 'Expected state not to be LCD_STATE_ENABLE_TRYSETBYTEMODE1.'"
 
 	banksel TMR0
 	incf TMR0
@@ -72,9 +76,12 @@ callPollLcd:
 	fcall pollLcd
 
 testAssert:
+	banksel calledPollAfterLcd
 	.assert "calledPollAfterLcd != 0, 'Next poll in chain was not called.'"
-	.aliasLiteralForAssert LCD_STATE_ENABLE_TRYSETBYTEMODE1, _a
-	.assert "lcdState == _a, 'Expected state to be LCD_STATE_ENABLE_TRYSETBYTEMODE1.'"
+
+	.aliasForAssert lcdState, _a
+	.aliasLiteralForAssert LCD_STATE_ENABLE_TRYSETBYTEMODE1, _b
+	.assert "_a == _b, 'Expected state to be LCD_STATE_ENABLE_TRYSETBYTEMODE1.'"
 	return
 
 	end

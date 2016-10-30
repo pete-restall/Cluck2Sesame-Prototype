@@ -32,8 +32,13 @@ testAct:
 testAssert:
 	call reconstructShiftedValueFromLoopedStimuli
 
-	.assert "shiftRegisterBuffer == initialShiftRegisterBuffer, 'Expected shiftBuffer == initialShiftRegisterBuffer.'"
-	.assert "shiftedValue == shiftRegisterBuffer, 'Expected shiftedValue == shiftRegisterBuffer.'"
+	.aliasForAssert shiftRegisterBuffer, _a
+	.aliasForAssert initialShiftRegisterBuffer, _b
+	.assert "_a == _b, 'Expected shiftBuffer == initialShiftRegisterBuffer.'"
+
+	.aliasForAssert shiftedValue, _a
+	.aliasForAssert shiftRegisterBuffer, _b
+	.assert "_a == _b, 'Expected shiftedValue == shiftRegisterBuffer.'"
 	return
 
 initialisePinsForShiftRegisterLoopback:

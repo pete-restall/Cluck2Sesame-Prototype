@@ -17,6 +17,7 @@ testAct:
 	fcall initialiseAfterMclrReset
 
 testAssert:
+	banksel PCON
 	.assert "(pcon & 0x10) == 0, 'SBOREN bit should not be set.'"
 	return
 

@@ -17,6 +17,7 @@ testAct:
 	fcall pollTemperatureSensor
 
 testAssert:
+	banksel calledPollAfterTemperatureSensor
 	.assert "calledPollAfterTemperatureSensor != 0, 'Next poll in chain was not called.'"
 	return
 

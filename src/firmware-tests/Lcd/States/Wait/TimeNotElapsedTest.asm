@@ -53,7 +53,11 @@ callPollLcd:
 	banksel calledPollAfterLcd
 	clrf calledPollAfterLcd
 	fcall pollLcd
+
+	banksel calledPollAfterLcd
 	.assert "calledPollAfterLcd != 0, 'Next poll in chain was not called.'"
+
+	banksel lcdState
 	.assert "lcdState != lcdNextState, 'Expected lcdState != lcdNextState.'"
 
 	banksel TMR0
@@ -66,8 +70,9 @@ callPollLcd:
 	fcall pollLcd
 
 testAssert:
-	.aliasLiteralForAssert LCD_STATE_WAIT, _a
-	.assert "lcdState == _a, 'Expected lcdState == LCD_STATE_WAIT.'"
+	.aliasForAssert lcdState, _a
+	.aliasLiteralForAssert LCD_STATE_WAIT, _b
+	.assert "_a == _b, 'Expected lcdState == LCD_STATE_WAIT.'"
 	return
 
 	end

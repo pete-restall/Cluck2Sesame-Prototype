@@ -39,7 +39,9 @@ testAct:
 	nop
 
 testAssert:
-	.assert "clockSecondBcd == initialClockSecondBcd, 'Time should not have been modified.'"
+	.aliasForAssert clockSecondBcd, _a
+	.aliasForAssert initialClockSecondBcd, _b
+	.assert "_a == _b, 'Time should not have been modified.'"
 	return
 
 	end

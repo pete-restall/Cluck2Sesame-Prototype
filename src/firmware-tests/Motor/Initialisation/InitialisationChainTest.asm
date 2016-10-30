@@ -16,6 +16,7 @@ testAct:
 	fcall initialiseMotor
 
 testAssert:
+	banksel calledInitialiseAfterMotor
 	.assert "calledInitialiseAfterMotor != 0, 'Next initialiser in chain was not called.'"
 	return
 

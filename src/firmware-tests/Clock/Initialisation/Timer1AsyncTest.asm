@@ -16,6 +16,7 @@ testAct:
 	fcall initialiseClock
 
 testAssert:
+	banksel T1CON
 	.assert "(t1con & 0x04) != 0, 'T1CON.T1SYNC is not asynchronous.'"
 	return
 
