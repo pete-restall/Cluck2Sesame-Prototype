@@ -1,0 +1,5 @@
+load TimeNotElapsedTest.cod
+timer0Seed=5
+numberOfTicks=43
+run
+quit

@@ -5,10 +5,16 @@
 
 	extern mockCallCounter
 
-mockCalled macro counter
+loadNonZeroIncrementedMockCallCounterInW macro
 	banksel mockCallCounter
 	incf mockCallCounter
+	btfsc STATUS, Z
+	incf mockCallCounter
 	movf mockCallCounter, W
+	endm
+
+mockCalled macro counter
+	loadNonZeroIncrementedMockCallCounterInW
 
 	banksel counter
 	movwf counter

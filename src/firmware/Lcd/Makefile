@@ -17,6 +17,7 @@ OBJ_FILES=\
 	EnableDisplayClearState.o \
 	EnableEntryModeState.o \
 	EnableSetContrastState.o \
+	WaitState.o \
 	IdleState.o
 
 all: $(LIB_FILENAME)

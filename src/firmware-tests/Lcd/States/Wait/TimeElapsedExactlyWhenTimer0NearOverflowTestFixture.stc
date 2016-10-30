@@ -1,0 +1,7 @@
+load TimeElapsedTest.cod
+timer0Seed=187
+timer0Increment=1
+numberOfTicks=222
+numberOfPolls=223
+run
+quit

@@ -1,0 +1,4 @@
+load TimeNotElapsedTest.cod
+timer0Seed=187
+run
+quit

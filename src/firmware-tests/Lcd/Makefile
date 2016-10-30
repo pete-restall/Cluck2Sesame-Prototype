@@ -4,7 +4,9 @@ export OBJ_FILES=\
 	$(FIRMWARE_CORE_OBJ_FILES) \
 	$(TEST_FIXTURE_OBJ_FILES) \
 	$(ASSERT_NO_ISR_OBJ_FILE) \
-	$(CURDIR)/InitialiseAfterLcdMock.o
+	$(CURDIR)/InitialiseAfterLcdMock.o \
+	$(CURDIR)/../InitialiseAfterTimer0Dummy.o \
+	$(FIRMWARE_DIR)/Timer0.o
 
 TEST_DOUBLE_OBJ_FILES=\
 	InitialiseAfterLcdMock.o \

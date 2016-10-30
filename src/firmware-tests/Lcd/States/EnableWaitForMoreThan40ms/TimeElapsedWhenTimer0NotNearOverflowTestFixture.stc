@@ -1,0 +1,4 @@
+load TimeElapsedTest.cod
+timer0Seed=5
+run
+quit

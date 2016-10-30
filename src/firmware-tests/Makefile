@@ -12,7 +12,16 @@ export DUMMY_ISR_OBJ_FILE=$(FIRMWARE_TESTS_DIR)/IsrDummy.o
 
 ASARGS+=-I $(FIRMWARE_TESTS_DIR)
 
-all: TestFixture.o TestDoubles.o AssertNoIsr.o IsrDummy.o InitialiseAfterResetMock.o InitialiseAfterResetDummy.o
+TEST_DOUBLE_OBJ_FILES=\
+	TestFixture.o \
+	TestDoubles.o \
+	AssertNoIsr.o \
+	IsrDummy.o \
+	InitialiseAfterResetMock.o \
+	InitialiseAfterResetDummy.o \
+	InitialiseAfterTimer0Dummy.o
+
+all: $(TEST_DOUBLE_OBJ_FILES)
 	$(MAKE) -C Main all
 	$(MAKE) -C PowerOnReset all
 	$(MAKE) -C BrownOutReset all

@@ -8,7 +8,7 @@ export ASARGS=-c -p p16f685 -I $(FIRMWARE_DIR)
 export AR=gplib
 export ARARGS=-c
 export LD=gplink
-export LDARGS=-S 2 -s $(LKR_FILENAME) -m -c
+export LDARGS=-S 2 -O 2 -s $(LKR_FILENAME) -m -c
 export BUILD_ARTEFACT_PATTERN=*.hex *.cod *.cof *.map *.lst *.o *.a
 
 all:
