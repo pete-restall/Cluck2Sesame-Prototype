@@ -2,7 +2,6 @@
 	#include "FarCalls.inc"
 	#include "Lcd.inc"
 	#include "../../LcdStates.inc"
-	#include "../../PollAfterLcdMock.inc"
 	#include "../../ShiftOutMock.inc"
 	#include "TestFixture.inc"
 
@@ -24,7 +23,6 @@ ShiftRegisterEnabledTest code
 
 testArrange:
 	fcall initialiseShiftOutMock
-	fcall initialisePollAfterLcdMock
 	fcall initialiseLcd
 
 	banksel initialShiftRegisterBuffer
@@ -43,9 +41,6 @@ testAssert:
 	.assertShiftOut 1, expectedShiftOut1
 	.assertShiftOut 2, expectedShiftOut2
 	.assertShiftOut 3, expectedShiftOut3
-
-	banksel calledPollAfterLcd
-	.assert "calledPollAfterLcd != 0, 'Next poll in chain was not called.'"
 	return
 
 	end

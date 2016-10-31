@@ -18,7 +18,8 @@ OBJ_FILES=\
 	EnableEntryModeState.o \
 	EnableSetContrastState.o \
 	WaitState.o \
-	IdleState.o
+	IdleState.o \
+	WriteNibble.o
 
 all: $(LIB_FILENAME)
 

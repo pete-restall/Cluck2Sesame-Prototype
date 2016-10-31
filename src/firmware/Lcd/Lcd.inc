@@ -8,9 +8,14 @@ LCD_DB5_BIT equ 3
 LCD_DB4_BIT equ 2
 LCD_EN_BIT equ 1
 LCD_RS_BIT equ 0
+NON_LCD_DATA_BITS_MASK equ b'11000000'
 
 	#ifndef __CLUCK2SESAME_LCD_INITIALISE_ASM
 	extern lcdFlags
+	#endif
+
+	#ifndef __CLUCK2SESAME_LCD_WRITENIBBLE_ASM
+	extern writeNibble
 	#endif
 
 	#endif
