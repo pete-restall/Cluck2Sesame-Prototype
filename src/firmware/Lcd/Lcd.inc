@@ -1,6 +1,14 @@
 	#ifndef __CLUCK2SESAME_LCD_LCD_INC
 	#define __CLUCK2SESAME_LCD_LCD_INC
 
+LCD_BACKLIGHT_EN_BIT equ 6
+LCD_DB7_BIT equ 5
+LCD_DB6_BIT equ 4
+LCD_DB5_BIT equ 3
+LCD_DB4_BIT equ 2
+LCD_EN_BIT equ 1
+LCD_RS_BIT equ 0
+
 	#ifndef __CLUCK2SESAME_LCD_INITIALISE_ASM
 	extern lcdFlags
 	#endif

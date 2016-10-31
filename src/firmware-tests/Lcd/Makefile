@@ -15,6 +15,8 @@ TEST_DOUBLE_OBJ_FILES=\
 	EnableShiftRegisterDummy.o \
 	DisableShiftRegisterDummy.o \
 	EnableDisableShiftRegisterMocks.o \
+	IsShiftRegisterEnabledDummy.o \
+	IsShiftRegisterEnabledStub.o \
 	ShiftOutDummy.o \
 	ShiftOutMock.o \
 	ShiftRegisterDummies.o \

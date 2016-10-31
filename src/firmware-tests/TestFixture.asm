@@ -14,7 +14,7 @@
 	; selected.  Use the .aliasForAssert macro in TestFixture.inc along with
 	; these variables to work around expressions asserting over several banks.
 
-assertAliases udata
+assertAliases udata_shr
 	global _a
 	global _b
 

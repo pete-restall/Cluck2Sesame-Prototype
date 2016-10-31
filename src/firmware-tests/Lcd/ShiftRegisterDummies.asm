@@ -3,6 +3,11 @@
 
 	radix decimal
 
+	udata
+	global shiftRegisterBuffer
+
+shiftRegisterBuffer res 1
+
 ShiftRegisterDummies code
 	global initialiseShiftRegister
 	global enableShiftRegister
