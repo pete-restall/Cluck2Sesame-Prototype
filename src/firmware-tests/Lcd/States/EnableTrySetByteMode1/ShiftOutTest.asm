@@ -18,7 +18,7 @@ expectedShiftOut1 res 1
 expectedShiftOut2 res 1
 expectedShiftOut3 res 1
 
-ShiftRegisterEnabledTest code
+ShiftOutTest code
 	global testArrange
 
 testArrange:

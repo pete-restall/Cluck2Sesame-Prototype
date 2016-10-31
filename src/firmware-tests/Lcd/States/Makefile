@@ -6,6 +6,7 @@ all:
 	$(MAKE) -C Wait all
 	$(MAKE) -C EnableTrySetByteMode1 all
 	$(MAKE) -C EnableTrySetByteMode2 all
+	$(MAKE) -C EnableSetByteMode all
 
 clean:
 	$(RM) -f $(BUILD_ARTEFACT_PATTERN)
@@ -14,5 +15,6 @@ clean:
 	$(MAKE) -C Wait clean
 	$(MAKE) -C EnableTrySetByteMode1 clean
 	$(MAKE) -C EnableTrySetByteMode2 clean
+	$(MAKE) -C EnableSetByteMode clean
 
 include $(MAKEFILE_RULES)

@@ -31,7 +31,7 @@ testArrange:
 	movwf shiftRegisterBuffer
 
 testAct:
-	setLcdState LCD_STATE_ENABLE_TRYSETBYTEMODE2
+	setLcdState LCD_STATE_ENABLE_SETBYTEMODE
 	fcall pollLcd
 
 testAssert:
