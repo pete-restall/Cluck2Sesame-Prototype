@@ -7,9 +7,7 @@ OBJ_FILES=\
 	EnableWaitForShiftRegisterState.o \
 	EnableWaitForMoreThan40msState.o \
 	EnableTrySetByteMode1State.o \
-	EnableWaitForMoreThan4_1msState.o \
 	EnableTrySetByteMode2State.o \
-	EnableWaitForMoreThan100usState.o \
 	EnableSetByteModeState.o \
 	EnableSetNibbleModeState.o \
 	EnableSetDisplayState.o \
