@@ -9,6 +9,8 @@ all:
 	$(MAKE) -C EnableSetByteMode all
 	$(MAKE) -C EnableSetNibbleMode all
 	$(MAKE) -C EnableSetDisplay all
+	$(MAKE) -C EnableDisplayOff all
+	$(MAKE) -C EnableDisplayClear all
 
 clean:
 	$(RM) -f $(BUILD_ARTEFACT_PATTERN)
@@ -20,5 +22,7 @@ clean:
 	$(MAKE) -C EnableSetByteMode clean
 	$(MAKE) -C EnableSetNibbleMode clean
 	$(MAKE) -C EnableSetDisplay clean
+	$(MAKE) -C EnableDisplayOff clean
+	$(MAKE) -C EnableDisplayClear clean
 
 include $(MAKEFILE_RULES)

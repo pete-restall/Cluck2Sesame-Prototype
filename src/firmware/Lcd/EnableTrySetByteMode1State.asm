@@ -12,7 +12,6 @@ NUMBER_OF_TICKS_4_1_MS_PLUS_MARGIN equ 36
 	movlw b'00000011'
 	fcall writeNibble
 
-setNextState:
 	setLcdWaitState NUMBER_OF_TICKS_4_1_MS_PLUS_MARGIN, LCD_STATE_ENABLE_TRYSETBYTEMODE2
 	returnFromLcdState
 

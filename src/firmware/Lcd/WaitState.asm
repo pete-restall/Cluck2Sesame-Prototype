@@ -7,6 +7,7 @@
 	radix decimal
 
 	defineLcdState LCD_STATE_WAIT
+checkIfExpectedNumberOfTicksHasElapsed:
 	elapsedSinceTimer0 LCD_WAIT_PARAM_INITIAL_TICKS
 	banksel LCD_WAIT_PARAM_NUMBER_OF_TICKS
 	subwf LCD_WAIT_PARAM_NUMBER_OF_TICKS, W
