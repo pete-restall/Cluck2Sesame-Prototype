@@ -1,0 +1,7 @@
+load ShiftOutTest.cod
+initialShiftRegisterBuffer=0xff
+expectedShiftOut1=0b11001000
+expectedShiftOut2=0b11001010
+expectedShiftOut3=0b11001000
+run
+quit

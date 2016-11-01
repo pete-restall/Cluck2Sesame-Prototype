@@ -11,11 +11,21 @@ Lcd code
 	global writeNibble
 
 writeNibble:
- ; TODO: NEED TO FIGURE THIS OUT PROPERLY !  WRITE LOW NIBBLE OF W !
-	movlw b'11000000'
-	andwf shiftRegisterBuffer, W
-	iorlw b'00001100'
+	banksel shiftRegisterBuffer
+	andlw b'00001111'
+
+preserveNonLcdDataBitsInShiftRegisterBuffer:
+	btfsc shiftRegisterBuffer, 7
+	iorlw b'00100000'
+	btfsc shiftRegisterBuffer, 6
+	iorlw b'00010000'
+
+moveLcdDataBitsIntoPlaceInShiftRegisterBuffer:
 	movwf shiftRegisterBuffer
+	rlf shiftRegisterBuffer
+	rlf shiftRegisterBuffer
+	movlw b'11111100'
+	andwf shiftRegisterBuffer
 
 shiftNibble:
 	fcall shiftOut
