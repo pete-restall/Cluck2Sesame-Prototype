@@ -10,11 +10,17 @@ LCD_EN_BIT equ 1
 LCD_RS_BIT equ 0
 NON_LCD_DATA_BITS_MASK equ b'11000000'
 
+LCD_CMD_SETDISPLAY equ b'00100000'
+LCD_CMD_SETDISPLAY_TWOLINES equ b'00001000'
+LCD_CMD_SETDISPLAY_5X8 equ b'00000000'
+
 	#ifndef __CLUCK2SESAME_LCD_INITIALISE_ASM
+	extern lcdWorkingRegister
 	extern lcdFlags
 	#endif
 
-	#ifndef __CLUCK2SESAME_LCD_WRITENIBBLE_ASM
+	#ifndef __CLUCK2SESAME_LCD_WRITE_ASM
+	extern writeByte
 	extern writeNibble
 	#endif
 

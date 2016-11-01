@@ -1,4 +1,4 @@
-	#define __CLUCK2SESAME_LCD_WRITENIBBLE_ASM
+	#define __CLUCK2SESAME_LCD_WRITE_ASM
 
 	#include "p16f685.inc"
 	#include "FarCalls.inc"
@@ -8,7 +8,19 @@
 	radix decimal
 
 Lcd code
+	global writeByte
 	global writeNibble
+
+writeByte:
+writeHighNibbleOfByte:
+	banksel lcdWorkingRegister
+	movwf lcdWorkingRegister
+	swapf lcdWorkingRegister, W
+	call writeNibble
+
+writeLowNibbleOfByte:
+	banksel lcdWorkingRegister
+	movf lcdWorkingRegister, W
 
 writeNibble:
 	banksel shiftRegisterBuffer

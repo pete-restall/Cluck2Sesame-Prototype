@@ -17,7 +17,7 @@ OBJ_FILES=\
 	EnableSetContrastState.o \
 	WaitState.o \
 	IdleState.o \
-	WriteNibble.o
+	Write.o
 
 all: $(LIB_FILENAME)
 

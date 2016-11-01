@@ -11,6 +11,10 @@
 	extern shiftRegisterBufferForCall2
 	extern shiftRegisterBufferForCall3
 	extern shiftRegisterBufferForCall4
+	extern shiftRegisterBufferForCall5
+	extern shiftRegisterBufferForCall6
+	extern shiftRegisterBufferForCall7
+	extern shiftRegisterBufferForCall8
 
 .assertShiftOut macro count, expectedBuffer
 	.aliasForAssert shiftRegisterBufferForCall#v(count), _a

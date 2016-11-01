@@ -12,8 +12,10 @@
 
 	udata
 	global lcdFlags
+	global lcdWorkingRegister
 
 lcdFlags res 1
+lcdWorkingRegister res 1
 
 Lcd code
 	global initialiseLcd
