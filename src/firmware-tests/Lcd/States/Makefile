@@ -12,6 +12,7 @@ all:
 	$(MAKE) -C EnableDisplayOff all
 	$(MAKE) -C EnableDisplayClear all
 	$(MAKE) -C EnableEntryMode all
+	$(MAKE) -C EnableDisplayOn all
 
 clean:
 	$(RM) -f $(BUILD_ARTEFACT_PATTERN)
@@ -26,5 +27,6 @@ clean:
 	$(MAKE) -C EnableDisplayOff clean
 	$(MAKE) -C EnableDisplayClear clean
 	$(MAKE) -C EnableEntryMode clean
+	$(MAKE) -C EnableDisplayOn clean
 
 include $(MAKEFILE_RULES)

@@ -15,6 +15,7 @@ OBJ_FILES=\
 	EnableDisplayClearState.o \
 	EnableEntryModeState.o \
 	EnableSetContrastState.o \
+	EnableDisplayOnState.o \
 	WaitState.o \
 	IdleState.o \
 	Write.o

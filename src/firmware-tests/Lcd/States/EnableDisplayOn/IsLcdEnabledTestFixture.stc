@@ -1,0 +1,3 @@
+load IsLcdEnabledTest.cod
+run
+quit

@@ -1,6 +1,7 @@
 	#include "p16f685.inc"
 	#include "TailCalls.inc"
 	#include "../ShiftRegister.inc"
+	#include "Lcd.inc"
 	#include "States.inc"
 
 	radix decimal
@@ -39,7 +40,10 @@ disableLcdDone:
 	tcall disableShiftRegister
 
 isLcdEnabled:
-	; TODO: NEED TO USE A FLAG, WHICH pollLcd() NEEDS TO SET
-	return
+	; TODO: THIS NEEDS WRITING...HOW TO TEST...?
+	;banksel lcdFlags
+	;;btfsc lcdFlags, LCD_FLAG_ENABLED
+	retlw 1
+	;retlw 0
 
 	end
