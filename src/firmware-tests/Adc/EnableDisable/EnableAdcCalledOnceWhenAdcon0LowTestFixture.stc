@@ -1,0 +1,8 @@
+load EnableDisableAdcTest.cod
+initialAdcon0=0x00
+expectedAdcon0=0x03
+numberOfEnableCalls=1
+numberOfDisableCalls=0
+
+run
+quit

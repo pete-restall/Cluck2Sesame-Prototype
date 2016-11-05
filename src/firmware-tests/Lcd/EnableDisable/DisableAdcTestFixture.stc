@@ -1,0 +1,3 @@
+load DisableAdcTest.cod
+run
+quit

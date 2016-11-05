@@ -3,9 +3,7 @@ export OBJ_FILES=\
 	$(SUT_OBJ_FILE) \
 	$(FIRMWARE_CORE_OBJ_FILES) \
 	$(TEST_FIXTURE_OBJ_FILES) \
-	$(ASSERT_NO_ISR_OBJ_FILE) \
 	$(CURDIR)/InitialiseAfterLcdMock.o \
-	$(CURDIR)/../InitialiseAfterTimer0Dummy.o \
 	$(FIRMWARE_DIR)/Timer0.o
 
 TEST_DOUBLE_OBJ_FILES=\
@@ -21,7 +19,9 @@ TEST_DOUBLE_OBJ_FILES=\
 	ShiftOutMock.o \
 	ShiftRegisterDummies.o \
 	PollAfterLcdDummy.o \
-	PollAfterLcdMock.o
+	PollAfterLcdMock.o \
+	AdcDummies.o \
+	AdcMocks.o
 
 all: $(TEST_DOUBLE_OBJ_FILES)
 	$(MAKE) -C Initialisation all

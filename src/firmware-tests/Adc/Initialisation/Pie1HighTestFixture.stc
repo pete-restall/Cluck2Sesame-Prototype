@@ -1,0 +1,5 @@
+load Pie1Test.cod
+initialPie1=0xff
+expectedPie1=0xff
+run
+quit

@@ -1,6 +1,7 @@
 	#include "p16f685.inc"
 	#include "TailCalls.inc"
 	#include "../ShiftRegister.inc"
+	#include "../Adc.inc"
 	#include "Lcd.inc"
 	#include "States.inc"
 
@@ -34,6 +35,7 @@ disableLcd:
 	decfsz enableLcdCount
 	goto disableLcdDone
 
+	fcall disableAdc
 	setLcdState LCD_STATE_DISABLED
 
 disableLcdDone:

@@ -1,0 +1,3 @@
+load ChannelIsInternalReferenceTest.cod
+run
+quit

@@ -1,0 +1,3 @@
+load EnableAdcCalledTwiceTest.cod
+run
+quit

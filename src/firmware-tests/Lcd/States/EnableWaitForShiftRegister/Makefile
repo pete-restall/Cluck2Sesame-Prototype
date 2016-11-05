@@ -2,6 +2,8 @@ HEX_FILES=\
 	ShiftRegisterEnabledTest.hex \
 	ShiftRegisterDisabledTest.hex
 
+OBJ_FILES+=../../AdcDummies.o
+
 TEST_DOUBLE_OBJ_FILES=\
 	../../IsShiftRegisterEnabledStub.o \
 	../../PollAfterLcdMock.o \

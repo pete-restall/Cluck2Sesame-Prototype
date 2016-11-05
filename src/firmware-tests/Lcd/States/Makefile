@@ -1,4 +1,5 @@
 export ASARGS+=-I $(FIRMWARE_DIR)/Lcd
+export OBJ_FILES+=$(ASSERT_NO_ISR_OBJ_FILE)
 
 all:
 	$(MAKE) -C EnableWaitForShiftRegister all
@@ -12,6 +13,7 @@ all:
 	$(MAKE) -C EnableDisplayOff all
 	$(MAKE) -C EnableDisplayClear all
 	$(MAKE) -C EnableEntryMode all
+	$(MAKE) -C EnableSetContrast all
 	$(MAKE) -C EnableDisplayOn all
 
 clean:
@@ -27,6 +29,7 @@ clean:
 	$(MAKE) -C EnableDisplayOff clean
 	$(MAKE) -C EnableDisplayClear clean
 	$(MAKE) -C EnableEntryMode clean
+	$(MAKE) -C EnableSetContrast clean
 	$(MAKE) -C EnableDisplayOn clean
 
 include $(MAKEFILE_RULES)

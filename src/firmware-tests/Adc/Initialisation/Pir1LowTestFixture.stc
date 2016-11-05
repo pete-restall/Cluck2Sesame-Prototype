@@ -1,0 +1,5 @@
+load Pir1Test.cod
+initialPir1=0x00
+expectedPir1=0x00
+run
+quit

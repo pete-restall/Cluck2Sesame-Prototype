@@ -4,17 +4,19 @@ HEX_FILES=\
 	InitialisationChainTest.hex \
 	InitialStateTest.hex
 
+OBJ_FILES+=\
+	../PollAfterLcdDummy.o \
+	../AdcDummies.o
+
 INITIALISATION_CHAIN_OBJ_FILES=\
 	InitialisationChainTest.o \
 	../InitialiseShiftRegisterMock.o \
 	../EnableDisableShiftRegisterMocks.o \
-	../ShiftOutMock.o \
-	../PollAfterLcdDummy.o
+	../ShiftOutMock.o
 
 INITIAL_STATE_OBJ_FILES=\
 	InitialStateTest.o \
-	../ShiftRegisterDummies.o \
-	../PollAfterLcdDummy.o
+	../ShiftRegisterDummies.o
 
 all: $(HEX_FILES)
 

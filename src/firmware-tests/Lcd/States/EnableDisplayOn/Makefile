@@ -4,6 +4,8 @@ HEX_FILES=\
 	NextStateTest.hex \
 	IsLcdEnabledTest.hex
 
+OBJ_FILES+=../../AdcDummies.o
+
 SHIFT_OUT_OBJ_FILES=\
 	ShiftOutTest.o \
 	../../ShiftOutMock.o \

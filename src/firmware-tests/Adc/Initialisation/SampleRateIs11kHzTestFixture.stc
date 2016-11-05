@@ -1,0 +1,3 @@
+load SampleRateIs11kHzTest.cod
+run
+quit

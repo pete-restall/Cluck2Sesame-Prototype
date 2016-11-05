@@ -1,0 +1,7 @@
+	#ifndef __CLUCK2SESAME_TESTS_ADC_INITIALISEAFTERADCMOCK_INC
+	#define __CLUCK2SESAME_TESTS_ADC_INITIALISEAFTERADCMOCK_INC
+
+	extern initialiseInitialiseAfterAdcMock
+	extern calledInitialiseAfterAdc
+
+	#endif
