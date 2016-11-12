@@ -15,11 +15,18 @@
 	nop
 	endm
 
+.assertTraceExternally macro
+	nop
+	.direct "c", "echo [PENDING]"
+	nop
+	.direct "c", "quit"
+	nop
+	endm
+
 
 	; Non-obvious - gpsim .assert expressions use the same bank as currently
 	; selected.  Use the .aliasForAssert macro along with these variables to
 	; work around expressions asserting over several banks.
-
 
 	#ifndef __CLUCK2SESAME_TESTS_TESTFIXTURE_ASM
 	extern _a

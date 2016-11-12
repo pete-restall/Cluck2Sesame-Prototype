@@ -1,0 +1,9 @@
+load PortaTest.cod
+porta=0x3f
+trisa=0x3f
+
+expectedPORTA=0x3d
+expectedTRISA=0x35 # GPSIM BUG !  DATASHEET SAYS TRISA3 IS R-1, BUT GPSIM USES R-0 !
+
+run
+quit

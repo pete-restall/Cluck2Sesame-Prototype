@@ -1,5 +1,7 @@
 export ASARGS+=-I $(FIRMWARE_DIR)/Lcd
-export OBJ_FILES+=$(ASSERT_NO_ISR_OBJ_FILE)
+export OBJ_FILES+=\
+	$(CURDIR)/../InitialiseAfterLcdDummy.o \
+	$(ASSERT_NO_ISR_OBJ_FILE)
 
 all:
 	$(MAKE) -C EnableWaitForShiftRegister all

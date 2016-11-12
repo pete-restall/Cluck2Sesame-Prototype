@@ -1,0 +1,14 @@
+#!/bin/bash
+PORTA="0x0005";
+BIT="1";
+
+SAMPLE_FREQUENCY_HZ="1000000";
+R_OHMS="1000";
+C_FARADS="1e-5";
+
+HALF_SECOND=$((${SAMPLE_FREQUENCY_HZ} / 2));
+
+NORMALISED_MEAN=`cat ContrastWhenLcdEnabledTestFixture.log | ${GPSIM2TUPLE} ${PORTA} ${BIT} | ${LPF_RC} ${SAMPLE_FREQUENCY_HZ} ${R_OHMS} ${C_FARADS} | ${MEAN} ${HALF_SECOND} all`;
+
+DC_LEVEL=`echo "3.3 * ${NORMALISED_MEAN}" | bc`;
+echo ${DC_LEVEL};

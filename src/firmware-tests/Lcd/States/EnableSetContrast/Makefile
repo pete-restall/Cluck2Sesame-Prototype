@@ -3,22 +3,22 @@ HEX_FILES=\
 	NextStateTest.hex \
 	EnableAdcTest.hex
 
+OBJ_FILES+=\
+	../../ShiftRegisterDummies.o
+
 NEXT_POLL_IN_CHAIN_OBJ_FILES=\
 	NextPollInChainTest.o \
 	../../PollAfterLcdMock.o \
-	../../ShiftRegisterDummies.o \
 	../../AdcDummies.o
 
 NEXT_STATE_OBJ_FILES=\
 	NextStateTest.o \
 	../../PollAfterLcdDummy.o \
-	../../ShiftRegisterDummies.o \
 	../../AdcDummies.o
 
 ENABLE_ADC_OBJ_FILES=\
 	EnableAdcTest.o \
 	../../PollAfterLcdDummy.o \
-	../../ShiftRegisterDummies.o \
 	../../AdcMocks.o
 
 all: $(HEX_FILES)

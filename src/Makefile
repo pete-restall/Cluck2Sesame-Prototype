@@ -12,9 +12,11 @@ export LDARGS=-S 2 -O 2 -s $(LKR_FILENAME) -m -c
 export BUILD_ARTEFACT_PATTERN=*.hex *.cod *.cof *.map *.lst *.o *.a
 
 all:
+	$(MAKE) -C utilities all
 	$(MAKE) -C firmware all
 	$(MAKE) -C firmware-tests all
 
 clean:
+	$(MAKE) -C utilities clean
 	$(MAKE) -C firmware clean
 	$(MAKE) -C firmware-tests clean

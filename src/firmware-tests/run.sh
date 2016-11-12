@@ -1,5 +1,10 @@
 #!/bin/bash
 GPSIM=gpsim;
+UTILITIES_BASEDIR="`readlink -e ../utilities`";
+
+export GPSIM2TUPLE="${UTILITIES_BASEDIR}/gpsim2tuple/gpsim2tuple";
+export LPF_RC="${UTILITIES_BASEDIR}/lpf-rc/lpf-rc";
+export MEAN="${UTILITIES_BASEDIR}/mean/mean";
 
 
 # If no arguments given then run this script for each directory:
@@ -22,16 +27,29 @@ fi;
 # Run all of the tests for the module given on the command-line:
 
 module="${1}";
-echo > run.log;
+runLog="run.log";
+tee="tee -a ${runLog}";
+echo > ${runLog};
 for fixture in `find ${module} -name "*.stc"`; do
 	runTest="${GPSIM} -i -c ${fixture}";
 	echo "${runTest};";
-	${runTest} | tee -a run.log;
+	${runTest} | ${tee};
 done;
 
-passedTestCount=`cat run.log | grep "\[PASSED\]" | wc -l`;
-totalTestCount=`cat run.log | grep "gpsim - the GNUPIC simulator" | wc -l`;
-spuriousFailureCount=`cat run.log | grep "ERROR" | wc -l`;
+for assertions in `find ${module} -name "*TestFixtureAssertions.sh"`; do
+	assertionsScript="`basename ${assertions}`";
+	assertionsDirectory="`dirname ${assertions}`";
+	runAssertions="./${assertionsScript}";
+	echo "${runAssertions};";
+	pushd .;
+	cd ${assertionsDirectory};
+	${runAssertions} | ${tee};
+	popd;
+done;
+
+passedTestCount=`cat ${runLog} | grep "\[PASSED\]" | wc -l`;
+totalTestCount=`cat ${runLog} | grep "gpsim - the GNUPIC simulator" | wc -l`;
+spuriousFailureCount=`cat ${runLog} | grep "ERROR" | wc -l`;
 
 if [ ${passedTestCount} -eq ${totalTestCount} ]; then
 	if [ ${spuriousFailureCount} -eq 0 ]; then

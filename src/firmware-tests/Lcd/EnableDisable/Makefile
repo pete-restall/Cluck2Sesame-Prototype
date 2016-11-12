@@ -10,7 +10,9 @@ HEX_FILES=\
 	DisableAdcNotCalledWhenLcdStillEnabledTest.hex
 
 OBJ_FILES+=\
-	../PollAfterLcdDummy.o
+	../PollAfterLcdDummy.o \
+	../InitialiseAfterLcdDummy.o \
+	$(ASSERT_NO_ISR_OBJ_FILE)
 
 ENABLE_DISABLE_SHIFT_REGISTER_OBJ_FILES=\
 	EnableDisableShiftRegisterTest.o \

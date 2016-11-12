@@ -2,11 +2,10 @@ HEX_FILES=\
 	TimeNotElapsedTest.hex \
 	TimeElapsedTest.hex
 
-OBJ_FILES+=../../AdcDummies.o
-
 TEST_DOUBLE_OBJ_FILES=\
 	../../PollAfterLcdMock.o \
-	../../ShiftRegisterDummies.o
+	../../ShiftRegisterDummies.o \
+	../../AdcDummies.o
 
 TIME_NOT_ELAPSED_OBJ_FILES=\
 	TimeNotElapsedTest.o \

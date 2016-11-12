@@ -6,7 +6,7 @@ export OBJ_FILES=\
 	$(ASSERT_NO_ISR_OBJ_FILE) \
 	$(CURDIR)/InitialiseAfterAdcMock.o
 
-all: InitialiseAfterAdcMock.o
+all: InitialiseAfterAdcDummy.o InitialiseAfterAdcMock.o
 	$(MAKE) -C Initialisation all
 	$(MAKE) -C EnableDisable all
 

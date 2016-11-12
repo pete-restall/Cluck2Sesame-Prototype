@@ -1,0 +1,8 @@
+load ContrastWhenLcdEnabledTest.cod
+p16f685.frequency=4000000
+p16f685.tmr1_freq=65536 * 2
+
+log on ContrastWhenLcdEnabledTestFixture.log
+log w porta, (porta & 0x02)
+run
+quit

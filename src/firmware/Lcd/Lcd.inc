@@ -1,7 +1,6 @@
 	#ifndef __CLUCK2SESAME_LCD_LCD_INC
 	#define __CLUCK2SESAME_LCD_LCD_INC
-
-LCD_FLAG_ENABLED equ 0
+	#include "Isr.inc"
 
 LCD_BACKLIGHT_EN_BIT equ 6
 LCD_DB7_BIT equ 5
@@ -28,7 +27,6 @@ LCD_CMD_DISPLAYON equ b'00001100'
 
 	#ifndef __CLUCK2SESAME_LCD_INITIALISE_ASM
 	extern lcdWorkingRegister
-	extern lcdFlags
 	#endif
 
 	#ifndef __CLUCK2SESAME_LCD_WRITE_ASM

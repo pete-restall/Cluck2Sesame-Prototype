@@ -3,7 +3,8 @@ HEX_FILES=\
 	NextPollInChainTest.hex \
 	NextStateTest.hex
 
-OBJ_FILES+=../../AdcDummies.o
+OBJ_FILES+=\
+	../../AdcDummies.o
 
 SHIFT_OUT_OBJ_FILES=\
 	ShiftOutTest.o \

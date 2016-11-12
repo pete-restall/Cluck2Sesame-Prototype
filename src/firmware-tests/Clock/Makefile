@@ -8,7 +8,7 @@ export OBJ_FILES=\
 	$(CURDIR)/InitialiseAfterClockMock.o \
 	$(CURDIR)/PollAfterClockMock.o
 
-all: InitialiseAfterClockMock.o PollAfterClockMock.o
+all: InitialiseAfterClockMock.o PollAfterClockDummy.o PollAfterClockMock.o
 	$(MAKE) -C Initialisation all
 	$(MAKE) -C TimerWiring all
 	$(MAKE) -C Poll all

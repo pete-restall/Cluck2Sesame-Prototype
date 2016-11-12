@@ -38,6 +38,8 @@ disableLcd:
 	fcall disableAdc
 	setLcdState LCD_STATE_DISABLED
 
+	; TODO: ENSURE THAT THE CONTRAST PIN IS SET TO 0V !
+
 disableLcdDone:
 	tcall disableShiftRegister
 
