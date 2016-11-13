@@ -42,8 +42,6 @@ lcdDeltaSigmaContrastControl:
 	btfss lcdFlags, LCD_FLAG_ENABLED
 	goto clockTicked
 
-	; TODO: THIS SHOULD ONLY HAPPEN WHEN THE LCD MODULE IS ENABLED (lcdFlags & LCD_FLAG_ENABLED)
-
 	banksel lcdContrast
 	movf lcdContrast, W
 	addwf lcdContrastAccumulator
