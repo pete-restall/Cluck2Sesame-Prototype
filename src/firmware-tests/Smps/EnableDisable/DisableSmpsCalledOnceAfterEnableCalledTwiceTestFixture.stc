@@ -1,4 +1,5 @@
-load EnableDisableSmpsTest.cod
+load "EnableDisableSmpsTest.cod"
+load i "../../PreventInfiniteLoops.sti"
 numberOfEnableCalls=2
 numberOfDisableCalls=1
 expectedPortValue=0

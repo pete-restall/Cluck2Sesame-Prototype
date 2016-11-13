@@ -1,7 +1,10 @@
-load TimeElapsedTest.cod
+load "TimeElapsedTest.cod"
+load i "../../../PreventInfiniteLoops.sti"
+
 timer0Seed=5
 timer0Increment=56
 numberOfTicks=79
 numberOfPolls=3
+
 run
 quit

@@ -21,7 +21,8 @@ TEST_DOUBLE_OBJ_FILES=\
 	PollAfterLcdDummy.o \
 	PollAfterLcdMock.o \
 	AdcDummies.o \
-	AdcMocks.o
+	AdcMocks.o \
+	LcdContrastDummies.o
 
 all: $(TEST_DOUBLE_OBJ_FILES)
 	$(MAKE) -C Initialisation all

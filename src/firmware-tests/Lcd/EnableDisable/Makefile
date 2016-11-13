@@ -7,7 +7,11 @@ HEX_FILES=\
 	StateAfterDisabledNotAsManyTimesAsEnabledTest.hex \
 	StateAfterDisabledTest.hex \
 	DisableAdcTest.hex \
-	DisableAdcNotCalledWhenLcdStillEnabledTest.hex
+	DisableAdcNotCalledWhenLcdStillEnabledTest.hex \
+	IsLcdEnabledAfterLcdDisabledTest.hex \
+	IsLcdEnabledAfterLcdNotDisabledTest.hex \
+	ContrastPinAfterDisabledTest.hex \
+	ContrastPinAfterNotDisabledTest.hex
 
 OBJ_FILES+=\
 	../PollAfterLcdDummy.o \
@@ -51,6 +55,26 @@ DISABLE_ADC_NOT_CALLED_WHEN_LCD_STILL_ENABLED_OBJ_FILES=\
 	../ShiftRegisterDummies.o \
 	../AdcMocks.o
 
+IS_LCD_ENABLED_AFTER_LCD_DISABLED_OBJ_FILES=\
+	IsLcdEnabledAfterLcdDisabledTest.o \
+	../ShiftRegisterDummies.o \
+	../AdcDummies.o
+
+IS_LCD_ENABLED_AFTER_LCD_NOT_DISABLED_OBJ_FILES=\
+	IsLcdEnabledAfterLcdNotDisabledTest.o \
+	../ShiftRegisterDummies.o \
+	../AdcDummies.o
+
+CONTRAST_PIN_AFTER_DISABLED_OBJ_FILES=\
+	ContrastPinAfterDisabledTest.o \
+	../ShiftRegisterDummies.o \
+	../AdcDummies.o
+
+CONTRAST_PIN_AFTER_NOT_DISABLED_OBJ_FILES=\
+	ContrastPinAfterNotDisabledTest.o \
+	../ShiftRegisterDummies.o \
+	../AdcDummies.o
+
 all: $(HEX_FILES)
 
 clean:
@@ -76,5 +100,17 @@ DisableAdcTest.hex: $(OBJ_FILES) $(DISABLE_ADC_OBJ_FILES)
 
 DisableAdcNotCalledWhenLcdStillEnabledTest.hex: $(OBJ_FILES) $(DISABLE_ADC_NOT_CALLED_WHEN_LCD_STILL_ENABLED_OBJ_FILES)
 	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(DISABLE_ADC_NOT_CALLED_WHEN_LCD_STILL_ENABLED_OBJ_FILES)
+
+IsLcdEnabledAfterLcdDisabledTest.hex: $(OBJ_FILES) $(IS_LCD_ENABLED_AFTER_LCD_DISABLED_OBJ_FILES)
+	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(IS_LCD_ENABLED_AFTER_LCD_DISABLED_OBJ_FILES)
+
+IsLcdEnabledAfterLcdNotDisabledTest.hex: $(OBJ_FILES) $(IS_LCD_ENABLED_AFTER_LCD_NOT_DISABLED_OBJ_FILES)
+	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(IS_LCD_ENABLED_AFTER_LCD_NOT_DISABLED_OBJ_FILES)
+
+ContrastPinAfterDisabledTest.hex: $(OBJ_FILES) $(CONTRAST_PIN_AFTER_DISABLED_OBJ_FILES)
+	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(CONTRAST_PIN_AFTER_DISABLED_OBJ_FILES)
+
+ContrastPinAfterNotDisabledTest.hex: $(OBJ_FILES) $(CONTRAST_PIN_AFTER_NOT_DISABLED_OBJ_FILES)
+	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(CONTRAST_PIN_AFTER_NOT_DISABLED_OBJ_FILES)
 
 include $(MAKEFILE_RULES)

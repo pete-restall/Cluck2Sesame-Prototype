@@ -1,6 +1,9 @@
-load ElapsedTicksTest.cod
+load "ElapsedTicksTest.cod"
+load i "../PreventInfiniteLoops.sti"
+
 firstTMR0=0
 secondTMR0=1
 expectedElapsedTicks=1
+
 run
 quit

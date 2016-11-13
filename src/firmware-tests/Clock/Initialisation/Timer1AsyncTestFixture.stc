@@ -1,3 +1,4 @@
-load Timer1AsyncTest.cod
+load "Timer1AsyncTest.cod"
+load i "../../PreventInfiniteLoops.sti"
 run
 quit

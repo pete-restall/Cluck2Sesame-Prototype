@@ -1,3 +1,4 @@
-load ClockFlagsClearedTest.cod
+load "ClockFlagsClearedTest.cod"
+load i "../../PreventInfiniteLoops.sti"
 run
 quit

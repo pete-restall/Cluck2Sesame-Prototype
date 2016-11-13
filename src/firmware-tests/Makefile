@@ -38,6 +38,7 @@ all: $(TEST_DOUBLE_OBJ_FILES)
 	$(MAKE) -C TemperatureSensor all
 	$(MAKE) -C Lcd all
 	$(MAKE) -C Adc all
+	$(MAKE) -C Isr all
 
 clean:
 	$(RM) -f $(BUILD_ARTEFACT_PATTERN)
@@ -57,5 +58,6 @@ clean:
 	$(MAKE) -C TemperatureSensor clean
 	$(MAKE) -C Lcd clean
 	$(MAKE) -C Adc clean
+	$(MAKE) -C Isr clean
 
 include $(MAKEFILE_RULES)

@@ -1,11 +1,11 @@
-load Mul4x4Test.cod
+load "Mul4x4Test.cod"
+load i "../../PreventInfiniteLoops.sti"
+
 RAA=15
 RBA=0
-
 expectedRAA=15
 expectedRBA=0
 expectedW=0
-
 expectedCarry=0
 expectedZero=1
 

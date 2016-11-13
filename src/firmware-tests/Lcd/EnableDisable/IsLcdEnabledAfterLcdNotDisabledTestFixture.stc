@@ -1,0 +1,4 @@
+load "IsLcdEnabledAfterLcdNotDisabledTest.cod"
+load i "../../PreventInfiniteLoops.sti"
+run
+quit

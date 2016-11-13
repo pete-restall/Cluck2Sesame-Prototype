@@ -1,6 +1,8 @@
 	#ifndef __CLUCK2SESAME_LCD_ISR_INC
 	#define __CLUCK2SESAME_LCD_ISR_INC
 
+	radix decimal
+
 LCD_CONTRAST_PORT equ PORTA
 LCD_CONTRAST_PIN equ RA1
 LCD_CONTRAST_PIN_MASK equ 1 << LCD_CONTRAST_PIN
@@ -15,6 +17,10 @@ LCD_FLAG_ENABLED equ 0
 
 	#ifndef __CLUCK2SESAME_LCD_INITIALISE_ASM
 	extern lcdFlags
+	#endif
+
+	#ifndef __CLUCK2SESAME_LCD_CONTRAST_ASM
+	extern lcdContrast
 	#endif
 
 	#endif

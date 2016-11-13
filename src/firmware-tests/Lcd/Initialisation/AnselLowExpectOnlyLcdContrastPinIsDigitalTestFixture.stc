@@ -1,7 +1,8 @@
-load AnselTest.cod
+load "AnselTest.cod"
+load i "../../PreventInfiniteLoops.sti"
+
 ansel=0x00
 anselh=0x00
-
 expectedANSEL=0x00
 expectedANSELH=0x00
 

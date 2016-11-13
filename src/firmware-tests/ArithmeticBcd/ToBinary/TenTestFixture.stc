@@ -1,6 +1,7 @@
-load ToBinaryTest.cod
-RAA=0x10
+load "ToBinaryTest.cod"
+load i "../../PreventInfiniteLoops.sti"
 
+RAA=0x10
 expectedRAA=0x10
 expectedW=10
 expectedZero=0

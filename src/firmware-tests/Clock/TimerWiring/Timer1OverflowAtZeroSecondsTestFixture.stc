@@ -1,4 +1,5 @@
-load Timer1OverflowIncrementsTimeTest.cod
+load "Timer1OverflowIncrementsTimeTest.cod"
+break c 100000000
 
 numberOfClockPulsesA=0x00
 numberOfClockPulsesB=0x08

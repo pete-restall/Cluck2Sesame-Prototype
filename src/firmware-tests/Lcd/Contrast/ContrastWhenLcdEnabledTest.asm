@@ -1,6 +1,7 @@
 	#include "p16f685.inc"
 	#include "FarCalls.inc"
 	#include "Adc.inc"
+	#include "Isr.inc"
 	#include "Lcd.inc"
 	#include "TestFixture.inc"
 
@@ -12,6 +13,7 @@ ContrastWhenLcdEnabledTest code
 testArrange:
 	fcall initialiseAdc
 	fcall initialiseLcd
+	fcall initialiseIsr
 
 enableInterrupts:
 	banksel INTCON
@@ -46,11 +48,11 @@ waitForTimer1Overflow:
 	clrf TMR1L
 
 	banksel T1CON
-	movlw (1 << TMR1CS) | (1 << T1OSCEN) | (1 << TMR1ON)
+	movlw (1 << TMR1CS) | (1 << T1OSCEN)
 	movwf T1CON
+	bsf T1CON, TMR1ON
 
 stillNotOverflowed:
-	fcall pollLcd
 	banksel PIR1
 	btfss PIR1, TMR1IF
 	goto stillNotOverflowed

@@ -1,4 +1,6 @@
-load TimeElapsedTest.cod
+load "TimeElapsedTest.cod"
+load i "../../../PreventInfiniteLoops.sti"
+
 timer0Seed=187
 run
 quit

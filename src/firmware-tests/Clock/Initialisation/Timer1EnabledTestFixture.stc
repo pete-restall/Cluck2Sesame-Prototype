@@ -1,3 +1,4 @@
-load Timer1EnabledTest.cod
+load "Timer1EnabledTest.cod"
+load i "../../PreventInfiniteLoops.sti"
 run
 quit

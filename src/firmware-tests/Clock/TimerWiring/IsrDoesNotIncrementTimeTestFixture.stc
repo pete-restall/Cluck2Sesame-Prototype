@@ -1,4 +1,4 @@
-load IsrDoesNotIncrementTimeTest.cod
-
+load "IsrDoesNotIncrementTimeTest.cod"
+load i "../../PreventInfiniteLoops.sti"
 run
 quit

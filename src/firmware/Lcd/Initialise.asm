@@ -10,6 +10,7 @@
 
 	extern INITIALISE_AFTER_LCD
 	extern enableLcdCount
+	extern lcdContrast
 
 	udata
 	global lcdFlags
@@ -25,7 +26,12 @@ initialiseLcd:
 	banksel enableLcdCount
 	clrf enableLcdCount
 
-	; TODO: CLEAR lcdFlags...
+	banksel lcdContrast
+	movlw DEFAULT_LCD_CONTRAST
+	movwf lcdContrast
+
+	banksel lcdFlags
+	clrf lcdFlags
 
 	banksel LCD_CONTRAST_ANSEL
 	bcf LCD_CONTRAST_ANSEL, LCD_CONTRAST_PIN_ANSEL

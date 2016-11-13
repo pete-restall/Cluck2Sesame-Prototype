@@ -1,4 +1,5 @@
-load EnableDisableMotorVddRmwTest.cod
+load "EnableDisableMotorVddRmwTest.cod"
+load i "../../PreventInfiniteLoops.sti"
 
 module library libgpsim_modules
 module load pullup r

@@ -1,3 +1,4 @@
-load EnableAdcCalledTwiceTest.cod
+load "EnableAdcCalledTwiceTest.cod"
+load i "../../PreventInfiniteLoops.sti"
 run
 quit

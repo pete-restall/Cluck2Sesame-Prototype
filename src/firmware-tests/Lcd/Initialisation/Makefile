@@ -4,7 +4,9 @@ HEX_FILES=\
 	InitialisationChainTest.hex \
 	InitialStateTest.hex \
 	PortaTest.hex \
-	AnselTest.hex
+	AnselTest.hex \
+	LcdFlagsAreAllClearedTest.hex \
+	LcdContrastIsDefaultedTest.hex
 
 OBJ_FILES+=\
 	$(ASSERT_NO_ISR_OBJ_FILE) \
@@ -33,6 +35,16 @@ ANSEL_OBJ_FILES=\
 	../InitialiseAfterLcdDummy.o \
 	../ShiftRegisterDummies.o
 
+LCD_FLAGS_ARE_ALL_CLEARED_OBJ_FILES=\
+	LcdFlagsAreAllClearedTest.o \
+	../InitialiseAfterLcdDummy.o \
+	../ShiftRegisterDummies.o
+
+LCD_CONTRAST_IS_DEFAULTED_OBJ_FILES=\
+	LcdContrastIsDefaultedTest.o \
+	../InitialiseAfterLcdDummy.o \
+	../ShiftRegisterDummies.o
+
 all: $(HEX_FILES)
 
 clean:
@@ -49,5 +61,11 @@ PortaTest.hex: $(OBJ_FILES) $(PORTA_OBJ_FILES)
 
 AnselTest.hex: $(OBJ_FILES) $(ANSEL_OBJ_FILES)
 	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(ANSEL_OBJ_FILES)
+
+LcdFlagsAreAllClearedTest.hex: $(OBJ_FILES) $(LCD_FLAGS_ARE_ALL_CLEARED_OBJ_FILES)
+	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(LCD_FLAGS_ARE_ALL_CLEARED_OBJ_FILES)
+
+LcdContrastIsDefaultedTest.hex: $(OBJ_FILES) $(LCD_CONTRAST_IS_DEFAULTED_OBJ_FILES)
+	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(LCD_CONTRAST_IS_DEFAULTED_OBJ_FILES)
 
 include $(MAKEFILE_RULES)

@@ -1,3 +1,4 @@
-load AdcDisabledTest.cod
+load "AdcDisabledTest.cod"
+load i "../../PreventInfiniteLoops.sti"
 run
 quit

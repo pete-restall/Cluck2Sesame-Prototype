@@ -1,3 +1,4 @@
-load VddAsVoltageReferenceTest.cod
+load "VddAsVoltageReferenceTest.cod"
+load i "../../PreventInfiniteLoops.sti"
 run
 quit

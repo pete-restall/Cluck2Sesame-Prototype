@@ -1,7 +1,8 @@
-load PortcTest.cod
+load "PortcTest.cod"
+load i "../../PreventInfiniteLoops.sti"
+
 portc=0x00
 trisc=0x00
-
 expectedPORTC=0x00
 expectedTRISC=0x48
 

@@ -1,3 +1,4 @@
-load NextStateTest.cod
+load "NextStateTest.cod"
+load i "../../../PreventInfiniteLoops.sti"
 run
 quit

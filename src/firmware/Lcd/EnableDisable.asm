@@ -38,16 +38,19 @@ disableLcd:
 	fcall disableAdc
 	setLcdState LCD_STATE_DISABLED
 
-	; TODO: ENSURE THAT THE CONTRAST PIN IS SET TO 0V !
+	banksel lcdFlags
+	bcf lcdFlags, LCD_FLAG_ENABLED
+
+	banksel LCD_CONTRAST_PORT
+	bcf LCD_CONTRAST_PORT, LCD_CONTRAST_PIN
 
 disableLcdDone:
 	tcall disableShiftRegister
 
 isLcdEnabled:
-	; TODO: THIS NEEDS WRITING...HOW TO TEST...?
-	;banksel lcdFlags
-	;;btfsc lcdFlags, LCD_FLAG_ENABLED
+	banksel lcdFlags
+	btfsc lcdFlags, LCD_FLAG_ENABLED
 	retlw 1
-	;retlw 0
+	retlw 0
 
 	end

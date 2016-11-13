@@ -1,10 +1,10 @@
-load AddTest.cod
+load "AddTest.cod"
+load i "../../PreventInfiniteLoops.sti"
+
 RAA=0x01
 RBA=0x09
-
 expectedRAA=0x10
 expectedRBA=0x09
-
 expectedCarry=0
 expectedZero=0
 

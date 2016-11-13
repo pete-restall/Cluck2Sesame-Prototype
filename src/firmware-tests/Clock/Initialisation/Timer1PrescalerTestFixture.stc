@@ -1,3 +1,4 @@
-load Timer1PrescalerTest.cod
+load "Timer1PrescalerTest.cod"
+load i "../../PreventInfiniteLoops.sti"
 run
 quit

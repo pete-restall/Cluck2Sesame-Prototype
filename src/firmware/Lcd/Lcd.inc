@@ -2,6 +2,12 @@
 	#define __CLUCK2SESAME_LCD_LCD_INC
 	#include "Isr.inc"
 
+	radix decimal
+
+V_0_5 equ 5
+V_3_3 equ 33
+DEFAULT_LCD_CONTRAST equ 256 * V_0_5 / V_3_3
+
 LCD_BACKLIGHT_EN_BIT equ 6
 LCD_DB7_BIT equ 5
 LCD_DB6_BIT equ 4

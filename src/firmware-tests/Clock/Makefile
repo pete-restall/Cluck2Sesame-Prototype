@@ -6,9 +6,15 @@ export OBJ_FILES=\
 	$(FIRMWARE_DIR)/ArithmeticBcd.a \
 	$(TEST_FIXTURE_OBJ_FILES) \
 	$(CURDIR)/InitialiseAfterClockMock.o \
+	$(CURDIR)/../Isr/InitialiseAfterIsrDummy.o \
 	$(CURDIR)/PollAfterClockMock.o
 
-all: InitialiseAfterClockMock.o PollAfterClockDummy.o PollAfterClockMock.o
+TEST_DOUBLE_OBJ_FILES=\
+	InitialiseAfterClockMock.o \
+	PollAfterClockDummy.o \
+	PollAfterClockMock.o
+
+all: $(TEST_DOUBLE_OBJ_FILES)
 	$(MAKE) -C Initialisation all
 	$(MAKE) -C TimerWiring all
 	$(MAKE) -C Poll all

@@ -1,5 +1,6 @@
-load BrownOutResetTest.cod
-pcon = (pcon & b'11111110') | b'00000010'
-status = (status & b'11111111') | b'00000011'
+load "BrownOutResetTest.cod"
+load i "../../PreventInfiniteLoops.sti"
+pcon=(pcon & b'11111110') | b'00000010'
+status=(status & b'11111111') | b'00000011'
 run
 quit

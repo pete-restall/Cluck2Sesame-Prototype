@@ -1,4 +1,6 @@
-load AddTest.cod
+load "AddTest.cod"
+load i "../../PreventInfiniteLoops.sti"
+
 RAA=0x00
 RAB=0xff
 RAC=0xff

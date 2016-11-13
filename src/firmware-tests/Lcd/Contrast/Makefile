@@ -1,6 +1,7 @@
 HEX_FILES=\
 	ContrastWhenLcdEnabledTest.hex \
-	ContrastWhenLcdDisabledTest.hex
+	ContrastWhenLcdDisabledTest.hex \
+	ContrastWhenLcdDisabledButAdcStillEnabledTest.hex
 
 OBJ_FILES+=\
 	$(FIRMWARE_DIR)/Adc.a \
@@ -12,9 +13,9 @@ OBJ_FILES+=\
 TEST_DOUBLE_OBJ_FILES=\
 	../PollAfterLcdDummy.o \
 	../ShiftRegisterDummies.o \
+	../../Isr/InitialiseAfterIsrDummy.o \
 	../../Adc/InitialiseAfterAdcDummy.o \
-	../../Clock/PollAfterClockDummy.o \
-	../InitialiseAfterLcdDummy.o \
+	../../Clock/PollAfterClockDummy.o
 
 CONTRAST_WHEN_LCD_ENABLED_OBJ_FILES=\
 	ContrastWhenLcdEnabledTest.o \
@@ -22,6 +23,10 @@ CONTRAST_WHEN_LCD_ENABLED_OBJ_FILES=\
 
 CONTRAST_WHEN_LCD_DISABLED_OBJ_FILES=\
 	ContrastWhenLcdDisabledTest.o \
+	$(TEST_DOUBLE_OBJ_FILES)
+
+CONTRAST_WHEN_LCD_DISABLED_BUT_ADC_STILL_ENABLED_OBJ_FILES=\
+	ContrastWhenLcdDisabledButAdcStillEnabledTest.o \
 	$(TEST_DOUBLE_OBJ_FILES)
 
 all: $(HEX_FILES)
@@ -34,5 +39,8 @@ ContrastWhenLcdEnabledTest.hex: $(OBJ_FILES) $(CONTRAST_WHEN_LCD_ENABLED_OBJ_FIL
 
 ContrastWhenLcdDisabledTest.hex: $(OBJ_FILES) $(CONTRAST_WHEN_LCD_DISABLED_OBJ_FILES)
 	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(CONTRAST_WHEN_LCD_DISABLED_OBJ_FILES)
+
+ContrastWhenLcdDisabledButAdcStillEnabledTest.hex: $(OBJ_FILES) $(CONTRAST_WHEN_LCD_DISABLED_BUT_ADC_STILL_ENABLED_OBJ_FILES)
+	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(CONTRAST_WHEN_LCD_DISABLED_BUT_ADC_STILL_ENABLED_OBJ_FILES)
 
 include $(MAKEFILE_RULES)

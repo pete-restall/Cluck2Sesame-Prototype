@@ -1,3 +1,4 @@
-load ShiftRegisterDisabledTest.cod
+load "ShiftRegisterDisabledTest.cod"
+load i "../../../PreventInfiniteLoops.sti"
 run
 quit

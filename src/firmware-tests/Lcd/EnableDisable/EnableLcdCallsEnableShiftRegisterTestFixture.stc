@@ -1,4 +1,6 @@
-load EnableDisableShiftRegisterTest.cod
+load "EnableDisableShiftRegisterTest.cod"
+load i "../../PreventInfiniteLoops.sti"
+
 numberOfEnableCalls=7
 numberOfDisableCalls=0
 expectedCalledEnableShiftRegisterCount=7

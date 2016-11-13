@@ -1,3 +1,4 @@
-load ChannelIsInternalReferenceTest.cod
+load "ChannelIsInternalReferenceTest.cod"
+load i "../../PreventInfiniteLoops.sti"
 run
 quit

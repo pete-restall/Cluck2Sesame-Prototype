@@ -1,3 +1,4 @@
-load DisableAdcNotCalledWhenLcdStillEnabledTest.cod
+load "DisableAdcNotCalledWhenLcdStillEnabledTest.cod"
+load i "../../PreventInfiniteLoops.sti"
 run
 quit

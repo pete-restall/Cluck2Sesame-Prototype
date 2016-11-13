@@ -1,3 +1,4 @@
-load EnableDisableSmpsOrderTest.cod
+load "EnableDisableSmpsOrderTest.cod"
+load i "../../PreventInfiniteLoops.sti"
 run
 quit

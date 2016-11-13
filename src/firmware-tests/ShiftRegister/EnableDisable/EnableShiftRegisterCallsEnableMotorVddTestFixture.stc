@@ -1,4 +1,6 @@
-load EnableDisableMotorVddTest.cod
+load "EnableDisableMotorVddTest.cod"
+load i "../../PreventInfiniteLoops.sti"
+
 numberOfEnableCalls=7
 numberOfDisableCalls=0
 expectedCalledEnableMotorVddCount=7

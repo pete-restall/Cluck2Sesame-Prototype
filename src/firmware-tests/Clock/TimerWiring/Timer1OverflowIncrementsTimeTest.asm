@@ -11,12 +11,12 @@
 	global numberOfClockPulsesB
 	global numberOfClockPulsesC
 	global numberOfClockPulsesD
-    global expectedClockYearBcd
-    global expectedClockMonthBcd
-    global expectedClockDayBcd
-    global expectedClockHourBcd
-    global expectedClockMinuteBcd
-    global expectedClockSecondBcd
+	global expectedClockYearBcd
+	global expectedClockMonthBcd
+	global expectedClockDayBcd
+	global expectedClockHourBcd
+	global expectedClockMinuteBcd
+	global expectedClockSecondBcd
 
 numberOfClockPulsesA res 1
 numberOfClockPulsesB res 1

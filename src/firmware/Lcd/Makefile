@@ -3,6 +3,7 @@ OBJ_FILES=\
 	Initialise.o \
 	EnableDisable.o \
 	Poll.o \
+	Contrast.o \
 	DisabledState.o \
 	EnableWaitForShiftRegisterState.o \
 	EnableWaitForMoreThan40msState.o \

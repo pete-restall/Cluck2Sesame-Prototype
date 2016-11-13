@@ -1,5 +1,8 @@
-load TimeNotElapsedTest.cod
+load "TimeNotElapsedTest.cod"
+load i "../../../PreventInfiniteLoops.sti"
+
 timer0Seed=5
 numberOfTicks=43
+
 run
 quit

@@ -1,6 +1,8 @@
 	#ifndef __CLUCK2SESAME_CLOCK_INC
 	#define __CLUCK2SESAME_CLOCK_INC
 
+	radix decimal
+
 CLOCK_FLAG_TICKED equ 0
 
 	#ifndef __CLUCK2SESAME_CLOCK_ASM

@@ -16,6 +16,7 @@ testArrange:
 	fcall enableLcd
 
 waitUntilLcdIsEnabled:
+	fcall pollLcd
 	fcall isLcdEnabled
 	sublw 0
 	btfsc STATUS, Z

@@ -1,5 +1,6 @@
-load MclrResetTest.cod
-pcon = (pcon & b'11111111') | b'00000011'
-status = (status & b'11111111') | b'00000011'
+load "MclrResetTest.cod"
+load i "../../PreventInfiniteLoops.sti"
+pcon=(pcon & b'11111111') | b'00000011'
+status=(status & b'11111111') | b'00000011'
 run
 quit

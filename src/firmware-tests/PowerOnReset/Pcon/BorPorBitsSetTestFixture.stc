@@ -1,3 +1,4 @@
-load BorPorBitsSetTest.cod
+load "BorPorBitsSetTest.cod"
+load i "../../PreventInfiniteLoops.sti"
 run
 quit

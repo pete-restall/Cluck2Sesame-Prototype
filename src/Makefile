@@ -9,7 +9,7 @@ export AR=gplib
 export ARARGS=-c
 export LD=gplink
 export LDARGS=-S 2 -O 2 -s $(LKR_FILENAME) -m -c
-export BUILD_ARTEFACT_PATTERN=*.hex *.cod *.cof *.map *.lst *.o *.a
+export BUILD_ARTEFACT_PATTERN=*.hex *.cod *.cof *.map *.lst *.o *.a *.log
 
 all:
 	$(MAKE) -C utilities all

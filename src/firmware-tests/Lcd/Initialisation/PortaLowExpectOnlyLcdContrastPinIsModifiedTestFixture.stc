@@ -1,7 +1,8 @@
-load PortaTest.cod
+load "PortaTest.cod"
+load i "../../PreventInfiniteLoops.sti"
+
 porta=0x00
 trisa=0x00
-
 expectedPORTA=0x00
 expectedTRISA=0x00 # GPSIM BUG !  DATASHEET SAYS TRISA3 IS R-1, BUT GPSIM USES R-0 !
 

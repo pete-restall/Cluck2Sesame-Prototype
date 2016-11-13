@@ -1,3 +1,4 @@
-load InitialiseAfterResetCalledTest.cod
+load "InitialiseAfterResetCalledTest.cod"
+load i "../../PreventInfiniteLoops.sti"
 run
 quit

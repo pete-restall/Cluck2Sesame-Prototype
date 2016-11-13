@@ -1,0 +1,10 @@
+load "ContrastWhenLcdDisabledTest.cod"
+load i "../../PreventInfiniteLoops.sti"
+
+p16f685.frequency=4000000
+p16f685.tmr1_freq=65536 * 2
+
+log on ContrastWhenLcdDisabledTestFixture.log
+log w porta, (porta & 0x02)
+run
+quit

@@ -1,3 +1,4 @@
-load Timer1DrivesExternalCrystalTest.cod
+load "Timer1DrivesExternalCrystalTest.cod"
+load i "../../PreventInfiniteLoops.sti"
 run
 quit

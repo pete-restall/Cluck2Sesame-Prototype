@@ -1,6 +1,7 @@
 OBJ_FILES+=\
 	$(FIRMWARE_DIR)/Isr.o \
-	$(FIRMWARE_DIR)/Arithmetic32.o
+	$(FIRMWARE_DIR)/Arithmetic32.o \
+	../../Lcd/LcdContrastDummies.o
 
 HEX_FILES=\
 	Timer1OverflowIncrementsTimeTest.hex \

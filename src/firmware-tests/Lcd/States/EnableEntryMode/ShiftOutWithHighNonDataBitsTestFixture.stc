@@ -1,4 +1,6 @@
-load ShiftOutTest.cod
+load "ShiftOutTest.cod"
+load i "../../../PreventInfiniteLoops.sti"
+
 initialShiftRegisterBuffer=0xff
 expectedShiftOut1=0b11000000
 expectedShiftOut2=0b11000010
@@ -6,5 +8,6 @@ expectedShiftOut3=0b11000000
 expectedShiftOut4=0b11011000
 expectedShiftOut5=0b11011010
 expectedShiftOut6=0b11011000
+
 run
 quit

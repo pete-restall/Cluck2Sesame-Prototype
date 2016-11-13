@@ -1,3 +1,4 @@
-load IsEnabledAfterInitialisationTest.cod
+load "IsEnabledAfterInitialisationTest.cod"
+load i "../../PreventInfiniteLoops.sti"
 run
 quit

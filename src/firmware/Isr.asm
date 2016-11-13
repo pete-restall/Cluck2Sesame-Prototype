@@ -1,16 +1,23 @@
 	#include "p16f685.inc"
+	#include "TailCalls.inc"
 	#include "Lcd/Isr.inc"
 	#include "Clock.inc"
+	#include "InitialisationChain.inc"
 
 	radix decimal
+
+	extern INITIALISE_AFTER_ISR
 
 	udata_shr
 contextSavingW res 1
 contextSavingStatus res 1
 contextSavingPclath res 1
-lcdContrastToggle res 1 ; TODO: THIS NEEDS INITIALISING !
+lcdContrastAccumulator res 1
 
 Isr code 0x0004
+	global initialiseIsr
+
+isr:
 	; Context saving - note swapf does not alter any STATUS bits, movf does:
 
 	movwf contextSavingW
@@ -31,16 +38,22 @@ adcSampled:
 	bcf PIR1, ADIF
 
 lcdDeltaSigmaContrastControl:
+	banksel lcdFlags
+	btfss lcdFlags, LCD_FLAG_ENABLED
+	goto clockTicked
+
 	; TODO: THIS SHOULD ONLY HAPPEN WHEN THE LCD MODULE IS ENABLED (lcdFlags & LCD_FLAG_ENABLED)
 
-	; TODO: THIS IS ALL TEMPORARY - 50% DUTY CYCLE AT ~5.5kHz; SHOULD BE A DELTA-SIGMA MODULATED DAC...
+	banksel lcdContrast
+	movf lcdContrast, W
+	addwf lcdContrastAccumulator
 
 	banksel LCD_CONTRAST_PORT
-	movf lcdContrastToggle, W
-	xorwf LCD_CONTRAST_PORT
-	xorlw LCD_CONTRAST_PIN_MASK
-	;bsf LCD_CONTRAST_PORT, LCD_CONTRAST_PIN
-	movwf lcdContrastToggle
+	movf LCD_CONTRAST_PORT, W
+	andlw ~LCD_CONTRAST_PIN_MASK
+	btfsc STATUS, C
+	iorlw LCD_CONTRAST_PIN_MASK
+	movwf LCD_CONTRAST_PORT
 
 clockTicked:
 	; TODO: TEST AND IMPLEMENT TO ENSURE THAT THIS DOES NOT INCREMENT FOR AN AD CONVERSION !  IE. ENSURE PIR1.TMRIF != 0 !
@@ -57,5 +70,9 @@ endOfIsr:
 	movwf STATUS
 	swapf contextSavingW, W
 	retfie
+
+initialiseIsr:
+	clrf lcdContrastAccumulator
+	tcall INITIALISE_AFTER_ISR
 
 	end

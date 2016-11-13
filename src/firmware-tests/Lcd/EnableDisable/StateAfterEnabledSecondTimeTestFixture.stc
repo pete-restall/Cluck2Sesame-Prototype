@@ -1,3 +1,4 @@
-load StateAfterEnabledSecondTimeTest.cod
+load "StateAfterEnabledSecondTimeTest.cod"
+load i "../../PreventInfiniteLoops.sti"
 run
 quit

@@ -1,4 +1,6 @@
-load EnableDisableSmpsTest.cod
+load "EnableDisableSmpsTest.cod"
+load i "../../PreventInfiniteLoops.sti"
+
 numberOfEnableCalls=8
 numberOfDisableCalls=8
 expectedCalledEnableSmpsCount=8

@@ -1,4 +1,5 @@
-load PollWithTickedFlagTest.cod
+load "PollWithTickedFlagTest.cod"
+load i "../../PreventInfiniteLoops.sti"
 
 clockYearBcd=0x04
 clockMonthBcd=0x02

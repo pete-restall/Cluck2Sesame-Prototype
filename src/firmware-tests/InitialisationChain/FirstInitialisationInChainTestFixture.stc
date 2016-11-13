@@ -1,3 +1,4 @@
-load FirstInitialisationInChainTest.cod
+load "FirstInitialisationInChainTest.cod"
+load i "../PreventInfiniteLoops.sti"
 run
 quit

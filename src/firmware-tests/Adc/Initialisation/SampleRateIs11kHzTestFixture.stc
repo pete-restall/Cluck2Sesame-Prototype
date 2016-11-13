@@ -1,3 +1,4 @@
-load SampleRateIs11kHzTest.cod
+load "SampleRateIs11kHzTest.cod"
+load i "../../PreventInfiniteLoops.sti"
 run
 quit

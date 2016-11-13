@@ -1,4 +1,6 @@
-load EnableDisablePortTest.cod
+load "EnableDisablePortTest.cod"
+load i "../../PreventInfiniteLoops.sti"
+
 forcePortcBeforeEnable=0x00
 numberOfEnableCalls=1
 numberOfDisableCalls=0

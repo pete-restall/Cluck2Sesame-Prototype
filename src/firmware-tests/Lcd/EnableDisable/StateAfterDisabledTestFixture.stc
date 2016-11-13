@@ -1,3 +1,4 @@
-load StateAfterDisabledTest.cod
+load "StateAfterDisabledTest.cod"
+load i "../../PreventInfiniteLoops.sti"
 run
 quit

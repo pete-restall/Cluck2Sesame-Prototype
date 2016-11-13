@@ -1,7 +1,10 @@
-load IsEnabledTest.cod
+load "IsEnabledTest.cod"
+load i "../../PreventInfiniteLoops.sti"
+
 stubIsSmpsEnabled=1
 numberOfEnableCalls=7
 numberOfDisableCalls=7
 expectedIsMotorVddEnabled=0
+
 run
 quit

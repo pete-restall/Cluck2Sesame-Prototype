@@ -1,3 +1,4 @@
-load FirstPollInChainTest.cod
+load "FirstPollInChainTest.cod"
+load i "../../PreventInfiniteLoops.sti"
 run
 quit
