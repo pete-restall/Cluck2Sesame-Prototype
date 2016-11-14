@@ -1,0 +1,22 @@
+HEX_FILES=\
+	ReadFlashWordAsPairOfSevenBitBytesWhenEvenTest.hex \
+	ReadFlashWordAsPairOfSevenBitBytesWhenOddTest.hex
+
+READ_FLASH_AS_PAIR_OF_SEVEN_BIT_BYTES_WHEN_EVEN_OBJ_FILES=\
+	ReadFlashWordAsPairOfSevenBitBytesWhenEvenTest.o
+
+READ_FLASH_AS_PAIR_OF_SEVEN_BIT_BYTES_WHEN_ODD_OBJ_FILES=\
+	ReadFlashWordAsPairOfSevenBitBytesWhenOddTest.o
+
+all: $(HEX_FILES)
+
+clean:
+	$(RM) -f $(BUILD_ARTEFACT_PATTERN)
+
+ReadFlashWordAsPairOfSevenBitBytesWhenEvenTest.hex: $(OBJ_FILES) $(READ_FLASH_AS_PAIR_OF_SEVEN_BIT_BYTES_WHEN_EVEN_OBJ_FILES)
+	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(READ_FLASH_AS_PAIR_OF_SEVEN_BIT_BYTES_WHEN_EVEN_OBJ_FILES)
+
+ReadFlashWordAsPairOfSevenBitBytesWhenOddTest.hex: $(OBJ_FILES) $(READ_FLASH_AS_PAIR_OF_SEVEN_BIT_BYTES_WHEN_ODD_OBJ_FILES)
+	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(READ_FLASH_AS_PAIR_OF_SEVEN_BIT_BYTES_WHEN_ODD_OBJ_FILES)
+
+include $(MAKEFILE_RULES)

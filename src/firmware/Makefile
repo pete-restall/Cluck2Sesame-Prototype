@@ -20,7 +20,8 @@ OBJ_FILES=\
 	Motor.a \
 	Lcd.a \
 	Adc.a \
-	Sleep.o
+	Sleep.o \
+	Flash.o
 
 all: $(HEX_FILENAME)
 

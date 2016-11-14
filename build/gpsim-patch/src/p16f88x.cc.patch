@@ -1,0 +1,2 @@
+2175d2174
+<   get_eeprom()->get_reg_eecon1()->set_bits(EECON1::EEPGD);

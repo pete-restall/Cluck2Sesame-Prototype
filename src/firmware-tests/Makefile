@@ -39,6 +39,7 @@ all: $(TEST_DOUBLE_OBJ_FILES)
 	$(MAKE) -C Lcd all
 	$(MAKE) -C Adc all
 	$(MAKE) -C Isr all
+	$(MAKE) -C Flash all
 
 clean:
 	$(RM) -f $(BUILD_ARTEFACT_PATTERN)
@@ -59,5 +60,6 @@ clean:
 	$(MAKE) -C Lcd clean
 	$(MAKE) -C Adc clean
 	$(MAKE) -C Isr clean
+	$(MAKE) -C Flash clean
 
 include $(MAKEFILE_RULES)
