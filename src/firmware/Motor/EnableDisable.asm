@@ -19,6 +19,11 @@ Motor code
 enableMotorVdd:
 	fcall enableSmps
 
+	; TODO: If this is the first time that the VDD_MOTOR has been enabled then
+	; we need to zero out the shift register BEFORE /VDD_MOTOR_EN goes low (ie.
+	; VDD_MOTOR_EN is also /OE for the shift register).  This will prevent
+	; undefined voltages and data on the LCD pins.
+
 	banksel MOTOR_TRIS
 	bcf MOTOR_TRIS, MOTOR_VDD_EN_PIN_TRIS
 
