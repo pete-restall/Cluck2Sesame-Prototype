@@ -26,7 +26,6 @@ disableMotorVdd:
 	return
 
 isMotorVddEnabled:
-	movlw 1
-	return
+	retlw 1
 
 	end

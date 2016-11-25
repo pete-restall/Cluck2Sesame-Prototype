@@ -6,9 +6,11 @@
 	udata
 	global calledEnableMotorVddCount
 	global calledDisableMotorVddCount
+	global calledIsMotorVddEnabledCount
 
 calledEnableMotorVddCount res 1
 calledDisableMotorVddCount res 1
+calledIsMotorVddEnabledCount res 1
 
 EnableDisableMotorVddMocks code
 	global initialiseEnableAndDisableMotorVddMocks
@@ -20,6 +22,7 @@ initialiseEnableAndDisableMotorVddMocks:
 	banksel calledEnableMotorVddCount
 	clrf calledEnableMotorVddCount
 	clrf calledDisableMotorVddCount
+	clrf calledIsMotorVddEnabledCount
 	return
 
 enableMotorVdd:
@@ -31,7 +34,7 @@ disableMotorVdd:
 	return
 
 isMotorVddEnabled:
-	; TODO: MOCK RECORDING WHAT ?  REQUIRED TO PASS THE BUILD AT THE MOMENT, NOTHING MORE...
-	return
+	mockIncrementCallCounter calledIsMotorVddEnabledCount
+	retlw 0
 
 	end

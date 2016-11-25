@@ -10,13 +10,15 @@ STCP_PIN_ANSEL_MASK equ (1 << ANS5)
 DS_PIN_ANSEL_MASK equ (1 << ANS6)
 ANSEL_DIGITAL_MASK equ SHCP_PIN_ANSEL_MASK | STCP_PIN_ANSEL_MASK | DS_PIN_ANSEL_MASK
 
+	extern shiftRegisterBuffer
 	extern INITIALISE_AFTER_SHIFTREGISTER
 
 ShiftRegister code
 	global initialiseShiftRegister
 
 initialiseShiftRegister:
-	; TODO: CLEAR shiftRegisterBuffer
+	banksel shiftRegisterBuffer
+	clrf shiftRegisterBuffer
 
 setPortModes:
 	banksel ANSEL

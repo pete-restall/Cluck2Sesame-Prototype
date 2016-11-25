@@ -1,30 +1,34 @@
 	#include "p16f685.inc"
 	#include "FarCalls.inc"
 	#include "ShiftRegister.inc"
-	#include "../EnableDisableMotorVddMocks.inc"
+	#include "../IsMotorVddEnabledStub.inc"
 	#include "TestFixture.inc"
 
 	radix decimal
 
 	udata
+	global isMotorVddEnabledStubbedValue
 	global numberOfEnableCalls
 	global numberOfDisableCalls
-	global expectedCalledEnableMotorVddCount
-	global expectedCalledDisableMotorVddCount
+	global expectedIsShiftRegisterEnabled
 
+isMotorVddEnabledStubbedValue res 1
 numberOfEnableCalls res 1
 numberOfDisableCalls res 1
-expectedCalledEnableMotorVddCount res 1
-expectedCalledDisableMotorVddCount res 1
+expectedIsShiftRegisterEnabled res 1
 
-EnableDisableMotorVddTest code
+IsShiftRegisterEnabledTest code
 	global testArrange
 
 testArrange:
-	fcall initialiseEnableAndDisableMotorVddMocks
 	fcall initialiseShiftRegister
 
-testAct:
+stubIsMotorVddEnabled:
+	banksel isMotorVddEnabledStubbedValue
+	movf isMotorVddEnabledStubbedValue, W
+	fcall initialiseIsMotorVddEnabledStub
+
+callEnableTheSpecifiedNumberOfTimes:
 	banksel numberOfEnableCalls
 	movf numberOfEnableCalls
 	btfsc STATUS, Z
@@ -40,7 +44,7 @@ callDisableShiftRegister:
 	banksel numberOfDisableCalls
 	movf numberOfDisableCalls
 	btfsc STATUS, Z
-	goto testAssert
+	goto testAct
 
 callDisableShiftRegisterInLoop:
 	fcall disableShiftRegister
@@ -48,14 +52,21 @@ callDisableShiftRegisterInLoop:
 	decfsz numberOfDisableCalls
 	goto callDisableShiftRegisterInLoop
 
-testAssert:
-	.aliasForAssert calledEnableMotorVddCount, _a
-	.aliasForAssert expectedCalledEnableMotorVddCount, _b
-	.assert "_a == _b, 'Expected calls to enableMotorVdd() did not match expectation.'"
+testAct:
+	fcall isShiftRegisterEnabled
 
-	.aliasForAssert calledDisableMotorVddCount, _a
-	.aliasForAssert expectedCalledDisableMotorVddCount, _b
-	.assert "_a == _b, 'Expected calls to disableMotorVdd() did not match expectation.'"
+testAssert:
+	.aliasWForAssert _a
+	banksel expectedIsShiftRegisterEnabled
+	movf expectedIsShiftRegisterEnabled
+	btfss STATUS, Z
+	goto assertShiftRegisterIsEnabled
+
+assertShiftRegisterIsDisabled:
+	.assert "_a == 0, 'Expected isShiftRegisterEnabled() to return false.'"
 	return
+
+assertShiftRegisterIsEnabled:
+	.assert "_a != 0, 'Expected isShiftRegisterEnabled() to return true.'"
 
 	end

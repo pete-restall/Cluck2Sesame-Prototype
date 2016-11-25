@@ -7,7 +7,17 @@ export OBJ_FILES=\
 	$(CURDIR)/InitialiseAfterShiftRegisterMock.o \
 	$(CURDIR)/PollMotorMock.o
 
-all: InitialiseAfterShiftRegisterMock.o EnableDisableMotorVddMocks.o EnableDisableMotorVddStubs.o PollMotorMock.o
+TEST_DOUBLES=\
+	InitialiseAfterShiftRegisterMock.o \
+	EnableDisableMotorVddMocks.o \
+	EnableDisableMotorVddStubs.o \
+	EnableMotorVddDummy.o \
+	DisableMotorVddDummy.o \
+	IsMotorVddEnabledDummy.o \
+	IsMotorVddEnabledStub.o \
+	PollMotorMock.o
+
+all: $(TEST_DOUBLES)
 	$(MAKE) -C Initialisation all
 	$(MAKE) -C EnableDisable all
 	$(MAKE) -C ShiftOut all
