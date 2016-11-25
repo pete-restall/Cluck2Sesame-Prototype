@@ -8,10 +8,11 @@ LCD_CMD_SETDISPLAY_MASK equ LCD_CMD_SETDISPLAY | LCD_CMD_SETDISPLAY_TWOLINES | L
 	radix decimal
 
 	defineLcdState LCD_STATE_ENABLE_SETDISPLAY
-	movlw LCD_CMD_SETDISPLAY_MASK
-	fcall writeByte
 
-	setLcdState LCD_STATE_ENABLE_DISPLAYOFF
-	returnFromLcdState
+		movlw LCD_CMD_SETDISPLAY_MASK
+		call writeRegister
+
+		setLcdState LCD_STATE_ENABLE_DISPLAYOFF
+		returnFromLcdState
 
 	end

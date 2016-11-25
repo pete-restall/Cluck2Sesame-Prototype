@@ -2,10 +2,10 @@
 
 	radix decimal
 
-IsShiftRegisterEnabledDummy code
+IsShiftRegisterEnabledStubbedTrue code
 	global isShiftRegisterEnabled
 
 isShiftRegisterEnabled:
-	retlw 0
+	retlw 1
 
 	end

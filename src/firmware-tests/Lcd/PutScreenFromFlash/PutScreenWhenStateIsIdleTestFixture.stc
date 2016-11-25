@@ -1,0 +1,4 @@
+load "PutScreenWhenStateIsIdleTest.cod"
+load i "../../PreventInfiniteLoops.sti"
+run
+quit

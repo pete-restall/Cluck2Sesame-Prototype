@@ -6,10 +6,12 @@
 	radix decimal
 
 	defineLcdState LCD_STATE_ENABLE_DISPLAYOFF
-	movlw LCD_CMD_DISPLAYOFF
-	fcall writeByte
 
-	setLcdState LCD_STATE_ENABLE_DISPLAYCLEAR
-	returnFromLcdState
+		movlw LCD_CMD_DISPLAYOFF
+		call writeRegister
+
+		setLcdState LCD_STATE_DISPLAYCLEAR
+		setLcdNextState LCD_STATE_ENABLE_ENTRYMODE
+		returnFromLcdState
 
 	end

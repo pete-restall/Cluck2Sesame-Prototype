@@ -2,18 +2,32 @@
 
 	#include "p16f685.inc"
 	#include "FarCalls.inc"
+	#include "TailCalls.inc"
 	#include "../ShiftRegister.inc"
 	#include "Lcd.inc"
 
 	radix decimal
 
 Lcd code
-	global writeByte
-	global writeNibble
+	global writeRegister
+	global writeCharacter
+	global writeRegisterNibble
 
-writeByte:
+writeRegisterNibble:
+	banksel lcdFlags
+	bcf lcdFlags, LCD_FLAG_RS
+	goto writeNibble
+
+writeRegister:
+	banksel lcdFlags
+	bcf lcdFlags, LCD_FLAG_RS
+	goto writeHighNibbleOfByte
+
+writeCharacter:
+	banksel lcdFlags
+	bsf lcdFlags, LCD_FLAG_RS
+
 writeHighNibbleOfByte:
-	banksel lcdWorkingRegister
 	movwf lcdWorkingRegister
 	swapf lcdWorkingRegister, W
 	call writeNibble
@@ -37,9 +51,16 @@ moveLcdDataBitsIntoPlaceInShiftRegisterBuffer:
 	rlf shiftRegisterBuffer
 	rlf shiftRegisterBuffer
 	movlw b'11111100'
-	andwf shiftRegisterBuffer
+	andwf shiftRegisterBuffer, W
+
+selectRegisterOrCharacterWrite:
+	banksel lcdFlags
+	btfsc lcdFlags, LCD_FLAG_RS
+	iorlw 1 << LCD_RS_BIT
 
 shiftNibble:
+	banksel shiftRegisterBuffer
+	movwf shiftRegisterBuffer
 	fcall shiftOut
 
 setEnableBit:
@@ -50,8 +71,6 @@ setEnableBit:
 resetEnableBit:
 	banksel shiftRegisterBuffer
 	bcf shiftRegisterBuffer, LCD_EN_BIT
-	fcall shiftOut
-
-	return
+	tcall shiftOut
 
 	end

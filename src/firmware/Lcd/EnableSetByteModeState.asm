@@ -6,10 +6,11 @@
 	radix decimal
 
 	defineLcdState LCD_STATE_ENABLE_SETBYTEMODE
-	movlw b'00000011'
-	fcall writeNibble
 
-	setLcdState LCD_STATE_ENABLE_SETNIBBLEMODE
-	returnFromLcdState
+		movlw b'00000011'
+		call writeRegisterNibble
+
+		setLcdState LCD_STATE_ENABLE_SETNIBBLEMODE
+		returnFromLcdState
 
 	end

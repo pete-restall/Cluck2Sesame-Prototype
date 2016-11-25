@@ -3,7 +3,8 @@ export OBJ_FILES=\
 	$(SUT_OBJ_FILE) \
 	$(FIRMWARE_CORE_OBJ_FILES) \
 	$(TEST_FIXTURE_OBJ_FILES) \
-	$(FIRMWARE_DIR)/Timer0.o
+	$(FIRMWARE_DIR)/Timer0.o \
+	$(FIRMWARE_DIR)/Flash.o
 
 TEST_DOUBLE_OBJ_FILES=\
 	InitialiseAfterLcdDummy.o \
@@ -29,6 +30,8 @@ all: $(TEST_DOUBLE_OBJ_FILES)
 	$(MAKE) -C EnableDisable all
 	$(MAKE) -C States all
 	$(MAKE) -C Contrast all
+	$(MAKE) -C IsLcdIdle all
+	$(MAKE) -C PutScreenFromFlash all
 
 clean:
 	$(RM) -f $(BUILD_ARTEFACT_PATTERN)
@@ -36,5 +39,7 @@ clean:
 	$(MAKE) -C EnableDisable clean
 	$(MAKE) -C States clean
 	$(MAKE) -C Contrast clean
+	$(MAKE) -C IsLcdIdle clean
+	$(MAKE) -C PutScreenFromFlash clean
 
 include $(MAKEFILE_RULES)

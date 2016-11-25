@@ -1,0 +1,6 @@
+load "EntireScreenShiftOutTest.cod"
+load i "../../PreventInfiniteLoops.sti"
+initialShiftRegisterBuffer=0xff
+run
+dump e p16f685 "EntireScreenShiftOutWhenBufferIsHighTestFixture.hex"
+quit

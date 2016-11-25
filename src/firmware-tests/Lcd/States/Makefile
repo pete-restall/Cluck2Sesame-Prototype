@@ -13,7 +13,7 @@ all:
 	$(MAKE) -C EnableSetNibbleMode all
 	$(MAKE) -C EnableSetDisplay all
 	$(MAKE) -C EnableDisplayOff all
-	$(MAKE) -C EnableDisplayClear all
+	$(MAKE) -C DisplayClear all
 	$(MAKE) -C EnableEntryMode all
 	$(MAKE) -C EnableSetContrast all
 	$(MAKE) -C EnableDisplayOn all
@@ -29,7 +29,7 @@ clean:
 	$(MAKE) -C EnableSetNibbleMode clean
 	$(MAKE) -C EnableSetDisplay clean
 	$(MAKE) -C EnableDisplayOff clean
-	$(MAKE) -C EnableDisplayClear clean
+	$(MAKE) -C DisplayClear clean
 	$(MAKE) -C EnableEntryMode clean
 	$(MAKE) -C EnableSetContrast clean
 	$(MAKE) -C EnableDisplayOn clean

@@ -1,6 +1,5 @@
 	#include "p16f685.inc"
 	#include "PollChain.inc"
-	#include "TestDoubles.inc"
 
 	radix decimal
 

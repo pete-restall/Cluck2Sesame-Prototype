@@ -5,21 +5,13 @@
 
 	radix decimal
 
-flashAddressOf macro label
-	banksel EEADRH
-	movlw high(label)
-	movwf EEADRH
-	movlw low(label)
-	movwf EEADR
-	endm
-
 ReadFlashWordAsPairOfSevenBitBytesWhenEvenTest code
 	global testArrange
 
 testArrange:
 
 testAct:
-	flashAddressOf string
+	loadFlashAddressOf string
 	fcall readFlashWordAsPairOfSevenBitBytes
 
 testAssert:

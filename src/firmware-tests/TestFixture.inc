@@ -7,20 +7,24 @@
 	nop
 	endm
 
+.signalTestCompletion macro
+	extern testCompleted
+	banksel testCompleted
+	comf testCompleted
+	endm
+
 .done macro
 	nop
 	.direct "c", "echo [PASSED]"
 	nop
-	.direct "c", "quit"
-	nop
+	.signalTestCompletion
 	endm
 
 .assertTraceExternally macro
 	nop
 	.direct "c", "echo [PENDING]"
 	nop
-	.direct "c", "quit"
-	nop
+	.signalTestCompletion
 	endm
 
 

@@ -13,10 +13,17 @@ HEX_FILES=\
 	ContrastPinAfterDisabledTest.hex \
 	ContrastPinAfterNotDisabledTest.hex
 
+SHIFT_REGISTER_DUMMY_OBJ_FILES=\
+	../InitialiseShiftRegisterDummy.o \
+	../EnableShiftRegisterDummy.o \
+	../DisableShiftRegisterDummy.o \
+	../IsShiftRegisterEnabledStubbedTrue.o \
+	../ShiftOutDummy.o
+
 OBJ_FILES+=\
+	$(ASSERT_NO_ISR_OBJ_FILE) \
 	../PollAfterLcdDummy.o \
-	../InitialiseAfterLcdDummy.o \
-	$(ASSERT_NO_ISR_OBJ_FILE)
+	../InitialiseAfterLcdDummy.o
 
 ENABLE_DISABLE_SHIFT_REGISTER_OBJ_FILES=\
 	EnableDisableShiftRegisterTest.o \
@@ -27,52 +34,52 @@ ENABLE_DISABLE_SHIFT_REGISTER_OBJ_FILES=\
 
 STATE_AFTER_ENABLED_FIRST_TIME_OBJ_FILES=\
 	StateAfterEnabledFirstTimeTest.o \
-	../ShiftRegisterDummies.o \
+	$(SHIFT_REGISTER_DUMMY_OBJ_FILES) \
 	../AdcDummies.o
 
 STATE_AFTER_ENABLED_SECOND_TIME_OBJ_FILES=\
 	StateAfterEnabledSecondTimeTest.o \
-	../ShiftRegisterDummies.o \
+	$(SHIFT_REGISTER_DUMMY_OBJ_FILES) \
 	../AdcDummies.o
 
 STATE_AFTER_DISABLED_NOT_AS_MANY_TIMES_AS_ENABLED_OBJ_FILES=\
 	StateAfterDisabledNotAsManyTimesAsEnabledTest.o \
-	../ShiftRegisterDummies.o \
+	$(SHIFT_REGISTER_DUMMY_OBJ_FILES) \
 	../AdcDummies.o
 
 STATE_AFTER_DISABLED_OBJ_FILES=\
 	StateAfterDisabledTest.o \
-	../ShiftRegisterDummies.o \
+	$(SHIFT_REGISTER_DUMMY_OBJ_FILES) \
 	../AdcDummies.o
 
 DISABLE_ADC_OBJ_FILES=\
 	DisableAdcTest.o \
-	../ShiftRegisterDummies.o \
+	$(SHIFT_REGISTER_DUMMY_OBJ_FILES) \
 	../AdcMocks.o
 
 DISABLE_ADC_NOT_CALLED_WHEN_LCD_STILL_ENABLED_OBJ_FILES=\
 	DisableAdcNotCalledWhenLcdStillEnabledTest.o \
-	../ShiftRegisterDummies.o \
+	$(SHIFT_REGISTER_DUMMY_OBJ_FILES) \
 	../AdcMocks.o
 
 IS_LCD_ENABLED_AFTER_LCD_DISABLED_OBJ_FILES=\
 	IsLcdEnabledAfterLcdDisabledTest.o \
-	../ShiftRegisterDummies.o \
+	$(SHIFT_REGISTER_DUMMY_OBJ_FILES) \
 	../AdcDummies.o
 
 IS_LCD_ENABLED_AFTER_LCD_NOT_DISABLED_OBJ_FILES=\
 	IsLcdEnabledAfterLcdNotDisabledTest.o \
-	../ShiftRegisterDummies.o \
+	$(SHIFT_REGISTER_DUMMY_OBJ_FILES) \
 	../AdcDummies.o
 
 CONTRAST_PIN_AFTER_DISABLED_OBJ_FILES=\
 	ContrastPinAfterDisabledTest.o \
-	../ShiftRegisterDummies.o \
+	$(SHIFT_REGISTER_DUMMY_OBJ_FILES) \
 	../AdcDummies.o
 
 CONTRAST_PIN_AFTER_NOT_DISABLED_OBJ_FILES=\
 	ContrastPinAfterNotDisabledTest.o \
-	../ShiftRegisterDummies.o \
+	$(SHIFT_REGISTER_DUMMY_OBJ_FILES) \
 	../AdcDummies.o
 
 all: $(HEX_FILES)

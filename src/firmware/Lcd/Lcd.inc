@@ -31,13 +31,17 @@ LCD_CMD_ENTRYMODE_NOSHIFT equ b'00000000'
 
 LCD_CMD_DISPLAYON equ b'00001100'
 
+LCD_CMD_SETDDRAMADDRESS equ b'10000000'
+LCD_CMD_SETDDRAMADDRESS_LINE2 equ LCD_CMD_SETDDRAMADDRESS | 0x40
+
 	#ifndef __CLUCK2SESAME_LCD_INITIALISE_ASM
 	extern lcdWorkingRegister
 	#endif
 
 	#ifndef __CLUCK2SESAME_LCD_WRITE_ASM
-	extern writeByte
-	extern writeNibble
+	extern writeRegister
+	extern writeCharacter
+	extern writeRegisterNibble
 	#endif
 
 	#endif

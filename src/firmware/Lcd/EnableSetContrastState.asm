@@ -6,8 +6,9 @@
 	radix decimal
 
 	defineLcdState LCD_STATE_ENABLE_SETCONTRAST
-	setLcdState LCD_STATE_ENABLE_DISPLAYON
-	fcall enableAdc
-	returnFromLcdState
+
+		setLcdState LCD_STATE_ENABLE_DISPLAYON
+		fcall enableAdc
+		returnFromLcdState
 
 	end

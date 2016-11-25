@@ -13,13 +13,14 @@ OBJ_FILES=\
 	EnableSetNibbleModeState.o \
 	EnableSetDisplayState.o \
 	EnableDisplayOffState.o \
-	EnableDisplayClearState.o \
+	DisplayClearState.o \
 	EnableEntryModeState.o \
 	EnableSetContrastState.o \
 	EnableDisplayOnState.o \
 	WaitState.o \
 	IdleState.o \
-	Write.o
+	Write.o \
+	PutScreenFromFlash.o
 
 all: $(LIB_FILENAME)
 

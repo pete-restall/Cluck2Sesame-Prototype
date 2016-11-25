@@ -12,7 +12,11 @@ OBJ_FILES+=\
 
 TEST_DOUBLE_OBJ_FILES=\
 	../PollAfterLcdDummy.o \
-	../ShiftRegisterDummies.o \
+	../InitialiseShiftRegisterDummy.o \
+	../EnableShiftRegisterDummy.o \
+	../DisableShiftRegisterDummy.o \
+	../IsShiftRegisterEnabledStubbedTrue.o \
+	../ShiftOutDummy.o \
 	../../Isr/InitialiseAfterIsrDummy.o \
 	../../Adc/InitialiseAfterAdcDummy.o \
 	../../Clock/PollAfterClockDummy.o

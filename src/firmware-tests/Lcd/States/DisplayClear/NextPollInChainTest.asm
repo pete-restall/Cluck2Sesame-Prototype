@@ -15,7 +15,7 @@ testArrange:
 	fcall initialiseLcd
 
 testAct:
-	setLcdState LCD_STATE_ENABLE_DISPLAYCLEAR
+	setLcdState LCD_STATE_DISPLAYCLEAR
 	fcall pollLcd
 
 testAssert:

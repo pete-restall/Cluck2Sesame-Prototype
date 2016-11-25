@@ -7,22 +7,23 @@
 	radix decimal
 
 	defineLcdState LCD_STATE_WAIT
+
 checkIfExpectedNumberOfTicksHasElapsed:
-	elapsedSinceTimer0 LCD_WAIT_PARAM_INITIAL_TICKS
-	banksel LCD_WAIT_PARAM_NUMBER_OF_TICKS
-	subwf LCD_WAIT_PARAM_NUMBER_OF_TICKS, W
+		elapsedSinceTimer0 LCD_WAIT_PARAM_INITIAL_TICKS
+		banksel LCD_WAIT_PARAM_NUMBER_OF_TICKS
+		subwf LCD_WAIT_PARAM_NUMBER_OF_TICKS, W
 
-	btfss STATUS, C
-	goto greaterThanOrEqualToTicks
+		btfss STATUS, C
+		goto greaterThanOrEqualToTicks
 
-	btfss STATUS, Z
-	goto endOfState
+		btfss STATUS, Z
+		goto endOfState
 
 greaterThanOrEqualToTicks:
-	movf lcdNextState, W
-	movwf lcdState
+		movf lcdNextState, W
+		movwf lcdState
 
 endOfState:
-	returnFromLcdState
+		returnFromLcdState
 
 	end

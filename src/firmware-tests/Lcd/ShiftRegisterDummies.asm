@@ -1,5 +1,4 @@
 	#include "p16f685.inc"
-	#include "TestDoubles.inc"
 
 	radix decimal
 
@@ -22,7 +21,6 @@ shiftOut:
 	return
 
 isShiftRegisterEnabled:
-	movlw 1
-	return
+	retlw 0
 
 	end

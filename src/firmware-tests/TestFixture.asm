@@ -21,15 +21,25 @@ assertAliases udata_shr
 _a res 1
 _b res 2
 
+	udata
+	global testCompleted
+
+testCompleted res 1
+
 TestFixtureBoot code 0x0000
 	fgoto runTest
 
 TestFixture code
 runTest:
+	banksel testCompleted
+	clrf testCompleted
+	.direct "c", "break w testCompleted"
+
 	call enableTimer0ForTestNonDeterminism
 	fcall initialiseTestDoubles
 	fcall testArrange
 	.done
+	goto $
 
 enableTimer0ForTestNonDeterminism:
 	banksel OPTION_REG

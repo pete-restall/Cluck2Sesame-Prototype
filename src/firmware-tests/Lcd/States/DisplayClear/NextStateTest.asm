@@ -9,11 +9,19 @@
 
 NUMBER_OF_TICKS_1_52_MS_PLUS_MARGIN equ 13
 
+	udata
+expectedNextState res 1
+
 NextStateTest code
 	global testArrange
 
 testArrange:
 	fcall initialiseLcd
+
+	banksel TMR0
+	movf TMR0, W
+	banksel expectedNextState
+	movwf expectedNextState
 
 stopTimer0:
 	banksel OPTION_REG
@@ -21,7 +29,8 @@ stopTimer0:
 	movwf OPTION_REG
 
 testAct:
-	setLcdState LCD_STATE_ENABLE_DISPLAYCLEAR
+	setLcdNextState expectedNextState
+	setLcdState LCD_STATE_DISPLAYCLEAR
 	fcall pollLcd
 
 testAssert:
@@ -30,8 +39,8 @@ testAssert:
 	.assert "_a == _b, 'Expected state to be LCD_STATE_WAIT.'"
 
 	.aliasForAssert lcdNextState, _a
-	.aliasLiteralForAssert LCD_STATE_ENABLE_ENTRYMODE, _b
-	.assert "_a == _b, 'Expected next state to be LCD_STATE_ENABLE_ENTRYMODE.'"
+	.aliasLiteralForAssert expectedNextState, _b
+	.assert "_a == _b, 'Expected next state to be unmodified.'"
 
 	.aliasForAssert LCD_WAIT_PARAM_INITIAL_TICKS, _a
 	.aliasForAssert TMR0, _b

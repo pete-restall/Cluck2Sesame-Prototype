@@ -1,6 +1,5 @@
 	#include "p16f685.inc"
 	#include "InitialisationChain.inc"
-	#include "TestDoubles.inc"
 
 	radix decimal
 

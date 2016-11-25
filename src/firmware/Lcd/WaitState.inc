@@ -8,13 +8,17 @@
 	#define LCD_WAIT_PARAM_INITIAL_TICKS lcdStateParameter0
 	#define LCD_WAIT_PARAM_NUMBER_OF_TICKS lcdStateParameter1
 
-setLcdWaitState macro numberOfTicks, nextState
+setLcdWaitStateWithUnmodifiedNextState macro numberOfTicks
 	storeTimer0 LCD_WAIT_PARAM_INITIAL_TICKS
 	movlw numberOfTicks
 	movwf LCD_WAIT_PARAM_NUMBER_OF_TICKS
 
-	setLcdNextState nextState
 	setLcdState LCD_STATE_WAIT
+	endm
+
+setLcdWaitState macro numberOfTicks, nextState
+	setLcdWaitStateWithUnmodifiedNextState numberOfTicks
+	setLcdNextState nextState
 	endm
 
 	#endif

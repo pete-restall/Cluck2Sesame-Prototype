@@ -5,6 +5,8 @@
 	extern enableLcd
 	extern disableLcd
 	extern isLcdEnabled
+	extern isLcdIdle
 	extern pollLcd
+	extern putScreenFromFlash
 
 	#endif
