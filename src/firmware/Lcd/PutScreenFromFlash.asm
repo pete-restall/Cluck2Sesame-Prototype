@@ -90,7 +90,7 @@ writtenBothCharacters:
 		goto writtenAllCharacters
 
 		movlw LCD_LINE_SIZE
-		xorwf numberOfCharactersRemaining
+		xorwf numberOfCharactersRemaining, W
 		btfsc STATUS, Z
 		goto writtenFirstLine
 
