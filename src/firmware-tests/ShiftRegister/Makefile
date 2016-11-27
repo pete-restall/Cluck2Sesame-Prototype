@@ -9,12 +9,7 @@ export OBJ_FILES=\
 
 TEST_DOUBLES=\
 	InitialiseAfterShiftRegisterMock.o \
-	EnableDisableMotorVddMocks.o \
 	EnableDisableMotorVddStubs.o \
-	EnableMotorVddDummy.o \
-	DisableMotorVddDummy.o \
-	IsMotorVddEnabledDummy.o \
-	IsMotorVddEnabledStub.o \
 	PollMotorMock.o
 
 all: $(TEST_DOUBLES)

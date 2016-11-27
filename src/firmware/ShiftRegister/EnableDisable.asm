@@ -1,6 +1,6 @@
 	#include "p16f685.inc"
 	#include "TailCalls.inc"
-	#include "../Motor.inc"
+	#include "../Smps.inc"
 	#include "ShiftRegister.inc"
 
 	radix decimal
@@ -16,15 +16,15 @@ enableShiftRegister:
 	banksel SHIFT_REGISTER_PORT
 	movlw ~ALL_SHIFT_REGISTER_PINS_MASK
 	andwf SHIFT_REGISTER_PORT
-	tcall enableMotorVdd ; TODO: REPLACE THIS WITH enableSmps
+	tcall enableSmps
 
 disableShiftRegister:
 	banksel SHIFT_REGISTER_PORT
 	movlw ~ALL_SHIFT_REGISTER_PINS_MASK
 	andwf SHIFT_REGISTER_PORT
-	tcall disableMotorVdd ; TODO: REPLACE THIS WITH disableSmps
+	tcall disableSmps
 
 isShiftRegisterEnabled:
-	tcall isMotorVddEnabled ; TODO: REPLACE THIS WITH isSmpsEnabled
+	tcall isSmpsEnabled
 
 	end

@@ -5,9 +5,10 @@ HEX_FILES=\
 	ShiftRegisterBufferClearedTest.hex
 
 OBJ_FILES+=\
-	../EnableMotorVddDummy.o \
-	../DisableMotorVddDummy.o \
-	../IsMotorVddEnabledDummy.o
+	../../Smps/EnableSmpsDummy.o \
+	../../Smps/DisableSmpsDummy.o \
+	../../Smps/IsSmpsEnabledDummy.o \
+	../../Smps/PollSmpsDummy.o
 
 ANSEL_OBJ_FILES=\
 	AnselTest.o

@@ -4,7 +4,7 @@ load i "../../PreventInfiniteLoops.sti"
 forcePortcBeforeEnable=0xff
 numberOfEnableCalls=1
 numberOfDisableCalls=0
-expectedPortc=0xb8
+expectedPortc=0xf8
 
 run
 quit

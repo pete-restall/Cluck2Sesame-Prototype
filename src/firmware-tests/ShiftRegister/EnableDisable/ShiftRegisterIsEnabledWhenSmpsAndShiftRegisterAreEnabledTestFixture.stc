@@ -1,10 +1,10 @@
 load "IsShiftRegisterEnabledTest.cod"
 load i "../../PreventInfiniteLoops.sti"
 
-isMotorVddEnabledStubbedValue=0
+isSmpsEnabledStubbedValue=1
 numberOfEnableCalls=1
 numberOfDisableCalls=0
-expectedIsShiftRegisterEnabled=0
+expectedIsShiftRegisterEnabled=1
 
 run
 quit

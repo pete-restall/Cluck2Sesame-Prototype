@@ -3,6 +3,8 @@ HEX_FILES=\
 
 SHIFT_OUT_OBJ_FILES=\
 	ShiftOutTest.o \
+	../../Smps/EnableDisableSmpsDummies.o \
+	../../Smps/PollSmpsDummy.o \
 	../EnableDisableMotorVddStubs.o
 
 all: $(HEX_FILES)

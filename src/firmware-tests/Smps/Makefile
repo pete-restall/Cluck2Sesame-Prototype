@@ -7,7 +7,18 @@ export OBJ_FILES=\
 	$(CURDIR)/InitialiseAfterSmpsMock.o \
 	$(CURDIR)/PollAfterSmpsMock.o
 
-all: InitialiseAfterSmpsMock.o PollAfterSmpsMock.o
+TEST_DOUBLE_OBJ_FILES=\
+	InitialiseAfterSmpsMock.o \
+	PollAfterSmpsMock.o \
+	EnableDisableSmpsDummies.o \
+	EnableDisableSmpsMocks.o \
+	EnableSmpsDummy.o \
+	DisableSmpsDummy.o \
+	IsSmpsEnabledDummy.o \
+	IsSmpsEnabledStub.o \
+	PollSmpsDummy.o
+
+all: $(TEST_DOUBLE_OBJ_FILES)
 	$(MAKE) -C Initialisation all
 	$(MAKE) -C EnableDisable all
 	$(MAKE) -C Poll all

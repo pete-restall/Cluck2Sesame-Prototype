@@ -1,0 +1,10 @@
+load "EnableDisableSmpsTest.cod"
+load i "../../PreventInfiniteLoops.sti"
+
+numberOfEnableCalls=3
+numberOfDisableCalls=3
+expectedCalledEnableSmpsCount=3
+expectedCalledDisableSmpsCount=3
+
+run
+quit

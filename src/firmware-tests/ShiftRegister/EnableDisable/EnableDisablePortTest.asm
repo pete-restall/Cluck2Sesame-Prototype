@@ -1,7 +1,6 @@
 	#include "p16f685.inc"
 	#include "FarCalls.inc"
 	#include "ShiftRegister.inc"
-	#include "../EnableDisableMotorVddStubs.inc"
 	#include "TestFixture.inc"
 
 	radix decimal
@@ -29,7 +28,6 @@ testArrange:
 	banksel ANSELH
 	clrf ANSELH
 
-	fcall initialiseEnableAndDisableMotorVddStubs
 	fcall initialiseShiftRegister
 
 	banksel forcePortcBeforeEnable
@@ -47,7 +45,7 @@ callEnableShiftRegister:
 	fcall enableShiftRegister
 	banksel numberOfEnableCalls
 	decfsz numberOfEnableCalls
-	goto testAct
+	goto callEnableShiftRegister
 
 callDisableShiftRegister:
 	banksel numberOfDisableCalls

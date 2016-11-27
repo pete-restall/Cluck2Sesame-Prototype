@@ -6,9 +6,9 @@ HEX_FILES=\
 	IsEnabledTest.hex
 
 TEST_DOUBLE_OBJ_FILES=\
-	../EnableDisableSmpsMocks.o \
-	../IsSmpsEnabledStub.o \
-	../PollSmpsDummy.o \
+	../../Smps/EnableDisableSmpsMocks.o \
+	../../Smps/IsSmpsEnabledStub.o \
+	../../Smps/PollSmpsDummy.o \
 	../PollAfterMotorMock.o
 
 ENABLE_DISABLE_MOTOR_VDD_OBJ_FILES=\

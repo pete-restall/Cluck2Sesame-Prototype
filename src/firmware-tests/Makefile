@@ -32,9 +32,9 @@ all: $(TEST_DOUBLE_OBJ_FILES)
 	$(MAKE) -C Arithmetic4 all
 	$(MAKE) -C Arithmetic32 all
 	$(MAKE) -C ArithmeticBcd all
-	$(MAKE) -C ShiftRegister all
 	$(MAKE) -C Smps all
 	$(MAKE) -C Motor all
+	$(MAKE) -C ShiftRegister all
 	$(MAKE) -C TemperatureSensor all
 	$(MAKE) -C Lcd all
 	$(MAKE) -C Adc all
@@ -53,9 +53,9 @@ clean:
 	$(MAKE) -C Arithmetic4 clean
 	$(MAKE) -C Arithmetic32 clean
 	$(MAKE) -C ArithmeticBcd clean
-	$(MAKE) -C ShiftRegister clean
 	$(MAKE) -C Smps clean
 	$(MAKE) -C Motor clean
+	$(MAKE) -C ShiftRegister clean
 	$(MAKE) -C TemperatureSensor clean
 	$(MAKE) -C Lcd clean
 	$(MAKE) -C Adc clean

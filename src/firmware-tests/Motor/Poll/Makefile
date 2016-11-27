@@ -3,8 +3,8 @@ HEX_FILES=\
 
 POLL_CHAIN_OBJ_FILES=\
 	PollChainTest.o \
-	../EnableDisableSmpsDummies.o \
-	../PollSmpsDummy.o \
+	../../Smps/EnableDisableSmpsDummies.o \
+	../../Smps/PollSmpsDummy.o \
 	../PollAfterMotorMock.o
 
 all: $(HEX_FILES)

@@ -2,5 +2,7 @@
 	#define __CLUCK2SESAME_TESTS_SHIFTREGISTER_ENABLEDISABLEMOTORVDDSTUBS_INC
 
 	extern initialiseEnableAndDisableMotorVddStubs
+	extern enableMotorVdd
+	extern disableMotorVdd
 
 	#endif

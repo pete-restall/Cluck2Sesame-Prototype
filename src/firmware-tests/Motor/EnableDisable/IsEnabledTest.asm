@@ -1,7 +1,7 @@
 	#include "p16f685.inc"
 	#include "FarCalls.inc"
 	#include "Motor.inc"
-	#include "../IsSmpsEnabledStub.inc"
+	#include "../../Smps/IsSmpsEnabledStub.inc"
 	#include "TestFixture.inc"
 
 	radix decimal

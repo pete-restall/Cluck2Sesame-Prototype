@@ -20,6 +20,7 @@ testArrange:
 	call initialisePinsForShiftRegisterLoopback
 	fcall initialiseShiftRegister
 	fcall enableShiftRegister
+	fcall enableMotorVdd
 
 testAct:
 	banksel initialShiftRegisterBuffer

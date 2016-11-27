@@ -1,6 +1,0 @@
-	#ifndef __CLUCK2SESAME_TESTS_MOTOR_ISSMPSENABLEDSTUB_INC
-	#define __CLUCK2SESAME_TESTS_MOTOR_ISSMPSENABLEDSTUB_INC
-
-	extern initialiseIsSmpsEnabledStub
-
-	#endif

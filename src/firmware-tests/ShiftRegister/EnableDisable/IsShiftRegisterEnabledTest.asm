@@ -1,18 +1,18 @@
 	#include "p16f685.inc"
 	#include "FarCalls.inc"
 	#include "ShiftRegister.inc"
-	#include "../IsMotorVddEnabledStub.inc"
+	#include "../../Smps/IsSmpsEnabledStub.inc"
 	#include "TestFixture.inc"
 
 	radix decimal
 
 	udata
-	global isMotorVddEnabledStubbedValue
+	global isSmpsEnabledStubbedValue
 	global numberOfEnableCalls
 	global numberOfDisableCalls
 	global expectedIsShiftRegisterEnabled
 
-isMotorVddEnabledStubbedValue res 1
+isSmpsEnabledStubbedValue res 1
 numberOfEnableCalls res 1
 numberOfDisableCalls res 1
 expectedIsShiftRegisterEnabled res 1
@@ -23,10 +23,10 @@ IsShiftRegisterEnabledTest code
 testArrange:
 	fcall initialiseShiftRegister
 
-stubIsMotorVddEnabled:
-	banksel isMotorVddEnabledStubbedValue
-	movf isMotorVddEnabledStubbedValue, W
-	fcall initialiseIsMotorVddEnabledStub
+stubIsSmpsEnabled:
+	banksel isSmpsEnabledStubbedValue
+	movf isSmpsEnabledStubbedValue, W
+	fcall initialiseIsSmpsEnabledStub
 
 callEnableTheSpecifiedNumberOfTimes:
 	banksel numberOfEnableCalls
