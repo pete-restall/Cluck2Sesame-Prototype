@@ -6,6 +6,7 @@
 	#define POLL_AFTER_TEMPERATURESENSOR pollClock
 	#define POLL_AFTER_CLOCK pollMotor
 	#define POLL_AFTER_MOTOR pollLcd
-	#define POLL_AFTER_LCD pollSleep
+	#define POLL_AFTER_LCD pollUi
+	#define POLL_AFTER_UI pollSleep
 
 	#endif

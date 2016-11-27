@@ -22,7 +22,8 @@ OBJ_FILES=\
 	Lcd.a \
 	Adc.a \
 	Sleep.o \
-	Flash.o
+	Flash.o \
+	Ui.a
 
 all: $(HEX_FILENAME)
 
