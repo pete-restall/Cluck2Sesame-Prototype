@@ -8,10 +8,12 @@ export OBJ_FILES=\
 all:
 	$(MAKE) -C Pcon all
 	$(MAKE) -C Initialisation all
+	$(MAKE) -C ResetFlags all
 
 clean:
 	$(RM) -f $(BUILD_ARTEFACT_PATTERN)
 	$(MAKE) -C Pcon clean
 	$(MAKE) -C Initialisation clean
+	$(MAKE) -C ResetFlags clean
 
 include $(MAKEFILE_RULES)
