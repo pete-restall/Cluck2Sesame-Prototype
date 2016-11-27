@@ -1,5 +1,6 @@
-/src/firmware/Cluck2Sesame.X/build
-/src/firmware/Cluck2Sesame.X/dist
+/src/utilities/gpsim2tuple/gpsim2tuple
+/src/utilities/lpf-rc/lpf-rc
+/src/utilities/mean/mean
 /**/.~*
 /src/schematics/~*.sch
 /src/schematics/~*.pcb
