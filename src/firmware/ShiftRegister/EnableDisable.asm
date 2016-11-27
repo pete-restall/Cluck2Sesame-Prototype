@@ -16,15 +16,15 @@ enableShiftRegister:
 	banksel SHIFT_REGISTER_PORT
 	movlw ~ALL_SHIFT_REGISTER_PINS_MASK
 	andwf SHIFT_REGISTER_PORT
-	tcall enableMotorVdd
+	tcall enableMotorVdd ; TODO: REPLACE THIS WITH enableSmps
 
 disableShiftRegister:
 	banksel SHIFT_REGISTER_PORT
 	movlw ~ALL_SHIFT_REGISTER_PINS_MASK
 	andwf SHIFT_REGISTER_PORT
-	tcall disableMotorVdd
+	tcall disableMotorVdd ; TODO: REPLACE THIS WITH disableSmps
 
 isShiftRegisterEnabled:
-	tcall isMotorVddEnabled
+	tcall isMotorVddEnabled ; TODO: REPLACE THIS WITH isSmpsEnabled
 
 	end
