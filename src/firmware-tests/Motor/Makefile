@@ -6,7 +6,21 @@ export OBJ_FILES=\
 	$(ASSERT_NO_ISR_OBJ_FILE) \
 	$(CURDIR)/InitialiseAfterMotorMock.o
 
-all: InitialiseAfterMotorMock.o PollAfterMotorMock.o
+TEST_DOUBLE_OBJ_FILES=\
+	InitialiseAfterMotorMock.o \
+	PollAfterMotorMock.o \
+	MotorDummies.o \
+	InitialiseMotorDummy.o \
+	EnableMotorVddDummy.o \
+	EnableMotorVddMock.o \
+	DisableMotorVddDummy.o \
+	DisableMotorVddMock.o \
+	IsMotorVddEnabledDummy.o \
+	IsMotorVddEnabledStub.o \
+	IsMotorVddEnabledStubbedTrue.o \
+	PollMotorDummy.o
+
+all:
 	$(MAKE) -C Initialisation all
 	$(MAKE) -C EnableDisable all
 	$(MAKE) -C Poll all

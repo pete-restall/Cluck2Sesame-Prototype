@@ -45,6 +45,7 @@ disableLcd:
 	bcf LCD_CONTRAST_PORT, LCD_CONTRAST_PIN
 
 disableLcdDone:
+	; TODO: MOTOR VDD ALSO NEEDS TO BE DISABLED (BEFORE THE SHIFT REGISTER IS DISABLED)
 	tcall disableShiftRegister
 
 isLcdEnabled:

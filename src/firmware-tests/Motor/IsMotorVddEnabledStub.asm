@@ -6,16 +6,16 @@
 	udata
 returnValue res 1
 
-IsShiftRegisterEnabledStub code
-	global initialiseIsShiftRegisterEnabledStub
-	global isShiftRegisterEnabled
+IsMotorVddEnabledStub code
+	global initialiseIsMotorVddEnabledStub
+	global isMotorVddEnabled
 
-initialiseIsShiftRegisterEnabledStub:
+initialiseIsMotorVddEnabledStub:
 	banksel returnValue
 	movwf returnValue
 	return
 
-isShiftRegisterEnabled:
+isMotorVddEnabled:
 	banksel returnValue
 	movf returnValue, W
 	return

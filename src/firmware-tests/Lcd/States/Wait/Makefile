@@ -3,7 +3,8 @@ HEX_FILES=\
 	TimeElapsedTest.hex
 
 OBJ_FILES+=\
-	../../AdcDummies.o
+	../../AdcDummies.o \
+	../../../Motor/MotorDummies.o
 
 TEST_DOUBLE_OBJ_FILES=\
 	../../PollAfterLcdMock.o \

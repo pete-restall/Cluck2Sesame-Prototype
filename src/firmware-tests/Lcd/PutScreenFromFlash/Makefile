@@ -13,6 +13,11 @@ OBJ_FILES+=\
 	../EnableShiftRegisterDummy.o \
 	../DisableShiftRegisterDummy.o \
 	../IsShiftRegisterEnabledStubbedTrue.o \
+	../../Motor/InitialiseMotorDummy.o \
+	../../Motor/EnableMotorVddDummy.o \
+	../../Motor/DisableMotorVddDummy.o \
+	../../Motor/IsMotorVddEnabledStubbedTrue.o \
+	../../Motor/PollMotorDummy.o \
 	$(ASSERT_NO_ISR_OBJ_FILE)
 
 ENTIRE_SCREEN_SHIFT_OUT_OBJ_FILES=\

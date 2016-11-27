@@ -2,19 +2,19 @@
 	#include "FarCalls.inc"
 	#include "Lcd.inc"
 	#include "../../LcdStates.inc"
-	#include "../../PollAfterLcdMock.inc"
 	#include "../../IsShiftRegisterEnabledStub.inc"
+	#include "../../ShiftOutMock.inc"
 	#include "TestFixture.inc"
 
 	radix decimal
 
-ShiftRegisterEnabledTest code
+ShiftRegisterNotClearedBeforeEnabledTest code
 	global testArrange
 
 testArrange:
-	movlw 1
+	clrw
 	fcall initialiseIsShiftRegisterEnabledStub
-	fcall initialisePollAfterLcdMock
+	fcall initialiseShiftOutMock
 	fcall initialiseLcd
 
 testAct:
@@ -22,12 +22,8 @@ testAct:
 	fcall pollLcd
 
 testAssert:
-	.aliasForAssert lcdState, _a
-	.aliasLiteralForAssert LCD_STATE_ENABLE_WAITFORMORETHAN40MS, _b
-	.assert "_a == _b, 'Expected state to be LCD_STATE_ENABLE_WAITFORMORETHAN40MS.'"
-
-	banksel calledPollAfterLcd
-	.assert "calledPollAfterLcd != 0, 'Next poll in chain was not called.'"
+	banksel calledShiftOutCount
+	.assert "calledShiftOutCount == 0, 'Expected shiftOut() was not called.'"
 	return
 
 	end

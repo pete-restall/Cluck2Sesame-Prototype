@@ -4,7 +4,8 @@ HEX_FILES=\
 	EnableAdcTest.hex
 
 OBJ_FILES+=\
-	../../ShiftRegisterDummies.o
+	../../ShiftRegisterDummies.o \
+	../../../Motor/MotorDummies.o
 
 NEXT_POLL_IN_CHAIN_OBJ_FILES=\
 	NextPollInChainTest.o \

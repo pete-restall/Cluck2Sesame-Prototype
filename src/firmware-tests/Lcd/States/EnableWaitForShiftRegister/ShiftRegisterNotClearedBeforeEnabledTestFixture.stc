@@ -1,0 +1,4 @@
+load "ShiftRegisterNotClearedBeforeEnabledTest.cod"
+load i "../../../PreventInfiniteLoops.sti"
+run
+quit

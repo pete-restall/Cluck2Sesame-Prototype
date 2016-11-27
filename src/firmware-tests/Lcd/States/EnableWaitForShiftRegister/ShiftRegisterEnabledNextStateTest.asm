@@ -2,17 +2,17 @@
 	#include "FarCalls.inc"
 	#include "Lcd.inc"
 	#include "../../LcdStates.inc"
-	#include "../../IsShiftRegisterEnabledStub.inc"
 	#include "../../PollAfterLcdMock.inc"
+	#include "../../IsShiftRegisterEnabledStub.inc"
 	#include "TestFixture.inc"
 
 	radix decimal
 
-ShiftRegisterDisabledTest code
+ShiftRegisterEnabledNextStateTest code
 	global testArrange
 
 testArrange:
-	clrw
+	movlw 1
 	fcall initialiseIsShiftRegisterEnabledStub
 	fcall initialisePollAfterLcdMock
 	fcall initialiseLcd
@@ -23,8 +23,8 @@ testAct:
 
 testAssert:
 	.aliasForAssert lcdState, _a
-	.aliasLiteralForAssert LCD_STATE_ENABLE_WAITFORSHIFTREGISTER, _b
-	.assert "_a == _b, 'Expected state to be LCD_STATE_ENABLE_WAITFORSHIFTREGISTER.'"
+	.aliasLiteralForAssert LCD_STATE_ENABLE_WAITFORMOTORVDD, _b
+	.assert "_a == _b, 'Expected state to be LCD_STATE_ENABLE_WAITFORMOTORVDD.'"
 
 	banksel calledPollAfterLcd
 	.assert "calledPollAfterLcd != 0, 'Next poll in chain was not called.'"

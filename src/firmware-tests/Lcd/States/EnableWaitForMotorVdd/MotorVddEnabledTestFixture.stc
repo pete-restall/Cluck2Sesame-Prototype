@@ -1,0 +1,4 @@
+load "MotorVddEnabledTest.cod"
+load i "../../../PreventInfiniteLoops.sti"
+run
+quit

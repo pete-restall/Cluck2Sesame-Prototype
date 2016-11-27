@@ -1,0 +1,6 @@
+load "EnableMotorVddCalledAfterShiftRegisterClearedTest.cod"
+load i "../../../PreventInfiniteLoops.sti"
+initialShiftRegisterBuffer=0
+expectedShiftRegisterBuffer=0
+run
+quit

@@ -18,32 +18,38 @@ INITIALISATION_CHAIN_OBJ_FILES=\
 	../InitialiseAfterLcdMock.o \
 	../InitialiseShiftRegisterMock.o \
 	../EnableDisableShiftRegisterMocks.o \
-	../ShiftOutMock.o
+	../ShiftOutMock.o \
+	../../Motor/MotorDummies.o
 
 INITIAL_STATE_OBJ_FILES=\
 	InitialStateTest.o \
 	../InitialiseAfterLcdDummy.o \
-	../ShiftRegisterDummies.o
+	../ShiftRegisterDummies.o \
+	../../Motor/MotorDummies.o
 
 PORTA_OBJ_FILES=\
 	PortaTest.o \
 	../InitialiseAfterLcdDummy.o \
-	../ShiftRegisterDummies.o
+	../ShiftRegisterDummies.o \
+	../../Motor/MotorDummies.o
 
 ANSEL_OBJ_FILES=\
 	AnselTest.o \
 	../InitialiseAfterLcdDummy.o \
-	../ShiftRegisterDummies.o
+	../ShiftRegisterDummies.o \
+	../../Motor/MotorDummies.o
 
 LCD_FLAGS_ARE_ALL_CLEARED_OBJ_FILES=\
 	LcdFlagsAreAllClearedTest.o \
 	../InitialiseAfterLcdDummy.o \
-	../ShiftRegisterDummies.o
+	../ShiftRegisterDummies.o \
+	../../Motor/MotorDummies.o
 
 LCD_CONTRAST_IS_DEFAULTED_OBJ_FILES=\
 	LcdContrastIsDefaultedTest.o \
 	../InitialiseAfterLcdDummy.o \
-	../ShiftRegisterDummies.o
+	../ShiftRegisterDummies.o \
+	../../Motor/MotorDummies.o
 
 all: $(HEX_FILES)
 

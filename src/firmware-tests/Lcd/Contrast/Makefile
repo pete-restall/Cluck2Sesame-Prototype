@@ -17,6 +17,10 @@ TEST_DOUBLE_OBJ_FILES=\
 	../DisableShiftRegisterDummy.o \
 	../IsShiftRegisterEnabledStubbedTrue.o \
 	../ShiftOutDummy.o \
+	../../Motor/InitialiseMotorDummy.o \
+	../../Motor/EnableMotorVddDummy.o \
+	../../Motor/DisableMotorVddDummy.o \
+	../../Motor/IsMotorVddEnabledDummy.o \
 	../../Isr/InitialiseAfterIsrDummy.o \
 	../../Adc/InitialiseAfterAdcDummy.o \
 	../../Clock/PollAfterClockDummy.o

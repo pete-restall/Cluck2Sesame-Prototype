@@ -6,6 +6,7 @@ OBJ_FILES=\
 	Contrast.o \
 	DisabledState.o \
 	EnableWaitForShiftRegisterState.o \
+	EnableWaitForMotorVddState.o \
 	EnableWaitForMoreThan40msState.o \
 	EnableTrySetByteMode1State.o \
 	EnableTrySetByteMode2State.o \

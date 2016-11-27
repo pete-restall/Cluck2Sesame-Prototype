@@ -23,7 +23,8 @@ SHIFT_REGISTER_DUMMY_OBJ_FILES=\
 OBJ_FILES+=\
 	$(ASSERT_NO_ISR_OBJ_FILE) \
 	../PollAfterLcdDummy.o \
-	../InitialiseAfterLcdDummy.o
+	../InitialiseAfterLcdDummy.o \
+	../../Motor/MotorDummies.o
 
 ENABLE_DISABLE_SHIFT_REGISTER_OBJ_FILES=\
 	EnableDisableShiftRegisterTest.o \

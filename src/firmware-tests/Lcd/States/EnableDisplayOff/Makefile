@@ -4,7 +4,8 @@ HEX_FILES=\
 	NextStateTest.hex
 
 OBJ_FILES+=\
-	../../AdcDummies.o
+	../../AdcDummies.o \
+	../../../Motor/MotorDummies.o
 
 SHIFT_OUT_OBJ_FILES=\
 	ShiftOutTest.o \

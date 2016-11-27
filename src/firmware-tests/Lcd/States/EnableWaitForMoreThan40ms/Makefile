@@ -5,7 +5,8 @@ HEX_FILES=\
 TEST_DOUBLE_OBJ_FILES=\
 	../../PollAfterLcdMock.o \
 	../../ShiftRegisterDummies.o \
-	../../AdcDummies.o
+	../../AdcDummies.o \
+	../../../Motor/MotorDummies.o
 
 TIME_NOT_ELAPSED_OBJ_FILES=\
 	TimeNotElapsedTest.o \

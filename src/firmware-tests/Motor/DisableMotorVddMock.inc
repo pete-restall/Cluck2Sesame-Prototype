@@ -1,0 +1,7 @@
+	#ifndef __CLUCK2SESAME_TESTS_MOTOR_DISABLEMOTORVDDMOCK_INC
+	#define __CLUCK2SESAME_TESTS_MOTOR_DISABLEMOTORVDDMOCK_INC
+
+	extern initialiseDisableMotorVddMock
+	extern calledDisableMotorVdd
+
+	#endif
