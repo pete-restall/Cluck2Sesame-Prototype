@@ -31,6 +31,10 @@ brownOutReset:
 	fcall initialiseAfterBrownOutReset
 
 pollingLoop:
+	; TODO: FOR LOW POWER CONSUMPTION WE SHOULD BE ABLE TO SWITCH TO LFINTOSC
+	;       AND ONLY POLL A SUBSET OF MODULES (IE. CLOCK) IN THAT MODE.  WHEN
+	;       NON-TIMEKEEPING NEEDS TO BE DONE WE CAN SWITCH BACK INTO HFINTOSC
+	;       MODE AND START CALLING pollForWork() AGAIN.
 	fcall pollForWork
 	goto pollingLoop
 
