@@ -1,0 +1,4 @@
+load "T2conTest.cod"
+load i "../../PreventInfiniteLoops.sti"
+run
+quit

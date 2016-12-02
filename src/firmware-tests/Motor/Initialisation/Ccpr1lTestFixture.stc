@@ -1,0 +1,4 @@
+load "Ccpr1lTest.cod"
+load i "../../PreventInfiniteLoops.sti"
+run
+quit
