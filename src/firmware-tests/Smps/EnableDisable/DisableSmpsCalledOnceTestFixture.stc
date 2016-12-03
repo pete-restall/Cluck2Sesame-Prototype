@@ -1,5 +1,6 @@
 load "EnableDisableSmpsTest.cod"
 load i "../../PreventInfiniteLoops.sti"
+
 numberOfEnableCalls=0
 numberOfDisableCalls=1
 expectedPortValue=0

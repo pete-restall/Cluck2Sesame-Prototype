@@ -37,7 +37,7 @@ callEnableSmps:
 	fcall enableSmps
 	banksel numberOfEnableCalls
 	decfsz numberOfEnableCalls
-	goto testAct
+	goto callEnableSmps
 
 callDisableSmps:
 	banksel numberOfDisableCalls

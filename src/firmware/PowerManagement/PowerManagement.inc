@@ -5,6 +5,7 @@ POWER_FLAG_PREVENTSLEEP equ 0
 
 	#ifndef __CLUCK2SESAME_POWERMANAGEMENT_INITIALISE_ASM
 	extern powerManagementFlags
+	extern fastClockCount
 	#endif
 
 	#endif

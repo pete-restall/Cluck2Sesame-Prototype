@@ -10,8 +10,10 @@
 
 	udata
 	global powerManagementFlags
+	global fastClockCount
 
 powerManagementFlags res 1
+fastClockCount res 1
 
 PowerManagement code
 	global initialisePowerManagement
@@ -19,6 +21,9 @@ PowerManagement code
 initialisePowerManagement:
 	banksel powerManagementFlags
 	clrf powerManagementFlags
+
+	movlw 1
+	movwf fastClockCount
 
 	tcall INITIALISE_AFTER_POWERMANAGEMENT
 

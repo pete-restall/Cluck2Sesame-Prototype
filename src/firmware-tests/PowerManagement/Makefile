@@ -12,10 +12,12 @@ TEST_DOUBLE_OBJ_FILES=\
 all:
 	$(MAKE) -C Initialisation all
 	$(MAKE) -C Poll all
+	$(MAKE) -C ClockSwitching all
 
 clean:
 	$(RM) -f $(BUILD_ARTEFACT_PATTERN)
 	$(MAKE) -C Initialisation clean
 	$(MAKE) -C Poll clean
+	$(MAKE) -C ClockSwitching clean
 
 include $(MAKEFILE_RULES)

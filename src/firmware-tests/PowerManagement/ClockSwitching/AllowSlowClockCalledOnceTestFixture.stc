@@ -1,0 +1,9 @@
+load "ClockSwitchingTest.cod"
+load i "../../PreventInfiniteLoops.sti"
+
+numberOfEnsureFastClockCalls=0
+numberOfAllowSlowClockCalls=1
+expectedOsccon=0b00000011
+
+run
+quit

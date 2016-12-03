@@ -4,7 +4,7 @@
 	extern initialisePowerManagement
 	extern pollPowerManagement
 	extern preventSleep
-	extern preventSlowClock
+	extern ensureFastClock
 	extern allowSlowClock
 
 	#endif

@@ -1,0 +1,21 @@
+40a41,43
+> #define HTS 0x04
+> #define LTS 0x02
+> 
+223c226,227
+<     value.put(value.get() | IOFS);
+---
+>     unsigned int IRCF = (value.get() & (IRCF0 | IRCF1 | IRCF2)) >> 4;
+>     value.put((value.get() & ~(LTS | HTS)) | (IRCF == 0 ? LTS : HTS));
+297c301
+< 	if (old_IRCF == 0 && new_IRCF != 0) // Allow 4 ms to stabalise
+---
+> 	if (old_IRCF == 0 || new_IRCF == 0) // Allow 4 ms to stabalise
+303c307,311
+< 	    new_value &= ~ IOFS;
+---
+> 	    new_value &= ~(HTS | LTS);
+> 	    if (old_IRCF != 0)
+> 	        new_value |= HTS;
+> 	    else
+> 	        new_value |= LTS;
