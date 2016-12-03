@@ -4,6 +4,7 @@ export OBJ_FILES=\
 	$(FIRMWARE_CORE_OBJ_FILES) \
 	$(TEST_FIXTURE_OBJ_FILES) \
 	$(FIRMWARE_DIR)/Timer0.o \
+	$(CURDIR)/../Timer0/InitialiseAfterTimer0Mock.o \
 	$(FIRMWARE_DIR)/Flash.o
 
 TEST_DOUBLE_OBJ_FILES=\

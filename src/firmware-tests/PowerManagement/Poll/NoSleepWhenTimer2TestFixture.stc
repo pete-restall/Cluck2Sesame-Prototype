@@ -1,0 +1,4 @@
+load "NoSleepWhenTimer2Test.cod"
+load i "../../PreventInfiniteLoops.sti"
+run
+quit

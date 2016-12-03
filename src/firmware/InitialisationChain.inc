@@ -3,7 +3,8 @@
 
 	#define INITIALISE_FIRST initialiseClock
 	#define INITIALISE_AFTER_CLOCK initialiseTimer0
-	#define INITIALISE_AFTER_TIMER0 initialiseAdc
+	#define INITIALISE_AFTER_TIMER0 initialisePowerManagement
+	#define INITIALISE_AFTER_POWERMANAGEMENT initialiseAdc
 	#define INITIALISE_AFTER_ADC initialiseSmps
 	#define INITIALISE_AFTER_SMPS initialiseMotor
 	#define INITIALISE_AFTER_MOTOR initialiseShiftRegister

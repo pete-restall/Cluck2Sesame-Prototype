@@ -41,6 +41,7 @@ all: $(TEST_DOUBLE_OBJ_FILES)
 	$(MAKE) -C Adc all
 	$(MAKE) -C Isr all
 	$(MAKE) -C Flash all
+	$(MAKE) -C PowerManagement all
 	$(MAKE) -C Ui all
 
 clean:
@@ -63,6 +64,7 @@ clean:
 	$(MAKE) -C Adc clean
 	$(MAKE) -C Isr clean
 	$(MAKE) -C Flash clean
+	$(MAKE) -C PowerManagement clean
 	$(MAKE) -C Ui clean
 
 include $(MAKEFILE_RULES)
