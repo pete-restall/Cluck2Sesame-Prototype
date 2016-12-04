@@ -1,4 +1,4 @@
-	#define __CLUCK2SESAME_POWERONRESET_ASM
+	#define __CLUCK2SESAME_PLATFORM_POWERONRESET_ASM
 
 	#include "p16f685.inc"
 	#include "TailCalls.inc"

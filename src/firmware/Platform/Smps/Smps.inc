@@ -1,10 +1,10 @@
-	#ifndef __CLUCK2SESAME_SMPS_SMPS_INC
-	#define __CLUCK2SESAME_SMPS_SMPS_INC
+	#ifndef __CLUCK2SESAME_PLATFORM_SMPS_SMPS_INC
+	#define __CLUCK2SESAME_PLATFORM_SMPS_SMPS_INC
 	#include "p16f685.inc"
 
 	radix decimal
 
-	#ifndef __CLUCK2SESAME_SMPS_ENABLEDISABLE_ASM
+	#ifndef __CLUCK2SESAME_PLATFORM_SMPS_ENABLEDISABLE_ASM
 	extern enableSmpsCount
 	extern smpsFlags
 	#endif

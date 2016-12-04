@@ -1,4 +1,4 @@
-	#define __CLUCK2SESAME_BROWNOUTRESET_ASM
+	#define __CLUCK2SESAME_PLATFORM_BROWNOUTRESET_ASM
 
 	#include "p16f685.inc"
 	#include "TailCalls.inc"

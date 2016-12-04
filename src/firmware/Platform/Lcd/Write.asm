@@ -1,4 +1,4 @@
-	#define __CLUCK2SESAME_LCD_WRITE_ASM
+	#define __CLUCK2SESAME_PLATFORM_LCD_WRITE_ASM
 
 	#include "p16f685.inc"
 	#include "FarCalls.inc"

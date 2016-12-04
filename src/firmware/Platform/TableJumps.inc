@@ -1,5 +1,5 @@
-	#ifndef __CLUCK2SESAME_TABLE_JUMPS_INC
-	#define __CLUCK2SESAME_TABLE_JUMPS_INC
+	#ifndef __CLUCK2SESAME_PLATFORM_TABLE_JUMPS_INC
+	#define __CLUCK2SESAME_PLATFORM_TABLE_JUMPS_INC
 
 tableDefinitionToJumpWith macro indexRegister
 	local tableStart

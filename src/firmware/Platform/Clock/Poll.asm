@@ -1,4 +1,4 @@
-	#define __CLUCK2SESAME_CLOCK_ASM
+	#define __CLUCK2SESAME_PLATFORM_CLOCK_ASM
 
 	#include "p16f685.inc"
 	#include "FarCalls.inc"

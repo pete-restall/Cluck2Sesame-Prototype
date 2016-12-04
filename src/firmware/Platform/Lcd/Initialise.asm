@@ -1,4 +1,4 @@
-	#define __CLUCK2SESAME_LCD_INITIALISE_ASM
+	#define __CLUCK2SESAME_PLATFORM_LCD_INITIALISE_ASM
 
 	#include "p16f685.inc"
 	#include "TailCalls.inc"

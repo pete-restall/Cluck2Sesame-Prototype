@@ -1,5 +1,5 @@
-	#ifndef __CLUCK2SESAME_FLASH_INC
-	#define __CLUCK2SESAME_FLASH_INC
+	#ifndef __CLUCK2SESAME_PLATFORM_FLASH_INC
+	#define __CLUCK2SESAME_PLATFORM_FLASH_INC
 
 loadFlashAddressOf macro label
 	banksel EEADRH

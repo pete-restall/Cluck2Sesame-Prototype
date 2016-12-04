@@ -1,5 +1,5 @@
-	#ifndef __CLUCK2SESAME_FARCALLS_INC
-	#define __CLUCK2SESAME_FARCALLS_INC
+	#ifndef __CLUCK2SESAME_PLATFORM_FARCALLS_INC
+	#define __CLUCK2SESAME_PLATFORM_FARCALLS_INC
 
 fcall macro destination
 	local nextInstruction

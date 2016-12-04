@@ -1,4 +1,4 @@
-	#define __CLUCK2SESAME_RESETFLAGS_ASM
+	#define __CLUCK2SESAME_PLATFORM_RESETFLAGS_ASM
 
 	#include "p16f685.inc"
 	#include "ResetFlags.inc"
