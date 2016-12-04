@@ -3,23 +3,23 @@ HEX_FILES=\
 	BrownOutResetTest.hex \
 	MclrResetTest.hex
 
-POWER_ON_RESET_OBJ_FILES=\
-	PowerOnResetTest.o \
+TEST_DOUBLE_OBJ_FILES=\
 	$(ASSERT_NO_ISR_OBJ_FILE) \
 	../ResetMocks.o \
-	../PollStubToAssertTest.o
+	../PollStubToAssertTest.o \
+	../../PowerManagement/PowerManagementDummies.o
+
+POWER_ON_RESET_OBJ_FILES=\
+	PowerOnResetTest.o \
+	$(TEST_DOUBLE_OBJ_FILES)
 
 BROWN_OUT_RESET_OBJ_FILES=\
 	BrownOutResetTest.o \
-	$(ASSERT_NO_ISR_OBJ_FILE) \
-	../ResetMocks.o \
-	../PollStubToAssertTest.o
+	$(TEST_DOUBLE_OBJ_FILES)
 
 MCLR_RESET_OBJ_FILES=\
 	MclrResetTest.o \
-	$(ASSERT_NO_ISR_OBJ_FILE) \
-	../ResetMocks.o \
-	../PollStubToAssertTest.o
+	$(TEST_DOUBLE_OBJ_FILES)
 
 all: $(HEX_FILES)
 

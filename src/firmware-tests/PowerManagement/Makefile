@@ -7,7 +7,8 @@ export OBJ_FILES=\
 	$(CURDIR)/InitialiseAfterPowerManagementMock.o
 
 TEST_DOUBLE_OBJ_FILES=\
-	InitialiseAfterPowerManagementMock.o
+	InitialiseAfterPowerManagementMock.o \
+	PowerManagementDummies.o
 
 all:
 	$(MAKE) -C Initialisation all

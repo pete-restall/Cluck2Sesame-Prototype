@@ -5,37 +5,37 @@ HEX_FILES=\
 	PollCalledRepeatedlyTest.hex \
 	FirstPollInChainTest.hex
 
-POLL_AFTER_POR_OBJ_FILES=\
-	PollAfterPowerOnResetTest.o \
+TEST_DOUBLE_OBJ_FILES=\
 	$(ASSERT_NO_ISR_OBJ_FILE) \
 	PollAfterFirstInChainDummy.o \
+	../../PowerManagement/PowerManagementDummies.o
+
+POLL_AFTER_POR_OBJ_FILES=\
+	PollAfterPowerOnResetTest.o \
+	$(TEST_DOUBLE_OBJ_FILES) \
 	../ResetMocks.o \
 	../PollMockToAssertTest.o
 
 POLL_AFTER_BOR_OBJ_FILES=\
 	PollAfterBrownOutResetTest.o \
-	$(ASSERT_NO_ISR_OBJ_FILE) \
-	PollAfterFirstInChainDummy.o \
+	$(TEST_DOUBLE_OBJ_FILES) \
 	../ResetMocks.o \
 	../PollMockToAssertTest.o
 
 POLL_AFTER_MCLR_OBJ_FILES=\
 	PollAfterMclrResetTest.o \
-	$(ASSERT_NO_ISR_OBJ_FILE) \
-	PollAfterFirstInChainDummy.o \
+	$(TEST_DOUBLE_OBJ_FILES) \
 	../ResetMocks.o \
 	../PollMockToAssertTest.o
 
 POLL_CALLED_REPEATEDLY_OBJ_FILES=\
 	PollCalledRepeatedlyTest.o \
-	$(ASSERT_NO_ISR_OBJ_FILE) \
-	PollAfterFirstInChainDummy.o \
+	$(TEST_DOUBLE_OBJ_FILES) \
 	../ResetDummies.o
 
 FIRST_POLL_IN_CHAIN_OBJ_FILES=\
 	FirstPollInChainTest.o \
-	$(ASSERT_NO_ISR_OBJ_FILE) \
-	PollAfterFirstInChainDummy.o \
+	$(TEST_DOUBLE_OBJ_FILES) \
 	../ResetDummies.o \
 	$(FIRMWARE_DIR)/Smps.a
 
