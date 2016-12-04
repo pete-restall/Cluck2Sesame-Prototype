@@ -1,6 +1,6 @@
 	#define __CLUCK2SESAME_PLATFORM_LCD_POLL_ASM
 
-	#include "p16f685.inc"
+	#include "Mcu.inc"
 	#include "TailCalls.inc"
 	#include "TableJumps.inc"
 	#include "PollChain.inc"

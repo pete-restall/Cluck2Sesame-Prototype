@@ -1,4 +1,4 @@
-	#include "p16f685.inc"
+	#include "Mcu.inc"
 	#include "FarCalls.inc"
 	#include "Motor.inc"
 	#include "../../Smps/IsSmpsEnabledStub.inc"

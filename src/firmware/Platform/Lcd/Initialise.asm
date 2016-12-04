@@ -1,6 +1,6 @@
 	#define __CLUCK2SESAME_PLATFORM_LCD_INITIALISE_ASM
 
-	#include "p16f685.inc"
+	#include "Mcu.inc"
 	#include "TailCalls.inc"
 	#include "InitialisationChain.inc"
 	#include "Lcd.inc"

@@ -1,6 +1,6 @@
 	#define __CLUCK2SESAME_PLATFORM_RESETFLAGS_ASM
 
-	#include "p16f685.inc"
+	#include "Mcu.inc"
 	#include "ResetFlags.inc"
 
 	radix decimal

@@ -1,8 +1,10 @@
-	#include "p16f685.inc"
+	#include "Mcu.inc"
 	#include "TailCalls.inc"
 	#include "InitialisationChain.inc"
 
 	radix decimal
+
+	constrainedToMcuFastClockFrequencyHz 4000000
 
 LEFT_JUSTIFIED_MASK equ 0x00
 VDD_AS_VREF_MASK equ 0x00

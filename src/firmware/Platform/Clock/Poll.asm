@@ -1,6 +1,6 @@
 	#define __CLUCK2SESAME_PLATFORM_CLOCK_ASM
 
-	#include "p16f685.inc"
+	#include "Mcu.inc"
 	#include "FarCalls.inc"
 	#include "TailCalls.inc"
 	#include "ArithmeticBcd.inc"

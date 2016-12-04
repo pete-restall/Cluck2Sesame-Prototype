@@ -1,4 +1,4 @@
-	#include "p16f685.inc"
+	#include "Mcu.inc"
 	#include "FarCalls.inc"
 	#include "GeneralPurposeRegisters.inc"
 	#include "Arithmetic4.inc"

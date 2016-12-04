@@ -1,4 +1,4 @@
-	#include "p16f685.inc"
+	#include "Mcu.inc"
 	#include "FarCalls.inc"
 	#include "Lcd.inc"
 	#include "../../../../firmware/Platform/Lcd/Isr.inc"

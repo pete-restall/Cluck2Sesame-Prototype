@@ -1,4 +1,4 @@
-	#include "p16f685.inc"
+	#include "Mcu.inc"
 	#include "TailCalls.inc"
 	#include "../Smps.inc"
 	#include "ShiftRegister.inc"

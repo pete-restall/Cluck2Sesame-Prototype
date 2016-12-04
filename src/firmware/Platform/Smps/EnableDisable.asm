@@ -1,6 +1,6 @@
 	#define __CLUCK2SESAME_PLATFORM_SMPS_ENABLEDISABLE_ASM
 
-	#include "p16f685.inc"
+	#include "Mcu.inc"
 	#include "Smps.inc"
 
 	radix decimal

@@ -1,6 +1,6 @@
 	#ifndef __CLUCK2SESAME_PLATFORM_SMPS_SMPS_INC
 	#define __CLUCK2SESAME_PLATFORM_SMPS_SMPS_INC
-	#include "p16f685.inc"
+	#include "Mcu.inc"
 
 	radix decimal
 

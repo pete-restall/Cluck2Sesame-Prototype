@@ -1,8 +1,10 @@
-	#include "p16f685.inc"
+	#include "Mcu.inc"
 	#include "TailCalls.inc"
 	#include "InitialisationChain.inc"
 
 	radix decimal
+
+	constrainedToMcuFastClockFrequencyHz 4000000
 
 NON_TIMER0_MASK equ (1 << NOT_RABPU) | (1 << INTEDG)
 PRESCALER_DIVIDE_BY_128 equ b'00000110'
