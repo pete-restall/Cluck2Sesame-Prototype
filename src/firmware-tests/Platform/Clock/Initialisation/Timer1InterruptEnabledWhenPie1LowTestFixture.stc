@@ -1,0 +1,5 @@
+load "Timer1InterruptEnabledTest.cod"
+load i "../../../PreventInfiniteLoops.sti"
+initialPie1=0x00
+run
+quit
