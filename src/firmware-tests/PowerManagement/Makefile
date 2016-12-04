@@ -8,7 +8,8 @@ export OBJ_FILES=\
 
 TEST_DOUBLE_OBJ_FILES=\
 	InitialiseAfterPowerManagementMock.o \
-	PowerManagementDummies.o
+	PowerManagementDummies.o \
+	PowerManagementMocks.o
 
 all:
 	$(MAKE) -C Initialisation all

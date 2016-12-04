@@ -1,0 +1,11 @@
+	#ifndef __CLUCK2SESAME_TESTS_POWERMANAGEMENT_POWERMANAGEMENTMOCKS_INC
+	#define __CLUCK2SESAME_TESTS_POWERMANAGEMENT_POWERMANAGEMENTMOCKS_INC
+
+	extern initialisePowerManagementMocks
+	extern calledInitialisePowerManagement
+	extern calledPollPowerManagement
+	extern calledPreventSleep
+	extern calledEnsureFastClock
+	extern calledAllowSlowClock
+
+	#endif

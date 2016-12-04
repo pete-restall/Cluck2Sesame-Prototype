@@ -1,4 +1,6 @@
 	#include "p16f685.inc"
+	#include "FarCalls.inc"
+	#include "PowerManagement.inc"
 
 	radix decimal
 
@@ -12,6 +14,8 @@ Adc code
 	global disableAdc
 
 enableAdc:
+	fcall ensureFastClock
+
 	banksel enableAdcCount
 	incf enableAdcCount, W
 	incf enableAdcCount
@@ -26,6 +30,8 @@ enableAdcOnlyOnTheFirstCall:
 	return
 
 disableAdc:
+	fcall allowSlowClock
+
 	banksel enableAdcCount
 	decfsz enableAdcCount
 	return

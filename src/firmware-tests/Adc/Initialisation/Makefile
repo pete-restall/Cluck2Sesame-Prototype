@@ -9,28 +9,36 @@ HEX_FILES=\
 	SampleRateIs11kHzTest.hex
 
 INITIALISATION_CHAIN_OBJ_FILES=\
-	InitialisationChainTest.o
+	InitialisationChainTest.o \
+	../../PowerManagement/PowerManagementDummies.o
 
 PIE1_OBJ_FILES=\
-	Pie1Test.o
+	Pie1Test.o \
+	../../PowerManagement/PowerManagementDummies.o
 
 PIR1_OBJ_FILES=\
-	Pir1Test.o
+	Pir1Test.o \
+	../../PowerManagement/PowerManagementDummies.o
 
 ADC_DISABLED_OBJ_FILES=\
-	AdcDisabledTest.o
+	AdcDisabledTest.o \
+	../../PowerManagement/PowerManagementDummies.o
 
 CHANNEL_IS_INTERNAL_REFERENCE_OBJ_FILES=\
-	ChannelIsInternalReferenceTest.o
+	ChannelIsInternalReferenceTest.o \
+	../../PowerManagement/PowerManagementDummies.o
 
 LEFT_JUSTIFIED_OBJ_FILES=\
-	LeftJustifiedTest.o
+	LeftJustifiedTest.o \
+	../../PowerManagement/PowerManagementDummies.o
 
 VDD_AS_VOLTAGE_REFERENCE_OBJ_FILES=\
-	VddAsVoltageReferenceTest.o
+	VddAsVoltageReferenceTest.o \
+	../../PowerManagement/PowerManagementDummies.o
 
 SAMPLE_RATE_IS_11KHZ_OBJ_FILES=\
-	SampleRateIs11kHzTest.o
+	SampleRateIs11kHzTest.o \
+	../../PowerManagement/PowerManagementDummies.o
 
 all: $(HEX_FILES)
 
