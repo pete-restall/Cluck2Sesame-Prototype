@@ -54,12 +54,13 @@ lcdDeltaSigmaContrastControl:
 	movwf LCD_CONTRAST_PORT
 
 clockTicked:
-	; TODO: TEST AND IMPLEMENT TO ENSURE THAT THIS DOES NOT INCREMENT FOR AN AD CONVERSION !  IE. ENSURE PIR1.TMRIF != 0 !
+	banksel PIR1
+	btfss PIR1, TMR1IF
+	goto endOfIsr
+	bcf PIR1, TMR1IF
+
 	banksel clockFlags
 	bsf clockFlags, CLOCK_FLAG_TICKED
-
-	banksel PIR1
-	bcf PIR1, TMR1IF
 
 endOfIsr:
 	movf contextSavingPclath, W

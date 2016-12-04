@@ -1,0 +1,4 @@
+load "IsrWithNonClockTickTest.cod"
+load i "../../../PreventInfiniteLoops.sti"
+run
+quit
