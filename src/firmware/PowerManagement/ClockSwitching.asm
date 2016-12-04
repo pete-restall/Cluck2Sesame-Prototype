@@ -31,10 +31,6 @@ allowSlowClock:
 	banksel OSCCON
 	movlw OSCCON_LFINTOSC_31KHZ
 	movwf OSCCON
-
-waitUntilLfintoscIsStable:
-	btfss OSCCON, LTS
-	goto waitUntilLfintoscIsStable
 	return
 
 	end
