@@ -1,5 +1,5 @@
 load "TimeElapsedTest.cod"
-load i "../../../PreventInfiniteLoops.sti"
+load i "../../../../PreventInfiniteLoops.sti"
 
 timer0Seed=187
 timer0Increment=7

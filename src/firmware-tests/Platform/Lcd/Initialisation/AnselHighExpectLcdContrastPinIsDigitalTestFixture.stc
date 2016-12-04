@@ -1,5 +1,5 @@
 load "AnselTest.cod"
-load i "../../PreventInfiniteLoops.sti"
+load i "../../../PreventInfiniteLoops.sti"
 
 ansel=0xff
 anselh=0x0f

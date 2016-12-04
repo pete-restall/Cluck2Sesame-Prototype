@@ -1,5 +1,5 @@
 load "EnableDisableAdcTest.cod"
-load i "../../PreventInfiniteLoops.sti"
+load i "../../../PreventInfiniteLoops.sti"
 
 initialAdcon0=0x00
 expectedAdcon0=0x03

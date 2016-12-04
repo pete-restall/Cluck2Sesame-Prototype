@@ -1,5 +1,5 @@
 load "EntireScreenShiftOutTest.cod"
-load i "../../PreventInfiniteLoops.sti"
+load i "../../../PreventInfiniteLoops.sti"
 initialShiftRegisterBuffer=0x00
 run
 dump e p16f685 "EntireScreenShiftOutWhenBufferIsLowTestFixture.hex"

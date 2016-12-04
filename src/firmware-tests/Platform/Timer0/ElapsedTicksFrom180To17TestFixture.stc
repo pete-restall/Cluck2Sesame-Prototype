@@ -1,5 +1,5 @@
 load "ElapsedTicksTest.cod"
-load i "../PreventInfiniteLoops.sti"
+load i "../../PreventInfiniteLoops.sti"
 
 firstTMR0=180
 secondTMR0=17

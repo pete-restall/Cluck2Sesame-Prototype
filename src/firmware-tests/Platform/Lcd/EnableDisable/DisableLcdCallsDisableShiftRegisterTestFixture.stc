@@ -1,5 +1,5 @@
 load "EnableDisableShiftRegisterTest.cod"
-load i "../../PreventInfiniteLoops.sti"
+load i "../../../PreventInfiniteLoops.sti"
 
 numberOfEnableCalls=3
 numberOfDisableCalls=3

@@ -1,5 +1,5 @@
 load "PutScreenWhenStateIsNotIdleTest.cod"
-load i "../../PreventInfiniteLoops.sti"
+load i "../../../PreventInfiniteLoops.sti"
 initialLcdState=0x02
 initialLcdNextState=0x56
 run

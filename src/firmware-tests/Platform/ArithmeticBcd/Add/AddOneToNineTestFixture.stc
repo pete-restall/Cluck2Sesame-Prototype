@@ -1,5 +1,5 @@
 load "AddTest.cod"
-load i "../../PreventInfiniteLoops.sti"
+load i "../../../PreventInfiniteLoops.sti"
 
 RAA=0x09
 RBA=0x01

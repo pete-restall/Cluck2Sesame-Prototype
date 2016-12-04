@@ -1,5 +1,5 @@
 load "PollAfterPowerOnResetTest.cod"
-load i "../../PreventInfiniteLoops.sti"
+load i "../../../PreventInfiniteLoops.sti"
 pcon=(pcon & b'11111100') | b'00000000'
 status=(status & b'11111111') | b'00000011'
 run

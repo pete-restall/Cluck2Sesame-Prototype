@@ -1,5 +1,5 @@
 load "PortaTest.cod"
-load i "../../PreventInfiniteLoops.sti"
+load i "../../../PreventInfiniteLoops.sti"
 
 porta=0x3f
 trisa=0x3f

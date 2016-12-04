@@ -1,5 +1,5 @@
 load "Pie1Test.cod"
-load i "../../PreventInfiniteLoops.sti"
+load i "../../../PreventInfiniteLoops.sti"
 initialPie1=0xff
 expectedPie1=0xff
 run

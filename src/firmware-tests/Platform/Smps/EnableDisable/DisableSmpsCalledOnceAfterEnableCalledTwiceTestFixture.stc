@@ -1,5 +1,5 @@
 load "EnableDisableSmpsTest.cod"
-load i "../../PreventInfiniteLoops.sti"
+load i "../../../PreventInfiniteLoops.sti"
 
 numberOfEnableCalls=2
 numberOfDisableCalls=1

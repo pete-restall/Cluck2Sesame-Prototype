@@ -1,5 +1,5 @@
 load "TimeNotElapsedTest.cod"
-load i "../../../PreventInfiniteLoops.sti"
+load i "../../../../PreventInfiniteLoops.sti"
 
 timer0Seed=5
 run

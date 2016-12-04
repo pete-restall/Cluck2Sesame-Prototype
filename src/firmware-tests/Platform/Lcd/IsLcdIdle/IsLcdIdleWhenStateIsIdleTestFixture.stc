@@ -1,5 +1,5 @@
 load "IsLcdIdleTest.cod"
-load i "../../PreventInfiniteLoops.sti"
+load i "../../../PreventInfiniteLoops.sti"
 initialLcdState=0x01
 expectedIsLcdIdle=1
 run

@@ -1,5 +1,5 @@
 load "Mul4x4Test.cod"
-load i "../../PreventInfiniteLoops.sti"
+load i "../../../PreventInfiniteLoops.sti"
 
 RAA=3
 RBA=7

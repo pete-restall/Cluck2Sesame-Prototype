@@ -1,5 +1,5 @@
 load "IsShiftRegisterEnabledTest.cod"
-load i "../../PreventInfiniteLoops.sti"
+load i "../../../PreventInfiniteLoops.sti"
 
 isSmpsEnabledStubbedValue=0
 numberOfEnableCalls=1

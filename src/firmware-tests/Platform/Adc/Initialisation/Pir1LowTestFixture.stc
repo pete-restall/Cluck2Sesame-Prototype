@@ -1,5 +1,5 @@
 load "Pir1Test.cod"
-load i "../../PreventInfiniteLoops.sti"
+load i "../../../PreventInfiniteLoops.sti"
 initialPir1=0x00
 expectedPir1=0x00
 run

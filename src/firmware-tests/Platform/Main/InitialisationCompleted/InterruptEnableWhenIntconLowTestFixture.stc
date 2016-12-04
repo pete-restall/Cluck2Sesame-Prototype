@@ -1,5 +1,5 @@
 load "InterruptEnableTest.cod"
-load i "../../PreventInfiniteLoops.sti"
+load i "../../../PreventInfiniteLoops.sti"
 intcon=0x00
 expectedIntcon=b'11000000'
 run

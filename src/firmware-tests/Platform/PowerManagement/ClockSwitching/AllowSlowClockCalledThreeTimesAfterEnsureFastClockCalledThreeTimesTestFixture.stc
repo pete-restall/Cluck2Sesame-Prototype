@@ -1,5 +1,5 @@
 load "ClockSwitchingTest.cod"
-load i "../../PreventInfiniteLoops.sti"
+load i "../../../PreventInfiniteLoops.sti"
 
 numberOfEnsureFastClockCalls=3
 numberOfAllowSlowClockCalls=3

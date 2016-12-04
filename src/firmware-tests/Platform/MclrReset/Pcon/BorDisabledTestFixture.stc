@@ -5,6 +5,6 @@ echo DOES NOT ALLOW SETTING OF THE SBOREN OR ULPWUE BITS !
 echo *************************************************************************
 
 load "BorDisabledTest.cod"
-load i "../../PreventInfiniteLoops.sti"
+load i "../../../PreventInfiniteLoops.sti"
 run
 quit
