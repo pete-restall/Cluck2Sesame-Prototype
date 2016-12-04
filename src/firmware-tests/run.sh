@@ -14,7 +14,7 @@ export MEAN="${UTILITIES_BASEDIR}/mean/mean";
 if [ $# != 1 ]; then
 	echo > run.log.all;
 	exitCode=0;
-	for module in [ * ]; do
+	for module in [ Platform/* Ui/* ]; do
 		if ! [[ -d ${module} ]]; then
 			continue;
 		fi;

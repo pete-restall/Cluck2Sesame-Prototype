@@ -1,43 +1,15 @@
 HEX_FILENAME=Cluck2Sesame.hex
 
 OBJ_FILES=\
-	Cluck2Sesame.o \
-	ConfigWords.o \
-	Isr.o \
-	GeneralPurposeRegisters.o \
-	Arithmetic4.o \
-	Arithmetic32.o \
-	ArithmeticBcd.a \
-	Main.o \
-	PowerOnReset.o \
-	BrownOutReset.o \
-	MclrReset.o \
-	ResetFlags.o \
-	Timer0.o \
-	TemperatureSensor.a \
-	Clock.a \
-	ShiftRegister.a \
-	Smps.a \
-	Motor.a \
-	Lcd.a \
-	Adc.a \
-	Flash.o \
-	PowerManagement.a \
+	Boot.o \
+	Platform.a \
 	Ui.a
 
 all: $(HEX_FILENAME)
 
 clean:
 	$(RM) -f $(BUILD_ARTEFACT_PATTERN)
-	$(MAKE) -C ArithmeticBcd clean
-	$(MAKE) -C Clock clean
-	$(MAKE) -C ShiftRegister clean
-	$(MAKE) -C Smps clean
-	$(MAKE) -C Motor clean
-	$(MAKE) -C TemperatureSensor clean
-	$(MAKE) -C Lcd clean
-	$(MAKE) -C Adc clean
-	$(MAKE) -C PowerManagement clean
+	$(MAKE) -C Platform clean
 	$(MAKE) -C Ui clean
 
 $(HEX_FILENAME): $(OBJ_FILES)

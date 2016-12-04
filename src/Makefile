@@ -1,15 +1,17 @@
 export BASE_DIR=$(CURDIR)
 export FIRMWARE_DIR=$(BASE_DIR)/firmware
+export UTILITIES_DIR=$(BASE_DIR)/utilities
 export LKR_FILENAME=$(FIRMWARE_DIR)/Cluck2Sesame.lkr
 export MAKEFILE_RULES=$(BASE_DIR)/Makefile.rules
 export MAKE=make
 export AS=gpasm
-export ASARGS=-c -p p16f685 -I $(FIRMWARE_DIR)
+export ASARGS=-c -p p16f685 -I $(FIRMWARE_DIR) -I $(FIRMWARE_DIR)/Platform
 export AR=gplib
 export ARARGS=-c
 export LD=gplink
 export LDARGS=-S 2 -O 2 -s $(LKR_FILENAME) -m -c
 export BUILD_ARTEFACT_PATTERN=*.hex *.cod *.cof *.map *.lst *.o *.a *.log
+export GPLIB_MERGE=$(UTILITIES_DIR)/gplib-merge.sh
 
 all:
 	$(MAKE) -C utilities all
