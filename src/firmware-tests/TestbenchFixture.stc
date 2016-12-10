@@ -1,0 +1,2 @@
+load "../firmware/Cluck2Sesame.cod"
+tmr1_freq=32768

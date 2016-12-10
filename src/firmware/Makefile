@@ -2,6 +2,7 @@ HEX_FILENAME=Cluck2Sesame.hex
 
 OBJ_FILES=\
 	Boot.o \
+	ConfigWords.o \
 	Platform.a \
 	Ui.a
 

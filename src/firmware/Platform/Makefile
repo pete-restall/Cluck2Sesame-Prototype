@@ -1,7 +1,6 @@
 LIB_FILENAME=../Platform.a
 
 OBJ_FILES=\
-	ConfigWords.o \
 	Isr.o \
 	GeneralPurposeRegisters.o \
 	Arithmetic4.o \

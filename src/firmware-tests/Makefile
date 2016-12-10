@@ -1,6 +1,6 @@
 export FIRMWARE_TESTS_DIR=$(BASE_DIR)/firmware-tests
 export FIRMWARE_CORE_OBJ_FILES=\
-	$(FIRMWARE_DIR)/Platform/ConfigWords.o \
+	$(FIRMWARE_DIR)/ConfigWords.o \
 	$(FIRMWARE_DIR)/Platform/ResetFlags.o \
 	$(FIRMWARE_DIR)/Platform/GeneralPurposeRegisters.o
 
