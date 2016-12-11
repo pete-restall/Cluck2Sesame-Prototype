@@ -1,0 +1,23 @@
+module load lcd_display lcd
+node lcdRs
+node lcdE
+node lcdDb4
+node lcdDb5
+node lcdDb6
+node lcdDb7
+attach lcdRs u203.Q0 lcd.DC
+attach lcdE u203.Q1 lcd.E
+attach lcdDb4 u203.Q2 lcd.d4
+attach lcdDb5 u203.Q3 lcd.d5
+attach lcdDb6 u203.Q4 lcd.d6
+attach lcdDb7 u203.Q5 lcd.d7
+
+module load pulldown vssForLcd
+vssForLcd.voltage=0
+vssForLcd.resistance=0
+node vssForLcdNode
+attach vssForLcdNode vssForLcd lcd.d0
+attach vssForLcdNode vssForLcd lcd.d1
+attach vssForLcdNode vssForLcd lcd.d2
+attach vssForLcdNode vssForLcd lcd.d3
+attach vssForLcdNode vssForLcd lcd.RW
