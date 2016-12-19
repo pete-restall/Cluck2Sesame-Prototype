@@ -22,7 +22,7 @@
 #define M_PI 3.14159265358979323846
 #endif
 
-#define NUMBER_OF_ITERATIONS 16
+#define NUMBER_OF_ITERATIONS 24
 
 #define DEGREES_0 0
 #define DEGREES_90 0.5
@@ -140,18 +140,18 @@ static void cordicComputeSineAndCosine(CordicState *state, double x)
 	if (isGreaterThan90Degrees(state->argument))
 	{
 		state->x = 0;
-		state->y = 1;
+		state->y = state->gainReciprocal;
 		state->accumulator = DEGREES_90;
 	}
 	else if (isLessThanNegative90Degrees(state->argument))
 	{
 		state->x = 0;
-		state->y = -1;
+		state->y = -state->gainReciprocal;
 		state->accumulator = DEGREES_NEGATIVE90;
 	}
 	else
 	{
-		state->x = 1;
+		state->x = state->gainReciprocal;
 		state->y = 0;
 		state->accumulator = DEGREES_0;
 	}
@@ -160,9 +160,6 @@ static void cordicComputeSineAndCosine(CordicState *state, double x)
 
 	for (i = 0; i < NUMBER_OF_ITERATIONS; i++)
 		cordicIteration(state);
-
-	state->x *= state->gainReciprocal;
-	state->y *= state->gainReciprocal;
 }
 
 static int isGreaterThan90Degrees(double value)
@@ -235,10 +232,10 @@ static void cordicComputeArcSine(CordicState *state, double x)
 static void cordicComputeArcInitialisation(CordicState *state, double x)
 {
 	state->iterationNumber = 0;
-	state->argument = x * state->gain;
+	state->argument = x;
 	state->flags.computeArc = ~0;
 
-	state->x = 1;
+	state->x = state->gainReciprocal;
 	state->y = 0;
 	state->accumulator = DEGREES_0;
 
