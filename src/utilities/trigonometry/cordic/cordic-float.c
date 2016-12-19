@@ -107,11 +107,9 @@ static void printSelectedFunctions(CordicState *state)
 
 static void cordicInitialise(CordicState *state)
 {
-	int i;
-
 	memset(state, 0, sizeof(CordicState));
 	state->gain = 1;
-	for (i = 0; i < NUMBER_OF_ITERATIONS; i++)
+	for (int i = 0; i < NUMBER_OF_ITERATIONS; i++)
 	{
 		double power2 = pow(2, -i);
 		double twoPower2 = pow(2, -2 * i);
@@ -131,8 +129,6 @@ static void cordicInitialise(CordicState *state)
 
 static void cordicComputeSineAndCosine(CordicState *state, double x)
 {
-	int i;
-
 	state->iterationNumber = 0;
 	state->argument = x;
 	state->flags.computeArc = 0;
@@ -158,7 +154,7 @@ static void cordicComputeSineAndCosine(CordicState *state, double x)
 
 	state->error = state->argument - state->accumulator;
 
-	for (i = 0; i < NUMBER_OF_ITERATIONS; i++)
+	for (int i = 0; i < NUMBER_OF_ITERATIONS; i++)
 		cordicIteration(state);
 }
 
@@ -222,10 +218,8 @@ static void cordicIteration(CordicState *state)
 
 static void cordicComputeArcSine(CordicState *state, double x)
 {
-	int i;
-
 	cordicComputeArcInitialisation(state, x);
-	for (i = 0; i < NUMBER_OF_ITERATIONS; i++)
+	for (int i = 0; i < NUMBER_OF_ITERATIONS; i++)
 		cordicIteration(state);
 }
 
@@ -244,12 +238,10 @@ static void cordicComputeArcInitialisation(CordicState *state, double x)
 
 static void cordicComputeArcCosine(CordicState *state, double x)
 {
-	int i;
-
 	cordicComputeArcInitialisation(state, x);
 	state->accumulator = DEGREES_NEGATIVE90;
 
-	for (i = 0; i < NUMBER_OF_ITERATIONS; i++)
+	for (int i = 0; i < NUMBER_OF_ITERATIONS; i++)
 		cordicIteration(state);
 
 	state->accumulator *= -1;
@@ -257,10 +249,7 @@ static void cordicComputeArcCosine(CordicState *state, double x)
 
 static void writeTablesToFiles(CordicState *state)
 {
-	FILE *fd;
-	int i;
-
-	fd = fopen("cordic-float-tables.txt", "w");
+	FILE *fd = fopen("cordic-float-tables.txt", "w");
 	if (!fd)
 	{
 		printf("Couldn't open cordic-float-tables.txt for writing !\n");
@@ -286,7 +275,7 @@ static void writeTablesToFiles(CordicState *state)
 		"err_acos(x)");
 
 	state->flags.printIterations = 0;
-	for (i = 0; i < 65536; i++)
+	for (int i = 0; i < 65536; i++)
 	{
 		double x = ((short) i) / 32768.0;
 		double builtinSinX, sinX, errorSinX;
@@ -319,7 +308,7 @@ static void writeTablesToFiles(CordicState *state)
 		builtinAcosX = acos(x);
 		errorAcosX = builtinAcosX != 0
 			? (acosX - builtinAcosX) / builtinAcosX
-			: asinX - builtinAsinX;
+			: acosX - builtinAcosX;
 
 		fprintf(
 			fd,

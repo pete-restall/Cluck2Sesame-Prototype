@@ -1,5 +1,5 @@
 CC=gcc
-CCARGS=-ansi -Wall -pedantic -c
+CCARGS=-ansi -Wall -pedantic -std=c99 -c
 LD=gcc
 LDARGS=
 LIBS=-lm
