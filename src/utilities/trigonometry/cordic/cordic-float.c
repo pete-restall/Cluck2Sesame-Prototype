@@ -22,7 +22,7 @@
 #define M_PI 3.14159265358979323846
 #endif
 
-#define NUMBER_OF_ITERATIONS 24
+#define NUMBER_OF_ITERATIONS 16
 
 #define DEGREES_0 0
 #define DEGREES_90 0.5
@@ -39,6 +39,8 @@ typedef struct
 	double atanLookup[NUMBER_OF_ITERATIONS];
 	double gain;
 	double gainReciprocal;
+	double hyperbolicGain;
+	double hyperbolicGainReciprocal;
 
 	int iterationNumber;
 	double argument;
@@ -57,6 +59,8 @@ static void cordicIteration(CordicState *state);
 static void cordicComputeArcSine(CordicState *state, double x);
 static void cordicComputeArcInitialisation(CordicState *state, double x);
 static void cordicComputeArcCosine(CordicState *state, double x);
+static void cordicComputeSqrt(CordicState *state, double x);
+static void cordicSqrtIteration(CordicState *state);
 static void writeTablesToFiles(CordicState *state);
 
 int main(int argc, char *argv[])
@@ -103,12 +107,22 @@ static void printSelectedFunctions(CordicState *state)
 		argument,
 		state->accumulator,
 		state->accumulator * M_PI);
+
+	argument = 0.5;
+	state->flags.printIterations = ~0;
+	cordicComputeSqrt(state, argument);
+	printf("sqrt(%g) = %g, cordicSqrt(%g) = %g\n",
+		argument,
+		sqrt(argument),
+		argument,
+		state->x);
 }
 
 static void cordicInitialise(CordicState *state)
 {
 	memset(state, 0, sizeof(CordicState));
 	state->gain = 1;
+	state->hyperbolicGain = 1;
 	for (int i = 0; i < NUMBER_OF_ITERATIONS; i++)
 	{
 		double power2 = pow(2, -i);
@@ -117,13 +131,19 @@ static void cordicInitialise(CordicState *state)
 		state->atanLookup[i] = atanPower2 / M_PI;
 		state->gain *= sqrt(1 + twoPower2);
 		state->gainReciprocal = 1 / state->gain;
+		state->hyperbolicGain *= sqrt(1 - pow(2, -2 * (i + 1)));
+		state->hyperbolicGainReciprocal = 1 / state->hyperbolicGain;
 		printf(
-			"atan(2^-%d) = %g deg (%g unit), gain = %g, gain^-1 = %g\n",
+			"atan(2^-%d) = %g deg (%g unit), "
+				"gain = %g, gain^-1 = %g, "
+				"hyperbolicGain = %g, hyperbolicGain^-1 = %g\n",
 			i,
 			atanPower2 * 180 / M_PI,
 			atanPower2 / M_PI,
 			state->gain,
-			state->gainReciprocal);
+			state->gainReciprocal,
+			state->hyperbolicGain,
+			state->hyperbolicGainReciprocal);
 	}
 }
 
@@ -170,25 +190,25 @@ static int isLessThanNegative90Degrees(double value)
 
 static void cordicIteration(CordicState *state)
 {
-	double newI, newQ;
+	double newX, newY;
 	double newAccumulator;
 	double newError;
 
 	if (state->error > 0)
 	{
-		newI = state->x - (state->y / pow(2, state->iterationNumber));
-		newQ = state->y + (state->x / pow(2, state->iterationNumber));
+		newX = state->x - (state->y / pow(2, state->iterationNumber));
+		newY = state->y + (state->x / pow(2, state->iterationNumber));
 		newAccumulator = state->accumulator + state->atanLookup[state->iterationNumber];
 	}
 	else
 	{
-		newI = state->x + (state->y / pow(2, state->iterationNumber));
-		newQ = state->y - (state->x / pow(2, state->iterationNumber));
+		newX = state->x + (state->y / pow(2, state->iterationNumber));
+		newY = state->y - (state->x / pow(2, state->iterationNumber));
 		newAccumulator = state->accumulator - state->atanLookup[state->iterationNumber];
 	}
 
 	if (state->flags.computeArc)
-		newError = state->argument - newQ;
+		newError = state->argument - newY;
 	else
 		newError = state->argument - newAccumulator;
 
@@ -200,17 +220,17 @@ static void cordicIteration(CordicState *state)
 			state->x,
 			state->y >= 0 ? " + j" : " - j",
 			state->y >= 0 ? state->y : -state->y,
-			newI,
-			newQ >= 0 ? " + j" : " - j",
-			newQ >= 0 ? newQ : -newQ,
+			newX,
+			newY >= 0 ? " + j" : " - j",
+			newY >= 0 ? newY : -newY,
 			state->accumulator,
 			newAccumulator,
 			state->error,
 			newError);
 	}
 
-	state->x = newI;
-	state->y = newQ;
+	state->x = newX;
+	state->y = newY;
 	state->accumulator = newAccumulator;
 	state->error = newError;
 	state->iterationNumber++;
@@ -247,6 +267,60 @@ static void cordicComputeArcCosine(CordicState *state, double x)
 	state->accumulator *= -1;
 }
 
+static void cordicComputeSqrt(CordicState *state, double x)
+{
+	state->iterationNumber = 1;
+	state->x = x + 0.25;
+	state->y = x - 0.25;
+
+	for (int i = 0; i < NUMBER_OF_ITERATIONS; i++)
+		cordicSqrtIteration(state);
+
+	state->x *= state->hyperbolicGainReciprocal;
+}
+
+static void cordicSqrtIteration(CordicState *state)
+{
+	double newX, newY;
+
+	for (int i = 0; i < 2; i++)
+	{
+		if (state->y < 0)
+		{
+			newX = state->x + state->y / pow(2, state->iterationNumber);
+			newY = state->y + state->x / pow(2, state->iterationNumber);
+		}
+		else
+		{
+			newX = state->x - state->y / pow(2, state->iterationNumber);
+			newY = state->y - state->x / pow(2, state->iterationNumber);
+		}
+
+		if (state->iterationNumber != 4 && state->iterationNumber != 13)
+			break;
+
+		state->x = newX;
+		state->y = newY;
+	}
+
+	if (state->flags.printIterations)
+	{
+		printf(
+			"%d: %g%s%g -> %g%s%g\n",
+			state->iterationNumber,
+			state->x,
+			state->y >= 0 ? " + j" : " - j",
+			state->y >= 0 ? state->y : -state->y,
+			newX,
+			newY >= 0 ? " + j" : " - j",
+			newY >= 0 ? newY : -newY);
+	}
+
+	state->x = newX;
+	state->y = newY;
+	state->iterationNumber++;
+}
+
 static void writeTablesToFiles(CordicState *state)
 {
 	FILE *fd = fopen("cordic-float-tables.txt", "w");
@@ -258,7 +332,12 @@ static void writeTablesToFiles(CordicState *state)
 
 	fprintf(
 		fd,
-		"%s\t%s\t\"\"\t%s\t%s\t%s\t\"\"\t%s\t%s\t%s\t\"\"\t%s\t%s\t%s\t\"\"\t%s\t%s\t%s\n",
+		"%s\t%s"
+			"\t\"\"\t%s\t%s\t%s"
+			"\t\"\"\t%s\t%s\t%s"
+			"\t\"\"\t%s\t%s\t%s"
+			"\t\"\"\t%s\t%s\t%s"
+			"\t\"\"\t%s\t%s\t%s\n",
 		"i",
 		"x",
 		"sin(x)",
@@ -272,7 +351,10 @@ static void writeTablesToFiles(CordicState *state)
 		"err_asin(x)",
 		"acos(x)",
 		"cordicArcCos(x)",
-		"err_acos(x)");
+		"err_acos(x)",
+		"sqrt(x)",
+		"cordicSqrt(x)",
+		"err_sqrt(x)");
 
 	state->flags.printIterations = 0;
 	for (int i = 0; i < 65536; i++)
@@ -282,6 +364,7 @@ static void writeTablesToFiles(CordicState *state)
 		double builtinCosX, cosX, errorCosX;
 		double builtinAsinX, asinX, errorAsinX;
 		double builtinAcosX, acosX, errorAcosX;
+		double builtinSqrtX, sqrtX, errorSqrtX;
 
 		cordicComputeSineAndCosine(state, x);
 		builtinSinX = sin(x * M_PI);
@@ -310,9 +393,21 @@ static void writeTablesToFiles(CordicState *state)
 			? (acosX - builtinAcosX) / builtinAcosX
 			: acosX - builtinAcosX;
 
+		cordicComputeSqrt(state, i / 65536.0);
+		sqrtX = state->x;
+		builtinSqrtX = sqrt(i / 65536.0);
+		errorSqrtX = builtinSqrtX != 0
+			? (sqrtX - builtinSqrtX) / builtinSqrtX
+			: sqrtX - builtinSqrtX;
+
 		fprintf(
 			fd,
-			"0x%.4x\t%e\t\"\"\t%e\t%e\t%e\t\"\"\t%e\t%e\t%e\t\"\"\t%e\t%e\t%e\t\"\"\t%e\t%e\t%e\n",
+			"0x%.4x\t%e"
+				"\t\"\"\t%e\t%e\t%e"
+				"\t\"\"\t%e\t%e\t%e"
+				"\t\"\"\t%e\t%e\t%e"
+				"\t\"\"\t%e\t%e\t%e"
+				"\t\"\"\t%e\t%e\t%e\n",
 			i,
 			x,
 			builtinSinX,
@@ -326,7 +421,10 @@ static void writeTablesToFiles(CordicState *state)
 			errorAsinX,
 			builtinAcosX,
 			acosX,
-			errorAcosX);
+			errorAcosX,
+			builtinSqrtX,
+			sqrtX,
+			errorSqrtX);
 	}
 
 	fclose(fd);
