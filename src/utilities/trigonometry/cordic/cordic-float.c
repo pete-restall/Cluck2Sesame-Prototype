@@ -57,7 +57,6 @@ static int isGreaterThan90Degrees(double value);
 static int isLessThanNegative90Degrees(double value);
 static void cordicIteration(CordicState *state);
 static void cordicComputeArcSine(CordicState *state, double x);
-static void cordicComputeArcInitialisation(CordicState *state, double x);
 static void cordicComputeArcCosine(CordicState *state, double x);
 static void cordicComputeSqrt(CordicState *state, double x);
 static void cordicSqrtIteration(CordicState *state);
@@ -248,32 +247,14 @@ static void cordicIteration(CordicState *state)
 
 static void cordicComputeArcSine(CordicState *state, double x)
 {
-	cordicComputeArcInitialisation(state, x);
-	for (int i = 0; i < NUMBER_OF_ITERATIONS; i++)
-		cordicIteration(state);
-}
-
-static void cordicComputeArcInitialisation(CordicState *state, double x)
-{
-	state->iterationNumber = 0;
-	state->argument = x;
-	state->flags.computeArc = ~0;
-
-	state->x = state->gainReciprocal;
-	state->y = 0;
-	state->accumulator = DEGREES_0;
-
-	state->error = state->argument - state->y;
+	cordicComputeSqrt(state, 1 - x * x);
+	cordicComputeArcTangentOfRatio(state, x, state->x);
 }
 
 static void cordicComputeArcCosine(CordicState *state, double x)
 {
-	cordicComputeArcInitialisation(state, x);
-	state->accumulator = DEGREES_NEGATIVE90;
-
-	for (int i = 0; i < NUMBER_OF_ITERATIONS; i++)
-		cordicIteration(state);
-
+	cordicComputeArcSine(state, x);
+	state->accumulator += DEGREES_NEGATIVE90;
 	state->accumulator *= -1;
 }
 
