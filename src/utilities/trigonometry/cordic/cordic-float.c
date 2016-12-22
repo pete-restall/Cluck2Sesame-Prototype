@@ -61,6 +61,7 @@ static void cordicComputeArcInitialisation(CordicState *state, double x);
 static void cordicComputeArcCosine(CordicState *state, double x);
 static void cordicComputeSqrt(CordicState *state, double x);
 static void cordicSqrtIteration(CordicState *state);
+static void cordicComputeArcTangentOfRatio(CordicState *state, double y, double x);
 static void writeTablesToFiles(CordicState *state);
 
 int main(int argc, char *argv[])
@@ -109,13 +110,22 @@ static void printSelectedFunctions(CordicState *state)
 		state->accumulator * M_PI);
 
 	argument = 0.5;
-	state->flags.printIterations = ~0;
 	cordicComputeSqrt(state, argument);
 	printf("sqrt(%g) = %g, cordicSqrt(%g) = %g\n",
 		argument,
 		sqrt(argument),
 		argument,
 		state->x);
+
+	cordicComputeArcTangentOfRatio(state, argument, 0.05);
+	printf("atan(%g / %g) = %g, cordicArcTan(%g / %g) = %g * pi -> %g\n",
+		argument,
+		0.05,
+		atan(argument / 0.05),
+		argument,
+		0.05,
+		state->accumulator,
+		state->accumulator * M_PI);
 }
 
 static void cordicInitialise(CordicState *state)
@@ -321,6 +331,24 @@ static void cordicSqrtIteration(CordicState *state)
 	state->iterationNumber++;
 }
 
+static void cordicComputeArcTangentOfRatio(CordicState *state, double y, double x)
+{
+	state->iterationNumber = 0;
+	state->argument = 0;
+	state->flags.computeArc = ~0;
+
+	state->x = x;
+	state->y = y;
+	state->accumulator = 0;
+
+	state->error = state->argument - state->y;
+
+	for (int i = 0; i < NUMBER_OF_ITERATIONS; i++)
+		cordicIteration(state);
+
+	state->accumulator *= -1;
+}
+
 static void writeTablesToFiles(CordicState *state)
 {
 	FILE *fd = fopen("cordic-float-tables.txt", "w");
@@ -333,6 +361,7 @@ static void writeTablesToFiles(CordicState *state)
 	fprintf(
 		fd,
 		"%s\t%s"
+			"\t\"\"\t%s\t%s\t%s"
 			"\t\"\"\t%s\t%s\t%s"
 			"\t\"\"\t%s\t%s\t%s"
 			"\t\"\"\t%s\t%s\t%s"
@@ -352,6 +381,9 @@ static void writeTablesToFiles(CordicState *state)
 		"acos(x)",
 		"cordicArcCos(x)",
 		"err_acos(x)",
+		"atan(x)",
+		"cordicArcTan(x)",
+		"err_atan(x)",
 		"sqrt(x)",
 		"cordicSqrt(x)",
 		"err_sqrt(x)");
@@ -364,6 +396,7 @@ static void writeTablesToFiles(CordicState *state)
 		double builtinCosX, cosX, errorCosX;
 		double builtinAsinX, asinX, errorAsinX;
 		double builtinAcosX, acosX, errorAcosX;
+		double builtinAtanX, atanX, errorAtanX;
 		double builtinSqrtX, sqrtX, errorSqrtX;
 
 		cordicComputeSineAndCosine(state, x);
@@ -393,6 +426,13 @@ static void writeTablesToFiles(CordicState *state)
 			? (acosX - builtinAcosX) / builtinAcosX
 			: acosX - builtinAcosX;
 
+		cordicComputeArcTangentOfRatio(state, x, 1);
+		atanX = state->accumulator * M_PI;
+		builtinAtanX = atan(x);
+		errorAtanX = builtinAtanX != 0
+			? (atanX - builtinAtanX) / builtinAtanX
+			: atanX - builtinAtanX;
+
 		cordicComputeSqrt(state, i / 65536.0);
 		sqrtX = state->x;
 		builtinSqrtX = sqrt(i / 65536.0);
@@ -403,6 +443,7 @@ static void writeTablesToFiles(CordicState *state)
 		fprintf(
 			fd,
 			"0x%.4x\t%e"
+				"\t\"\"\t%e\t%e\t%e"
 				"\t\"\"\t%e\t%e\t%e"
 				"\t\"\"\t%e\t%e\t%e"
 				"\t\"\"\t%e\t%e\t%e"
@@ -422,6 +463,9 @@ static void writeTablesToFiles(CordicState *state)
 			builtinAcosX,
 			acosX,
 			errorAcosX,
+			builtinAtanX,
+			atanX,
+			errorAtanX,
 			builtinSqrtX,
 			sqrtX,
 			errorSqrtX);
