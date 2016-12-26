@@ -7,10 +7,16 @@ LIBS=-lm
 CORDIC_FLOAT_EXE_FILE=cordic-float
 CORDIC_FLOAT_OBJ_FILES=cordic-float.o
 
-all: cordic-float
+CORDIC_FIXED_EXE_FILE=cordic-fixed
+CORDIC_FIXED_OBJ_FILES=cordic-fixed.o
+
+all: cordic-float cordic-fixed
 
 cordic-float: $(CORDIC_FLOAT_OBJ_FILES)
 	$(LD) $(LDARGS) -o $(CORDIC_FLOAT_EXE_FILE) $(CORDIC_FLOAT_OBJ_FILES) $(LIBS)
+
+cordic-fixed: $(CORDIC_FIXED_OBJ_FILES)
+	$(LD) $(LDARGS) -o $(CORDIC_FIXED_EXE_FILE) $(CORDIC_FIXED_OBJ_FILES) $(LIBS)
 
 clean:
 	rm -Rf cordic-*tables.txt
