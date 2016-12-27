@@ -5,7 +5,7 @@ HEX_FILES=\
 
 OBJ_FILES+=\
 	$(PLATFORM_DIR)/Isr.o \
-	$(PLATFORM_DIR)/Arithmetic32.o \
+	$(PLATFORM_DIR)/Arithmetic32.a \
 	../../Lcd/LcdContrastDummies.o
 
 TIMER1_OVERFLOW_INCREMENTS_TIME_OBJ_FILES=\

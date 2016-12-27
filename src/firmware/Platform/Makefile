@@ -4,7 +4,7 @@ OBJ_FILES=\
 	Isr.o \
 	GeneralPurposeRegisters.o \
 	Arithmetic4.o \
-	Arithmetic32.o \
+	Arithmetic32.a \
 	ArithmeticBcd.a \
 	Main.o \
 	PowerOnReset.o \

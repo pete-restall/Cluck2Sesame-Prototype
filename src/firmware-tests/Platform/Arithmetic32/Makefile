@@ -1,4 +1,4 @@
-export SUT_OBJ_FILE=$(PLATFORM_DIR)/Arithmetic32.o
+export SUT_OBJ_FILE=$(PLATFORM_DIR)/Arithmetic32.a
 export OBJ_FILES=\
 	$(SUT_OBJ_FILE) \
 	$(PLATFORM_CORE_OBJ_FILES) \

@@ -11,12 +11,12 @@ TEST_DOUBLE_OBJ_FILES=\
 TIME_NOT_ELAPSED_OBJ_FILES=\
 	TimeNotElapsedTest.o \
 	$(TEST_DOUBLE_OBJ_FILES) \
-	$(PLATFORM_DIR)/Arithmetic32.o
+	$(PLATFORM_DIR)/Arithmetic32.a
 
 TIME_ELAPSED_OBJ_FILES=\
 	TimeElapsedTest.o \
 	$(TEST_DOUBLE_OBJ_FILES) \
-	$(PLATFORM_DIR)/Arithmetic32.o
+	$(PLATFORM_DIR)/Arithmetic32.a
 
 all: $(HEX_FILES)
 
