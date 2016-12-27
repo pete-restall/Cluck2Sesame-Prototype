@@ -59,7 +59,7 @@ setNextStateAndReturn:
 		movwf EEADR
 
 		fcall readFlashWordAsPairOfSevenBitBytes
-		storeFlashWordInto characters
+		storeFlashBytesInto characters
 
 incrementFlashPointer:
 		banksel flashPointerLsb

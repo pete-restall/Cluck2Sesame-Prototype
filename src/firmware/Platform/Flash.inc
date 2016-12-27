@@ -9,7 +9,7 @@ loadFlashAddressOf macro label
 	movwf EEADR
 	endm
 
-storeFlashWordInto macro buffer
+storeFlashBytesInto macro buffer
 	banksel buffer
 	movwf (buffer + 0)
 
