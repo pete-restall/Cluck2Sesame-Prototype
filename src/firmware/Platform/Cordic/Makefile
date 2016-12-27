@@ -1,7 +1,10 @@
 LIB_FILENAME=../Cordic.a
 OBJ_FILES=\
 	Initialise.o \
-	Poll.o
+	Poll.o \
+	IdleState.o \
+	ResultStorage.o \
+	Sine.o
 
 all: $(LIB_FILENAME)
 

@@ -1,0 +1,6 @@
+load "IsCordicIdleTest.cod"
+load i "../../../PreventInfiniteLoops.sti"
+initialCordicState=0x00
+expectedIsCordicIdle=1
+run
+quit

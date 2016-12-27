@@ -1,0 +1,48 @@
+	#ifndef __CLUCK2SESAME_PLATFORM_CORDIC_STATES_INC
+	#define __CLUCK2SESAME_PLATFORM_CORDIC_STATES_INC
+
+	radix decimal
+
+CORDIC_STATE_IDLE equ 0x00
+
+CORDIC_STATE_LAST equ CORDIC_STATE_IDLE
+
+	#ifndef __CLUCK2SESAME_PLATFORM_CORDIC_POLL_ASM
+	extern cordicState
+	extern pollNextInChainAfterCordic
+	#endif
+
+setCordicState macro state
+	banksel cordicState
+	movlw state
+	movwf cordicState
+	endm
+
+defineCordicStateInSameSection macro name
+	global cordicState#v(name)
+
+cordicState#v(name):
+	endm
+
+defineCordicState macro name
+Cordic code
+	defineCordicStateInSameSection name
+	endm
+
+defineCordicStateTableEntry macro i
+	if (i <= CORDIC_STATE_LAST)
+		extern cordicState#v(i)
+		goto cordicState#v(i)
+		defineCordicStateTableEntry i + 1
+	endif
+	endm
+
+createCordicStateTable macro
+	defineCordicStateTableEntry 0
+	endm
+
+returnFromCordicState macro
+	goto pollNextInChainAfterCordic
+	endm
+
+	#endif

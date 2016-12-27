@@ -3,7 +3,8 @@ HEX_FILES=\
 
 POLL_CHAIN_OBJ_FILES=\
 	PollChainTest.o \
-	../PollAfterCordicMock.o
+	../PollAfterCordicMock.o \
+	../InitialiseAfterCordicDummy.o
 
 all: $(HEX_FILES)
 

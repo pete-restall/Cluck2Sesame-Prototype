@@ -1,16 +1,18 @@
 	#ifndef __CLUCK2SESAME_TESTS_PLATFORM_LCD_LCDSTATES_INC
 	#define __CLUCK2SESAME_TESTS_PLATFORM_LCD_LCDSTATES_INC
-	#include "States.inc"
 	#include "TestFixture.inc"
+	#include "States.inc"
 
 .assertStateIs macro expected
-	.aliasLiteralForAssert expected, _a
-	.assert "lcdState == _a, 'LCD state expectation failure.'"
+	.aliasForAssert lcdState, _a
+	.aliasLiteralForAssert expected, _b
+	.assert "_a == _b, 'LCD state expectation failure.'"
 	endm
 
 .assertStateIsRegister macro expected
-	.aliasForAssert expected, _a
-	.assert "lcdState == _a, 'LCD state expectation failure.'"
+	.aliasForAssert lcdState, _a
+	.aliasForAssert expected, _b
+	.assert "_a == _b, 'LCD state expectation failure.'"
 	endm
 
 	#endif
