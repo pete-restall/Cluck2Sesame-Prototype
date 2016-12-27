@@ -6,10 +6,12 @@ export OBJ_FILES=\
 	$(ASSERT_NO_ISR_OBJ_FILE)
 
 all:
+	$(MAKE) -C ReadFlashWord all
 	$(MAKE) -C ReadFlashWordAsPairOfSevenBitBytes all
 
 clean:
 	$(RM) -f $(BUILD_ARTEFACT_PATTERN)
+	$(MAKE) -C ReadFlashWord clean
 	$(MAKE) -C ReadFlashWordAsPairOfSevenBitBytes clean
 
 include $(MAKEFILE_RULES)

@@ -20,5 +20,6 @@ storeFlashWordInto macro buffer
 	endm
 
 	extern readFlashWordAsPairOfSevenBitBytes
+	extern readFlashWord
 
 	#endif
