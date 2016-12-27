@@ -28,6 +28,10 @@ isr:
 	movwf contextSavingPclath
 	clrf PCLATH
 
+	; TODO: The ISR must prevent sleep because if it is called immediately
+	; before the sleep call then there will be no polling loop iteration for
+	; another 16 seconds.  The loop needs a chance to act on the ISR.
+
 adcSampled:
 	banksel ADCON0
 	bsf ADCON0, GO
