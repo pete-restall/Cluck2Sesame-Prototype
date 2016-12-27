@@ -6,6 +6,7 @@ OBJ_FILES=\
 	Arithmetic4.o \
 	Arithmetic32.a \
 	ArithmeticBcd.a \
+	Cordic.a \
 	Main.o \
 	PowerOnReset.o \
 	BrownOutReset.o \
