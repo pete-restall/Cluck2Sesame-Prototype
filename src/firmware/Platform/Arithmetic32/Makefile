@@ -1,6 +1,8 @@
 LIB_FILENAME=../Arithmetic32.a
 OBJ_FILES=\
-	Add.o
+	Add.o \
+	Negate.o \
+	SignExtend.o
 
 all: $(LIB_FILENAME)
 

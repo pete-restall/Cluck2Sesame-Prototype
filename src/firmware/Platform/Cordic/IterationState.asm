@@ -4,8 +4,8 @@
 	radix decimal
 
 	defineCordicState CORDIC_STATE_ITERATION
-		banksel cordicNextState
-		movf cordicNextState, W
+		banksel cordicResultState
+		movf cordicResultState, W
 		movwf cordicState
 		returnFromCordicState
 

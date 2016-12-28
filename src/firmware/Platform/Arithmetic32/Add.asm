@@ -3,9 +3,6 @@
 
 	radix decimal
 
-	udata
-statusMask res 1
-
 Arithmetic32 code
 	global add32
 

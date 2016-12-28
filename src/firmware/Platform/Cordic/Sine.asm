@@ -12,6 +12,7 @@ sine:
 	; sine magic and retlw 1
 
 	setCordicState CORDIC_STATE_SINECOSINEINITIALISE
+	setCordicResultState CORDIC_STATE_STORESINERESULT
 	return
 
 	end

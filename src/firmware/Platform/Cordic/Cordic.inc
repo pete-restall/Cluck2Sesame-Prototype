@@ -59,4 +59,10 @@ HYPERBOLIC_GAIN_RECIPROCAL equ 0x1a42
 	extern cordicResultLow
 	#endif
 
+	#ifndef __CLUCK2SESAME_PLATFORM_CORDIC_REGISTERLOADANDSTORE_ASM
+	extern loadCordicZIntoB
+	extern loadCordicArgumentIntoA
+	extern storeCordicErrorFromA
+	#endif
+
 	#endif

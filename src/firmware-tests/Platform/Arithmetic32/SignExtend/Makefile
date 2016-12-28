@@ -1,0 +1,22 @@
+HEX_FILES=\
+	SignExtendToUpperWordATest.hex \
+	SignExtendToUpperWordBTest.hex
+
+SIGN_EXTEND_TO_UPPER_WORD_A_OBJ_FILES=\
+	SignExtendToUpperWordATest.o
+
+SIGN_EXTEND_TO_UPPER_WORD_B_OBJ_FILES=\
+	SignExtendToUpperWordBTest.o
+
+all: $(HEX_FILES)
+
+clean:
+	$(RM) -f $(BUILD_ARTEFACT_PATTERN)
+
+SignExtendToUpperWordATest.hex: $(OBJ_FILES) $(SIGN_EXTEND_TO_UPPER_WORD_A_OBJ_FILES)
+	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(SIGN_EXTEND_TO_UPPER_WORD_A_OBJ_FILES)
+
+SignExtendToUpperWordBTest.hex: $(OBJ_FILES) $(SIGN_EXTEND_TO_UPPER_WORD_B_OBJ_FILES)
+	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(SIGN_EXTEND_TO_UPPER_WORD_B_OBJ_FILES)
+
+include $(MAKEFILE_RULES)

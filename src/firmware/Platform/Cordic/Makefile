@@ -2,10 +2,12 @@ LIB_FILENAME=../Cordic.a
 OBJ_FILES=\
 	ArcTangentLookup.o \
 	Registers.o \
+	RegisterLoadAndStore.o \
 	Initialise.o \
 	Poll.o \
 	IdleState.o \
 	SineCosineInitialiseState.o \
+	CalculateErrorState.o \
 	StoreSineCosineResultState.o \
 	IterationState.o \
 	Sine.o

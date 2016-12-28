@@ -1,0 +1,18 @@
+load "NegateBTest.cod"
+load i "../../../PreventInfiniteLoops.sti"
+
+RBA=0x80
+RBB=0x00
+RBC=0x00
+RBD=0x00
+
+expectedRBA=0x80
+expectedRBB=0x00
+expectedRBC=0x00
+expectedRBD=0x00
+
+expectedCarry=1
+expectedZero=0
+
+run
+quit

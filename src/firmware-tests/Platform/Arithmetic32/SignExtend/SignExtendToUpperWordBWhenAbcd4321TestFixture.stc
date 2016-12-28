@@ -1,0 +1,15 @@
+load "SignExtendToUpperWordBTest.cod"
+load i "../../../PreventInfiniteLoops.sti"
+
+RBA=0xab
+RBB=0xcd
+RBC=0x43
+RBD=0x21
+
+expectedRBA=0x00
+expectedRBB=0x00
+expectedRBC=0x43
+expectedRBD=0x21
+
+run
+quit

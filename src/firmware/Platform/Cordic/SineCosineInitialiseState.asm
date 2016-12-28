@@ -1,5 +1,4 @@
 	#include "Mcu.inc"
-	#include "FarCalls.inc"
 	#include "Cordic.inc"
 	#include "States.inc"
 
@@ -18,6 +17,8 @@ clearUpperWordOfAllVectorComponents:
 		clrf cordicZUpperLow
 
 setInitialState:
+		clrf cordicIterationNumber
+
 		; TODO: MIGHT BE ABLE TO REMOVE THESE TWO LINES - TEST IT...
 		btfsc cordicArgumentHigh, 7
 		goto isArgumentLessThanNegativeNinetyDegrees
@@ -105,12 +106,8 @@ setZToZeroDegrees:
 		clrf cordicZLowerLow
 
 calculateInitialError:
-		; TODO: cordicError = cordicArgument - cordicZ
-
-setNextStateToIteration:
-		clrf cordicIterationNumber
-		setCordicState CORDIC_STATE_ITERATION
-		setCordicNextState CORDIC_STATE_STORESINECOSINERESULT
+		setCordicState CORDIC_STATE_CALCULATEERRORFROMZ
+		setCordicNextState CORDIC_STATE_ITERATION
 		returnFromCordicState
 
 	end

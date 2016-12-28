@@ -7,9 +7,13 @@ export OBJ_FILES=\
 
 all:
 	$(MAKE) -C Add all
+	$(MAKE) -C Negate all
+	$(MAKE) -C SignExtend all
 
 clean:
 	$(RM) -f $(BUILD_ARTEFACT_PATTERN)
 	$(MAKE) -C Add clean
+	$(MAKE) -C Negate clean
+	$(MAKE) -C SignExtend clean
 
 include $(MAKEFILE_RULES)
