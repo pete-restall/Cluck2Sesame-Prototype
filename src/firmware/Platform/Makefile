@@ -27,7 +27,9 @@ all: $(LIB_FILENAME)
 
 clean:
 	$(RM) -f $(BUILD_ARTEFACT_PATTERN)
+	$(MAKE) -C Arithmetic32 clean
 	$(MAKE) -C ArithmeticBcd clean
+	$(MAKE) -C Cordic clean
 	$(MAKE) -C Clock clean
 	$(MAKE) -C ShiftRegister clean
 	$(MAKE) -C Smps clean

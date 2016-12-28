@@ -12,8 +12,10 @@
 
 	udata
 	global cordicState
+	global cordicNextState
 
 cordicState res 1
+cordicNextState res 1
 
 Cordic code
 	global pollCordic

@@ -5,18 +5,22 @@
 loadCordicArgument macro arg
 	banksel arg
 	movf arg, W
-	banksel RBC
-	movwf RBC
+	banksel cordicArgumentHigh
+	movwf cordicArgumentHigh
 
 	banksel arg
 	movf arg + 1, W
-	banksel RBD
-	movwf RBD
+	banksel cordicArgumentLow
+	movwf cordicArgumentLow
 	endm
 
 loadSineArgument macro phi
 	loadCordicArgument phi
 	endm
+
+	extern cordicArgument
+	extern cordicArgumentHigh
+	extern cordicArgumentLow
 
 	extern cordicResult
 	extern cordicResultHigh

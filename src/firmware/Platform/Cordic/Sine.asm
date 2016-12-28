@@ -1,5 +1,6 @@
 	#include "Mcu.inc"
 	#include "Cordic.inc"
+	#include "States.inc"
 
 	radix decimal
 
@@ -10,12 +11,7 @@ sine:
 	; TODO: If cordicState != CORDIC_STATE_IDLE then retlw 0, else do the
 	; sine magic and retlw 1
 
-	; TODO: This is temporary - passing the first test...
-	banksel cordicResult
-	movlw 0xff
-	movwf cordicResultHigh
-	movwf cordicResultLow
-	
+	setCordicState CORDIC_STATE_SINECOSINEINITIALISE
 	return
 
 	end

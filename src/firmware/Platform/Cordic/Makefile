@@ -1,9 +1,13 @@
 LIB_FILENAME=../Cordic.a
 OBJ_FILES=\
+	ArcTangentLookup.o \
+	Registers.o \
 	Initialise.o \
 	Poll.o \
 	IdleState.o \
-	ResultStorage.o \
+	SineCosineInitialiseState.o \
+	StoreSineCosineResultState.o \
+	IterationState.o \
 	Sine.o
 
 all: $(LIB_FILENAME)
