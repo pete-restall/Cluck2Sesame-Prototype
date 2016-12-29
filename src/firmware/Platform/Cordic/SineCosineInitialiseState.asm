@@ -34,8 +34,6 @@ isArgumentGreaterThanNinetyDegrees:
 		goto setDefaultInitialState
 
 argumentIsGreaterThanNinetyDegrees:
- nop
- .direct "c", "echo ********* GREATER THAN 90 DEGREES"
 clearX_1:
 		clrf cordicXLowerHigh
 		clrf cordicXLowerLow
@@ -75,8 +73,6 @@ isArgumentLessThanNegativeNinetyDegrees:
 		goto setDefaultInitialState
 
 argumentIsLessThanNegativeNinetyDegrees:
- nop
- .direct "c", "echo ********* LESS THAN -90 DEGREES"
 clearX_2:
 		clrf cordicXLowerHigh
 		clrf cordicXLowerLow
@@ -100,8 +96,6 @@ setZToNegativeNinetyDegrees:
 		goto calculateInitialError
 
 setDefaultInitialState:
- nop
- .direct "c", "echo ********* DEFAULT INITIAL STATE"
 setXToGainReciprocal:
 		movlw high(GAIN_RECIPROCAL)
 		movwf cordicXLowerHigh

@@ -1,0 +1,10 @@
+load "SineTest.cod"
+load i "../../../PreventInfiniteLoops.sti"
+
+phiHigh=0xff
+phiLow=0xff
+expectedCordicResultHigh=0xff
+expectedCordicResultLow=0xff
+
+run
+quit
