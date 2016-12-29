@@ -10,13 +10,18 @@
 	radix decimal
 
 Cordic code
-	global loadCordicZIntoB
 	global loadCordicArgumentIntoA
-	global storeCordicErrorFromA
+	global loadCordicXIntoA
+	global loadCordicXIntoCordicW
+	global loadCordicYIntoA
+	global loadCordicYIntoCordicW
+	global loadCordicZIntoA
+	global loadCordicZIntoB
+	global loadCordicWIntoB
 
-loadCordicZIntoB:
-	loadFrom32 cordicZ, RBA
-	return
+	global storeAIntoCordicX
+	global storeAIntoCordicY
+	global storeAIntoCordicZ
 
 loadCordicArgumentIntoA:
 	banksel cordicArgumentHigh
@@ -31,8 +36,56 @@ loadCordicArgumentIntoA:
 
 	tcall signExtendToUpperWordA32
 
-storeCordicErrorFromA:
-	storeInto32 RAA, cordicError
+loadCordicXIntoA:
+	setupIndf cordicX
+
+loadIntoA:
+	loadFromIndf32Into RAA
 	return
+
+loadCordicXIntoCordicW:
+	setupIndf cordicX
+
+loadIntoCordicW:
+	loadFromIndf32Into cordicW
+	return
+
+loadCordicYIntoA:
+	setupIndf cordicY
+	goto loadIntoA
+
+loadCordicYIntoCordicW:
+	setupIndf cordicY
+	goto loadIntoCordicW
+
+loadCordicZIntoA:
+	setupIndf cordicZ
+	goto loadIntoA
+
+loadCordicZIntoB:
+	setupIndf cordicZ
+
+loadIntoB:
+	loadFromIndf32Into RBA
+	return
+
+loadCordicWIntoB:
+	setupIndf cordicW
+	goto loadIntoB
+
+storeAIntoCordicX:
+	setupIndf cordicX
+
+storeFromA:
+	storeIntoIndf32From RAA
+	return
+
+storeAIntoCordicY:
+	setupIndf cordicY
+	goto storeFromA
+
+storeAIntoCordicZ:
+	setupIndf cordicZ
+	goto storeFromA
 
 	end

@@ -2,23 +2,46 @@
 	#define __CLUCK2SESAME_PLATFORM_ARITHMETIC32_INC
 	#include "GeneralPurposeRegisters.inc"
 
-loadFrom32 macro src, dest
-	bankisel dest
-	movlw dest
+setupIndf macro reg
+	bankisel reg
+	movlw reg
 	movwf FSR
+	endm
 
+loadFromIndf32Into macro dest
+	banksel dest
+	local i = 0
+	while (i < 3)
+		movf INDF, W
+		movwf dest + i
+		incf FSR
+i += 1
+	endw
+	movf INDF, W
+	movwf dest + i
+	endm
+
+loadFrom32 macro src, dest
+	setupIndf src
+	loadFromIndf32Into dest
+	endm
+
+storeIntoIndf32From macro src
 	banksel src
 	local i = 0
-	while (i < 4)
+	while (i < 3)
 		movf src + i, W
 		movwf INDF
 		incf FSR
 i += 1
 	endw
+	movf src + i, W
+	movwf INDF
 	endm
 
 storeInto32 macro src, dest
-	loadFrom32 src, dest
+	setupIndf dest
+	storeIntoIndf32From src
 	endm
 
 	extern add32

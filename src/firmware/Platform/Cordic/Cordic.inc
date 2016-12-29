@@ -3,6 +3,8 @@
 
 	radix decimal
 
+CORDIC_FLAG_ERRORPOSITIVE equ 0
+
 NUMBER_OF_ITERATIONS equ 15
 
 DEGREES_90 equ 0x4000
@@ -20,15 +22,8 @@ HYPERBOLIC_GAIN_RECIPROCAL equ 0x1a42
 	extern cordicArgumentHigh
 	extern cordicArgumentLow
 
+	extern cordicFlags
 	extern cordicIterationNumber
-
-	extern cordicError
-	extern cordicErrorUpper
-	extern cordicErrorUpperHigh
-	extern cordicErrorUpperLow
-	extern cordicErrorLower
-	extern cordicErrorLowerHigh
-	extern cordicErrorLowerLow
 
 	extern cordicX
 	extern cordicXUpper
@@ -54,15 +49,35 @@ HYPERBOLIC_GAIN_RECIPROCAL equ 0x1a42
 	extern cordicZLowerHigh
 	extern cordicZLowerLow
 
+	extern cordicW
+	extern cordicWUpper
+	extern cordicWUpperHigh
+	extern cordicWUpperLow
+	extern cordicWLower
+	extern cordicWLowerHigh
+	extern cordicWLowerLow
+
 	extern cordicResult
 	extern cordicResultHigh
 	extern cordicResultLow
 	#endif
 
 	#ifndef __CLUCK2SESAME_PLATFORM_CORDIC_REGISTERLOADANDSTORE_ASM
-	extern loadCordicZIntoB
 	extern loadCordicArgumentIntoA
-	extern storeCordicErrorFromA
+	extern loadCordicXIntoA
+	extern loadCordicXIntoCordicW
+	extern loadCordicYIntoA
+	extern loadCordicYIntoCordicW
+	extern loadCordicZIntoA
+	extern loadCordicZIntoB
+	extern loadCordicWIntoB
+	extern storeAIntoCordicX
+	extern storeAIntoCordicY
+	extern storeAIntoCordicZ
+	#endif
+
+	#ifndef __CLUCK2SESAME_PLATFORM_CORDIC_SHIFT_ASM
+	extern shiftCordicWByIterationNumber
 	#endif
 
 	#endif

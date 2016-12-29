@@ -12,11 +12,11 @@
 
 	udata
 	global cordicState
-	global cordicNextState
+	global cordicStartOfIterationState
 	global cordicResultState
 
 cordicState res 1
-cordicNextState res 1
+cordicStartOfIterationState res 1
 cordicResultState res 1
 
 Cordic code

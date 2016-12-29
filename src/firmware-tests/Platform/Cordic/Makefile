@@ -4,7 +4,8 @@ export OBJ_FILES=\
 	$(FIRMWARE_CORE_OBJ_FILES) \
 	$(TEST_FIXTURE_OBJ_FILES) \
 	$(ASSERT_NO_ISR_OBJ_FILE) \
-	$(PLATFORM_DIR)/Arithmetic32.a
+	$(PLATFORM_DIR)/Arithmetic32.a \
+	$(PLATFORM_DIR)/Flash.o
 
 TEST_DOUBLE_OBJ_FILES=\
 	InitialiseAfterCordicMock.o \

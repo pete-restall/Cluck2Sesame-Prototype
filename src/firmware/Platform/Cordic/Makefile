@@ -8,8 +8,12 @@ OBJ_FILES=\
 	IdleState.o \
 	SineCosineInitialiseState.o \
 	CalculateErrorState.o \
+	EndOfIterationState.o \
 	StoreSineCosineResultState.o \
-	IterationState.o \
+	CalculateXState.o \
+	CalculateYState.o \
+	CalculateZState.o \
+	Shift.o \
 	Sine.o
 
 all: $(LIB_FILENAME)

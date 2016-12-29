@@ -19,19 +19,15 @@ clearUpperWordOfAllVectorComponents:
 setInitialState:
 		clrf cordicIterationNumber
 
-		; TODO: MIGHT BE ABLE TO REMOVE THESE TWO LINES - TEST IT...
-		btfsc cordicArgumentHigh, 7
-		goto isArgumentLessThanNegativeNinetyDegrees
-
 isArgumentGreaterThanNinetyDegrees:
 		movf cordicArgumentLow, W
 		sublw low(DEGREES_90)
 		movf cordicArgumentHigh, W
-		btfsc STATUS, C
+		btfss STATUS, C
 		incfsz cordicArgumentHigh, W
 		sublw high(DEGREES_90)
 
-		btfss STATUS, C
+		btfsc STATUS, C
 		goto isArgumentLessThanNegativeNinetyDegrees
 
 argumentIsGreaterThanNinetyDegrees:
@@ -59,12 +55,15 @@ isArgumentLessThanNegativeNinetyDegrees:
 		movlw high(DEGREES_NEGATIVE90)
 
 		#if low(high(DEGREES_NEGATIVE90) + 1) != 0
+		btfss STATUS, C
+		movlw low(high(DEGREES_NEGATIVE90) + 1)
+		subwf cordicArgumentHigh, W
+		#else
 		btfsc STATUS, C
-		movlw high(DEGREES_NEGATIVE90) + 1
 		subwf cordicArgumentHigh, W
 		#endif
 
-		btfss STATUS, C
+		btfsc STATUS, C
 		goto setDefaultInitialState
 
 argumentIsLessThanNegativeNinetyDegrees:
@@ -98,8 +97,8 @@ setXToGainReciprocal:
 		movwf cordicXLowerLow
 
 clearY:
-		clrf cordicXLowerHigh
-		clrf cordicXLowerLow
+		clrf cordicYLowerHigh
+		clrf cordicYLowerLow
 
 setZToZeroDegrees:
 		clrf cordicZLowerHigh
@@ -107,7 +106,6 @@ setZToZeroDegrees:
 
 calculateInitialError:
 		setCordicState CORDIC_STATE_CALCULATEERRORFROMZ
-		setCordicNextState CORDIC_STATE_ITERATION
 		returnFromCordicState
 
 	end

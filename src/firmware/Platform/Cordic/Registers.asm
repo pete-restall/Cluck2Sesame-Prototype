@@ -10,15 +10,8 @@
 	global cordicArgumentHigh
 	global cordicArgumentLow
 
+	global cordicFlags
 	global cordicIterationNumber
-
-	global cordicError
-	global cordicErrorUpper
-	global cordicErrorUpperHigh
-	global cordicErrorUpperLow
-	global cordicErrorLower
-	global cordicErrorLowerHigh
-	global cordicErrorLowerLow
 
 	global cordicX
 	global cordicXUpper
@@ -44,6 +37,14 @@
 	global cordicZLowerHigh
 	global cordicZLowerLow
 
+	global cordicW
+	global cordicWUpper
+	global cordicWUpperHigh
+	global cordicWUpperLow
+	global cordicWLower
+	global cordicWLowerHigh
+	global cordicWLowerLow
+
 	global cordicResult
 	global cordicResultHigh
 	global cordicResultLow
@@ -52,15 +53,8 @@ cordicArgument:
 cordicArgumentHigh res 1
 cordicArgumentLow res 1
 
+cordicFlags res 1
 cordicIterationNumber res 1
-
-cordicError:
-cordicErrorUpper:
-cordicErrorUpperHigh res 1
-cordicErrorUpperLow res 1
-cordicErrorLower:
-cordicErrorLowerHigh res 1
-cordicErrorLowerLow res 1
 
 cordicX:
 cordicXUpper:
@@ -85,6 +79,14 @@ cordicZUpperLow res 1
 cordicZLower:
 cordicZLowerHigh res 1
 cordicZLowerLow res 1
+
+cordicW:
+cordicWUpper:
+cordicWUpperHigh res 1
+cordicWUpperLow res 1
+cordicWLower:
+cordicWLowerHigh res 1
+cordicWLowerLow res 1
 
 cordicResult:
 cordicResultHigh res 1
