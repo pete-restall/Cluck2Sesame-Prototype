@@ -105,10 +105,11 @@ checkIfAnyBits31To15AreSet:
 
 storeLowerWordOfAIntoCordicResult:
 	movf RAC, W
-	banksel cordicResult
+	banksel cordicResultHigh
 	movwf cordicResultHigh
+	banksel RAD
 	movf RAD, W
-	banksel cordicResult
+	banksel cordicResultLow
 	movwf cordicResultLow
 	return
 
@@ -122,16 +123,10 @@ storeSaturatedPositiveIntoCordicResult:
 
 storeNegativeA:
 checkIfAllBits31To15AreSet:
-	movlw 0xff
-	xorwf RAA, W
-	btfss STATUS, Z
+	incfsz RAA, W
 	goto storeSaturatedNegativeIntoCordicResult
-
-	movlw 0xff
-	xorwf RAB, W
-	btfss STATUS, Z
+	incfsz RAB, W
 	goto storeSaturatedNegativeIntoCordicResult
-
 	btfsc RAC, 7
 	goto storeLowerWordOfAIntoCordicResult
 
