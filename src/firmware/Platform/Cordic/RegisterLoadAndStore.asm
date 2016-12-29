@@ -22,6 +22,7 @@ Cordic code
 	global storeAIntoCordicX
 	global storeAIntoCordicY
 	global storeAIntoCordicZ
+	global storeSaturatedAIntoCordicResultQ15
 
 loadCordicArgumentIntoA:
 	banksel cordicArgumentHigh
@@ -87,5 +88,41 @@ storeAIntoCordicY:
 storeAIntoCordicZ:
 	setupIndf cordicZ
 	goto storeFromA
+
+storeSaturatedAIntoCordicResultQ15:
+	banksel RAA
+	btfsc RAA, 7
+	goto storeNegativeA
+
+storePositiveA:
+checkIfAnyBits31To15AreSet:
+	movf RAA
+	btfsc STATUS, Z
+	movf RAB
+	btfsc STATUS, Z
+	btfsc RAC, 7
+	goto storeSaturatedPositiveIntoCordicResult
+
+storeLowerWordOfAIntoCordicResult:
+	movf RAC, W
+	banksel cordicResult
+	movwf cordicResultHigh
+	movf RAD, W
+	banksel cordicResult
+	movwf cordicResultLow
+	return
+
+storeSaturatedPositiveIntoCordicResult:
+	banksel cordicResult
+	movlw 0x7f
+	movwf cordicResultHigh
+	movlw 0xff
+	movwf cordicResultLow
+	return
+
+storeNegativeA:
+	; TODO: NEED TO CHECK FOR NEGATIVE SATURATION...
+	goto storeLowerWordOfAIntoCordicResult
+	return
 
 	end

@@ -19,6 +19,9 @@ clearUpperWordOfAllVectorComponents:
 setInitialState:
 		clrf cordicIterationNumber
 
+		btfsc cordicArgumentHigh, 7
+		goto isArgumentLessThanNegativeNinetyDegrees
+
 isArgumentGreaterThanNinetyDegrees:
 		movf cordicArgumentLow, W
 		sublw low(DEGREES_90)
@@ -28,9 +31,11 @@ isArgumentGreaterThanNinetyDegrees:
 		sublw high(DEGREES_90)
 
 		btfsc STATUS, C
-		goto isArgumentLessThanNegativeNinetyDegrees
+		goto setDefaultInitialState
 
 argumentIsGreaterThanNinetyDegrees:
+ nop
+ .direct "c", "echo ********* GREATER THAN 90 DEGREES"
 clearX_1:
 		clrf cordicXLowerHigh
 		clrf cordicXLowerLow
@@ -50,6 +55,9 @@ setZToNinetyDegrees:
 		goto calculateInitialError
 
 isArgumentLessThanNegativeNinetyDegrees:
+		btfss cordicArgumentHigh, 7
+		goto setDefaultInitialState
+
 		movlw low(DEGREES_NEGATIVE90)
 		subwf cordicArgumentLow, W
 		movlw high(DEGREES_NEGATIVE90)
@@ -67,6 +75,8 @@ isArgumentLessThanNegativeNinetyDegrees:
 		goto setDefaultInitialState
 
 argumentIsLessThanNegativeNinetyDegrees:
+ nop
+ .direct "c", "echo ********* LESS THAN -90 DEGREES"
 clearX_2:
 		clrf cordicXLowerHigh
 		clrf cordicXLowerLow
@@ -90,6 +100,8 @@ setZToNegativeNinetyDegrees:
 		goto calculateInitialError
 
 setDefaultInitialState:
+ nop
+ .direct "c", "echo ********* DEFAULT INITIAL STATE"
 setXToGainReciprocal:
 		movlw high(GAIN_RECIPROCAL)
 		movwf cordicXLowerHigh

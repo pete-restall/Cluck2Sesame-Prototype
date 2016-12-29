@@ -74,6 +74,7 @@ HYPERBOLIC_GAIN_RECIPROCAL equ 0x1a42
 	extern storeAIntoCordicX
 	extern storeAIntoCordicY
 	extern storeAIntoCordicZ
+	extern storeSaturatedAIntoCordicResultQ15
 	#endif
 
 	#ifndef __CLUCK2SESAME_PLATFORM_CORDIC_SHIFT_ASM

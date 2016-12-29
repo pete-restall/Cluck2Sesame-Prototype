@@ -5,12 +5,8 @@
 	radix decimal
 
 	defineCordicState CORDIC_STATE_STORESINERESULT
-		; TODO: CONVERT cordicY FROM Q17.15 TO Q1.15 (WITH SATURATION)...
-		banksel cordicResult
-		movf cordicYLowerHigh, W
-		movwf cordicResultHigh
-		movf cordicYLowerLow, W
-		movwf cordicResultLow
+		call loadCordicYIntoA
+		call storeSaturatedAIntoCordicResultQ15
  nop
  .direct "c", "cordicXUpperHigh"
  .direct "c", "cordicXUpperLow"
