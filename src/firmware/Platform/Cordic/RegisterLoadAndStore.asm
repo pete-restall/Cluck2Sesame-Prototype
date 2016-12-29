@@ -121,8 +121,26 @@ storeSaturatedPositiveIntoCordicResult:
 	return
 
 storeNegativeA:
-	; TODO: NEED TO CHECK FOR NEGATIVE SATURATION...
+checkIfAllBits31To15AreSet:
+	movlw 0xff
+	xorwf RAA, W
+	btfss STATUS, Z
+	goto storeSaturatedNegativeIntoCordicResult
+
+	movlw 0xff
+	xorwf RAB, W
+	btfss STATUS, Z
+	goto storeSaturatedNegativeIntoCordicResult
+
+	btfsc RAC, 7
 	goto storeLowerWordOfAIntoCordicResult
+
+storeSaturatedNegativeIntoCordicResult:
+	banksel cordicResult
+	movlw 0x80
+	movwf cordicResultHigh
+	movlw 0x00
+	movwf cordicResultLow
 	return
 
 	end
