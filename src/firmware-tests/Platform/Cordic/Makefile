@@ -18,6 +18,7 @@ all:
 	$(MAKE) -C Poll all
 	$(MAKE) -C IsCordicIdle all
 	$(MAKE) -C Sine all
+	$(MAKE) -C Cosine all
 
 clean:
 	$(RM) -f $(BUILD_ARTEFACT_PATTERN)
@@ -25,5 +26,6 @@ clean:
 	$(MAKE) -C Poll clean
 	$(MAKE) -C IsCordicIdle clean
 	$(MAKE) -C Sine clean
+	$(MAKE) -C Cosine clean
 
 include $(MAKEFILE_RULES)

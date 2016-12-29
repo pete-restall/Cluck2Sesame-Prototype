@@ -13,6 +13,10 @@
 
 
 	defineCordicStateInSameSection CORDIC_STATE_STORECOSINERESULT
+		call loadCordicXIntoA
+		call storeSaturatedAIntoCordicResultQ15
+
+		setCordicState CORDIC_STATE_IDLE
 		returnFromCordicState
 
 	end

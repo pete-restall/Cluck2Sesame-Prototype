@@ -14,7 +14,8 @@ OBJ_FILES=\
 	CalculateYState.o \
 	CalculateZState.o \
 	Shift.o \
-	Sine.o
+	Sine.o \
+	Cosine.o
 
 all: $(LIB_FILENAME)
 

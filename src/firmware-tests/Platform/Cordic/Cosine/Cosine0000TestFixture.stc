@@ -1,0 +1,10 @@
+load "CosineTest.cod"
+load i "../../../PreventInfiniteLoops.sti"
+
+phiHigh=0x00
+phiLow=0x00
+expectedCordicResultHigh=0x7f
+expectedCordicResultLow=0xff
+
+run
+quit
