@@ -19,5 +19,6 @@
 *.cod
 *.cof
 *.hex
+*.bin
 *.o
 *.a

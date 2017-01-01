@@ -99,7 +99,12 @@ static FixedQ0_16 fixedQ1_31ToQ0_16(FixedQ1_31 x);
 static void cordicSqrtIteration(CordicState *state);
 static void cordicComputeArcTangentOfRatio(CordicState *state, FixedQ1_15 y, FixedQ1_15 x);
 static void writeTablesToFiles(CordicState *state);
+static void writeTextTablesToFile(CordicState *state);
 static int isDoubleNonZero(double x);
+static void writeBinarySineTableToFile(CordicState *state);
+static void writeBinaryArcSineTableToFile(CordicState *state);
+static void writeBinaryCosineTableToFile(CordicState *state);
+static void writeBinaryArcCosineTableToFile(CordicState *state);
 
 int main(int argc, char *argv[])
 {
@@ -193,7 +198,7 @@ static void printSelectedFunctions(CordicState *state)
 		fixedQ17_15ToQ1_15(state->x),
 		fixedQ1_15ToDouble(fixedQ17_15ToQ1_15(state->x)));
 
-	argument = 0xc000;
+	argument = (unsigned short) 0xc000;
 	argumentAsDouble = fixedQ1_15ToDouble(argument);
 	state->flags.printIterations = ~0;
 	cordicComputeArcSine(state, argument);
@@ -541,6 +546,15 @@ static void cordicComputeArcTangentOfRatio(
 
 static void writeTablesToFiles(CordicState *state)
 {
+	writeTextTablesToFile(state);
+	writeBinarySineTableToFile(state);
+	writeBinaryArcSineTableToFile(state);
+	writeBinaryCosineTableToFile(state);
+	writeBinaryArcCosineTableToFile(state);
+}
+
+static void writeTextTablesToFile(CordicState *state)
+{
 	FILE *fd = fopen("cordic-fixed-tables.txt", "w");
 	if (!fd)
 	{
@@ -694,4 +708,96 @@ static void writeTablesToFiles(CordicState *state)
 static int isDoubleNonZero(double x)
 {
 	return fabs(x) < 10e-12;
+}
+
+static void writeBinarySineTableToFile(CordicState *state)
+{
+	FILE *fd = fopen("cordic-fixed-sine-table.bin", "wb");
+	if (!fd)
+	{
+		printf("Couldn't open cordic-fixed-sine-table.bin for writing !\n");
+		return;
+	}
+
+	for (int i = 0; i < 65536; i++)
+	{
+		FixedQ1_15 sinX;
+		unsigned char asBytes[2];
+		cordicComputeSineAndCosine(state, (unsigned short) i);
+		sinX = fixedQ17_15ToQ1_15(state->y);
+		asBytes[0] = (unsigned char) ((sinX >> 8) & 0xff);
+		asBytes[1] = (unsigned char) ((sinX >> 0) & 0xff);
+		fwrite(asBytes, sizeof(char), 2, fd);
+	}
+
+	fclose(fd);
+}
+
+static void writeBinaryArcSineTableToFile(CordicState *state)
+{
+	FILE *fd = fopen("cordic-fixed-arcsine-table.bin", "wb");
+	if (!fd)
+	{
+		printf("Couldn't open cordic-fixed-arcsine-table.bin for writing !\n");
+		return;
+	}
+
+	for (int i = 0; i < 65536; i++)
+	{
+		FixedQ1_15 asinX;
+		unsigned char asBytes[2];
+		cordicComputeArcSine(state, (unsigned short) i);
+		asinX = fixedQ17_15ToQ1_15(state->accumulator);
+		asBytes[0] = (unsigned char) ((asinX >> 8) & 0xff);
+		asBytes[1] = (unsigned char) ((asinX >> 0) & 0xff);
+		fwrite(asBytes, sizeof(char), 2, fd);
+	}
+
+	fclose(fd);
+}
+
+static void writeBinaryCosineTableToFile(CordicState *state)
+{
+	FILE *fd = fopen("cordic-fixed-cosine-table.bin", "wb");
+	if (!fd)
+	{
+		printf("Couldn't open cordic-fixed-cosine-table.bin for writing !\n");
+		return;
+	}
+
+	for (int i = 0; i < 65536; i++)
+	{
+		FixedQ1_15 cosX;
+		unsigned char asBytes[2];
+		cordicComputeSineAndCosine(state, (unsigned short) i);
+		cosX = fixedQ17_15ToQ1_15(state->x);
+		asBytes[0] = (unsigned char) ((cosX >> 8) & 0xff);
+		asBytes[1] = (unsigned char) ((cosX >> 0) & 0xff);
+		fwrite(asBytes, sizeof(char), 2, fd);
+	}
+
+	fclose(fd);
+}
+
+static void writeBinaryArcCosineTableToFile(CordicState *state)
+{
+	FILE *fd = fopen("cordic-fixed-arccosine-table.bin", "wb");
+	if (!fd)
+	{
+		printf("Couldn't open cordic-fixed-arccosine-table.bin for writing !\n");
+		return;
+	}
+
+	for (int i = 0; i < 65536; i++)
+	{
+		FixedQ1_15 acosX;
+		unsigned char asBytes[2];
+		cordicComputeArcCosine(state, (unsigned short) i);
+		acosX = fixedQ17_15ToQ1_15(state->accumulator);
+		asBytes[0] = (unsigned char) ((acosX >> 8) & 0xff);
+		asBytes[1] = (unsigned char) ((acosX >> 0) & 0xff);
+		fwrite(asBytes, sizeof(char), 2, fd);
+	}
+
+	fclose(fd);
 }

@@ -7,6 +7,7 @@ TEST_SEPARATOR="================ [ TEST RUN ] ================";
 export GPSIM2TUPLE="${UTILITIES_BASEDIR}/gpsim2tuple/gpsim2tuple";
 export LPF_RC="${UTILITIES_BASEDIR}/lpf-rc/lpf-rc";
 export MEAN="${UTILITIES_BASEDIR}/mean/mean";
+export CORDIC_DIR="${UTILITIES_BASEDIR}/trigonometry/cordic";
 
 
 # If no arguments given then run this script for each directory:
