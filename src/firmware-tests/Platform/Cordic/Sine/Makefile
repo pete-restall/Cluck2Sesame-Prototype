@@ -12,6 +12,7 @@ SINE_OBJ_FILES=\
 
 ALL_SINE_OBJ_FILES=\
 	$(TEST_DOUBLE_OBJ_FILES) \
+	../AllCordicSpaceTestFixture.o \
 	AllSineTest.o
 
 all: $(HEX_FILES)

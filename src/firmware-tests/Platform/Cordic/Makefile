@@ -14,7 +14,7 @@ TEST_DOUBLE_OBJ_FILES=\
 	PollAfterCordicMock.o \
 	PollAfterCordicDummy.o
 
-all:
+all: $(TEST_DOUBLE_OBJ_FILES) AllCordicSpaceTestFixture.o
 	$(MAKE) -C Initialisation all
 	$(MAKE) -C Poll all
 	$(MAKE) -C IsCordicIdle all
