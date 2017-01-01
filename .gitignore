@@ -2,6 +2,7 @@
 /src/utilities/lpf-rc/lpf-rc
 /src/utilities/mean/mean
 /src/utilities/trigonometry/cordic/cordic-float
+/src/utilities/trigonometry/cordic/cordic-fixed
 /src/utilities/trigonometry/smoothstep/smoothstep
 /**/.~*
 /src/schematics/~*.sch
