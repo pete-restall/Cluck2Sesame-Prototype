@@ -1,0 +1,10 @@
+load "ArcSineTest.cod"
+load i "../../../PreventInfiniteLoops.sti"
+
+sinPhiHigh=0x60
+sinPhiLow=0x00
+expectedCordicResultHigh=0x22
+expectedCordicResultLow=0x94
+
+run
+quit

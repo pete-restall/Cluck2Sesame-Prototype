@@ -193,8 +193,9 @@ static void printSelectedFunctions(CordicState *state)
 		fixedQ17_15ToQ1_15(state->x),
 		fixedQ1_15ToDouble(fixedQ17_15ToQ1_15(state->x)));
 
-	argument = 0x6d23;
+	argument = 0xc000;
 	argumentAsDouble = fixedQ1_15ToDouble(argument);
+	state->flags.printIterations = ~0;
 	cordicComputeArcSine(state, argument);
 	printf(
 		"asin(0x%.4hx -> %g) = %g, "
@@ -207,6 +208,7 @@ static void printSelectedFunctions(CordicState *state)
 		fixedQ1_15ToDouble(fixedQ17_15ToQ1_15(state->accumulator)),
 		fixedQ1_15ToDouble(fixedQ17_15ToQ1_15(state->accumulator)),
 		fixedQ1_15ToDouble(fixedQ17_15ToQ1_15(state->accumulator)) * M_PI);
+	state->flags.printIterations = 0;
 
 	cordicComputeArcCosine(state, argument);
 	printf(
@@ -386,8 +388,8 @@ static void cordicComputeArcSine(CordicState *state, FixedQ1_15 x)
 	if (state->flags.printIterations)
 	{
 		printf(
-			"x^2 = 0x%.4hx^2 = 0x%.8x, 1-x^2 = 0x%.4hx\n",
-			x,
+			"x^2 = 0x%.8x^2 = 0x%.8x, 1-x^2 = 0x%.4hx\n",
+			(FixedQ2_30) x,
 			xSquaredIntermediate,
 			oneTakeXSquared);
 	}

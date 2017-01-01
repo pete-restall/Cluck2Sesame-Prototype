@@ -19,6 +19,7 @@ all: $(TEST_DOUBLE_OBJ_FILES)
 	$(MAKE) -C Timer0 all
 	$(MAKE) -C Clock all
 	$(MAKE) -C Arithmetic4 all
+	$(MAKE) -C Arithmetic16 all
 	$(MAKE) -C Arithmetic32 all
 	$(MAKE) -C ArithmeticBcd all
 	$(MAKE) -C Cordic all
@@ -42,6 +43,7 @@ clean:
 	$(MAKE) -C Timer0 clean
 	$(MAKE) -C Clock clean
 	$(MAKE) -C Arithmetic4 clean
+	$(MAKE) -C Arithmetic16 clean
 	$(MAKE) -C Arithmetic32 clean
 	$(MAKE) -C ArithmeticBcd clean
 	$(MAKE) -C Cordic clean

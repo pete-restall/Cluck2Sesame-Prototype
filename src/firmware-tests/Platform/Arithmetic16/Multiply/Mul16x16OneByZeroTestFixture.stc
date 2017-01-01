@@ -1,0 +1,14 @@
+load "Mul16x16Test.cod"
+load i "../../../PreventInfiniteLoops.sti"
+
+RBA=0x00
+RBB=0x01
+RBC=0x00
+RBD=0x00
+expectedRAA=0x00
+expectedRAB=0x00
+expectedRAC=0x00
+expectedRAD=0x00
+
+run
+quit

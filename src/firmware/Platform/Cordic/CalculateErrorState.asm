@@ -13,9 +13,9 @@
 
 
 	defineCordicStateInSameSection CORDIC_STATE_CALCULATEERRORFROMY
-		; TODO: THIS WILL NEED WRITING FOR THE ARC CALCULATIONS
-		; setCordicStartOfIterationState CORDIC_STATE_CALCULATEERRORFROMY
-		; call loadCordicYIntoB
+		setCordicStartOfIterationState CORDIC_STATE_CALCULATEERRORFROMY
+		call loadCordicYIntoCordicW
+		call loadCordicWIntoB
 
 calculateCordicError:
 		banksel cordicFlags

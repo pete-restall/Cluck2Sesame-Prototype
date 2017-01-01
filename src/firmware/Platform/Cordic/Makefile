@@ -8,13 +8,22 @@ OBJ_FILES=\
 	IdleState.o \
 	SineCosineInitialiseState.o \
 	CalculateErrorState.o \
-	EndOfIterationState.o \
-	StoreSineCosineResultState.o \
 	CalculateXState.o \
 	CalculateYState.o \
 	CalculateZState.o \
+	EndOfIterationState.o \
+	StoreSineCosineResultState.o \
+	ArcSineInitialiseState.o \
+	SqrtInitialiseState.o \
+	HyperbolicCalculateXState.o \
+	HyperbolicCalculateYState.o \
+	HyperbolicEndOfIterationState.o \
+	StoreSqrtIntermediateResultState.o \
+	ArcTangentInitialiseState.o \
+	StoreArcSineResultState.o \
 	Shift.o \
 	Sine.o \
+	ArcSine.o \
 	Cosine.o
 
 all: $(LIB_FILENAME)

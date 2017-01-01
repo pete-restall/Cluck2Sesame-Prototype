@@ -4,6 +4,7 @@ OBJ_FILES=\
 	Isr.o \
 	GeneralPurposeRegisters.o \
 	Arithmetic4.o \
+	Arithmetic16.a \
 	Arithmetic32.a \
 	ArithmeticBcd.a \
 	Cordic.a \
@@ -27,6 +28,7 @@ all: $(LIB_FILENAME)
 
 clean:
 	$(RM) -f $(BUILD_ARTEFACT_PATTERN)
+	$(MAKE) -C Arithmetic16 clean
 	$(MAKE) -C Arithmetic32 clean
 	$(MAKE) -C ArithmeticBcd clean
 	$(MAKE) -C Cordic clean
