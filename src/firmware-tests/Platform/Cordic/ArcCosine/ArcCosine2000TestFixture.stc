@@ -1,0 +1,10 @@
+load "ArcCosineTest.cod"
+load i "../../../PreventInfiniteLoops.sti"
+
+cosPhiHigh=0x20
+cosPhiLow=0x00
+expectedCordicResultHigh=0x35
+expectedCordicResultLow=0xac
+
+run
+quit

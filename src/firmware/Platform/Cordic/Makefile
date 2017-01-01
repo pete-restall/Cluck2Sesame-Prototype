@@ -21,10 +21,12 @@ OBJ_FILES=\
 	StoreSqrtIntermediateResultState.o \
 	ArcTangentInitialiseState.o \
 	StoreArcSineResultState.o \
+	StoreArcCosineResultState.o \
 	Shift.o \
 	Sine.o \
 	ArcSine.o \
-	Cosine.o
+	Cosine.o \
+	ArcCosine.o
 
 all: $(LIB_FILENAME)
 

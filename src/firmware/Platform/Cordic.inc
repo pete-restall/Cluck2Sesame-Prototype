@@ -26,6 +26,10 @@ loadCosineArgument macro phi
 	loadCordicArgument phi
 	endm
 
+loadArcCosineArgument macro cosPhi
+	loadCordicArgument cosPhi
+	endm
+
 	extern cordicArgument
 	extern cordicArgumentHigh
 	extern cordicArgumentLow
@@ -40,5 +44,6 @@ loadCosineArgument macro phi
 	extern sine
 	extern arcSine
 	extern cosine
+	extern arcCosine
 
 	#endif
