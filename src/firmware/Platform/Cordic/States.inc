@@ -91,4 +91,15 @@ returnFromCordicState macro
 	goto pollNextInChainAfterCordic
 	endm
 
+returnZeroIfNotIdle macro
+	#if CORDIC_STATE_IDLE != 0
+	error "Expected CORDIC_STATE_IDLE to be zero !"
+	#endif
+
+	banksel cordicState
+	movf cordicState
+	btfss STATUS, Z
+	retlw 0
+	endm
+
 	#endif

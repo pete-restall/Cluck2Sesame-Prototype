@@ -8,11 +8,9 @@ Cordic code
 	global arcCosine
 
 arcCosine:
-	; TODO: If cordicState != CORDIC_STATE_IDLE then retlw 0, else do the
-	; arccosine magic and retlw 1
-
+	returnZeroIfNotIdle
 	setCordicState CORDIC_STATE_ARCSINEINITIALISE
 	setCordicResultState CORDIC_STATE_STOREARCCOSINERESULT
-	return
+	retlw 1
 
 	end

@@ -8,11 +8,9 @@ Cordic code
 	global sine
 
 sine:
-	; TODO: If cordicState != CORDIC_STATE_IDLE then retlw 0, else do the
-	; sine magic and retlw 1
-
+	returnZeroIfNotIdle
 	setCordicState CORDIC_STATE_SINECOSINEINITIALISE
 	setCordicResultState CORDIC_STATE_STORESINERESULT
-	return
+	retlw 1
 
 	end

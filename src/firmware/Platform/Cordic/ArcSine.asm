@@ -8,11 +8,9 @@ Cordic code
 	global arcSine
 
 arcSine:
-	; TODO: If cordicState != CORDIC_STATE_IDLE then retlw 0, else do the
-	; sine magic and retlw 1
-
+	returnZeroIfNotIdle
 	setCordicState CORDIC_STATE_ARCSINEINITIALISE
 	setCordicResultState CORDIC_STATE_STOREARCSINERESULT
-	return
+	retlw 1
 
 	end
