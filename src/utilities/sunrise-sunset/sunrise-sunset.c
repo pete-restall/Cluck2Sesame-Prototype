@@ -18,6 +18,10 @@
 #define LITERAL_0_46_Q0_16 0x75c3
 #define LITERAL_36000_OVER_36525_Q0_16 0xfc52
 
+#define LITERAL_0_05_Q0_16 0x0ccd
+#define LITERAL_0_528_Q0_16 0x872b
+#define LITERAL_35999_OVER_36525_Q0_16 0xfc50
+
 typedef struct
 {
 	int year : 16;
@@ -40,9 +44,9 @@ typedef struct
 
 	JulianDate epochAsJulianDate;
 	JulianDate julianDate;
-	unsigned int daysSinceEpoch;
-	unsigned int julianCenturiesScale;
+	unsigned short daysSinceEpoch;
 	Accumulator meanLongitudeIncludingAberration;
+	Accumulator meanAnomaly;
 } SunState;
 
 static void initialiseState(SunState *state);
@@ -55,6 +59,7 @@ static void calculateSunriseOn(SunState *state, GregorianDate date);
 static void calculateEventOn(SunState *state, GregorianDate date);
 static void calculateDaysSinceEpoch(SunState *state);
 static void calculateMeanLongitudeIncludingAberration(SunState *state);
+static void calculateMeanAnomaly(SunState *state);
 static void calculateSunsetOn(SunState *state, GregorianDate date);
 
 int main(int argc, char *argv[])
@@ -128,14 +133,16 @@ static void calculateEventOn(SunState *state, GregorianDate date)
 	state->julianDate = calculateJulianDateAtMidday(state, date);
 	calculateDaysSinceEpoch(state);
 	calculateMeanLongitudeIncludingAberration(state);
+	calculateMeanAnomaly(state);
 }
 
 static void calculateDaysSinceEpoch(SunState *state)
 {
-	state->daysSinceEpoch = state->julianDate - state->epochAsJulianDate;
+	state->daysSinceEpoch =
+		(unsigned short) state->julianDate - state->epochAsJulianDate;
 
 	if (!state->flags.quiet)
-		printf("\tDays since the Epoch: %d\n", state->daysSinceEpoch);
+		printf("\tDays since the Epoch: %hd\n", state->daysSinceEpoch);
 }
 
 static void calculateMeanLongitudeIncludingAberration(SunState *state)
@@ -155,6 +162,26 @@ static void calculateMeanLongitudeIncludingAberration(SunState *state)
 			"\tMean Longitude (including aberration): 0x%.8x (%.8g deg)\n",
 			state->meanLongitudeIncludingAberration,
 			state->meanLongitudeIncludingAberration / 65536.0);
+	}
+}
+
+static void calculateMeanAnomaly(SunState *state)
+{
+	Accumulator accumulator;
+	accumulator = state->daysSinceEpoch * LITERAL_0_05_Q0_16;
+	accumulator /= 36525;
+	accumulator += state->daysSinceEpoch * LITERAL_35999_OVER_36525_Q0_16;
+	accumulator += LITERAL_0_528_Q0_16;
+	accumulator += 357 << 16;
+
+	state->meanAnomaly = accumulator;
+
+	if (!state->flags.quiet)
+	{
+		printf(
+			"\tMean Anomaly: 0x%.8x (%.8g deg)\n",
+			state->meanAnomaly,
+			state->meanAnomaly / 65536.0);
 	}
 }
 
