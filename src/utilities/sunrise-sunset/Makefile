@@ -2,7 +2,7 @@ CC=gcc
 CCARGS=-ansi -Wall -pedantic -std=c99 -c
 LD=gcc
 LDARGS=
-LIBS=
+LIBS=-lm
 
 EXE_FILE=sunrise-sunset
 OBJ_FILES=sunrise-sunset.o
