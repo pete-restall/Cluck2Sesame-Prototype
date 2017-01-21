@@ -49,6 +49,9 @@
 
 #define DEGREES_180_Q1_15 ((FixedQ1_15) 0x8000)
 
+#define LITERAL_0_4393_Q1_15 ((FixedQ1_15) 0x383b)
+#define LITERAL_0_013_Q1_15 ((FixedQ1_15) 0x01aa)
+
 typedef struct
 {
 	int year : 16;
@@ -79,6 +82,7 @@ typedef struct
 	FixedQ1_15 sunEclipticLongitude;
 	FixedQ1_15 equationOfTime;
 	FixedQ1_15 greenwichHourAngle;
+	FixedQ1_15 obliquityOfTheEcliptic;
 } SunState;
 
 static void initialiseState(SunState *state);
@@ -100,6 +104,7 @@ static FixedQ1_15 cosine(FixedQ1_15 phi);
 static void calculateSunEclipticLongitude(SunState *state);
 static void calculateEquationOfTime(SunState *state);
 static void calculateGreenwichHourAngle(SunState *state);
+static void calculateObliquityOfTheEcliptic(SunState *state);
 static void calculateSunsetOn(SunState *state, GregorianDate date);
 
 int main(int argc, char *argv[])
@@ -179,6 +184,7 @@ static void calculateEventOn(SunState *state, GregorianDate date)
 	calculateSunEclipticLongitude(state);
 	calculateEquationOfTime(state);
 	calculateGreenwichHourAngle(state);
+	calculateObliquityOfTheEcliptic(state);
 }
 
 static void calculateDaysSinceEpoch(SunState *state)
@@ -394,6 +400,31 @@ static void calculateGreenwichHourAngle(SunState *state)
 			accumulator,
 			180 * state->greenwichHourAngle / 32768.0,
 			state->greenwichHourAngle);
+	}
+}
+
+static void calculateObliquityOfTheEcliptic(SunState *state)
+{
+	/*
+	    Obl = 23.4393 - 0.013 * days / 36525 
+
+	    Units: degrees (converted to Q1.15 angle units)
+	*/
+
+	Accumulator accumulatorA = (23 << 15) + LITERAL_0_4393_Q1_15;
+	Accumulator accumulatorB = LITERAL_0_013_Q1_15 * state->daysSinceEpoch;
+	accumulatorB /= 36525;
+	accumulatorA += -accumulatorB;
+
+	state->obliquityOfTheEcliptic = degreesToUnits(accumulatorA, 15);
+
+	if (!state->flags.quiet)
+	{
+		printf(
+			"\tObliquity of the Ecliptic: 0x%.8x (%.8g deg) -> 0x%.4hx\n",
+			accumulatorA,
+			accumulatorA / 32768.0,
+			state->obliquityOfTheEcliptic);
 	}
 }
 
