@@ -41,11 +41,13 @@
 #define LITERAL_0_528_Q0_16 0x872b
 #define LITERAL_35999_OVER_36525_Q0_16 0xfc50
 
-#define LITERAL_0_915_Q1_15 0x751f
-#define LITERAL_0_04_Q1_15 0x051f
+#define LITERAL_0_915_Q1_15 ((FixedQ1_15) 0x751f)
+#define LITERAL_0_04_Q1_15 ((FixedQ1_15) 0x051f)
 
-#define LITERAL_0_466_Q1_15 0x3ba6
-#define LITERAL_0_053_Q1_15 0x06c9
+#define LITERAL_0_466_Q1_15 ((FixedQ1_15) 0x3ba6)
+#define LITERAL_0_053_Q1_15 ((FixedQ1_15) 0x06c9)
+
+#define DEGREES_180_Q1_15 ((FixedQ1_15) 0x8000)
 
 typedef struct
 {
@@ -67,6 +69,7 @@ typedef struct
 		int quiet : 1;
 	} flags;
 
+	FixedQ1_15 eventTime;
 	JulianDate epochAsJulianDate;
 	JulianDate julianDate;
 	unsigned short daysSinceEpoch;
@@ -74,7 +77,8 @@ typedef struct
 	FixedQ1_15 meanAnomaly;
 	Accumulator equatorialCentreCorrection;
 	FixedQ1_15 sunEclipticLongitude;
-	Accumulator equationOfTime;
+	FixedQ1_15 equationOfTime;
+	FixedQ1_15 greenwichHourAngle;
 } SunState;
 
 static void initialiseState(SunState *state);
@@ -95,6 +99,7 @@ static FixedQ1_15 doubleToFixedQ1_15(double x);
 static FixedQ1_15 cosine(FixedQ1_15 phi);
 static void calculateSunEclipticLongitude(SunState *state);
 static void calculateEquationOfTime(SunState *state);
+static void calculateGreenwichHourAngle(SunState *state);
 static void calculateSunsetOn(SunState *state, GregorianDate date);
 
 int main(int argc, char *argv[])
@@ -112,6 +117,7 @@ static void initialiseState(SunState *state)
 		printf("Initialising state...\n");
 
 	memset(state, 0, sizeof(SunState));
+	state->eventTime = DEGREES_180_Q1_15;
 	state->epochAsJulianDate = calculateJulianDateAtMidday(
 		state,
 		date(2000, 1, 1));
@@ -172,6 +178,7 @@ static void calculateEventOn(SunState *state, GregorianDate date)
 	calculateEquatorialCentreCorrection(state);
 	calculateSunEclipticLongitude(state);
 	calculateEquationOfTime(state);
+	calculateGreenwichHourAngle(state);
 }
 
 static void calculateDaysSinceEpoch(SunState *state)
@@ -363,6 +370,30 @@ static void calculateEquationOfTime(SunState *state)
 			accumulatorA,
 			accumulatorA / 32768.0,
 			state->equationOfTime);
+	}
+}
+
+static void calculateGreenwichHourAngle(SunState *state)
+{
+	/*
+	    GHA = UTo - 180 + E
+
+	    Units: degrees (converted to Q1.15 angle units)
+	*/
+
+	Accumulator accumulator = state->eventTime;
+	accumulator += state->equationOfTime;
+	accumulator += -DEGREES_180_Q1_15;
+
+	state->greenwichHourAngle = (FixedQ1_15) (accumulator & 0xffff);
+
+	if (!state->flags.quiet)
+	{
+		printf(
+			"\tGrenwich Hour Angle: 0x%.8x (%.8g deg) -> 0x%.4hx\n",
+			accumulator,
+			180 * state->greenwichHourAngle / 32768.0,
+			state->greenwichHourAngle);
 	}
 }
 
