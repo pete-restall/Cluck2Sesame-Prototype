@@ -83,6 +83,7 @@ typedef struct
 	FixedQ1_15 equationOfTime;
 	FixedQ1_15 greenwichHourAngle;
 	FixedQ1_15 obliquityOfTheEcliptic;
+	FixedQ1_15 sunDeclination;
 } SunState;
 
 static void initialiseState(SunState *state);
@@ -105,6 +106,8 @@ static void calculateSunEclipticLongitude(SunState *state);
 static void calculateEquationOfTime(SunState *state);
 static void calculateGreenwichHourAngle(SunState *state);
 static void calculateObliquityOfTheEcliptic(SunState *state);
+static void calculateSunDeclination(SunState *state);
+static FixedQ1_15 arcSine(FixedQ1_15 x);
 static void calculateSunsetOn(SunState *state, GregorianDate date);
 
 int main(int argc, char *argv[])
@@ -185,6 +188,7 @@ static void calculateEventOn(SunState *state, GregorianDate date)
 	calculateEquationOfTime(state);
 	calculateGreenwichHourAngle(state);
 	calculateObliquityOfTheEcliptic(state);
+	calculateSunDeclination(state);
 }
 
 static void calculateDaysSinceEpoch(SunState *state)
@@ -426,6 +430,35 @@ static void calculateObliquityOfTheEcliptic(SunState *state)
 			accumulatorA / 32768.0,
 			state->obliquityOfTheEcliptic);
 	}
+}
+
+static void calculateSunDeclination(SunState *state)
+{
+	/*
+	    delta = asin(sin(Obl) * sin(lambda))
+
+	    Units: degrees (converted to Q1.15 angle units)
+	*/
+
+	FixedQ1_15 sinObl = sine(state->obliquityOfTheEcliptic);
+	FixedQ1_15 sinLambda = sine(state->sunEclipticLongitude);
+	Accumulator accumulator = sinObl * sinLambda;
+	accumulator >>= 15;
+
+	state->sunDeclination = arcSine((FixedQ1_15) (accumulator & 0xffff));
+
+	if (!state->flags.quiet)
+	{
+		printf(
+			"\tDeclination of the Sun: 0x%.4hx (%.8g deg)\n",
+			state->sunDeclination,
+			180 * state->sunDeclination / 32768.0);
+	}
+}
+
+static FixedQ1_15 arcSine(FixedQ1_15 x)
+{
+	return (FixedQ1_15) (32768 * asin(x / 32768.0) / M_PI);
 }
 
 static void calculateSunsetOn(SunState *state, GregorianDate date)
