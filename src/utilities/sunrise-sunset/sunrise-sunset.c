@@ -44,6 +44,9 @@
 #define LITERAL_0_915_Q1_15 0x751f
 #define LITERAL_0_04_Q1_15 0x051f
 
+#define LITERAL_0_466_Q1_15 0x3ba6
+#define LITERAL_0_053_Q1_15 0x06c9
+
 typedef struct
 {
 	int year : 16;
@@ -55,7 +58,7 @@ typedef int JulianDate;
 
 typedef int Accumulator;
 typedef unsigned short FixedQ0_16;
-typedef unsigned short FixedQ1_15;
+typedef short FixedQ1_15;
 
 typedef struct
 {
@@ -68,9 +71,10 @@ typedef struct
 	JulianDate julianDate;
 	unsigned short daysSinceEpoch;
 	Accumulator meanLongitudeIncludingAberration;
-	Accumulator meanAnomaly;
+	FixedQ1_15 meanAnomaly;
 	Accumulator equatorialCentreCorrection;
-	Accumulator sunEclipticLongitude;
+	FixedQ1_15 sunEclipticLongitude;
+	Accumulator equationOfTime;
 } SunState;
 
 static void initialiseState(SunState *state);
@@ -84,12 +88,13 @@ static void calculateEventOn(SunState *state, GregorianDate date);
 static void calculateDaysSinceEpoch(SunState *state);
 static void calculateMeanLongitudeIncludingAberration(SunState *state);
 static void calculateMeanAnomaly(SunState *state);
+static FixedQ1_15 degreesToUnits(Accumulator phi, int q);
 static void calculateEquatorialCentreCorrection(SunState *state);
-static FixedQ1_15 sineDegrees(Accumulator phi);
-static FixedQ1_15 degreesToUnits(Accumulator phi);
+static FixedQ1_15 sine(FixedQ1_15 phi);
 static FixedQ1_15 doubleToFixedQ1_15(double x);
-static FixedQ1_15 cosineDegrees(Accumulator phi);
+static FixedQ1_15 cosine(FixedQ1_15 phi);
 static void calculateSunEclipticLongitude(SunState *state);
+static void calculateEquationOfTime(SunState *state);
 static void calculateSunsetOn(SunState *state, GregorianDate date);
 
 int main(int argc, char *argv[])
@@ -166,6 +171,7 @@ static void calculateEventOn(SunState *state, GregorianDate date)
 	calculateMeanAnomaly(state);
 	calculateEquatorialCentreCorrection(state);
 	calculateSunEclipticLongitude(state);
+	calculateEquationOfTime(state);
 }
 
 static void calculateDaysSinceEpoch(SunState *state)
@@ -183,7 +189,7 @@ static void calculateMeanLongitudeIncludingAberration(SunState *state)
 	    L = 280.46 + 36000.77 * days / 36525
 	      = 280 + 0.46 + 0.77 * days / 36525 + 36000 * days / 36525
 
-	    Units: degrees
+	    Units: degrees (Q16.16)
 	    Maximum: 0x8db93a4c
 	*/
 
@@ -211,7 +217,7 @@ static void calculateMeanAnomaly(SunState *state)
 	    G = 357.528 + 35999.05 * days / 36525
 	      = 357 + 0.528 + 0.05 * days / 36525 + 35999 * days / 36525
 
-	    Units: degrees
+	    Units: degrees (converted to Q1.15 angle units)
 	    Maximum: 0x8e047608
 	*/
 
@@ -222,29 +228,48 @@ static void calculateMeanAnomaly(SunState *state)
 	accumulator += LITERAL_0_528_Q0_16;
 	accumulator += 357 << 16;
 
-	state->meanAnomaly = accumulator;
+	state->meanAnomaly = degreesToUnits(accumulator, 16);
 
 	if (!state->flags.quiet)
 	{
 		printf(
-			"\tMean Anomaly: 0x%.8x (%.8g deg)\n",
-			state->meanAnomaly,
-			state->meanAnomaly / 65536.0);
+			"\tMean Anomaly: 0x%.8x (%.8g deg) -> 0x%.4hx\n",
+			accumulator,
+			accumulator / 65536.0,
+			state->meanAnomaly);
 	}
+}
+
+static FixedQ1_15 degreesToUnits(Accumulator phi, int q)
+{
+	Accumulator circleMultiple = phi / 360;
+	circleMultiple >>= q;
+	circleMultiple *= 360;
+	circleMultiple <<= q;
+
+	phi += -circleMultiple;
+	phi /= (q == 16 ? 360 : 180);
+	return (FixedQ1_15) phi;
 }
 
 static void calculateEquatorialCentreCorrection(SunState *state)
 {
+	/* TODO: SINCE G IS NOW Q1.15, CAN WE JUST TAKE sin(2G) INSTEAD OF
+	         MODIFYING CORDIC TO OUTPUT BOTH SINE AND COSINE TO USE THE
+	         MULTIPLICATION BY IDENTITY ?  SINCE IF 2G OVERFLOWS, WE ONLY
+	         NEED THE 16 LSbs ANYWAY - WE GET FREE CIRCLE MODULO (AND A
+	         LEFT-SHIFT BY ONE PLACE IS QUICK) */
+
 	/*
 	    ec = 1.915 * sin(G) + 0.02 * sin(2 * G)
            = 1.915 * sin(G) + 0.02 * (2 * sin(G) * cos(G))
 	       = sin(G) + 0.915 * sin(G) + 0.04 * sin(G) * cos(G)
 
-	    Units: degrees
+	    Units: degrees (Q17.15)
 	*/
 
-	FixedQ1_15 sinG = sineDegrees(state->meanAnomaly);
-	FixedQ1_15 cosG = cosineDegrees(state->meanAnomaly);
+	FixedQ1_15 sinG = sine(state->meanAnomaly);
+	FixedQ1_15 cosG = cosine(state->meanAnomaly);
 	FixedQ1_15 sinCosProduct = ((int) sinG * cosG) >> 15;
 	Accumulator accumulator = sinG;
 	accumulator <<= 15;
@@ -263,22 +288,9 @@ static void calculateEquatorialCentreCorrection(SunState *state)
 	}
 }
 
-static FixedQ1_15 sineDegrees(Accumulator phi)
+static FixedQ1_15 sine(FixedQ1_15 phi)
 {
-	FixedQ1_15 units = degreesToUnits(phi);
-	return doubleToFixedQ1_15(sin(units / 32768.0 * M_PI));
-}
-
-static FixedQ1_15 degreesToUnits(Accumulator phi)
-{
-	Accumulator circleMultiple = phi / 360;
-	circleMultiple >>= 16;
-	circleMultiple *= 360;
-	circleMultiple <<= 16;
-
-	phi += -circleMultiple;
-	phi /= 360;
-	return (FixedQ1_15) phi;
+	return doubleToFixedQ1_15(sin(phi / 32768.0 * M_PI));
 }
 
 static FixedQ1_15 doubleToFixedQ1_15(double x)
@@ -288,30 +300,69 @@ static FixedQ1_15 doubleToFixedQ1_15(double x)
 		return 0x7fff;
 
 	if (value < -32768)
-		return 0x8000;
+		return (FixedQ1_15) 0x8000;
 
 	return (FixedQ1_15) value;
 }
 
-static FixedQ1_15 cosineDegrees(Accumulator phi)
+static FixedQ1_15 cosine(FixedQ1_15 phi)
 {
-	FixedQ1_15 units = degreesToUnits(phi);
-	return doubleToFixedQ1_15(cos(units / 32768.0 * M_PI));
+	return doubleToFixedQ1_15(cos(phi / 32768.0 * M_PI));
 }
 
 static void calculateSunEclipticLongitude(SunState *state)
 {
+	/*
+	    lambda = L + ec
+
+	    Units: degrees (converted to Q1.15 angle units)
+	*/
+
 	Accumulator accumulator = state->meanLongitudeIncludingAberration >> 1;
 	accumulator += state->equatorialCentreCorrection;
 
-	state->sunEclipticLongitude = accumulator;
+	state->sunEclipticLongitude = degreesToUnits(accumulator, 15);
 
 	if (!state->flags.quiet)
 	{
 		printf(
-			"\tEcliptic Longitude of the Sun: 0x%.8x (%.8g deg)\n",
-			state->sunEclipticLongitude,
-			state->sunEclipticLongitude / 32768.0);
+			"\tEcliptic Longitude of the Sun: 0x%.8x (%.8g deg) -> 0x%.4hx\n",
+			accumulator,
+			accumulator / 32768.0,
+			state->sunEclipticLongitude);
+	}
+}
+
+static void calculateEquationOfTime(SunState *state)
+{
+	/*
+	    E = -ec + 2.466 * sin(2 * lambda) - 0.053 * sin(4 * lambda)
+          = -ec + sin(2 * lambda) + sin(2 * lambda) + 0.466 * sin(2 * lambda) -
+	        0.053 * sin(4 * lambda)
+
+	    Units: degrees (converted to Q1.15 angle units)
+	*/
+
+	FixedQ1_15 sin2Lambda = sine(state->sunEclipticLongitude << 1);
+	FixedQ1_15 sin4Lambda = sine(state->sunEclipticLongitude << 2);
+	Accumulator accumulatorA = LITERAL_0_466_Q1_15 * sin2Lambda;
+	Accumulator accumulatorB = LITERAL_0_053_Q1_15 * sin4Lambda;
+	accumulatorA >>= 15;
+	accumulatorB >>= 15;
+	accumulatorA += sin2Lambda;
+	accumulatorA += sin2Lambda;
+	accumulatorA += -state->equatorialCentreCorrection;
+	accumulatorA += -accumulatorB;
+
+	state->equationOfTime = degreesToUnits(accumulatorA, 15);
+
+	if (!state->flags.quiet)
+	{
+		printf(
+			"\tEquation of Time: 0x%.8x (%.8g deg) -> 0x%.4hx\n",
+			accumulatorA,
+			accumulatorA / 32768.0,
+			state->equationOfTime);
 	}
 }
 
