@@ -1,7 +1,8 @@
 /src/utilities/gpsim2tuple/gpsim2tuple
 /src/utilities/lpf-rc/lpf-rc
 /src/utilities/mean/mean
-/src/utilities/sunrise-sunset/sunrise-sunset
+/src/utilities/sunrise-sunset/accurate/sunrise-sunset
+/src/utilities/sunrise-sunset/curve-fitting/curve-fit
 /src/utilities/trigonometry/cordic/cordic-float
 /src/utilities/trigonometry/cordic/cordic-fixed
 /src/utilities/trigonometry/smoothstep/smoothstep
