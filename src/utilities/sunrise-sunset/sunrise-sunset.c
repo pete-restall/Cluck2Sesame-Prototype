@@ -71,9 +71,11 @@ typedef struct
 	struct
 	{
 		int quiet : 1;
+		int addCorrection : 1;
 	} flags;
 
 	FixedQ1_15 latitude;
+	FixedQ1_15 longitude;
 	FixedQ1_15 eventTime;
 	FixedQ1_15 eventHeight;
 
@@ -91,7 +93,7 @@ typedef struct
 	FixedQ1_15 correction;
 } SunState;
 
-static void initialiseState(SunState *state, double latitude);
+static void initialiseState(SunState *state, double latitude, double longitude);
 static JulianDate calculateJulianDateAtMidday(
 	SunState *state,
 	GregorianDate date);
@@ -115,24 +117,26 @@ static void calculateSunDeclination(SunState *state);
 static FixedQ1_15 arcSine(FixedQ1_15 x);
 static void calculateCorrection(SunState *state);
 static FixedQ1_15 arcCosine(FixedQ1_15 x);
+static void calculateEventTime(SunState *state);
 static void calculateSunsetOn(SunState *state, GregorianDate date);
 
 int main(int argc, char *argv[])
 {
 	SunState state;
-	initialiseState(&state, 51.509865);
+	initialiseState(&state, 51.509865, -0.118092);
 	calculateSunriseOn(&state, date(2000, 2, 1));
 	calculateSunsetOn(&state, date(2099, 2, 1));
 	return 0;
 }
 
-static void initialiseState(SunState *state, double latitude)
+static void initialiseState(SunState *state, double latitude, double longitude)
 {
 	if (!state->flags.quiet)
 		printf("Initialising state...\n");
 
 	memset(state, 0, sizeof(SunState));
 	state->latitude = (FixedQ1_15) (32768 * latitude / 180);
+	state->longitude = (FixedQ1_15) (32768 * longitude / 180);
 	state->eventTime = DEGREES_180_Q1_15;
 	state->epochAsJulianDate = calculateJulianDateAtMidday(
 		state,
@@ -183,6 +187,7 @@ static void calculateSunriseOn(SunState *state, GregorianDate date)
 	}
 
 	state->eventHeight = DEGREES_0_Q1_15;
+	state->flags.addCorrection = ~0;
 	calculateEventOn(state, date);
 }
 
@@ -199,6 +204,7 @@ static void calculateEventOn(SunState *state, GregorianDate date)
 	calculateObliquityOfTheEcliptic(state);
 	calculateSunDeclination(state);
 	calculateCorrection(state);
+	calculateEventTime(state);
 }
 
 static void calculateDaysSinceEpoch(SunState *state)
@@ -521,6 +527,30 @@ static FixedQ1_15 arcCosine(FixedQ1_15 x)
 	return (FixedQ1_15) (32768 * acos(x / 32768.0) / M_PI);
 }
 
+static void calculateEventTime(SunState *state)
+{
+	Accumulator accumulator = state->correction;
+	if (!state->flags.addCorrection)
+		accumulator *= -1;
+
+	accumulator += state->greenwichHourAngle;
+	accumulator += state->longitude;
+	accumulator *= -1;
+	accumulator += state->eventTime;
+
+	state->eventTime = (FixedQ1_15) (accumulator & 0xffff);
+
+	if (!state->flags.quiet)
+	{
+		printf(
+			"\tEvent Time: 0x%.8x (%.8g deg) -> 0x%.4hx (%.8g deg)\n",
+			accumulator,
+			180 * accumulator / 32768.0,
+			state->eventTime,
+			180 * state->eventTime / 32768.0);
+	}
+}
+
 static void calculateSunsetOn(SunState *state, GregorianDate date)
 {
 	if (!state->flags.quiet)
@@ -533,5 +563,6 @@ static void calculateSunsetOn(SunState *state, GregorianDate date)
 	}
 
 	state->eventHeight = DEGREES_0_Q1_15;
+	state->flags.addCorrection = 0;
 	calculateEventOn(state, date);
 }
