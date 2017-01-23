@@ -10,6 +10,12 @@ sunriseC = data(:,6);
 sunsetC = data(:,7);
 sunriseD = data(:,8);
 sunsetD = data(:,9);
+sunriseReference = data(:,10);
+sunsetReference = data(:,11);
+sunriseReferenceA = data(:,12);
+sunsetReferenceA = data(:,13);
+sunriseReferenceB = data(:,14);
+sunsetReferenceB = data(:,15);
 
 epsilon = 1 / 32768;
 lowerBound = -1;
@@ -50,4 +56,55 @@ coefficients
 plot(x, sunriseA, "-b;A;", x, sunriseB, "-r;B;", x, sunriseC, "-g;C;", x, sunriseD, "-k;D;");
 title("Four Corners of the UK - Sunrise");
 figure;
+
+plot(x, sunriseReference, "-r;Reference;", x, sunriseReferenceA, "-g;A;", x, sunriseReferenceB, "-m;B;");
+title("Latitude Changes in Reference - Sunrise");
+figure;
+
+sunriseDifferenceA = sunriseReferenceA - sunriseReference;
+sunriseDifferenceB = sunriseReferenceB - sunriseReference;
+plot(x, sunriseDifferenceA, "-r;A - R;", x, sunriseDifferenceB, "-g;B - R;");
+title("Differences between Latitude Changes - Sunrise");
+figure;
+
+[fittedA, coefficientsA] = leasqr(
+	x,
+	sunriseDifferenceA / (60 - 55),
+	initialParameters,
+	@approximation,
+	0.0001,
+	200,
+	ones(size(y)),
+	0.001 * ones(size(initialParameters)),
+	@dfdp,
+	fittingOptions);
+
+coefficientsA
+
+[fittedB, coefficientsB] = leasqr(
+	x,
+	sunriseDifferenceB / (60 - 55),
+	initialParameters,
+	@approximation,
+	0.0001,
+	200,
+	ones(size(y)),
+	0.001 * ones(size(initialParameters)),
+	@dfdp,
+	fittingOptions);
+
+coefficientsB
+
+sunriseEstimateA = sunriseReference + sunriseDifferenceA;
+sunriseFittedEstimate = sunriseReference + fittedA * 5;
+plot(x, sunriseReferenceA, "-r;Actual;", x, sunriseEstimateA, "-g;Estimated A;", x, sunriseFittedEstimate, "-m;Fitted Estimate;");
+title("Estimate for A - Sunrise");
+figure;
+
+sunriseEstimateB = sunriseReference + sunriseDifferenceB;
+sunriseFittedEstimate = sunriseReference + fittedB * 5;
+plot(x, sunriseReferenceB, "-r;Actual;", x, sunriseEstimateB, "-g;Estimated B;", x, sunriseFittedEstimate, "-m;Fitted Estimate;");
+title("Estimate for B - Sunrise");
+figure;
+
 pause;
