@@ -22,11 +22,7 @@ lowerBound = -1;
 upperBound = 1 - epsilon;
 
 function Y = approximation(x, p)
-	Y = approximationTerm(x, p(1:4)) + approximationTerm(x, p([5,6,7,4])) + approximationTerm(x, p([8,9,10,4]));
-endfunction
-
-function Y = approximationTerm(x, p)
-	Y = p(1) * sin(p(2) + p(3) * (x / size(x)(1) * 2 * pi)) + p(4);
+	Y = p(1) + p(2) * sin(p(3) + p(4) * (x / size(x)(1) * 2 * pi)) + p(5) * sin(p(6) + p(7) * (x / size(x)(1) * 2 * pi));
 endfunction
 
 initialParameters = 0.5 * ones(10, 1);
@@ -57,12 +53,28 @@ plot(x, sunriseA, "-b;A;", x, sunriseB, "-r;B;", x, sunriseC, "-g;C;", x, sunris
 title("Four Corners of the UK - Sunrise");
 figure;
 
-plot(x, sunriseReference, "-r;Reference;", x, sunriseReferenceA, "-g;A;", x, sunriseReferenceB, "-m;B;");
+[fittedReference, referenceCoefficients] = leasqr(
+	x,
+	sunriseReference,
+	initialParameters,
+	@approximation,
+	0.0001,
+	200,
+	ones(size(y)),
+	0.001 * ones(size(initialParameters)),
+	@dfdp,
+	fittingOptions);
+
+referenceCoefficients
+
+plot(x, sunriseReference, "-r;Reference;", x, sunriseReferenceA, "-g;A;", x, sunriseReferenceB, "-m;B;", x, fittedReference, "-k;Fitted Reference;");
 title("Latitude Changes in Reference - Sunrise");
 figure;
 
+sunriseReference = fittedReference;
+
 sunriseDifferenceA = sunriseReferenceA - sunriseReference;
-sunriseDifferenceB = sunriseReferenceB - sunriseReference;
+sunriseDifferenceB = sunriseReference - sunriseReferenceB;
 plot(x, sunriseDifferenceA, "-r;A - R;", x, sunriseDifferenceB, "-g;B - R;");
 title("Differences between Latitude Changes - Sunrise");
 figure;
@@ -101,8 +113,8 @@ plot(x, sunriseReferenceA, "-r;Actual;", x, sunriseEstimateA, "-g;Estimated A;",
 title("Estimate for A - Sunrise");
 figure;
 
-sunriseEstimateB = sunriseReference + sunriseDifferenceB;
-sunriseFittedEstimate = sunriseReference + fittedB * 5;
+sunriseEstimateB = sunriseReference - sunriseDifferenceB;
+sunriseFittedEstimate = sunriseReference + fittedB * -5;
 plot(x, sunriseReferenceB, "-r;Actual;", x, sunriseEstimateB, "-g;Estimated B;", x, sunriseFittedEstimate, "-m;Fitted Estimate;");
 title("Estimate for B - Sunrise");
 figure;

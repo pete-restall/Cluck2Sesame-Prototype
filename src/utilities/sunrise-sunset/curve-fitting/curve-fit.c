@@ -202,7 +202,7 @@ static int writeSunriseSunsetTable(const char *const filename)
 static int writeFittedSunriseSunsetTable(const char *const filename)
 {
 	double sunriseLookupTable[LOOKUP_LENGTH];
-	double latitude = 58;
+	double latitude = 50;
 
 	FILE *fd = fopen(filename, "wt");
 	if (!fd)
@@ -237,58 +237,66 @@ static int writeFittedSunriseSunsetTable(const char *const filename)
 	return 0;
 }
 
-static void calculateSunriseLookupTable(double *table, int length)
-{
-	for (int day = 0; day < length; day++)
-		*(table++) = sunriseTime(day, LOOKUP_LATITUDE, LOOKUP_LONGITUDE);
-}
-
-#define FITTED(x, coeff, a, b, c, d) ( \
+#define FITTED(x, coeff, a, b, c) ( \
 	coeff[(a)] * \
 	sin(coeff[(b)] + coeff[(c)] * \
-		(((double) (x)) / LOOKUP_LENGTH * 2 * M_PI)) + \
-	coeff[(d)])
+		(((double) (x)) / LOOKUP_LENGTH * 2 * M_PI)))
+
+static void calculateSunriseLookupTable(double *table, int length)
+{
+	static const double coefficients[] = {
+		0.2600229,
+		-0.1076893,
+		-1.1332667,
+		0.9017572,
+		-0.0080633,
+		-3.3551178,
+		1.9933717
+	};
+
+	for (int day = 0; day < length; day++)
+	{
+		*(table++) =
+			coefficients[0] +
+			FITTED(day, coefficients, 1, 2, 3) +
+			FITTED(day, coefficients, 4, 5, 6);
+	}
+}
 
 static double sunriseAdjustment(int day, double latitude)
 {
 	static const double coefficientsPositive[] = {
-		2.5991e-03,
-		-5.3287e-01,
-		7.2085e-01,
-		-9.9571e-05,
-		-5.2110e-04,
-		-7.1170e+00,
-		2.9517e+00,
-		-7.4622e-03,
-		-1.1323e+00,
-		9.1930e-01
+		-2.7978e-04,
+		-1.0023e-03,
+		-7.8100e+00,
+		3.1925e+00,
+		-4.9737e-03,
+		-1.4778e+00,
+		1.0343e+00
 	};
 
 	static const double coefficientsNegative[] = {
-		1.7599e-03,
-		-1.0571e+00,
-		9.8818e-01,
-		-7.6638e-06,
-		2.0864e-03,
-		-1.4107e+01,
-		9.7417e-01,
-		2.4878e-04,
-		-9.3913e-01,
-		2.9895e+00
+		7.4209e-03,
+		-4.3999e-03,
+		-7.6333e-01,
+		7.9231e-01,
+		-6.3700e-03,
+		1.5564e+00,
+		2.6591e-04
 	};
 
-	if (latitude > LOOKUP_LATITUDE)
+	if (latitude >= LOOKUP_LATITUDE)
 	{
 		return (latitude - LOOKUP_LATITUDE) * (
-			FITTED(day, coefficientsPositive, 0, 1, 2, 3) +
-			FITTED(day, coefficientsPositive, 4, 5, 6, 3) +
-			FITTED(day, coefficientsPositive, 7, 8, 9, 3));
+			coefficientsPositive[0] +
+			FITTED(day, coefficientsPositive, 1, 2, 3) +
+			FITTED(day, coefficientsPositive, 4, 5, 6));
 	}
 	else
 	{
-		return (LOOKUP_LATITUDE - latitude) * (
-			FITTED(day, coefficientsNegative, 0, 1, 2, 3) +
-			FITTED(day, coefficientsNegative, 4, 5, 6, 3) +
-			FITTED(day, coefficientsNegative, 7, 8, 9, 3));
+		return (latitude - LOOKUP_LATITUDE) * (
+			coefficientsNegative[0] +
+			FITTED(day, coefficientsNegative, 1, 2, 3) +
+			FITTED(day, coefficientsNegative, 4, 5, 6));
 	}
 }
