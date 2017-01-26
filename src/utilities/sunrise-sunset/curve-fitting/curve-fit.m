@@ -1,3 +1,7 @@
+fd = fopen("../../trigonometry/cordic/cordic-fixed-sine-table.bin", "rb", "b");
+global cordicSin = fread(fd, [1,65536], "int16");
+fclose(fd);
+
 data = load("-ascii", "sunrise-sunset.txt")(1:366,:);
 x = data(:,1);
 y = data(:,2);
@@ -17,37 +21,57 @@ sunsetReferenceA = data(:,13);
 sunriseReferenceB = data(:,14);
 sunsetReferenceB = data(:,15);
 
-epsilon = 1 / 32768;
 lowerBound = -1;
-upperBound = 1 - epsilon;
+upperBound = 1 - (1 / 65536);
 
-function Y = approximation(x, p)
-	Y = p(1) + p(2) * sin(p(3) + p(4) * (x / size(x)(1) * 2 * pi)) + p(5) * sin(p(6) + p(7) * (x / size(x)(1) * 2 * pi));
+function y = sinLookup(phi)
+	global cordicSin;
+	y = sin(phi * 2 * pi);
 endfunction
 
-initialParameters = 0.5 * ones(10, 1);
+function Y = approximation(x, p)
+	phi = x / 366;
+	cordicAngleA = p(3) + p(4) * phi;
+	cordicAngleB = p(6) + p(7) * phi;
+	cordicAngleC = p(9) + p(10) * phi;
+	cordicAngleD = p(12) + p(13) * phi;
+	a = p(2) * arrayfun(@sinLookup, cordicAngleA);
+	b = p(5) * arrayfun(@sinLookup, cordicAngleB);
+	c = p(8) * arrayfun(@sinLookup, cordicAngleC);
+	d = p(11) * arrayfun(@sinLookup, cordicAngleD);
+	Y = (p(1) + a + b + c + 0);
+endfunction
+
+initialParameters = [
+	0.436866;
+	0.214981; 0.649690; -0.012062;
+	0.010211; 0.028479; 1.777003;
+	0.112530; 0.341738; 0.843106;
+	0.4; 0.4; 0.4];
+
 fittingOptions.bounds = repmat(
-	%[lowerBound, upperBound],
-	[-inf, +inf],
+	[-Inf, +Inf],
 	size(initialParameters));
 
-[fittedY, coefficients] = leasqr(
+[fittedSunriseReference, coefficients] = leasqr(
 	x,
-	y,
+	sunriseReference,
 	initialParameters,
 	@approximation,
 	0.0001,
-	200,
+	20,
 	ones(size(y)),
 	0.001 * ones(size(initialParameters)),
 	@dfdp,
 	fittingOptions);
 
-handRolled = 0.15 * ones(size(x)); % 0.09 * sin(1.5 + 4 * x / size(x)(1) * 2 * pi) + 0.25;
-plot(x, y, "-b;Actual;", x, fittedY, "-r;Fitted;", x, handRolled, "-g;Hand Rolled;");
-title("Fitting Attempt");
+plot(x, sunriseReference, "-b;Actual;", x, fittedSunriseReference, "-r;Fitted;");
+title("Fitting Attempt - Sunrise Reference");
 figure;
 coefficients
+
+pause;
+quit;
 
 plot(x, sunriseA, "-b;A;", x, sunriseB, "-r;B;", x, sunriseC, "-g;C;", x, sunriseD, "-k;D;");
 title("Four Corners of the UK - Sunrise");
