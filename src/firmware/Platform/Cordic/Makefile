@@ -13,20 +13,9 @@ OBJ_FILES=\
 	CalculateZState.o \
 	EndOfIterationState.o \
 	StoreSineCosineResultState.o \
-	ArcSineInitialiseState.o \
-	SqrtInitialiseState.o \
-	HyperbolicCalculateXState.o \
-	HyperbolicCalculateYState.o \
-	HyperbolicEndOfIterationState.o \
-	StoreSqrtIntermediateResultState.o \
-	ArcTangentInitialiseState.o \
-	StoreArcSineResultState.o \
-	StoreArcCosineResultState.o \
 	Shift.o \
 	Sine.o \
-	ArcSine.o \
-	Cosine.o \
-	ArcCosine.o
+	Cosine.o
 
 all: $(LIB_FILENAME)
 

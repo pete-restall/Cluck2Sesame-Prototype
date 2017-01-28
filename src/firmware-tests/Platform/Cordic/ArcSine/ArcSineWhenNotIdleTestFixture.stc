@@ -1,4 +1,0 @@
-load "ArcSineWhenNotIdleTest.cod"
-load i "../../../PreventInfiniteLoops.sti"
-run
-quit

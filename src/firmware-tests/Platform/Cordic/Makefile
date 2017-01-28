@@ -19,9 +19,7 @@ all: $(TEST_DOUBLE_OBJ_FILES) AllCordicSpaceTestFixture.o
 	$(MAKE) -C Poll all
 	$(MAKE) -C IsCordicIdle all
 	$(MAKE) -C Sine all
-	$(MAKE) -C ArcSine all
 	$(MAKE) -C Cosine all
-	$(MAKE) -C ArcCosine all
 
 clean:
 	$(RM) -f $(BUILD_ARTEFACT_PATTERN)
@@ -29,8 +27,6 @@ clean:
 	$(MAKE) -C Poll clean
 	$(MAKE) -C IsCordicIdle clean
 	$(MAKE) -C Sine clean
-	$(MAKE) -C ArcSine clean
 	$(MAKE) -C Cosine clean
-	$(MAKE) -C ArcCosine clean
 
 include $(MAKEFILE_RULES)

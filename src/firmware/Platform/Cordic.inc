@@ -18,16 +18,8 @@ loadSineArgument macro phi
 	loadCordicArgument phi
 	endm
 
-loadArcSineArgument macro sinPhi
-	loadCordicArgument sinPhi
-	endm
-
 loadCosineArgument macro phi
 	loadCordicArgument phi
-	endm
-
-loadArcCosineArgument macro cosPhi
-	loadCordicArgument cosPhi
 	endm
 
 	extern cordicArgument
@@ -42,8 +34,6 @@ loadArcCosineArgument macro cosPhi
 	extern pollCordic
 	extern isCordicIdle
 	extern sine
-	extern arcSine
 	extern cosine
-	extern arcCosine
 
 	#endif
