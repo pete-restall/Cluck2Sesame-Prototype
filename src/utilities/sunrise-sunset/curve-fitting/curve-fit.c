@@ -85,12 +85,13 @@ static GregorianDate daysSinceEpochToDate(int day);
 static GregorianDate daysToDate(int day);
 static double fittedSunsetTime(int day, double latitude, double longitude);
 static int writeFittedSunriseSunsetTable(const char *const filename);
-static double sunriseAdjustment(int day, double latitude);
-static double interpolateSunEvent(
+static FixedQ1_15 sunriseLatitudeAdjustment(int day, double latitude);
+static FixedQ1_15 interpolateSunEvent(
 	double latitudeDifference,
 	FixedQ1_15 adjustment);
 
-static double sunsetAdjustment(int day, double latitude);
+static FixedQ1_15 longitudeAdjustment(double longitude);
+static FixedQ1_15 sunsetLatitudeAdjustment(int day, double latitude);
 
 int main(void)
 {
@@ -113,12 +114,37 @@ int main(void)
 		int sunriseHour = (int) timeOfSunrise;
 		int sunriseMinute = (int) ((timeOfSunrise - sunriseHour) * 60);
 
+		double timeOfFittedSunrise =
+			24 * fittedSunriseTime(day, latitude, longitude);
+		int fittedSunriseHour = (int) timeOfFittedSunrise;
+		int fittedSunriseMinute =
+			(int) ((timeOfFittedSunrise - fittedSunriseHour) * 60);
+
 		double timeOfSunset = 24 * sunsetTime(day, latitude, longitude);
 		int sunsetHour = (int) timeOfSunset;
 		int sunsetMinute = (int) ((timeOfSunset - sunsetHour) * 60);
 
-		printf("%d Sunrise time: %.2d:%.2d\n", day, sunriseHour, sunriseMinute);
-		printf("%d Sunset time : %.2d:%.2d\n", day, sunsetHour, sunsetMinute);
+		double timeOfFittedSunset =
+			24 * fittedSunsetTime(day, latitude, longitude);
+		int fittedSunsetHour = (int) timeOfFittedSunset;
+		int fittedSunsetMinute =
+			(int) ((timeOfFittedSunset - fittedSunsetHour) * 60);
+
+		printf(
+			"%d Sunrise time: %.2d:%.2d (approximately %.2d:%.2d)\n",
+			day,
+			sunriseHour,
+			sunriseMinute,
+			fittedSunriseHour,
+			fittedSunriseMinute);
+
+		printf(
+			"%d Sunset time : %.2d:%.2d (approximately %.2d:%.2d)\n",
+			day,
+			sunsetHour,
+			sunsetMinute,
+			fittedSunsetHour,
+			fittedSunsetMinute);
 	}
 
 	return
@@ -447,7 +473,8 @@ static double fittedSunriseTime(int day, double latitude, double longitude)
 
 	return
 		(sunriseLookupTable[dayOfYear] +
-		sunriseAdjustment(dayOfYear, latitude)) / 32768;
+		sunriseLatitudeAdjustment(dayOfYear, latitude) +
+		longitudeAdjustment(longitude)) / 32768;
 }
 
 static int dayOfYearFromDayOfCentury(int day)
@@ -515,12 +542,14 @@ static double fittedSunsetTime(int day, double latitude, double longitude)
 
 	return 
 		(sunsetLookupTable[dayOfYear] +
-		sunsetAdjustment(dayOfYear, latitude)) / 32768;
+		sunsetLatitudeAdjustment(dayOfYear, latitude) +
+		longitudeAdjustment(longitude)) / 32768;
 }
 
 static int writeFittedSunriseSunsetTable(const char *const filename)
 {
-	double latitude = 52.5;
+	double latitude = 55.0;
+	double longitude = 0.0;
 
 	FILE *fd = fopen(filename, "wt");
 	if (!fd)
@@ -533,11 +562,11 @@ static int writeFittedSunriseSunsetTable(const char *const filename)
 
 	for (int day = 0; day < LOOKUP_LENGTH; day++)
 	{
-		double fittedSunrise = fittedSunriseTime(day, latitude, 0);
-		double actualSunrise = sunriseTime(day, latitude, LOOKUP_LONGITUDE);
+		double fittedSunrise = fittedSunriseTime(day, latitude, longitude);
+		double actualSunrise = sunriseTime(day, latitude, longitude);
 
-		double fittedSunset = fittedSunsetTime(day, latitude, 0);
-		double actualSunset = sunsetTime(day, latitude, LOOKUP_LONGITUDE);
+		double fittedSunset = fittedSunsetTime(day, latitude, longitude);
+		double actualSunset = sunsetTime(day, latitude, longitude);
 
 		fprintf(
 			fd,
@@ -557,7 +586,7 @@ static int writeFittedSunriseSunsetTable(const char *const filename)
 	return 0;
 }
 
-static double sunriseAdjustment(int day, double latitude)
+static FixedQ1_15 sunriseLatitudeAdjustment(int day, double latitude)
 {
 /*
 	static const double coefficientsPositive[] = {
@@ -632,7 +661,7 @@ static double sunriseAdjustment(int day, double latitude)
 	return interpolateSunEvent(latitudeDifference, adjustment);
 }
 
-static double interpolateSunEvent(
+static FixedQ1_15 interpolateSunEvent(
 	double latitudeDifference,
 	FixedQ1_15 adjustment)
 {
@@ -645,10 +674,18 @@ static double interpolateSunEvent(
 	for (int i = 0; i < iterations; i++)
 		accumulator += adjustment;
 
-	return (FixedQ1_15) accumulator;
+	return accumulator;
 }
 
-static double sunsetAdjustment(int day, double latitude)
+static FixedQ1_15 longitudeAdjustment(double longitude)
+{
+	int differenceInTenthsOfDegree =
+		(int) ((longitude - LOOKUP_LONGITUDE) * 10);
+
+	return (FixedQ1_15) (differenceInTenthsOfDegree * -8);
+}
+
+static FixedQ1_15 sunsetLatitudeAdjustment(int day, double latitude)
 {
 /*
 	static const double coefficientsPositive[] = {
