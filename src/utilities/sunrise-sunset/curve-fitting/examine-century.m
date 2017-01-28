@@ -1,4 +1,4 @@
-data = load("-ascii", "sunrise-sunset-fitted.txt");
+data = load("-ascii", "sunrise-sunset.txt");
 day = data(:,1);
 referenceSunrise = data(:,2);
 fittedSunrise = data(:,3);
