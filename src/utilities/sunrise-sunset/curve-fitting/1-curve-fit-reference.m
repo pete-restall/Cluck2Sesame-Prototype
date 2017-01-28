@@ -1,7 +1,9 @@
-data = load("-ascii", "sunrise-sunset.txt")(1:366,:);
+% Sunrise and Sunset Coefficients for the Central Reference
+
+data = load("-ascii", "sunrise-sunset-reference.txt")(1:366,:);
 day = data(:,1);
-sunriseReference = data(:,10);
-sunsetReference = data(:,11);
+sunriseReference = data(:,2);
+sunsetReference = data(:,3);
 
 sunriseInitialParameters = [
 	0.436866;

@@ -64,7 +64,13 @@ static void calculateSunriseLookupTable(double *table, int length);
 static FixedQ1_15 fixedAdd(FixedQ1_15 a, FixedQ1_15 b);
 static FixedQ1_15 fixedMul(FixedQ1_15 a, FixedQ1_15 b);
 static FixedQ1_15 fixedAdd3(FixedQ1_15 a, FixedQ1_15 b, FixedQ1_15 c);
-static FixedQ1_15 fixedAdd4(FixedQ1_15 a, FixedQ1_15 b, FixedQ1_15 c, FixedQ1_15 d);
+static FixedQ1_15 fixedAdd5(
+	FixedQ1_15 a,
+	FixedQ1_15 b,
+	FixedQ1_15 c,
+	FixedQ1_15 d,
+	FixedQ1_15 e);
+
 static FixedQ1_15 sine(FixedQ0_16 phi);
 static void calculateSunsetLookupTable(double *table, int length);
 static int daysSinceEpoch(const GregorianDate date);
@@ -81,6 +87,10 @@ static GregorianDate daysToDate(int day);
 static double fittedSunsetTime(int day, double latitude, double longitude);
 static int writeFittedSunriseSunsetTable(const char *const filename);
 static double sunriseAdjustment(int day, double latitude);
+static double interpolateSunEvent(
+	double latitudeDifference,
+	FixedQ1_15 adjustment);
+
 static double sunsetAdjustment(int day, double latitude);
 
 int main(void)
@@ -113,7 +123,7 @@ int main(void)
 	}
 
 	return
-		writeSunriseSunsetTable("sunrise-sunset.txt") +
+		writeSunriseSunsetTable("sunrise-sunset-reference.txt") +
 		writeFittedSunriseSunsetTable("sunrise-sunset-fitted.txt");
 }
 
@@ -133,10 +143,11 @@ static void initialiseLookupTables(void)
 #define FITTED2(x, cMultiple, coeff, a, b, c) \
 	fixedMul(\
 		coeff[(a)], \
-		sine(fixedAdd4( \
+		sine(fixedAdd5( \
 			coeff[(b)], \
 			cMultiple > 0 ? ((x) << 15) / LOOKUP_LENGTH : 0, \
 			cMultiple > 1 ? ((x) << 15) / LOOKUP_LENGTH : 0, \
+			cMultiple > 2 ? ((x) << 15) / LOOKUP_LENGTH : 0, \
 			fixedMul(coeff[(c)], \
 			((x) << 15) / LOOKUP_LENGTH)) << 1))
 
@@ -180,7 +191,8 @@ static void calculateSunriseLookupTable(double *table, int length)
 			(coefficients[7] * sin((coefficients[8] + coefficients[9] * day / LOOKUP_LENGTH) * 2 * M_PI)));
 */
 
-		*(table++) = fixedAdd4(
+		*(table++) = fixedAdd5(
+			0,
 			coefficients[0],
 			FITTED(day, coefficients, 1, 2, 3),
 			FITTED2(day, 2, coefficients, 4, 5, 6),
@@ -206,9 +218,14 @@ static FixedQ1_15 fixedAdd3(FixedQ1_15 a, FixedQ1_15 b, FixedQ1_15 c)
 	return (FixedQ1_15) result;
 }
 
-static FixedQ1_15 fixedAdd4(FixedQ1_15 a, FixedQ1_15 b, FixedQ1_15 c, FixedQ1_15 d)
+static FixedQ1_15 fixedAdd5(
+	FixedQ1_15 a,
+	FixedQ1_15 b,
+	FixedQ1_15 c,
+	FixedQ1_15 d,
+	FixedQ1_15 e)
 {
-	int result = (int) a + b + c + d;
+	int result = (int) a + b + c + d + e;
 	return (FixedQ1_15) result;
 }
 
@@ -284,7 +301,8 @@ static void calculateSunsetLookupTable(double *table, int length)
 			(coefficients[7] * sin((coefficients[8] + coefficients[9] * day / LOOKUP_LENGTH) * 2 * M_PI)));
 */
 
-		*(table++) = fixedAdd4(
+		*(table++) = fixedAdd5(
+			0,
 			coefficients[0],
 			FITTED(day, coefficients, 1, 2, 3),
 			FITTED2(day, 1, coefficients, 4, 5, 6),
@@ -387,13 +405,18 @@ static int writeSunriseSunsetTable(const char *const filename)
 
 	for (int day = 0; day < 36525; day++)
 	{
-		double referenceTimes[] = {
+		double sunriseTimes[] = {
 			sunriseTime(day, 55, 0),
-			sunsetTime(day, 55, 0)
-		};
-		double fittedTimes[] = {
 			fittedSunriseTime(day, 55, 0),
-			fittedSunsetTime(day, 55, 0)
+			sunriseTime(day, 60, 0),
+			sunriseTime(day, 50, 0)
+		};
+
+		double sunsetTimes[] = {
+			sunsetTime(day, 55, 0),
+			fittedSunsetTime(day, 55, 0),
+			sunsetTime(day, 60, 0),
+			sunsetTime(day, 50, 0)
 		};
 
 		fprintf(
@@ -401,12 +424,18 @@ static int writeSunriseSunsetTable(const char *const filename)
 			"%d"
 				"\t%.8e\t%.8e"
 				"\t%.8e\t%.8e"
+				"\t%.8e\t%.8e"
+				"\t%.8e\t%.8e"
 			"\n",
 			day,
-			referenceTimes[0],
-			fittedTimes[0],
-			referenceTimes[1],
-			fittedTimes[1]);
+			sunriseTimes[0],
+			sunsetTimes[0],
+			sunriseTimes[1],
+			sunsetTimes[1],
+			sunriseTimes[2],
+			sunsetTimes[2],
+			sunriseTimes[3],
+			sunsetTimes[3]);
 	}
 
 	fclose(fd);
@@ -498,7 +527,7 @@ static double fittedSunsetTime(int day, double latitude, double longitude)
 
 static int writeFittedSunriseSunsetTable(const char *const filename)
 {
-	double latitude = 55;
+	double latitude = 57.5;
 
 	FILE *fd = fopen(filename, "wt");
 	if (!fd)
@@ -538,46 +567,137 @@ static int writeFittedSunriseSunsetTable(const char *const filename)
 static double sunriseAdjustment(int day, double latitude)
 {
 	static const FixedQ1_15 coefficientsPositive[] = {
-		0,
-		0,
-		0,
-		0,
-		0,
-		0,
-		0
+/*
+	static const double coefficientsPositive[] = {
+		-0.0150405,
+		-0.0065156,
+		-0.3172214,
+		0.0027572,
+		0.0054313,
+		-0.6837716,
+		0.9239776,
+		0.0097276,
+		-0.7135158,
+		0.0024573
+	};
+*/
+		(FixedQ1_15) -493,
+		(FixedQ1_15) -214,
+		(FixedQ1_15) -10395,
+		(FixedQ1_15) 90,
+		(FixedQ1_15) 178,
+		(FixedQ1_15) -22406,
+		(FixedQ1_15) 30277,
+		(FixedQ1_15) 319,
+		(FixedQ1_15) -23380,
+		(FixedQ1_15) 81
 	};
 
 	static const FixedQ1_15 coefficientsNegative[] = {
-		0,
-		0,
-		0,
-		0,
-		0,
-		0,
-		0
+		(FixedQ1_15) 0,
+		(FixedQ1_15) 0,
+		(FixedQ1_15) 0,
+		(FixedQ1_15) 0,
+		(FixedQ1_15) 0,
+		(FixedQ1_15) 0,
+		(FixedQ1_15) 0,
+		(FixedQ1_15) 0,
+		(FixedQ1_15) 0,
+		(FixedQ1_15) 0
 	};
 
-	if (latitude >= LOOKUP_LATITUDE)
-	{
-		return fixedMul(
-			(FixedQ1_15) ((latitude - LOOKUP_LATITUDE) * 32768),
-			fixedAdd3(
-				coefficientsPositive[0],
-				FITTED(day, coefficientsPositive, 1, 2, 3),
-				FITTED(day, coefficientsPositive, 4, 5, 6)));
-	}
-	else
-	{
-		return fixedMul(
-			(FixedQ1_15) ((latitude - LOOKUP_LATITUDE) * 32768),
-			fixedAdd3(
-				coefficientsNegative[0],
-				FITTED(day, coefficientsNegative, 1, 2, 3),
-				FITTED(day, coefficientsNegative, 4, 5, 6)));
-	}
+	double latitudeDifference = fabs(latitude - LOOKUP_LATITUDE);
+
+	FixedQ1_15 adjustment = latitude > LOOKUP_LATITUDE
+		? fixedAdd5(
+			0,
+			coefficientsPositive[0],
+			FITTED(day, coefficientsPositive, 1, 2, 3),
+			FITTED(day, coefficientsPositive, 4, 5, 6),
+			FITTED(day, coefficientsPositive, 7, 8, 9))
+		: fixedAdd5(
+			0,
+			coefficientsNegative[0],
+			FITTED(day, coefficientsNegative, 1, 2, 3),
+			FITTED(day, coefficientsNegative, 4, 5, 6),
+			FITTED(day, coefficientsNegative, 7, 8, 9));
+
+	return interpolateSunEvent(latitudeDifference, adjustment);
+}
+
+static double interpolateSunEvent(
+	double latitudeDifference,
+	FixedQ1_15 adjustment)
+{
+	int iterations = (int) latitudeDifference;
+
+	FixedQ1_15 latitudeFraction =
+		(FixedQ1_15) ((latitudeDifference - iterations) * 32768);
+
+	int accumulator = fixedMul(latitudeFraction, adjustment);
+	for (int i = 0; i < iterations; i++)
+		accumulator += adjustment;
+
+	return (FixedQ1_15) accumulator;
 }
 
 static double sunsetAdjustment(int day, double latitude)
 {
-	return 0;
+	static const FixedQ1_15 coefficientsPositive[] = {
+/*
+	static const double coefficientsPositive[] = {
+		2.0157e-02,
+		5.1045e-03,
+		7.9097e-01,
+		9.8548e-01,
+		2.7135e-02,
+		8.6629e-01,
+		1.8893e-03,
+		9.3824e-04,
+		7.9225e-01,
+		3.1405e+00
+	};
+*/
+		(FixedQ1_15) 661,
+		(FixedQ1_15) 167,
+		(FixedQ1_15) 25919,
+		(FixedQ1_15) 32292,
+		(FixedQ1_15) 889,
+		(FixedQ1_15) 28387,
+		(FixedQ1_15) 62,
+		(FixedQ1_15) 31,
+		(FixedQ1_15) 25960,
+		(FixedQ1_15) 4604, /* PLUS THREE */
+	};
+
+	static const FixedQ1_15 coefficientsNegative[] = {
+		(FixedQ1_15) 0,
+		(FixedQ1_15) 0,
+		(FixedQ1_15) 0,
+		(FixedQ1_15) 0,
+		(FixedQ1_15) 0,
+		(FixedQ1_15) 0,
+		(FixedQ1_15) 0,
+		(FixedQ1_15) 0,
+		(FixedQ1_15) 0,
+		(FixedQ1_15) 0
+	};
+
+	double latitudeDifference = fabs(latitude - LOOKUP_LATITUDE);
+
+	FixedQ1_15 adjustment = latitude > LOOKUP_LATITUDE
+		? fixedAdd5(
+			0,
+			coefficientsPositive[0],
+			FITTED(day, coefficientsPositive, 1, 2, 3),
+			FITTED(day, coefficientsPositive, 4, 5, 6),
+			FITTED2(day, 3, coefficientsPositive, 7, 8, 9))
+		: fixedAdd5(
+			0,
+			coefficientsNegative[0],
+			FITTED(day, coefficientsNegative, 1, 2, 3),
+			FITTED(day, coefficientsNegative, 4, 5, 6),
+			FITTED(day, coefficientsNegative, 7, 8, 9));
+
+	return interpolateSunEvent(latitudeDifference, adjustment);
 }
