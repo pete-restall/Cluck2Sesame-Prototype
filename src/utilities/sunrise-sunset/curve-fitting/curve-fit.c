@@ -63,7 +63,6 @@ static void initialiseLookupTables(void);
 static void calculateSunriseLookupTable(double *table, int length);
 static FixedQ1_15 fixedAdd(FixedQ1_15 a, FixedQ1_15 b);
 static FixedQ1_15 fixedMul(FixedQ1_15 a, FixedQ1_15 b);
-static FixedQ1_15 fixedAdd3(FixedQ1_15 a, FixedQ1_15 b, FixedQ1_15 c);
 static FixedQ1_15 fixedAdd5(
 	FixedQ1_15 a,
 	FixedQ1_15 b,
@@ -210,12 +209,6 @@ static FixedQ1_15 fixedMul(FixedQ1_15 a, FixedQ1_15 b)
 {
 	int result = ((int) a * b) >> 15;
 	return (FixedQ1_15) (result & 0xffff);
-}
-
-static FixedQ1_15 fixedAdd3(FixedQ1_15 a, FixedQ1_15 b, FixedQ1_15 c)
-{
-	int result = (int) a + b + c;
-	return (FixedQ1_15) result;
 }
 
 static FixedQ1_15 fixedAdd5(
@@ -527,7 +520,7 @@ static double fittedSunsetTime(int day, double latitude, double longitude)
 
 static int writeFittedSunriseSunsetTable(const char *const filename)
 {
-	double latitude = 57.5;
+	double latitude = 52.5;
 
 	FILE *fd = fopen(filename, "wt");
 	if (!fd)
@@ -566,7 +559,6 @@ static int writeFittedSunriseSunsetTable(const char *const filename)
 
 static double sunriseAdjustment(int day, double latitude)
 {
-	static const FixedQ1_15 coefficientsPositive[] = {
 /*
 	static const double coefficientsPositive[] = {
 		-0.0150405,
@@ -580,7 +572,22 @@ static double sunriseAdjustment(int day, double latitude)
 		-0.7135158,
 		0.0024573
 	};
+
+	static const double coefficientsNegative[] = {
+		-0.0111063,
+		-0.0116334,
+		-0.1816415,
+		-0.3339923,
+		-0.0012709,
+		-0.9382433,
+		1.4463577,
+		0.0080276,
+		-0.4461986,
+		-0.2802890
+	};
 */
+
+	static const FixedQ1_15 coefficientsPositive[] = {
 		(FixedQ1_15) -493,
 		(FixedQ1_15) -214,
 		(FixedQ1_15) -10395,
@@ -594,16 +601,16 @@ static double sunriseAdjustment(int day, double latitude)
 	};
 
 	static const FixedQ1_15 coefficientsNegative[] = {
-		(FixedQ1_15) 0,
-		(FixedQ1_15) 0,
-		(FixedQ1_15) 0,
-		(FixedQ1_15) 0,
-		(FixedQ1_15) 0,
-		(FixedQ1_15) 0,
-		(FixedQ1_15) 0,
-		(FixedQ1_15) 0,
-		(FixedQ1_15) 0,
-		(FixedQ1_15) 0
+		(FixedQ1_15) -364,
+		(FixedQ1_15) -381,
+		(FixedQ1_15) -5952,
+		(FixedQ1_15) -10944,
+		(FixedQ1_15) -42,
+		(FixedQ1_15) -30744,
+		(FixedQ1_15) 14626, /* PLUS ONE */
+		(FixedQ1_15) 263,
+		(FixedQ1_15) -14621,
+		(FixedQ1_15) -9185
 	};
 
 	double latitudeDifference = fabs(latitude - LOOKUP_LATITUDE);
@@ -619,7 +626,7 @@ static double sunriseAdjustment(int day, double latitude)
 			0,
 			coefficientsNegative[0],
 			FITTED(day, coefficientsNegative, 1, 2, 3),
-			FITTED(day, coefficientsNegative, 4, 5, 6),
+			FITTED2(day, 1, coefficientsNegative, 4, 5, 6),
 			FITTED(day, coefficientsNegative, 7, 8, 9));
 
 	return interpolateSunEvent(latitudeDifference, adjustment);
@@ -643,7 +650,6 @@ static double interpolateSunEvent(
 
 static double sunsetAdjustment(int day, double latitude)
 {
-	static const FixedQ1_15 coefficientsPositive[] = {
 /*
 	static const double coefficientsPositive[] = {
 		2.0157e-02,
@@ -657,7 +663,22 @@ static double sunsetAdjustment(int day, double latitude)
 		7.9225e-01,
 		3.1405e+00
 	};
+
+	static const double coefficientsNegative[] = {
+		0.0365669,
+		0.0046257,
+		0.7767135,
+		2.1298537,
+		0.0395382,
+		0.6516846,
+		0.2099763,
+		-0.0039906,
+		-0.2582441,
+		2.2096205
+	};
 */
+
+	static const FixedQ1_15 coefficientsPositive[] = {
 		(FixedQ1_15) 661,
 		(FixedQ1_15) 167,
 		(FixedQ1_15) 25919,
@@ -671,16 +692,16 @@ static double sunsetAdjustment(int day, double latitude)
 	};
 
 	static const FixedQ1_15 coefficientsNegative[] = {
-		(FixedQ1_15) 0,
-		(FixedQ1_15) 0,
-		(FixedQ1_15) 0,
-		(FixedQ1_15) 0,
-		(FixedQ1_15) 0,
-		(FixedQ1_15) 0,
-		(FixedQ1_15) 0,
-		(FixedQ1_15) 0,
-		(FixedQ1_15) 0,
-		(FixedQ1_15) 0
+		(FixedQ1_15) 1198,
+		(FixedQ1_15) 152,
+		(FixedQ1_15) 25451,
+		(FixedQ1_15) 4255, /* PLUS TWO */
+		(FixedQ1_15) 1296,
+		(FixedQ1_15) 21354,
+		(FixedQ1_15) 6881,
+		(FixedQ1_15) -131,
+		(FixedQ1_15) -8462,
+		(FixedQ1_15) 6869 /* PLUS TWO */
 	};
 
 	double latitudeDifference = fabs(latitude - LOOKUP_LATITUDE);
@@ -695,9 +716,9 @@ static double sunsetAdjustment(int day, double latitude)
 		: fixedAdd5(
 			0,
 			coefficientsNegative[0],
-			FITTED(day, coefficientsNegative, 1, 2, 3),
+			FITTED2(day, 2, coefficientsNegative, 1, 2, 3),
 			FITTED(day, coefficientsNegative, 4, 5, 6),
-			FITTED(day, coefficientsNegative, 7, 8, 9));
+			FITTED2(day, 2, coefficientsNegative, 7, 8, 9));
 
 	return interpolateSunEvent(latitudeDifference, adjustment);
 }
