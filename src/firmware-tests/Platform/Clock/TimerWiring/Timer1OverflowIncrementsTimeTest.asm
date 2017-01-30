@@ -3,6 +3,7 @@
 	#include "Arithmetic32.inc"
 	#include "Clock.inc"
 	#include "TestFixture.inc"
+	#include "../../ResetFlagsStubs.inc"
 
 	radix decimal
 
@@ -46,6 +47,7 @@ setRC0ToDigitalOutput:
 	bcf ANSEL, ANS0
 
 initialiseSut:
+	fcall stubIsLastResetDueToBrownOutToReturnTrue
 	fcall initialiseClock
 
 enableIsr:

@@ -3,6 +3,7 @@
 	#include "Mcu.inc"
 	#include "TailCalls.inc"
 	#include "InitialisationChain.inc"
+	#include "ResetFlags.inc"
 	#include "Clock.inc"
 
 	radix decimal
@@ -14,10 +15,6 @@ T1CKPS_DIVIDE_BY_8_MASK equ (1 << T1CKPS1) | (1 << T1CKPS0)
 TMR1ON_MASK equ (1 << TMR1ON)
 
 	extern INITIALISE_AFTER_CLOCK
-
-	udata
-	global clockFlags
-clockFlags res 1
 
 Clock code
 	global initialiseAfterReset
@@ -35,6 +32,24 @@ initialiseClock:
 	banksel PIE1
 	bsf PIE1, TMR1IE
 
+	fcall isLastResetDueToBrownOut
+	xorlw 0
+	btfss STATUS, Z
+	goto returnFromClockInitialisation
+
+clearDateAndTimeAfterNonBrownOutReset:
+	banksel clockYearBcd
+	movlw 1
+	clrf clockYearBcd
+	movwf clockMonthBcd
+	movwf clockDayBcd
+	clrf clockHourBcd
+	clrf clockMinuteBcd
+	clrf clockSecondBcd
+	clrf dayOfYearHigh
+	clrf dayOfYearLow
+
+returnFromClockInitialisation:
 	tcall INITIALISE_AFTER_CLOCK
 
 	end

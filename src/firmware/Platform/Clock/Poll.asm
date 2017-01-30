@@ -17,23 +17,7 @@ YEAR99_MODULUS equ 0xa0
 	#define modulus RBB
 
 	extern lookupNumberOfDaysInMonthBcd
-	extern clockFlags
 	extern POLL_AFTER_CLOCK
-
-	udata
-	global clockYearBcd
-	global clockMonthBcd
-	global clockDayBcd
-	global clockHourBcd
-	global clockMinuteBcd
-	global clockSecondBcd
-
-clockYearBcd res 1
-clockMonthBcd res 1
-clockDayBcd res 1
-clockHourBcd res 1
-clockMinuteBcd res 1
-clockSecondBcd res 1
 
 Clock code
 	global pollClock
@@ -83,7 +67,11 @@ overflowedIntoNextHour:
 	incrementAndThenReturnIfNotOverflowed clockHourBcd
 
 overflowedIntoNextDay:
-	banksel clockMonthBcd
+	banksel dayOfYearLow
+	incf dayOfYearLow
+	btfsc STATUS, Z
+	incf dayOfYearHigh
+
 	movf clockMonthBcd, W
 	sublw 0x02
 	btfss STATUS, Z
@@ -129,7 +117,10 @@ overflowedIntoNextMonth:
 	incrementAndThenReturnIfNotOverflowed clockMonthBcd
 
 overflowedIntoNextYear:
-	banksel clockMonthBcd
+	banksel dayOfYearHigh
+	clrf dayOfYearHigh
+	clrf dayOfYearLow
+
 	clrf clockMonthBcd
 	incf clockMonthBcd
 

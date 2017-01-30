@@ -1,4 +1,6 @@
-OBJ_FILES+=$(ASSERT_NO_ISR_OBJ_FILE)
+OBJ_FILES+=\
+	$(ASSERT_NO_ISR_OBJ_FILE) \
+	../../ResetFlagsStubs.o
 
 HEX_FILES=\
 	Timer1SourceIsExternalCrystalTest.hex \
@@ -9,7 +11,8 @@ HEX_FILES=\
 	Timer1NotGatedTest.hex \
 	ClockFlagsClearedTest.hex \
 	InitialisationChainTest.hex \
-	Timer1InterruptEnabledTest.hex
+	Timer1InterruptEnabledTest.hex \
+	DateAndTimeTest.hex
 
 TIMER1_SOURCE_IS_EXTERNAL_CRYSTAL_OBJ_FILES=\
 	Timer1SourceIsExternalCrystalTest.o
@@ -37,6 +40,9 @@ INITIALISATION_CHAIN_OBJ_FILES=\
 
 TIMER1_INTERRUPT_ENABLED_OBJ_FILES=\
 	Timer1InterruptEnabledTest.o
+
+DATE_AND_TIME_OBJ_FILES=\
+	DateAndTimeTest.o
 
 all: $(HEX_FILES)
 
@@ -69,5 +75,8 @@ InitialisationChainTest.hex: $(OBJ_FILES) $(INITIALISATION_CHAIN_OBJ_FILES)
 
 Timer1InterruptEnabledTest.hex: $(OBJ_FILES) $(TIMER1_INTERRUPT_ENABLED_OBJ_FILES)
 	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(TIMER1_INTERRUPT_ENABLED_OBJ_FILES)
+
+DateAndTimeTest.hex: $(OBJ_FILES) $(DATE_AND_TIME_OBJ_FILES)
+	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(DATE_AND_TIME_OBJ_FILES)
 
 include $(MAKEFILE_RULES)

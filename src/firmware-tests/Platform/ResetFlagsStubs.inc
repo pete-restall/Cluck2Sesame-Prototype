@@ -1,0 +1,8 @@
+	#ifndef __CLUCK2SESAME_TESTS_PLATFORM_RESETFLAGSSTUBS_INC
+	#define __CLUCK2SESAME_TESTS_PLATFORM_RESETFLAGSSTUBS_INC
+
+	extern stubIsLastResetDueToBrownOutToReturnTrue
+	extern stubIsLastResetDueToBrownOutToReturnFalse
+	extern isLastResetDueToBrownOut
+
+	#endif

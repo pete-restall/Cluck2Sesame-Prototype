@@ -8,6 +8,7 @@ CLOCK_FLAG_TICKED equ 0
 	#ifndef __CLUCK2SESAME_PLATFORM_CLOCK_ASM
 	extern initialiseClock
 	extern pollClock
+	#endif
 
 	extern clockFlags
 	extern clockYearBcd
@@ -16,6 +17,7 @@ CLOCK_FLAG_TICKED equ 0
 	extern clockHourBcd
 	extern clockMinuteBcd
 	extern clockSecondBcd
-	#endif
+	extern dayOfYearHigh
+	extern dayOfYearLow
 
 	#endif

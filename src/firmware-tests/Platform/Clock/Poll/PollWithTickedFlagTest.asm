@@ -3,6 +3,7 @@
 	#include "Clock.inc"
 	#include "TestFixture.inc"
 	#include "../PollAfterClockMock.inc"
+	#include "../../ResetFlagsStubs.inc"
 
 	radix decimal
 
@@ -25,6 +26,7 @@ PollWithTickedFlagTest code
 	global testArrange
 
 testArrange:
+	fcall stubIsLastResetDueToBrownOutToReturnTrue
 	fcall initialisePollAfterClockMock
 	fcall initialiseClock
 

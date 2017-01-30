@@ -18,11 +18,13 @@ all: $(TEST_DOUBLE_OBJ_FILES)
 	$(MAKE) -C Initialisation all
 	$(MAKE) -C TimerWiring all
 	$(MAKE) -C Poll all
+	$(MAKE) -C DayOfYear all
 
 clean:
 	$(RM) -f $(BUILD_ARTEFACT_PATTERN)
 	$(MAKE) -C Initialisation clean
 	$(MAKE) -C TimerWiring clean
 	$(MAKE) -C Poll clean
+	$(MAKE) -C DayOfYear clean
 
 include $(MAKEFILE_RULES)

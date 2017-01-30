@@ -1,4 +1,6 @@
-OBJ_FILES+=$(ASSERT_NO_ISR_OBJ_FILE)
+OBJ_FILES+=\
+	$(ASSERT_NO_ISR_OBJ_FILE) \
+	../../ResetFlagsStubs.o
 
 HEX_FILES=\
 	PollWithNoTickedFlagTest.hex \

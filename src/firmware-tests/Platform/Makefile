@@ -8,7 +8,8 @@ ASARGS+=-I $(PLATFORM_TESTS_DIR)
 TEST_DOUBLE_OBJ_FILES=\
 	InitialiseAfterResetMock.o \
 	InitialiseAfterResetDummy.o \
-	InitialiseAfterTimer0Dummy.o
+	InitialiseAfterTimer0Dummy.o \
+	ResetFlagsStubs.o
 
 all: $(TEST_DOUBLE_OBJ_FILES)
 	$(MAKE) -C Main all

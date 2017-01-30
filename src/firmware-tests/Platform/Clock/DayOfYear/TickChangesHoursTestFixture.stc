@@ -1,0 +1,18 @@
+load "DayOfYearTest.cod"
+load i "../../../PreventInfiniteLoops.sti"
+
+clockYearBcd=0x00
+clockMonthBcd=0x01
+clockDayBcd=0x01
+clockHourBcd=0x22
+clockMinuteBcd=0x59
+clockSecondBcd=0x59
+
+initialDayOfYearHigh=0x00
+initialDayOfYearLow=0x59
+
+expectedDayOfYearHigh=0x00
+expectedDayOfYearLow=0x59
+
+run
+quit

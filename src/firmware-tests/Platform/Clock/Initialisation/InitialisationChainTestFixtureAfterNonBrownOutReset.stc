@@ -1,0 +1,5 @@
+load "InitialisationChainTest.cod"
+load i "../../../PreventInfiniteLoops.sti"
+isBrownOutReset=0x00
+run
+quit

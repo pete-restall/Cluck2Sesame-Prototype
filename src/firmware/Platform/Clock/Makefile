@@ -1,5 +1,6 @@
 LIB_FILENAME=../Clock.a
 OBJ_FILES=\
+	Registers.o \
 	Initialise.o \
 	Poll.o \
 	DaysInMonth.o

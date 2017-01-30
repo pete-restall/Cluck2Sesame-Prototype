@@ -1,0 +1,25 @@
+load "DateAndTimeTest.cod"
+load i "../../../PreventInfiniteLoops.sti"
+
+isBrownOutReset=0xff
+
+clockYearBcd=0x12
+clockMonthBcd=0x11
+clockDayBcd=0x10
+clockHourBcd=0x09
+clockMinuteBcd=0x08
+clockSecondBcd=0x07
+dayOfYearHigh=0x12
+dayOfYearLow=0x34
+
+expectedClockYearBcd=0x12
+expectedClockMonthBcd=0x11
+expectedClockDayBcd=0x10
+expectedClockHourBcd=0x09
+expectedClockMinuteBcd=0x08
+expectedClockSecondBcd=0x07
+expectedDayOfYearHigh=0x12
+expectedDayOfYearLow=0x34
+
+run
+quit
