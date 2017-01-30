@@ -1,6 +1,7 @@
 	#include "Mcu.inc"
 	#include "TailCalls.inc"
 	#include "Lcd/Isr.inc"
+	#include "PowerManagement/PowerManagement.inc"
 	#include "Clock.inc"
 	#include "InitialisationChain.inc"
 
@@ -15,6 +16,7 @@ contextSavingPclath res 1
 lcdContrastAccumulator res 1
 
 Isr code 0x0004
+	global isr
 	global initialiseIsr
 
 isr:
@@ -28,13 +30,13 @@ isr:
 	movwf contextSavingPclath
 	clrf PCLATH
 
-	; TODO: The ISR must prevent sleep because if it is called immediately
-	; before the sleep call then there will be no polling loop iteration for
-	; another 16 seconds.  The loop needs a chance to act on the ISR.
-
 adcSampled:
 	banksel ADCON0
 	bsf ADCON0, GO
+
+preventSleepForSinglePollLoopIteration:
+	banksel powerManagementFlags
+	bsf powerManagementFlags, POWER_FLAG_PREVENTSLEEP
 
 	banksel PIR1
 	btfss PIR1, ADIF

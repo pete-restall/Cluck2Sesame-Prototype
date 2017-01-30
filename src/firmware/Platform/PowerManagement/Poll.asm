@@ -21,10 +21,7 @@ doNotSleepIfTimer2IsRunning:
 
 doNotSleepIfPrevented:
 	banksel powerManagementFlags
-	btfsc powerManagementFlags, POWER_FLAG_PREVENTSLEEP
-	goto returnFromPoll
-
-nothingIsPreventingSleep:
+	btfss powerManagementFlags, POWER_FLAG_PREVENTSLEEP
 	sleep
 
 returnFromPoll:

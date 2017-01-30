@@ -7,6 +7,7 @@ OBJ_FILES+=\
 	$(PLATFORM_DIR)/Isr.o \
 	$(PLATFORM_DIR)/Arithmetic32.a \
 	../../ResetFlagsStubs.o \
+	../../PowerManagementDummies.o \
 	../../Lcd/LcdContrastDummies.o
 
 TIMER1_OVERFLOW_INCREMENTS_TIME_OBJ_FILES=\
