@@ -1,0 +1,7 @@
+	#ifndef __CLUCK2SESAME_TESTS_SUNRISESUNSET_INITIALISEAFTERSUNRISESUNSETMOCK_INC
+	#define __CLUCK2SESAME_TESTS_SUNRISESUNSET_INITIALISEAFTERSUNRISESUNSETMOCK_INC
+
+	extern initialiseInitialiseAfterSunriseSunsetMock
+	extern calledInitialiseAfterSunriseSunset
+
+	#endif

@@ -22,10 +22,12 @@ TEST_DOUBLE_OBJ_FILES=\
 all: $(TEST_DOUBLE_OBJ_FILES)
 	$(MAKE) -C Platform all
 	$(MAKE) -C Ui all
+	$(MAKE) -C SunriseSunset all
 
 clean:
 	$(RM) -f $(BUILD_ARTEFACT_PATTERN)
 	$(MAKE) -C Platform clean
 	$(MAKE) -C Ui clean
+	$(MAKE) -C SunriseSunset clean
 
 include $(MAKEFILE_RULES)

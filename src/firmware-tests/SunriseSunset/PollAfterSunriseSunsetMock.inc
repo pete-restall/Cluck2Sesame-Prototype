@@ -1,0 +1,7 @@
+	#ifndef __CLUCK2SESAME_TESTS_SUNRISESUNSET_POLLAFTERSUNRISESUNSETMOCK_INC
+	#define __CLUCK2SESAME_TESTS_SUNRISESUNSET_POLLAFTERSUNRISESUNSETMOCK_INC
+
+	extern initialisePollAfterSunriseSunsetMock
+	extern calledPollAfterSunriseSunset
+
+	#endif
