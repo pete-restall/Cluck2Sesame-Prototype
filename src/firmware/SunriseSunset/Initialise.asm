@@ -1,6 +1,9 @@
+	#define __CLUCK2SESAME_SUNRISESUNSET_INITIALISE_ASM
+
 	#include "Mcu.inc"
 	#include "TailCalls.inc"
 	#include "InitialisationChain.inc"
+	#include "../SunriseSunset.inc"
 
 	radix decimal
 
@@ -10,6 +13,11 @@ SunriseSunset code
 	global initialiseSunriseSunset
 
 initialiseSunriseSunset:
+	banksel sunriseHourBcd
+	clrf sunriseHourBcd
+	clrf sunriseMinuteBcd
+	clrf sunsetHourBcd
+	clrf sunsetMinuteBcd
 	tcall INITIALISE_AFTER_SUNRISESUNSET
 
 	end

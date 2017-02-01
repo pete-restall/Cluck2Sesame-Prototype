@@ -1,5 +1,6 @@
 LIB_FILENAME=../SunriseSunset.a
 OBJ_FILES=\
+	Registers.o \
 	Initialise.o \
 	Poll.o
 
