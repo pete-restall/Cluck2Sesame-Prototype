@@ -13,7 +13,9 @@ SunriseSunset code
 	global initialiseSunriseSunset
 
 initialiseSunriseSunset:
-	banksel sunriseHourBcd
+	banksel latitudeOffset
+	clrf latitudeOffset
+	clrf longitudeOffset
 	clrf sunriseHourBcd
 	clrf sunriseMinuteBcd
 	clrf sunsetHourBcd
