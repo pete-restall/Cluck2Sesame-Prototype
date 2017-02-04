@@ -4,7 +4,8 @@ HEX_FILES=\
 	LatitudeAndLongitudeOffsetsTest.hex
 
 TEST_DOUBLE_OBJ_FILES=\
-	../PollAfterSunriseSunsetMock.o
+	../InitialiseAfterSunriseSunsetMock.o \
+	../PollAfterSunriseSunsetDummy.o
 
 INITIALISATION_CHAIN_OBJ_FILES=\
 	$(TEST_DOUBLE_OBJ_FILES) \

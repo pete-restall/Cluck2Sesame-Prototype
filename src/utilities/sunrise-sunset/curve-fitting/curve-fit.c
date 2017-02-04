@@ -95,8 +95,8 @@ static FixedQ1_15 sunsetLatitudeAdjustment(int day, double latitude);
 
 int main(void)
 {
-	double latitude = 51.509865;
-	double longitude = -0.118092;
+	double latitude = 55;
+	double longitude = 0;
 
 	int epochDays = dateToDays(epoch);
 	printf(

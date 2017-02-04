@@ -2,7 +2,11 @@ LIB_FILENAME=../SunriseSunset.a
 OBJ_FILES=\
 	Registers.o \
 	Initialise.o \
-	Poll.o
+	CalculateSunriseAndSunset.o \
+	Poll.o \
+	UninitialisedState.o \
+	IdleState.o \
+	StoreSunsetState.o
 
 all: $(LIB_FILENAME)
 

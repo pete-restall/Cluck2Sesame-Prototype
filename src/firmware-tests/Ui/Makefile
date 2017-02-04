@@ -10,7 +10,7 @@ TEST_DOUBLE_OBJ_FILES=\
 	InitialiseAfterUiMock.o \
 	PollAfterUiMock.o
 
-all:
+all: $(TEST_DOUBLE_OBJ_FILES)
 	$(MAKE) -C Initialisation all
 	$(MAKE) -C Poll all
 

@@ -3,7 +3,8 @@ HEX_FILES=\
 
 POLL_CHAIN_OBJ_FILES=\
 	PollChainTest.o \
-	../PollAfterSunriseSunsetMock.o
+	../PollAfterSunriseSunsetMock.o \
+	../InitialiseAfterSunriseSunsetDummy.o
 
 all: $(HEX_FILES)
 

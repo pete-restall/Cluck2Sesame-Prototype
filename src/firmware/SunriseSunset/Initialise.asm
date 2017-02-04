@@ -13,6 +13,7 @@ SunriseSunset code
 	global initialiseSunriseSunset
 
 initialiseSunriseSunset:
+	; TODO: SET sunriseSunsetState TO SUN_STATE_UNINITIALISED
 	banksel latitudeOffset
 	clrf latitudeOffset
 	clrf longitudeOffset

@@ -12,6 +12,8 @@
 	extern initialiseSunriseSunset
 	#endif
 
+	extern calculateSunriseAndSunset
 	extern pollSunriseSunset
+	extern areSunriseAndSunsetValid
 
 	#endif

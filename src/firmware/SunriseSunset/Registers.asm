@@ -9,6 +9,7 @@
 	global sunriseMinuteBcd
 	global sunsetHourBcd
 	global sunsetMinuteBcd
+	global sunriseSunsetState
 
 latitudeOffset res 1
 longitudeOffset res 1
@@ -16,5 +17,6 @@ sunriseHourBcd res 1
 sunriseMinuteBcd res 1
 sunsetHourBcd res 1
 sunsetMinuteBcd res 1
+sunriseSunsetState res 1
 
 	end
