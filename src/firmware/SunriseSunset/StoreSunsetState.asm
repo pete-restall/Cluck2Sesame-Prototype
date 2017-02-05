@@ -8,11 +8,11 @@
 		banksel sunriseHourBcd
 		movlw 0x08
 		movwf sunriseHourBcd
-		movlw 0x32
+		movlw 0x33
 		movwf sunriseMinuteBcd
 		movlw 0x15
 		movwf sunsetHourBcd
-		movlw 0x31
+		movlw 0x32
 		movwf sunsetMinuteBcd
 		returnFromSunriseSunsetState
 

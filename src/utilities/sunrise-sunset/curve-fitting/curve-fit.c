@@ -173,8 +173,9 @@ static void initialiseLookupTables(void)
 			cMultiple > 0 ? ((x) << 15) / LOOKUP_LENGTH : 0, \
 			cMultiple > 1 ? ((x) << 15) / LOOKUP_LENGTH : 0, \
 			cMultiple > 2 ? ((x) << 15) / LOOKUP_LENGTH : 0, \
-			fixedMul(coeff[(c)], \
-			((x) << 15) / LOOKUP_LENGTH)) << 1))
+			fixedMul( \
+				coeff[(c)], \
+				((x) << 15) / LOOKUP_LENGTH)) << 1))
 
 static void calculateSunriseLookupTable(double *table, int length)
 {

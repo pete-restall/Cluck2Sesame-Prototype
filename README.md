@@ -23,9 +23,9 @@ Being a PIC it's also got a brilliant array of peripherals and an adequate
 
 The firmware is an experiment in writing test-first assembler, an endeavour
 somewhat trickier than with high-level counterparts due to its lack of
-encapsulation, global state, side-effects, vagaries of linking and loading,
-as well as the verbosity of the language.  The tests are run in gpsim
-with bash scripts for glue and run as part of the automated Travis build.
+encapsulation, global state, side-effects, the vagaries of linking, as well
+as the verbosity of the language.  The tests are run in gpsim with bash
+scripts for glue.  They are run as part of the automated Travis build.
 
 ## Pictures
 ![Stuffed PCB][stuffed-pcb-top-small]
