@@ -1,0 +1,29 @@
+load "DivideTest.cod"
+load i "../../../PreventInfiniteLoops.sti"
+
+RAA=0xff
+RAB=0xfe
+RAC=0x00
+RAD=0x01
+
+RBA=0x00
+RBB=0x00
+RBC=0xff
+RBD=0xfe
+
+expectedRAA=0xff
+expectedRAB=0xfe
+expectedRAC=0x00
+expectedRAD=0x01
+
+expectedRBA=0x00
+expectedRBB=0x00
+expectedRBC=0xff
+expectedRBD=0xfe
+
+expectedCarry=1
+expectedDigitCarry=0
+expectedZero=0
+
+run
+quit

@@ -30,19 +30,10 @@ addMostSignificantByte:
 	addwf RAA
 
 adjustZero:
-	movf RAA
-	btfss STATUS, Z
-	return
-
-	movf RAB
-	btfss STATUS, Z
-	return
-
-	movf RAC
-	btfss STATUS, Z
-	return
-
-	movf RAD
+	movf RAA, W
+	iorwf RAB, W
+	iorwf RAC, W
+	iorwf RAD, W
 	return
 
 	end

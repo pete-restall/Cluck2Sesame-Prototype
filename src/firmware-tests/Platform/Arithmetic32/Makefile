@@ -9,11 +9,13 @@ all:
 	$(MAKE) -C Add all
 	$(MAKE) -C Negate all
 	$(MAKE) -C SignExtend all
+	$(MAKE) -C Divide all
 
 clean:
 	$(RM) -f $(BUILD_ARTEFACT_PATTERN)
 	$(MAKE) -C Add clean
 	$(MAKE) -C Negate clean
 	$(MAKE) -C SignExtend clean
+	$(MAKE) -C Divide clean
 
 include $(MAKEFILE_RULES)

@@ -49,5 +49,6 @@ storeInto32 macro src, dest
 	extern negateB32
 	extern signExtendToUpperWordA32
 	extern signExtendToUpperWordB32
+	extern div32x16
 
 	#endif
