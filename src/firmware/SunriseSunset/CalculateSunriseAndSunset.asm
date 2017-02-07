@@ -7,7 +7,7 @@ SunriseSunset code
 	global calculateSunriseAndSunset
 
 calculateSunriseAndSunset:
-	setSunriseSunsetState SUN_STATE_STORESUNSET_MINUTE
+	setSunriseSunsetState SUN_STATE_CALCULATESUNRISE
 	return
 
 	end

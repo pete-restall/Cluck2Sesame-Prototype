@@ -11,8 +11,16 @@ loadFirstCoefficientIntoAccumulator:
 		call loadNextCoefficient
 		call loadCoefficientIntoAccumulator
 
-	; SET NEXT STATE...BUT THEN WHAT IS THAT NEXT STATE ?  MAYBE LOADING THE SECON ACCUMULATOR.  ALSO NEED TO SET A 'NEXT STATE', TOO, WHICH WILL BE FOR CALCULATING THE LATITUDE ADJUSTMENT...
+loadExtendedCoefficients:
+		call loadSunriseReferenceExtendedCoefficients
 
+setNumberOfFittingIterationsAndNextState:
+		banksel numberOfCurveFittingIterations
+		movlw 3
+		movwf numberOfCurveFittingIterations
+
+		setSunriseSunsetNextState SUN_STATE_SUNRISE_LATITUDEADJUSTMENT
+		setSunriseSunsetState SUN_STATE_SUNRISE_LIMITDAYOFYEAR
 		returnFromSunriseSunsetState
 
 	end

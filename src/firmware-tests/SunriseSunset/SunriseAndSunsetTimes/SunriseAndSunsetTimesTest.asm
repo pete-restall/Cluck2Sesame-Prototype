@@ -1,6 +1,7 @@
 	#include "Mcu.inc"
 	#include "FarCalls.inc"
 	#include "Clock.inc"
+	#include "Cordic.inc"
 	#include "SunriseSunset.inc"
 	#include "TestFixture.inc"
 
@@ -29,6 +30,7 @@ SunriseAndSunsetTimesTest code
 	global testArrange
 
 testArrange:
+	fcall initialiseCordic
 	fcall initialiseSunriseSunset
 
 setDayOfYear:
@@ -57,6 +59,7 @@ testAct:
 	fcall calculateSunriseAndSunset
 
 waitForCalculationsToComplete:
+	fcall pollCordic
 	fcall pollSunriseSunset
 	fcall areSunriseAndSunsetValid
 	xorlw 0

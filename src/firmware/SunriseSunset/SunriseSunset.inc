@@ -3,21 +3,54 @@
 	#include "../SunriseSunset.inc"
 
 	extern accumulator
+	extern accumulatorUpper
 	extern accumulatorUpperHigh
 	extern accumulatorUpperLow
+	extern accumulatorLower
 	extern accumulatorLowerHigh
 	extern accumulatorLowerLow
+
+	extern coefficientIndex
 	extern coefficient
 	extern coefficientHigh
 	extern coefficientLow
-	extern coefficientIndex
+	extern extendedCoefficients
+
+	extern dayOfYearFractional
+	extern dayOfYearFractionalHigh
+	extern dayOfYearFractionalLow
+
+	extern numberOfCurveFittingIterations
+
+	extern curveFitAccumulator
+	extern curveFitAccumulatorUpper
+	extern curveFitAccumulatorUpperHigh
+	extern curveFitAccumulatorUpperLow
+	extern curveFitAccumulatorLower
+	extern curveFitAccumulatorLowerHigh
+	extern curveFitAccumulatorLowerLow
 
 	#ifndef __CLUCK2SESAME_SUNRISESUNSET_REGISTERLOADANDANDSTORE_ASM
 	extern loadCoefficientIntoAccumulator
+	extern loadCoefficientIntoLowerA
+	extern loadCoefficientIntoUpperB
+	extern loadDayOfYearFractionalIntoLowerB
+	extern loadAccumulatorIntoA
+	extern loadCurveFitAccumulatorIntoB
+	extern loadCurveFitAccumulatorLowerIntoLowerB
+	extern storeAShiftedRight15IntoCurveFitAccumulator
+	extern storeAIntoAccumulator
+	extern storeAIntoCurveFitAccumulator
 	#endif
 
 	#ifndef __CLUCK2SESAME_SUNRISESUNSET_COEFFICIENTS_ASM
 	extern loadNextCoefficient
+	extern loadSunriseReferenceExtendedCoefficients
+	extern loadSunriseReferenceNorthExtendedCoefficients
+	extern loadSunriseReferenceSouthExtendedCoefficients
+	extern loadSunsetReferenceExtendedCoefficients
+	extern loadSunsetReferenceNorthExtendedCoefficients
+	extern loadSunsetReferenceSouthExtendedCoefficients
 	#endif
 
 	#endif

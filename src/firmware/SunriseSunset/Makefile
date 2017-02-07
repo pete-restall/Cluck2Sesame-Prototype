@@ -9,7 +9,11 @@ OBJ_FILES=\
 	UninitialisedState.o \
 	IdleState.o \
 	CalculateSunriseState.o \
-	StoreSunsetState.o
+	SunriseLimitDayOfYearState.o \
+	DayOfYearState.o \
+	CurveFitStates.o \
+	SunriseLatitudeAdjustmentState.o \
+	SunsetStoreStates.o
 
 all: $(LIB_FILENAME)
 

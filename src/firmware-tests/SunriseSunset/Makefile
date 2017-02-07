@@ -4,7 +4,13 @@ export OBJ_FILES=\
 	$(FIRMWARE_CORE_OBJ_FILES) \
 	$(TEST_FIXTURE_OBJ_FILES) \
 	$(ASSERT_NO_ISR_OBJ_FILE) \
-	$(CURDIR)/ClockStubs.o
+	$(FIRMWARE_DIR)/Platform/Arithmetic16.a \
+	$(FIRMWARE_DIR)/Platform/Arithmetic32.a \
+	$(FIRMWARE_DIR)/Platform/Flash.o \
+	$(FIRMWARE_DIR)/Platform/Cordic.a \
+	$(CURDIR)/ClockStubs.o \
+	$(CURDIR)/../Platform/Cordic/InitialiseAfterCordicDummy.o \
+	$(CURDIR)/../Platform/Cordic/PollAfterCordicDummy.o
 
 TEST_DOUBLE_OBJ_FILES=\
 	InitialiseAfterSunriseSunsetMock.o \
