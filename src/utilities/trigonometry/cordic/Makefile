@@ -19,7 +19,6 @@ cordic-fixed: $(CORDIC_FIXED_OBJ_FILES)
 	$(LD) $(LDARGS) -o $(CORDIC_FIXED_EXE_FILE) $(CORDIC_FIXED_OBJ_FILES) $(LIBS)
 
 clean:
-	rm -Rf cordic-*tables.txt
 	rm -Rf $(CORDIC_FLOAT_OBJ_FILES) $(CORDIC_FLOAT_EXE_FILE)
 
 %.o: %.c

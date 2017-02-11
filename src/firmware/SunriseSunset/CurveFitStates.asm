@@ -1,5 +1,6 @@
 	#include "Mcu.inc"
 	#include "FarCalls.inc"
+	#include "TailCalls.inc"
 	#include "../Platform/Arithmetic16.inc"
 	#include "../Platform/Arithmetic32.inc"
 	#include "../Platform/Cordic.inc"
@@ -12,7 +13,7 @@
 		call loadNextCoefficient
 		call loadCoefficientIntoUpperB
 		call loadDayOfYearFractionalIntoLowerB
-		fcall mul16x16
+		call muls16x16
 		call storeAShiftedRight15IntoCurveFitAccumulator
 		setSunriseSunsetState SUN_STATE_CURVEFIT2
 		returnFromSunriseSunsetState
@@ -38,18 +39,14 @@ addToCurveFitAccumulator:
 		call loadCurveFitAccumulatorIntoB
 		fcall add32
 		call storeAIntoCurveFitAccumulator
-
 		setSunriseSunsetState SUN_STATE_CURVEFIT3
 		returnFromSunriseSunsetState
 
 
 	defineSunriseSunsetStateInSameSection SUN_STATE_CURVEFIT3
 		call loadNextCoefficient
-
-		banksel RAA
-		clrf RAA
-		clrf RAB
 		call loadCoefficientIntoLowerA
+		fcall signExtendToUpperWordA32
 
 		call loadCurveFitAccumulatorIntoB
 		fcall add32
@@ -65,6 +62,9 @@ addToCurveFitAccumulator:
 		; THE CURRENT CALCULATION IS USING
 
 		loadSineArgument curveFitAccumulatorLower
+		bcf STATUS, C
+		rlf cordicArgumentLow
+		rlf cordicArgumentHigh
 		fcall sine
 		setSunriseSunsetState SUN_STATE_CURVEFIT5
 		returnFromSunriseSunsetState
@@ -97,7 +97,7 @@ endOfState:
 	defineSunriseSunsetStateInSameSection SUN_STATE_CURVEFIT6
 		call loadCoefficientIntoUpperB
 		call loadCurveFitAccumulatorLowerIntoLowerB
-		fcall mul16x16
+		call muls16x16
 		call storeAShiftedRight15IntoCurveFitAccumulator
 		setSunriseSunsetState SUN_STATE_CURVEFIT7
 		returnFromSunriseSunsetState
@@ -124,5 +124,43 @@ noMoreIterations:
 startAnotherIteration:
 		setSunriseSunsetState SUN_STATE_CURVEFIT1
 		returnFromSunriseSunsetState
+
+muls16x16:
+twosComplementOnAccumulatorForNegativeArgument:
+	banksel RBA
+	movf RBA, W
+	xorwf RBC, W
+
+absoluteValueOfFirstOperand:
+	btfss RBA, 7
+	goto absoluteValueOfSecondOperand
+	comf RBA
+	comf RBB
+	incfsz RBB
+	goto $ + 2
+	incf RBA
+
+absoluteValueOfSecondOperand:
+	btfss RBC, 7
+	goto multiplication
+	comf RBC
+	comf RBD
+	incfsz RBD
+	goto $ + 2
+	incf RBC
+
+multiplication:
+	andlw b'10000000'
+	btfss STATUS, Z
+	goto multiplicationOfDifferentSigns
+
+multiplicationOfSameSigns:
+	fcall mul16x16
+	return
+
+multiplicationOfDifferentSigns:
+	fcall mul16x16
+	fcall negateA32
+	return
 
 	end

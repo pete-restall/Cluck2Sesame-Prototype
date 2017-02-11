@@ -8,6 +8,7 @@ touch $1;
 libName=`readlink -e $1`;
 utilitiesDir="`dirname $0`";
 tempDir="`mktemp -d`";
+echo "gplib-merge.sh: using temporary directory ${tempDir}";
 cp ${@:2} ${tempDir};
 cd $tempDir;
 ${utilitiesDir}/gplib-extract.sh `ls *.a`;

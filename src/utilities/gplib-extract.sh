@@ -7,7 +7,7 @@ for libName in $*; do
 	cd ${dirName};
 	for libEntry in ${libEntries}; do
 		gplib -x ${libName} ${libEntry};
-		mv ${libEntry} ${dirName}_${libEntry};
+		mv ${libEntry}.o ${dirName}_${libEntry};
 	done;
 	cd ..;
 done;

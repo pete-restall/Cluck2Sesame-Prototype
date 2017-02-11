@@ -9,10 +9,12 @@
 		; FOLLOWED BY INTERPOLATION
 		banksel accumulator
 		nop
+		.direct "c", "echo ****** RESULT *******"
 		.direct "c", "accumulatorUpperHigh"
 		.direct "c", "accumulatorUpperLow"
 		.direct "c", "accumulatorLowerHigh"
 		.direct "c", "accumulatorLowerLow"
+		.direct "c", "echo ****** RESULT *******"
 		setSunriseSunsetState SUN_STATE_SUNSET_STOREMINUTE
 		returnFromSunriseSunsetState
 

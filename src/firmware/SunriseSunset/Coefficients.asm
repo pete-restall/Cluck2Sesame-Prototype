@@ -7,7 +7,7 @@
 	radix decimal
 
 loadExtendedCoefficientsIntoW macro a, b, c
-	movlw ((a & 0x03) << 0) | ((b & 0x03) << 2) | ((b & 0x03) << 4)
+	movlw ((a & 0x03) << 0) | ((b & 0x03) << 2) | ((c & 0x03) << 4)
 	endm
 
 SunriseSunset code

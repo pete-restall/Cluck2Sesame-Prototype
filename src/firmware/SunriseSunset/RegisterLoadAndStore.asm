@@ -20,12 +20,17 @@ SunriseSunset code
 
 loadCoefficientIntoAccumulator:
 	banksel accumulator
-	clrf accumulatorUpperHigh
-	clrf accumulatorUpperLow
 	movf coefficientHigh, W
 	movwf accumulatorLowerHigh
 	movf coefficientLow, W
 	movwf accumulatorLowerLow
+
+signExtendCoefficientIntoAccumulator:
+	clrw
+	btfsc coefficientHigh, 7
+	movlw 0xff
+	movwf accumulatorUpperHigh
+	movwf accumulatorUpperLow
 	return
 
 loadCoefficientIntoLowerA:
@@ -99,13 +104,18 @@ storeAShiftedRight15IntoCurveFitAccumulator:
 	rlf RAA, W
 	banksel curveFitAccumulatorLowerHigh
 	movwf curveFitAccumulatorLowerHigh
+; TODO: IS THE SIGN EXTEND NECESSARY ?  START TEMPORARY...
+	clrf curveFitAccumulatorUpperHigh
+	clrf curveFitAccumulatorUpperLow
+	return
+; TODO: IS THE SIGN EXTEND NECESSARY ?  END TEMPORARY...
 
 signExtendMostSignificantBitOfRAAIntoUpper:
 	clrw
-	btfss STATUS, C
+	btfsc STATUS, C
 	movlw 0xff
-	movwf curveFitAccumulatorUpperLow
 	movwf curveFitAccumulatorUpperHigh
+	movwf curveFitAccumulatorUpperLow
 	return
 
 storeAIntoAccumulator:
