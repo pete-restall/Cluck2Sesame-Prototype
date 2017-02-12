@@ -28,7 +28,10 @@
 		setSunriseSunsetState SUN_STATE_SUNRISE_STOREASBCD
 		returnFromSunriseSunsetState
 
+
 	defineSunriseSunsetStateInSameSection SUN_STATE_SUNRISE_STOREASBCD
+		; TODO: CONVERT sunriseHourBcd TO BCD - ALTHOUGH NOT NECESSARY IN THE
+		; UK (50-60 DEGREES LATITUDE) AS ALL TIMES ARE BEFORE 10:00 !
 		banksel sunriseMinuteBcd
 		movf sunriseMinuteBcd, W
 		banksel RAA
@@ -37,7 +40,7 @@
 		banksel sunriseMinuteBcd
 		movwf sunriseMinuteBcd
 
-		setSunriseSunsetState SUN_STATE_SUNSET_STOREMINUTE
+		setSunriseSunsetState SUN_STATE_CALCULATESUNSET
 		returnFromSunriseSunsetState
 
 	end

@@ -16,6 +16,10 @@ OBJ_FILES=\
 	SunriseLongitudeAdjustmentState.o \
 	AccumulatorToTimeStates.o \
 	SunriseStoreStates.o \
+	CalculateSunsetState.o \
+	SunsetLimitDayOfYearState.o \
+	SunsetLatitudeAdjustmentState.o \
+	SunsetLongitudeAdjustmentState.o \
 	SunsetStoreStates.o
 
 all: $(LIB_FILENAME)

@@ -155,35 +155,35 @@ sunriseReferenceSouth:
 	retlw low(0x00)
 
 sunsetReference:
-	retlw high(0x00)
-	retlw low(0x00)
+	retlw high(24194)
+	retlw low(24194)
 
-	retlw high(0x00)
-	retlw low(0x00)
+	retlw high(26723)
+	retlw low(26723)
 
-	retlw high(0x00)
-	retlw low(0x00)
+	retlw high(29702)
+	retlw low(29702)
 
-	retlw high(0x00)
-	retlw low(0x00)
+	retlw high(4613)
+	retlw low(4613)
 
-	retlw high(0x00)
-	retlw low(0x00)
+	retlw high(25543)
+	retlw low(25543)
 
-	retlw high(0x00)
-	retlw low(0x00)
+	retlw high(9165)
+	retlw low(9165)
 
-	retlw high(0x00)
-	retlw low(0x00)
+	retlw high(420)
+	retlw low(420)
 
-	retlw high(0x00)
-	retlw low(0x00)
+	retlw high(19068)
+	retlw low(19068)
 
-	retlw high(0x00)
-	retlw low(0x00)
+	retlw high(19837)
+	retlw low(19837)
 
-	retlw high(0x00)
-	retlw low(0x00)
+	retlw high(1363)
+	retlw low(1363)
 
 sunsetReferenceNorth:
 	retlw high(0x00)
