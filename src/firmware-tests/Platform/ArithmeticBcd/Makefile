@@ -9,10 +9,12 @@ export OBJ_FILES=\
 all:
 	$(MAKE) -C Add all
 	$(MAKE) -C ToBinary all
+	$(MAKE) -C FromBinary all
 
 clean:
 	$(RM) -f $(BUILD_ARTEFACT_PATTERN)
 	$(MAKE) -C Add clean
 	$(MAKE) -C ToBinary clean
+	$(MAKE) -C FromBinary clean
 
 include $(MAKEFILE_RULES)

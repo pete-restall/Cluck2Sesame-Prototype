@@ -4,5 +4,6 @@
 
 	extern addBcd
 	extern bcdToBinary
+	extern binaryToBcd
 
 	#endif

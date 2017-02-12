@@ -1,0 +1,11 @@
+load "FromBinaryTest.cod"
+load i "../../../PreventInfiniteLoops.sti"
+
+RAA=9
+expectedRAA=9
+expectedW=0x09
+expectedZero=0
+expectedCarry=0
+
+run
+quit

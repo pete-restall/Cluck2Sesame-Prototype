@@ -125,6 +125,7 @@ startAnotherIteration:
 		setSunriseSunsetState SUN_STATE_CURVEFIT1
 		returnFromSunriseSunsetState
 
+; TODO: MOVE THIS INTO Arithmetic16 AND COMPREHENSIVELY TEST IT...
 muls16x16:
 twosComplementOnAccumulatorForNegativeArgument:
 	banksel RBA

@@ -1,7 +1,8 @@
 LIB_FILENAME=../ArithmeticBcd.a
 OBJ_FILES=\
 	Add.o \
-	ToBinary.o
+	ToBinary.o \
+	FromBinary.o
 
 all: $(LIB_FILENAME)
 

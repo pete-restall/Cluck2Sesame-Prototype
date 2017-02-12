@@ -4,8 +4,10 @@ export OBJ_FILES=\
 	$(FIRMWARE_CORE_OBJ_FILES) \
 	$(TEST_FIXTURE_OBJ_FILES) \
 	$(ASSERT_NO_ISR_OBJ_FILE) \
+	$(FIRMWARE_DIR)/Platform/Arithmetic4.o \
 	$(FIRMWARE_DIR)/Platform/Arithmetic16.a \
 	$(FIRMWARE_DIR)/Platform/Arithmetic32.a \
+	$(FIRMWARE_DIR)/Platform/ArithmeticBcd.a \
 	$(FIRMWARE_DIR)/Platform/Flash.o \
 	$(FIRMWARE_DIR)/Platform/Cordic.a \
 	$(CURDIR)/ClockStubs.o \
