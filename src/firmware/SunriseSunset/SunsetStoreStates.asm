@@ -8,12 +8,6 @@
 
 	defineSunriseSunsetState SUN_STATE_SUNSET_STOREHOUR
 		banksel accumulator
- nop
- .direct "c", "accumulatorUpperHigh"
- .direct "c", "accumulatorUpperLow"
- .direct "c", "accumulatorLowerHigh"
- .direct "c", "accumulatorLowerLow"
- nop
 		movf accumulatorUpperLow, W
 		movwf sunsetHourBcd
 
