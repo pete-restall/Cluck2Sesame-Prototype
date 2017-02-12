@@ -12,6 +12,7 @@ SunriseSunset code
 	global loadCoefficientIntoUpperB
 	global loadDayOfYearFractionalIntoLowerB
 	global loadAccumulatorIntoA
+	global loadAccumulatorIntoB
 	global loadCurveFitAccumulatorIntoB
 	global loadCurveFitAccumulatorLowerIntoLowerB
 	global storeAShiftedRight15IntoCurveFitAccumulator
@@ -76,12 +77,16 @@ loadIntoA:
 	loadFromIndf32Into RAA
 	return
 
-loadCurveFitAccumulatorIntoB:
-	setupIndf curveFitAccumulator
+loadAccumulatorIntoB:
+	setupIndf accumulator
 
 loadIntoB:
 	loadFromIndf32Into RBA
 	return
+
+loadCurveFitAccumulatorIntoB:
+	setupIndf curveFitAccumulator
+	goto loadIntoB
 
 loadCurveFitAccumulatorLowerIntoLowerB:
 	banksel curveFitAccumulatorLowerHigh
@@ -104,18 +109,8 @@ storeAShiftedRight15IntoCurveFitAccumulator:
 	rlf RAA, W
 	banksel curveFitAccumulatorLowerHigh
 	movwf curveFitAccumulatorLowerHigh
-; TODO: IS THE SIGN EXTEND NECESSARY ?  START TEMPORARY...
 	clrf curveFitAccumulatorUpperHigh
 	clrf curveFitAccumulatorUpperLow
-	return
-; TODO: IS THE SIGN EXTEND NECESSARY ?  END TEMPORARY...
-
-signExtendMostSignificantBitOfRAAIntoUpper:
-	clrw
-	btfsc STATUS, C
-	movlw 0xff
-	movwf curveFitAccumulatorUpperHigh
-	movwf curveFitAccumulatorUpperLow
 	return
 
 storeAIntoAccumulator:

@@ -36,6 +36,7 @@
 	extern loadCoefficientIntoUpperB
 	extern loadDayOfYearFractionalIntoLowerB
 	extern loadAccumulatorIntoA
+	extern loadAccumulatorIntoB
 	extern loadCurveFitAccumulatorIntoB
 	extern loadCurveFitAccumulatorLowerIntoLowerB
 	extern storeAShiftedRight15IntoCurveFitAccumulator

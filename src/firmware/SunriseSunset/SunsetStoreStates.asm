@@ -7,11 +7,7 @@
 	defineSunriseSunsetState SUN_STATE_SUNSET_STOREMINUTE
 		; TODO: DUMMY VALUES TO ENSURE THE FIRST TEST PASSES - REFINE WITH
 		; MORE TESTS
-		banksel sunriseHourBcd
-		movlw 0x08
-		movwf sunriseHourBcd
-		movlw 0x33
-		movwf sunriseMinuteBcd
+		banksel sunsetHourBcd
 		movlw 0x15
 		movwf sunsetHourBcd
 		movlw 0x32

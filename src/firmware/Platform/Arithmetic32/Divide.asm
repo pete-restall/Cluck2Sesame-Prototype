@@ -7,6 +7,7 @@ Arithmetic32 code
 	global div32x16
 
 div32x16:
+	banksel RBC
 	movf RBC, W
 	iorwf RBD, W
 	btfsc STATUS, Z
@@ -21,10 +22,10 @@ div32x16:
 
 subtractionLoop:
 	bcf STATUS, C
-	rlf	RAD
-	rlf	RAC
-	rlf	RAB
-	rlf	RAA
+	rlf RAD
+	rlf RAC
+	rlf RAB
+	rlf RAA
 	btfsc STATUS, C
 	goto doSubtraction
 
@@ -34,7 +35,7 @@ subtractionLoop:
 
 doSubtraction:
 	call subtractDivisorFromDividendMostSignificantWord
-	bsf	RAD, W
+	bsf RAD, W
 
 nextIteration:
 	decfsz RZA

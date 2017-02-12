@@ -13,6 +13,9 @@ OBJ_FILES=\
 	DayOfYearState.o \
 	CurveFitStates.o \
 	SunriseLatitudeAdjustmentState.o \
+	SunriseLongitudeAdjustmentState.o \
+	AccumulatorToTimeStates.o \
+	SunriseStoreStates.o \
 	SunsetStoreStates.o
 
 all: $(LIB_FILENAME)

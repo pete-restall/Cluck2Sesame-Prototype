@@ -15,7 +15,7 @@
 		.direct "c", "accumulatorLowerHigh"
 		.direct "c", "accumulatorLowerLow"
 		.direct "c", "echo ****** RESULT *******"
-		setSunriseSunsetState SUN_STATE_SUNSET_STOREMINUTE
+		setSunriseSunsetState SUN_STATE_SUNRISE_LONGITUDEADJUSTMENT
 		returnFromSunriseSunsetState
 
 	end
