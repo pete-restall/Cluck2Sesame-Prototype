@@ -3,7 +3,7 @@
    The lookup is a selection of accurate values computed using the algorithm
    documented at:
 
-       https://alcor.concordia.ca/~gpkatch/gdate-method.html
+       http://www.stargazing.net/kepler/sunrise.html
 
    Linear interpolation is used to calculate values across latitudes and days
    that do not have entries in the lookup table.
@@ -85,6 +85,7 @@ static GregorianDate daysToDate(int day);
 static int dateToDays(const GregorianDate date);
 static int daysSinceEpoch(const GregorianDate date);
 static short latitudeInterpolationMultiplier(double latitude);
+static short longitudeAdjustmentMinutes(double longitude);
 static double lookupSunsetTime(int day, double latitude, double longitude);
 static int writeLookupTableForAssembler(
 	const char *const filename,
@@ -93,8 +94,8 @@ static int writeLookupTableForAssembler(
 
 int main(void)
 {
-	double latitude = 57.5;
-	double longitude = 0;
+	double latitude = 51.509865;
+	double longitude = -0.118092;
 
 	initialiseLookupTable();
 	return
@@ -280,8 +281,10 @@ static double lookupSunriseTime(int day, double latitude, double longitude)
 
 	short offset = (latitudeMultiplier * interpolated.sunriseMinuteOffset) >> 8;
 
-	unsigned short minutes = interpolated.sunriseReferenceMinute + offset;
-	/* TODO: ADD IN THE LONGITUDE DIFFERENCE, TOO */
+	unsigned short minutes =
+		interpolated.sunriseReferenceMinute +
+		offset +
+		longitudeAdjustmentMinutes(longitude);
 
 	return minutes / (24.0 * 60.0);
 }
@@ -437,6 +440,17 @@ static short latitudeInterpolationMultiplier(double latitude)
 	return multiplier;
 }
 
+static short longitudeAdjustmentMinutes(double longitude)
+{
+	const int degreeResolution = 10;
+	short difference = (short) (
+		(LOOKUP_LONGITUDE - longitude) * degreeResolution + 0.5);
+ 
+	short minutes = (difference * 4) / 10;
+	short remainder = (difference * 4) % 10;
+	return minutes + (remainder >= 5 ? 1 : remainder <= -5 ? -1 : 0);
+}
+
 static double lookupSunsetTime(int day, double latitude, double longitude)
 {
 	InterpolatedLookupEntry interpolated = latitude >= LOOKUP_LATITUDE
@@ -447,9 +461,10 @@ static double lookupSunsetTime(int day, double latitude, double longitude)
 
 	short offset = (latitudeMultiplier * interpolated.sunsetMinuteOffset) >> 8;
 
-	unsigned short minutes = interpolated.sunsetReferenceMinute + offset;
-
-	/* TODO: ADD IN THE LONGITUDE DIFFERENCE, TOO */
+	unsigned short minutes =
+		interpolated.sunsetReferenceMinute +
+		offset +
+		longitudeAdjustmentMinutes(longitude);
 
 	return minutes / (24.0 * 60.0);
 }
@@ -470,26 +485,36 @@ static int writeLookupTableForAssembler(
 
 	fprintf(fd, "\tradix decimal\n\n");
 	fprintf(fd, "SunriseSunset code\n");
-	fprintf(fd, "\tglobal sunriseSunsetLookup\n\n");
-	fprintf(fd, "sunriseSunsetLookup:\n");
+	fprintf(fd, "\tglobal sunriseLookup\n");
+	fprintf(fd, "\tglobal sunsetLookup\n\n");
+	fprintf(fd, "sunriseLookup:\n");
 	for (int i = 0; i < LOOKUP_LENGTH; i++)
 	{
 		LookupEntry *entry = &lookupTable[i];
 		fprintf(
 			fd,
-			"\t.dw 0x%.4hx, 0x%.4hx, 0x%.4hx, 0x%.4hx\n",
+			"\t.dw 0x%.4hx, 0x%.4hx\n",
+			(unsigned short) (
+				((entry->sunriseReferenceMinute & 0x7c0) << 2) |
+				(entry->sunriseMinuteNorth & 0xff)),
 			(unsigned short) (
 				((entry->sunriseReferenceMinute & 0x03f) << 8) |
-				entry->sunriseMinuteNorth),
+				(entry->sunriseMinuteSouth & 0xff)));
+	}
+
+	fprintf(fd, "\nsunsetLookup:\n");
+	for (int i = 0; i < LOOKUP_LENGTH; i++)
+	{
+		LookupEntry *entry = &lookupTable[i];
+		fprintf(
+			fd,
+			"\t.dw 0x%.4hx, 0x%.4hx\n",
+			(unsigned short) (
+				((entry->sunsetReferenceMinute & 0x7c0) << 2) |
+				(entry->sunsetMinuteNorth & 0xff)),
 			(unsigned short) (
 				((entry->sunsetReferenceMinute & 0x03f) << 8) |
-				entry->sunriseMinuteSouth),
-			(unsigned short) (
-				((entry->sunriseReferenceMinute & 0x7c0) << 8) |
-				entry->sunsetMinuteNorth),
-			(unsigned short) (
-				((entry->sunsetReferenceMinute & 0x7c0) << 8) |
-				entry->sunsetMinuteSouth));
+				(entry->sunsetMinuteSouth & 0xff)));
 	}
 
 	fprintf(fd, "\n\tend\n");
