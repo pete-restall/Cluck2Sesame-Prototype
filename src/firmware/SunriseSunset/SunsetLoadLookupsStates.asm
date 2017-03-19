@@ -19,7 +19,7 @@
 		call loadLookupIndexIntoFlashAddress
 		call loadLookupTableEntryFromFlash
 
-		setSunriseSunsetStoreState SUN_STATE_SUNSET_STOREHOUR
+		setSunriseSunsetStoreState SUN_STATE_SUNSET_STORE
 		setSunriseSunsetState SUN_STATE_LOADLOOKUPS3
 		returnFromSunriseSunsetState
 

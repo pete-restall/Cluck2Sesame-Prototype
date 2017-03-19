@@ -54,20 +54,23 @@ loadDayOfYearIntoA:
 	return
 
 loadFirstLookupReferenceMinuteIntoB:
-	; TODO: THESE TWO FUNCTIONS CAN PROBABLY BE MERGED...
-	goto loadLookupReferenceMinuteIntoB
+loadLookupReferenceMinuteIntoB:
+	banksel lookupReferenceMinuteHigh
+	movf lookupReferenceMinuteHigh, W
+	banksel RBC
+	movwf RBC
+	banksel lookupReferenceMinuteLow
+	movf lookupReferenceMinuteLow, W
 
-	;banksel lookupReferenceMinuteHigh
-	;movf lookupReferenceMinuteHigh, W
-	;banksel RBA
-	;clrf RBA
-	;clrf RBB
-	;movwf RBC
-	;banksel lookupReferenceMinuteLow
-	;movf lookupReferenceMinuteLow, W
-	;banksel RBD
-	;movwf RBD
-	;return
+loadWIntoRBDAndSignExtendUpperWord:
+	banksel RBD
+	movwf RBD
+	movlw 0x00
+	btfsc RBC, 7
+	movlw 0xff
+	movwf RBA
+	movwf RBB
+	return
 
 loadFirstLookupDeltaMinutesNorthIntoB:
 	banksel lookupReferenceDeltaMinutesNorth
@@ -149,24 +152,6 @@ loadLookupReferenceDeltaMinutesIntoB:
 	movwf RBC
 	banksel lookupReferenceDeltaMinutesLow
 	movf lookupReferenceDeltaMinutesLow, W
-
-loadWIntoRBDAndSignExtendUpperWord:
-	banksel RBD
-	movwf RBD
-	movlw 0x00
-	btfsc RBC, 7
-	movlw 0xff
-	movwf RBA
-	movwf RBB
-	return
-
-loadLookupReferenceMinuteIntoB:
-	banksel lookupReferenceMinuteHigh
-	movf lookupReferenceMinuteHigh, W
-	banksel RBC
-	movwf RBC
-	banksel lookupReferenceMinuteLow
-	movf lookupReferenceMinuteLow, W
 	goto loadWIntoRBDAndSignExtendUpperWord
 
 storeAccumulatorFromA:

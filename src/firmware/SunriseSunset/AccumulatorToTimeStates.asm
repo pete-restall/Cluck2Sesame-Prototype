@@ -13,7 +13,7 @@
 		movlw 60
 		movwf RBD
 
-divideAndStoreResultAndRemainder:
+divideAndStoreResultAndRemainderInAccumulator:
 		fcall div32x16
 		call storeAccumulatorFromA
 
@@ -21,15 +21,5 @@ divideAndStoreResultAndRemainder:
 		movf sunriseSunsetStoreState, W
 		movwf sunriseSunsetState
 		returnFromSunriseSunsetState
-
-
-	defineSunriseSunsetStateInSameSection SUN_STATE_ACCUMULATORTOMINUTES
-; TODO: NOT NECESSARY ANYMORE !
-		call loadAccumulatorIntoB
-		banksel RBA
-		clrf RBA
-		movlw 60
-		movwf RBB
-		goto divideAndStoreResultAndRemainder
 
 	end

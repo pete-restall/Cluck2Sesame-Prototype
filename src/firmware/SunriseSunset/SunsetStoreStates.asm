@@ -6,7 +6,7 @@
 
 	radix decimal
 
-	defineSunriseSunsetState SUN_STATE_SUNSET_STOREHOUR
+	defineSunriseSunsetState SUN_STATE_SUNSET_STORE
 		banksel accumulatorLowerLow
 		movf accumulatorLowerLow, W
 		banksel sunsetHourBcd
@@ -17,22 +17,6 @@
 		banksel sunsetMinuteBcd
 		movwf sunsetMinuteBcd
 
-		;setSunriseSunsetNextState SUN_STATE_SUNSET_STOREMINUTE
-		;setSunriseSunsetState SUN_STATE_ACCUMULATORTOMINUTES
-		setSunriseSunsetState SUN_STATE_SUNSET_STOREASBCD
-		returnFromSunriseSunsetState
-
-
-	defineSunriseSunsetStateInSameSection SUN_STATE_SUNSET_STOREMINUTE
-		; TODO: NO LONGER REQUIRED...
-		banksel accumulator
-		movf accumulatorUpperLow, W
-		movwf sunsetMinuteBcd
-		btfsc accumulatorLowerHigh, 7
-		incf sunsetMinuteBcd
-
-		; TODO: WHEN ROUNDING UP, NEED TO INCREMENT HOUR IF MINUTE == 59 AND
-		; ROUNDED TO 00
 		setSunriseSunsetState SUN_STATE_SUNSET_STOREASBCD
 		returnFromSunriseSunsetState
 
