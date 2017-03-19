@@ -485,15 +485,15 @@ static int writeLookupTableForAssembler(
 
 	fprintf(fd, "\tradix decimal\n\n");
 	fprintf(fd, "SunriseSunset code\n");
-	fprintf(fd, "\tglobal sunriseLookup\n");
-	fprintf(fd, "\tglobal sunsetLookup\n\n");
-	fprintf(fd, "sunriseLookup:\n");
+	fprintf(fd, "\tglobal sunriseLookupTable\n");
+	fprintf(fd, "\tglobal sunsetLookupTable\n\n");
+	fprintf(fd, "sunriseLookupTable:\n");
 	for (int i = 0; i < LOOKUP_LENGTH; i++)
 	{
 		LookupEntry *entry = &lookupTable[i];
 		fprintf(
 			fd,
-			"\t.dw 0x%.4hx, 0x%.4hx\n",
+			"\tdw 0x%.4hx, 0x%.4hx\n",
 			(unsigned short) (
 				((entry->sunriseReferenceMinute & 0x7c0) << 2) |
 				(entry->sunriseMinuteNorth & 0xff)),
@@ -502,13 +502,13 @@ static int writeLookupTableForAssembler(
 				(entry->sunriseMinuteSouth & 0xff)));
 	}
 
-	fprintf(fd, "\nsunsetLookup:\n");
+	fprintf(fd, "\nsunsetLookupTable:\n");
 	for (int i = 0; i < LOOKUP_LENGTH; i++)
 	{
 		LookupEntry *entry = &lookupTable[i];
 		fprintf(
 			fd,
-			"\t.dw 0x%.4hx, 0x%.4hx\n",
+			"\tdw 0x%.4hx, 0x%.4hx\n",
 			(unsigned short) (
 				((entry->sunsetReferenceMinute & 0x7c0) << 2) |
 				(entry->sunsetMinuteNorth & 0xff)),

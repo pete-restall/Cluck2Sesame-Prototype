@@ -4,12 +4,34 @@
 
 	radix decimal
 
-SUNRISE_REFERENCE_COEFFICIENT_INDEX equ 0
-SUNRISE_REFERENCE_NORTH_COEFFICIENT_INDEX equ 10 * 2
-SUNRISE_REFERENCE_SOUTH_COEFFICIENT_INDEX equ 20 * 2
-SUNSET_REFERENCE_COEFFICIENT_INDEX equ 30 * 2
-SUNSET_REFERENCE_NORTH_COEFFICIENT_INDEX equ 40 * 2
-SUNSET_REFERENCE_SOUTH_COEFFICIENT_INDEX equ 50 * 2
+LOOKUP_STEP equ 6
+LOOKUP_LENGTH equ 366 / LOOKUP_STEP
+LOOKUP_LATITUDE_DELTA_DEGREES equ 5
+LOOKUP_LATITUDE_DELTA equ LOOKUP_LATITUDE_DELTA_DEGREES * 10
+
+	extern sunriseLookupTable
+	extern sunsetLookupTable
+
+	extern lookupIndex
+	extern lookupIndexHigh
+	extern lookupIndexLow
+	extern lookupIndexRemainder
+	extern lookupIndexRemainderHigh
+	extern lookupIndexRemainderLow
+
+	extern lookupReferenceMinute
+	extern lookupReferenceMinuteHigh
+	extern lookupReferenceMinuteLow
+	extern lookupReferenceDeltaMinutesHigh
+	extern lookupReferenceDeltaMinutesNorth
+	extern lookupReferenceDeltaMinutesLow
+	extern lookupReferenceDeltaMinutesSouth
+
+	extern lookupEntry
+	extern lookupEntryReferenceMinuteHigh
+	extern lookupEntryReferenceDeltaMinutesNorth
+	extern lookupEntryReferenceMinuteLow
+	extern lookupEntryReferenceDeltaMinutesSouth
 
 	extern accumulator
 	extern accumulatorUpper
@@ -19,48 +41,28 @@ SUNSET_REFERENCE_SOUTH_COEFFICIENT_INDEX equ 50 * 2
 	extern accumulatorLowerHigh
 	extern accumulatorLowerLow
 
-	extern coefficientIndex
-	extern coefficient
-	extern coefficientHigh
-	extern coefficientLow
-	extern extendedCoefficients
-
-	extern dayOfYearFractional
-	extern dayOfYearFractionalHigh
-	extern dayOfYearFractionalLow
-
-	extern numberOfCurveFittingIterations
-
-	extern curveFitAccumulator
-	extern curveFitAccumulatorUpper
-	extern curveFitAccumulatorUpperHigh
-	extern curveFitAccumulatorUpperLow
-	extern curveFitAccumulatorLower
-	extern curveFitAccumulatorLowerHigh
-	extern curveFitAccumulatorLowerLow
-
 	#ifndef __CLUCK2SESAME_SUNRISESUNSET_REGISTERLOADANDANDSTORE_ASM
-	extern loadCoefficientIntoAccumulator
-	extern loadCoefficientIntoLowerA
-	extern loadCoefficientIntoUpperB
-	extern loadDayOfYearFractionalIntoLowerB
 	extern loadAccumulatorIntoA
 	extern loadAccumulatorIntoB
-	extern loadCurveFitAccumulatorIntoB
-	extern loadCurveFitAccumulatorLowerIntoLowerB
-	extern storeAShiftedRight15IntoCurveFitAccumulator
-	extern storeAIntoAccumulator
-	extern storeAIntoCurveFitAccumulator
+	extern loadDayOfYearIntoA
+	extern loadFirstLookupReferenceMinuteIntoB
+	extern loadFirstLookupDeltaMinutesNorthIntoB
+	extern loadFirstLookupDeltaMinutesSouthIntoB
+	extern loadSecondLookupReferenceMinuteIntoA
+	extern loadSecondLookupDeltaMinutesNorthIntoA
+	extern loadSecondLookupDeltaMinutesSouthIntoA
+	extern loadLookupIndexRemainderIntoUpperB
+	extern loadLookupStepIntoLowerB
+	extern loadLookupReferenceDeltaMinutesIntoB
+	extern loadLookupReferenceMinuteIntoB
+	extern storeAccumulatorFromA
+	extern storeLookupReferenceDeltaMinutesFromA
 	#endif
 
-	#ifndef __CLUCK2SESAME_SUNRISESUNSET_COEFFICIENTS_ASM
-	extern loadNextCoefficient
-	extern loadSunriseReferenceExtendedCoefficients
-	extern loadSunriseReferenceNorthExtendedCoefficients
-	extern loadSunriseReferenceSouthExtendedCoefficients
-	extern loadSunsetReferenceExtendedCoefficients
-	extern loadSunsetReferenceNorthExtendedCoefficients
-	extern loadSunsetReferenceSouthExtendedCoefficients
+	#ifndef __CLUCK2SESAME_SUNRISESUNSET_LOADLOOKUPTABLEENTRYFROMFLASH_ASM
+	extern loadLookupTableEntryFromFlash
 	#endif
+
+	extern muls16x16
 
 	#endif

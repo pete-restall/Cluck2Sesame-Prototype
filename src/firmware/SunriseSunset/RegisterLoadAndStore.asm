@@ -1,74 +1,30 @@
 	#define __CLUCK2SESAME_SUNRISESUNSET_REGISTERLOADANDANDSTORE_ASM
 
 	#include "Mcu.inc"
+	#include "Arithmetic32.inc"
 	#include "SunriseSunset.inc"
-	#include "../Platform/Arithmetic32.inc"
 
 	radix decimal
 
+	extern dayOfYearHigh
+	extern dayOfYearLow
+
 SunriseSunset code
-	global loadCoefficientIntoAccumulator
-	global loadCoefficientIntoLowerA
-	global loadCoefficientIntoUpperB
-	global loadDayOfYearFractionalIntoLowerB
 	global loadAccumulatorIntoA
 	global loadAccumulatorIntoB
-	global loadCurveFitAccumulatorIntoB
-	global loadCurveFitAccumulatorLowerIntoLowerB
-	global storeAShiftedRight15IntoCurveFitAccumulator
-	global storeAIntoAccumulator
-	global storeAIntoCurveFitAccumulator
-
-loadCoefficientIntoAccumulator:
-	banksel accumulator
-	movf coefficientHigh, W
-	movwf accumulatorLowerHigh
-	movf coefficientLow, W
-	movwf accumulatorLowerLow
-
-signExtendCoefficientIntoAccumulator:
-	clrw
-	btfsc coefficientHigh, 7
-	movlw 0xff
-	movwf accumulatorUpperHigh
-	movwf accumulatorUpperLow
-	return
-
-loadCoefficientIntoLowerA:
-	banksel coefficientHigh
-	movf coefficientHigh, W
-	banksel RAC
-	movwf RAC
-
-	banksel coefficientLow
-	movf coefficientLow, W
-	banksel RAD
-	movwf RAD
-	return
-
-loadCoefficientIntoUpperB:
-	banksel coefficientHigh
-	movf coefficientHigh, W
-	banksel RBA
-	movwf RBA
-
-	banksel coefficientLow
-	movf coefficientLow, W
-	banksel RBB
-	movwf RBB
-	return
-
-loadDayOfYearFractionalIntoLowerB:
-	banksel dayOfYearFractionalHigh
-	movf dayOfYearFractionalHigh, W
-	banksel RBC
-	movwf RBC
-
-	banksel dayOfYearFractionalLow
-	movf dayOfYearFractionalLow, W
-	banksel RBD
-	movwf RBD
-	return
+	global loadDayOfYearIntoA
+	global loadFirstLookupReferenceMinuteIntoB
+	global loadFirstLookupDeltaMinutesNorthIntoB
+	global loadFirstLookupDeltaMinutesSouthIntoB
+	global loadSecondLookupReferenceMinuteIntoA
+	global loadSecondLookupDeltaMinutesNorthIntoA
+	global loadSecondLookupDeltaMinutesSouthIntoA
+	global loadLookupIndexRemainderIntoUpperB
+	global loadLookupStepIntoLowerB
+	global loadLookupReferenceDeltaMinutesIntoB
+	global loadLookupReferenceMinuteIntoB
+	global storeAccumulatorFromA
+	global storeLookupReferenceDeltaMinutesFromA
 
 loadAccumulatorIntoA:
 	setupIndf accumulator
@@ -84,44 +40,151 @@ loadIntoB:
 	loadFromIndf32Into RBA
 	return
 
-loadCurveFitAccumulatorIntoB:
-	setupIndf curveFitAccumulator
-	goto loadIntoB
+loadDayOfYearIntoA:
+	banksel dayOfYearHigh
+	movf dayOfYearHigh, W
+	banksel RAA
+	clrf RAA
+	clrf RAB
+	movwf RAC
+	banksel dayOfYearLow
+	movf dayOfYearLow, W
+	banksel RAD
+	movwf RAD
+	return
 
-loadCurveFitAccumulatorLowerIntoLowerB:
-	banksel curveFitAccumulatorLowerHigh
-	movf curveFitAccumulatorLowerHigh, W
-	banksel RBC
-	movwf RBC
-	banksel curveFitAccumulatorLowerLow
-	movf curveFitAccumulatorLowerLow, W
+loadFirstLookupReferenceMinuteIntoB:
+	; TODO: THESE TWO FUNCTIONS CAN PROBABLY BE MERGED...
+	goto loadLookupReferenceMinuteIntoB
+
+	;banksel lookupReferenceMinuteHigh
+	;movf lookupReferenceMinuteHigh, W
+	;banksel RBA
+	;clrf RBA
+	;clrf RBB
+	;movwf RBC
+	;banksel lookupReferenceMinuteLow
+	;movf lookupReferenceMinuteLow, W
+	;banksel RBD
+	;movwf RBD
+	;return
+
+loadFirstLookupDeltaMinutesNorthIntoB:
+	banksel lookupReferenceDeltaMinutesNorth
+	movf lookupReferenceDeltaMinutesNorth, W
+
+loadWIntoB:
 	banksel RBD
+	movwf RBD
+	rlf RBD, W
+	clrw
+	btfsc STATUS, C
+	movlw 0xff
+	movwf RBC
+	movwf RBB
+	movwf RBA
+	return
+
+loadFirstLookupDeltaMinutesSouthIntoB:
+	banksel lookupReferenceDeltaMinutesSouth
+	movf lookupReferenceDeltaMinutesSouth, W
+	goto loadWIntoB
+
+loadSecondLookupReferenceMinuteIntoA:
+	banksel lookupEntry
+	movf lookupEntryReferenceMinuteHigh, W
+	banksel RAA
+	clrf RAA
+	clrf RAB
+	movwf RAC
+	banksel lookupEntry
+	movf lookupEntryReferenceMinuteLow, W
+	banksel RAD
+	movwf RAD
+	return
+
+loadSecondLookupDeltaMinutesNorthIntoA:
+	banksel lookupEntryReferenceDeltaMinutesNorth
+	movf lookupEntryReferenceDeltaMinutesNorth, W
+
+loadWIntoA:
+	banksel RAD
+	movwf RAD
+	rlf RAD, W
+	clrw
+	btfsc STATUS, C
+	movlw 0xff
+	movwf RAC
+	movwf RAB
+	movwf RAA
+	return
+
+loadSecondLookupDeltaMinutesSouthIntoA:
+	banksel lookupEntryReferenceDeltaMinutesSouth
+	movf lookupEntryReferenceDeltaMinutesSouth, W
+	goto loadWIntoA
+
+loadLookupIndexRemainderIntoUpperB:
+	banksel lookupIndexRemainderHigh
+	movf lookupIndexRemainderHigh, W
+	banksel RBA
+	movwf RBA
+	banksel lookupIndexRemainderLow
+	movf lookupIndexRemainderLow, W
+	banksel RBB
+	movwf RBB
+	return
+
+loadLookupStepIntoLowerB:
+	banksel RBC
+	clrf RBC
+	movlw LOOKUP_STEP
 	movwf RBD
 	return
 
-storeAShiftedRight15IntoCurveFitAccumulator:
-	banksel RAC
-	rlf RAC, W
-	rlf RAB, W
-	banksel curveFitAccumulatorLowerLow
-	movwf curveFitAccumulatorLowerLow
-	banksel RAA
-	rlf RAA, W
-	banksel curveFitAccumulatorLowerHigh
-	movwf curveFitAccumulatorLowerHigh
-	clrf curveFitAccumulatorUpperHigh
-	clrf curveFitAccumulatorUpperLow
+loadLookupReferenceDeltaMinutesIntoB:
+	banksel lookupReferenceDeltaMinutesHigh
+	movf lookupReferenceDeltaMinutesHigh, W
+	banksel RBC
+	movwf RBC
+	banksel lookupReferenceDeltaMinutesLow
+	movf lookupReferenceDeltaMinutesLow, W
+
+loadWIntoRBDAndSignExtendUpperWord:
+	banksel RBD
+	movwf RBD
+	movlw 0x00
+	btfsc RBC, 7
+	movlw 0xff
+	movwf RBA
+	movwf RBB
 	return
 
-storeAIntoAccumulator:
+loadLookupReferenceMinuteIntoB:
+	banksel lookupReferenceMinuteHigh
+	movf lookupReferenceMinuteHigh, W
+	banksel RBC
+	movwf RBC
+	banksel lookupReferenceMinuteLow
+	movf lookupReferenceMinuteLow, W
+	goto loadWIntoRBDAndSignExtendUpperWord
+
+storeAccumulatorFromA:
 	setupIndf accumulator
 
 storeFromA:
 	storeIntoIndf32From RAA
 	return
 
-storeAIntoCurveFitAccumulator:
-	setupIndf curveFitAccumulator
-	goto storeFromA
+storeLookupReferenceDeltaMinutesFromA:
+	banksel RAC
+	movf RAC, W
+	banksel lookupReferenceDeltaMinutesHigh
+	movwf lookupReferenceDeltaMinutesHigh
+	banksel RAD
+	movf RAD, W
+	banksel lookupReferenceDeltaMinutesLow
+	movwf lookupReferenceDeltaMinutesLow
+	return
 
 	end

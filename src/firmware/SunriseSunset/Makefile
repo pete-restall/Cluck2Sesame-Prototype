@@ -2,24 +2,22 @@ LIB_FILENAME=../SunriseSunset.a
 OBJ_FILES=\
 	Registers.o \
 	RegisterLoadAndStore.o \
-	Coefficients.o \
+	LookupTables.o \
 	Initialise.o \
 	CalculateSunriseAndSunset.o \
 	Poll.o \
+	SignedMultiply.o \
+	LoadLookupTableEntryFromFlash.o \
 	UninitialisedState.o \
 	IdleState.o \
 	CalculateSunriseState.o \
-	SunriseLimitDayOfYearState.o \
-	DayOfYearState.o \
-	CurveFitStates.o \
-	SunriseLatitudeAdjustmentState.o \
-	SunriseLongitudeAdjustmentState.o \
+	SunriseLoadLookupsStates.o \
+	LoadLookupsStates.o \
+	InterpolationStates.o \
 	AccumulatorToTimeStates.o \
 	SunriseStoreStates.o \
 	CalculateSunsetState.o \
-	SunsetLimitDayOfYearState.o \
-	SunsetLatitudeAdjustmentState.o \
-	SunsetLongitudeAdjustmentState.o \
+	SunsetLoadLookupsStates.o \
 	SunsetStoreStates.o
 
 all: $(LIB_FILENAME)

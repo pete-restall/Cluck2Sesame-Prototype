@@ -1,27 +1,21 @@
 	#include "Mcu.inc"
+	#include "FarCalls.inc"
+	#include "Arithmetic32.inc"
+	#include "Clock.inc"
 	#include "SunriseSunset.inc"
 	#include "States.inc"
 
 	radix decimal
 
 	defineSunriseSunsetState SUN_STATE_CALCULATESUNSET
-loadFirstCoefficientIntoAccumulator:
-		banksel coefficientIndex
-		movlw SUNSET_REFERENCE_COEFFICIENT_INDEX
-		movwf coefficientIndex
-		call loadNextCoefficient
-		call loadCoefficientIntoAccumulator
+		call loadDayOfYearIntoA
+		call loadLookupStepIntoLowerB
+		fcall div32x16
 
-loadExtendedCoefficients:
-		call loadSunsetReferenceExtendedCoefficients
+		setupIndf RAA
+		loadFromIndf32Into lookupIndex
 
-setNumberOfFittingIterationsAndNextState:
-		banksel numberOfCurveFittingIterations
-		movlw 3
-		movwf numberOfCurveFittingIterations
-
-		setSunriseSunsetNextState SUN_STATE_SUNSET_LATITUDEADJUSTMENT
-		setSunriseSunsetState SUN_STATE_SUNSET_LIMITDAYOFYEAR
+		setSunriseSunsetState SUN_STATE_SUNSET_LOADLOOKUPS
 		returnFromSunriseSunsetState
 
 	end

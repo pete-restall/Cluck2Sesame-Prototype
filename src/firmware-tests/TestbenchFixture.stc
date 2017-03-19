@@ -1,5 +1,5 @@
 module library libgpsim_modules
-module library libgpsim_lcd
+module library libgpsim_extras
 load "../firmware/Cluck2Sesame.cod"
 load i "Testbench/ShiftRegister.sti"
 load i "Testbench/Lcd.sti"

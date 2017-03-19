@@ -12,6 +12,28 @@
 
 	global sunriseSunsetState
 	global sunriseSunsetNextState
+	global sunriseSunsetStoreState
+
+	global lookupIndex
+	global lookupIndexHigh
+	global lookupIndexLow
+	global lookupIndexRemainder
+	global lookupIndexRemainderHigh
+	global lookupIndexRemainderLow
+
+	global lookupReferenceMinute
+	global lookupReferenceMinuteHigh
+	global lookupReferenceMinuteLow
+	global lookupReferenceDeltaMinutesHigh
+	global lookupReferenceDeltaMinutesNorth
+	global lookupReferenceDeltaMinutesLow
+	global lookupReferenceDeltaMinutesSouth
+
+	global lookupEntry
+	global lookupEntryReferenceMinuteHigh
+	global lookupEntryReferenceDeltaMinutesNorth
+	global lookupEntryReferenceMinuteLow
+	global lookupEntryReferenceDeltaMinutesSouth
 
 	global accumulator
 	global accumulatorUpper
@@ -20,26 +42,6 @@
 	global accumulatorLower
 	global accumulatorLowerHigh
 	global accumulatorLowerLow
-
-	global coefficientIndex
-	global coefficient
-	global coefficientHigh
-	global coefficientLow
-	global extendedCoefficients
-
-	global dayOfYearFractional
-	global dayOfYearFractionalHigh
-	global dayOfYearFractionalLow
-
-	global numberOfCurveFittingIterations
-
-	global curveFitAccumulator
-	global curveFitAccumulatorUpper
-	global curveFitAccumulatorUpperHigh
-	global curveFitAccumulatorUpperLow
-	global curveFitAccumulatorLower
-	global curveFitAccumulatorLowerHigh
-	global curveFitAccumulatorLowerLow
 
 latitudeOffset res 1
 longitudeOffset res 1
@@ -50,6 +52,28 @@ sunsetMinuteBcd res 1
 
 sunriseSunsetState res 1
 sunriseSunsetNextState res 1
+sunriseSunsetStoreState res 1
+
+lookupIndex:
+lookupIndexHigh res 1
+lookupIndexLow res 1
+lookupIndexRemainder:
+lookupIndexRemainderHigh res 1
+lookupIndexRemainderLow res 1
+
+lookupReferenceMinute:
+lookupReferenceMinuteHigh res 1
+lookupReferenceMinuteLow res 1
+lookupReferenceDeltaMinutesHigh:
+lookupReferenceDeltaMinutesNorth res 1
+lookupReferenceDeltaMinutesLow:
+lookupReferenceDeltaMinutesSouth res 1
+
+lookupEntry:
+lookupEntryReferenceMinuteHigh res 1
+lookupEntryReferenceDeltaMinutesNorth res 1
+lookupEntryReferenceMinuteLow res 1
+lookupEntryReferenceDeltaMinutesSouth res 1
 
 accumulator:
 accumulatorUpper:
@@ -58,27 +82,5 @@ accumulatorUpperLow res 1
 accumulatorLower:
 accumulatorLowerHigh res 1
 accumulatorLowerLow res 1
-
-coefficientIndex res 1
-
-coefficient:
-coefficientHigh res 1
-coefficientLow res 1
-
-extendedCoefficients res 1
-
-dayOfYearFractional:
-dayOfYearFractionalHigh res 1
-dayOfYearFractionalLow res 1
-
-numberOfCurveFittingIterations res 1
-
-curveFitAccumulator:
-curveFitAccumulatorUpper:
-curveFitAccumulatorUpperHigh res 1
-curveFitAccumulatorUpperLow res 1
-curveFitAccumulatorLower:
-curveFitAccumulatorLowerHigh res 1
-curveFitAccumulatorLowerLow res 1
 
 	end

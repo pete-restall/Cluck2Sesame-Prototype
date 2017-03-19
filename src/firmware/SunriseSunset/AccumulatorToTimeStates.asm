@@ -1,34 +1,35 @@
 	#include "Mcu.inc"
 	#include "FarCalls.inc"
-	#include "Arithmetic16.inc"
+	#include "Arithmetic32.inc"
 	#include "SunriseSunset.inc"
 	#include "States.inc"
 
 	radix decimal
 
 	defineSunriseSunsetState SUN_STATE_ACCUMULATORTOHOURS
-		call loadAccumulatorIntoB
-		banksel RBA
-		clrf RBA
-		movlw 24 << 1
-		movwf RBB
+		call loadAccumulatorIntoA
+		banksel RBC
+		clrf RBC
+		movlw 60
+		movwf RBD
 
-multiplyAndGotoNextState:
-		fcall mul16x16
-		call storeAIntoAccumulator
+divideAndStoreResultAndRemainder:
+		fcall div32x16
+		call storeAccumulatorFromA
 
-		banksel sunriseSunsetNextState
-		movf sunriseSunsetNextState, W
+		banksel sunriseSunsetStoreState
+		movf sunriseSunsetStoreState, W
 		movwf sunriseSunsetState
 		returnFromSunriseSunsetState
 
 
 	defineSunriseSunsetStateInSameSection SUN_STATE_ACCUMULATORTOMINUTES
+; TODO: NOT NECESSARY ANYMORE !
 		call loadAccumulatorIntoB
 		banksel RBA
 		clrf RBA
 		movlw 60
 		movwf RBB
-		goto multiplyAndGotoNextState
+		goto divideAndStoreResultAndRemainder
 
 	end

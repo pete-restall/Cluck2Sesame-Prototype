@@ -71,6 +71,7 @@ setEnableBit:
 resetEnableBit:
 	banksel shiftRegisterBuffer
 	bcf shiftRegisterBuffer, LCD_EN_BIT
-	tcall shiftOut
+	fcall shiftOut
+	return
 
 	end

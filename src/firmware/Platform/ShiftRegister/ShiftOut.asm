@@ -33,8 +33,6 @@ adjustShiftRegisterBufferToAppearUnmodified:
 shiftOutNextBit:
 	banksel shiftRegisterBuffer
 	rlf shiftRegisterBuffer
-	call shiftOutCarry
-	return
 
 shiftOutCarry:
 	banksel SHIFT_REGISTER_PORT
