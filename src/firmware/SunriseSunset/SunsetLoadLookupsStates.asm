@@ -39,6 +39,7 @@ loadLookupIndexIntoFlashAddress:
 	incf EEADRH
 
 	banksel lookupIndexHigh
+	rlf lookupIndexLow, W
 	rlf lookupIndexHigh, W
 	banksel EEADRH
 	addwf EEADRH

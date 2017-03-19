@@ -56,6 +56,7 @@ LOOKUP_LATITUDE_DELTA equ LOOKUP_LATITUDE_DELTA_DEGREES * 10
 	extern loadLookupReferenceDeltaMinutesIntoB
 	extern loadLookupReferenceMinuteIntoB
 	extern storeAccumulatorFromA
+	extern storeLookupIndexFromA
 	extern storeLookupReferenceDeltaMinutesFromA
 	#endif
 

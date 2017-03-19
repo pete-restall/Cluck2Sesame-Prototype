@@ -24,6 +24,7 @@ SunriseSunset code
 	global loadLookupReferenceDeltaMinutesIntoB
 	global loadLookupReferenceMinuteIntoB
 	global storeAccumulatorFromA
+	global storeLookupIndexFromA
 	global storeLookupReferenceDeltaMinutesFromA
 
 loadAccumulatorIntoA:
@@ -160,6 +161,10 @@ storeAccumulatorFromA:
 storeFromA:
 	storeIntoIndf32From RAA
 	return
+
+storeLookupIndexFromA:
+	setupIndf lookupIndexRemainder
+	goto storeFromA
 
 storeLookupReferenceDeltaMinutesFromA:
 	banksel RAC

@@ -14,12 +14,12 @@
 	global sunriseSunsetNextState
 	global sunriseSunsetStoreState
 
-	global lookupIndex
-	global lookupIndexHigh
-	global lookupIndexLow
 	global lookupIndexRemainder
 	global lookupIndexRemainderHigh
 	global lookupIndexRemainderLow
+	global lookupIndex
+	global lookupIndexHigh
+	global lookupIndexLow
 
 	global lookupReferenceMinute
 	global lookupReferenceMinuteHigh
@@ -54,12 +54,12 @@ sunriseSunsetState res 1
 sunriseSunsetNextState res 1
 sunriseSunsetStoreState res 1
 
-lookupIndex:
-lookupIndexHigh res 1
-lookupIndexLow res 1
 lookupIndexRemainder:
 lookupIndexRemainderHigh res 1
 lookupIndexRemainderLow res 1
+lookupIndex:
+lookupIndexHigh res 1
+lookupIndexLow res 1
 
 lookupReferenceMinute:
 lookupReferenceMinuteHigh res 1

@@ -7,9 +7,9 @@ initialLatitudeOffset=0x00
 initialLongitudeOffset=0x00
 
 expectedSunriseHourBcd=0x08
-expectedSunriseMinuteBcd=0x19
+expectedSunriseMinuteBcd=0x21
 expectedSunsetHourBcd=0x15
-expectedSunsetMinuteBcd=0x28
+expectedSunsetMinuteBcd=0x24
 
 run
 quit

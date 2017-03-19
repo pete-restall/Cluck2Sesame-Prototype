@@ -25,6 +25,9 @@
 #define LOOKUP_LATITUDE_SOUTH (LOOKUP_LATITUDE - 5)
 #define LOOKUP_LONGITUDE 0
 
+#define TO_HOUR(x) ((int) ((x) * 24))
+#define TO_MINUTE(x) ((int) (((x) * 24 - TO_HOUR(x)) * 60 + 0.5))
+
 typedef short FixedQ1_15;
 typedef unsigned short FixedQ0_16;
 
@@ -92,12 +95,53 @@ static int writeLookupTableForAssembler(
 	double latitude,
 	double longitude);
 
-int main(void)
+int main(int argc, char *argv[])
 {
 	double latitude = 51.509865;
 	double longitude = -0.118092;
 
 	initialiseLookupTable();
+	if (argc == 4)
+	{
+		double sunrise, sunset;
+		int day;
+		int success =
+			sscanf(argv[1], "%d", &day) +
+			sscanf(argv[2], "%lg", &latitude) +
+			sscanf(argv[3], "%lg", &longitude);
+
+		if (success != 3)
+		{
+			printf(
+				"Unable to parse arguments.  "
+				"Expected day, latitude and longitude.\n");
+
+			return 1;
+		}
+
+		printf("For %g,%g on day %d:\n", latitude, longitude, day);
+
+		sunrise = sunriseTime(day, latitude, longitude);
+		sunset = sunsetTime(day, latitude, longitude);
+		printf(
+			"Actual: sunrise=%.2d:%.2d, sunset=%.2d:%.2d\n",
+			TO_HOUR(sunrise),
+			TO_MINUTE(sunrise),
+			TO_HOUR(sunset),
+			TO_MINUTE(sunset));
+
+		sunrise = lookupSunriseTime(day, latitude, longitude);
+		sunset = lookupSunsetTime(day, latitude, longitude);
+		printf(
+			"Lookup: sunrise=%.2d:%.2d, sunset=%.2d:%.2d\n",
+			TO_HOUR(sunrise),
+			TO_MINUTE(sunrise),
+			TO_HOUR(sunset),
+			TO_MINUTE(sunset));
+
+		return 0;
+	}
+
 	return
 		writeLookupTableForOctave("lookup.txt", latitude, longitude) +
 		writeLookupTableForAssembler("lookup.asm", latitude, longitude);
