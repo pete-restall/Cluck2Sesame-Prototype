@@ -176,8 +176,8 @@ loadLookupTableLatitudeDeltaAsDivisor:
 
 
 	defineSunriseSunsetStateInSameSection SUN_STATE_INTERPOLATE_LATITUDE2
-		call loadAccumulatorIntoA
-		call loadLookupReferenceDeltaMinutesIntoB
+		call loadAccumulatorIntoB
+		call loadLookupReferenceDeltaMinutesIntoUpperB
 		fcall muls16x16
 
 storeAccumulatorFromAShiftedRight8Bits:

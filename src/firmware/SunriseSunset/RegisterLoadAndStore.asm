@@ -22,6 +22,7 @@ SunriseSunset code
 	global loadLookupIndexRemainderIntoUpperB
 	global loadLookupStepIntoLowerB
 	global loadLookupReferenceDeltaMinutesIntoB
+	global loadLookupReferenceDeltaMinutesIntoUpperB
 	global loadLookupReferenceMinuteIntoB
 	global storeAccumulatorFromA
 	global storeLookupIndexFromA
@@ -154,6 +155,17 @@ loadLookupReferenceDeltaMinutesIntoB:
 	banksel lookupReferenceDeltaMinutesLow
 	movf lookupReferenceDeltaMinutesLow, W
 	goto loadWIntoRBDAndSignExtendUpperWord
+
+loadLookupReferenceDeltaMinutesIntoUpperB:
+	banksel lookupReferenceDeltaMinutesHigh
+	movf lookupReferenceDeltaMinutesHigh, W
+	banksel RBA
+	movwf RBA
+	banksel lookupReferenceDeltaMinutesLow
+	movf lookupReferenceDeltaMinutesLow, W
+	banksel RBB
+	movwf RBB
+	return
 
 storeAccumulatorFromA:
 	setupIndf accumulator
