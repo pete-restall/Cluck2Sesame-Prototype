@@ -1,0 +1,15 @@
+load "SunriseAndSunsetTimesTest.cod"
+load i "../../PreventInfiniteLoops.sti"
+
+initialDayOfYearHigh=0
+initialDayOfYearLow=67
+initialLatitudeOffset=-50
+initialLongitudeOffset=20
+
+expectedSunriseHourBcd=0x06
+expectedSunriseMinuteBcd=0x25
+expectedSunsetHourBcd=0x17
+expectedSunsetMinuteBcd=0x42
+
+run
+quit
