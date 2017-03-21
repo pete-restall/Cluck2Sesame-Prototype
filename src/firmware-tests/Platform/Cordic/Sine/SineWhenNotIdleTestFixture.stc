@@ -1,4 +1,0 @@
-load "SineWhenNotIdleTest.cod"
-load i "../../../PreventInfiniteLoops.sti"
-run
-quit

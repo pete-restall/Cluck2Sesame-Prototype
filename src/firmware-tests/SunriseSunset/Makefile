@@ -9,10 +9,7 @@ export OBJ_FILES=\
 	$(FIRMWARE_DIR)/Platform/Arithmetic32.a \
 	$(FIRMWARE_DIR)/Platform/ArithmeticBcd.a \
 	$(FIRMWARE_DIR)/Platform/Flash.o \
-	$(FIRMWARE_DIR)/Platform/Cordic.a \
-	$(CURDIR)/ClockStubs.o \
-	$(CURDIR)/../Platform/Cordic/InitialiseAfterCordicDummy.o \
-	$(CURDIR)/../Platform/Cordic/PollAfterCordicDummy.o
+	$(CURDIR)/ClockStubs.o
 
 TEST_DOUBLE_OBJ_FILES=\
 	InitialiseAfterSunriseSunsetMock.o \

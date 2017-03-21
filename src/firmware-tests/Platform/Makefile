@@ -24,7 +24,6 @@ all: $(TEST_DOUBLE_OBJ_FILES)
 	$(MAKE) -C Arithmetic16 all
 	$(MAKE) -C Arithmetic32 all
 	$(MAKE) -C ArithmeticBcd all
-	$(MAKE) -C Cordic all
 	$(MAKE) -C Smps all
 	$(MAKE) -C Motor all
 	$(MAKE) -C ShiftRegister all
@@ -48,7 +47,6 @@ clean:
 	$(MAKE) -C Arithmetic16 clean
 	$(MAKE) -C Arithmetic32 clean
 	$(MAKE) -C ArithmeticBcd clean
-	$(MAKE) -C Cordic clean
 	$(MAKE) -C Smps clean
 	$(MAKE) -C Motor clean
 	$(MAKE) -C ShiftRegister clean

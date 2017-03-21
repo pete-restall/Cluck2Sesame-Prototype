@@ -1,7 +1,0 @@
-	#ifndef __CLUCK2SESAME_TESTS_PLATFORM_CORDIC_INITIALISEAFTERCORDICMOCK_INC
-	#define __CLUCK2SESAME_TESTS_PLATFORM_CORDIC_INITIALISEAFTERCORDICMOCK_INC
-
-	extern initialiseInitialiseAfterCordicMock
-	extern calledInitialiseAfterCordic
-
-	#endif

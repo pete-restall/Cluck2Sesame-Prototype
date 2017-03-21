@@ -1,6 +1,0 @@
-load "IsCordicIdleTest.cod"
-load i "../../../PreventInfiniteLoops.sti"
-initialCordicState=0x01
-expectedIsCordicIdle=0
-run
-quit

@@ -7,7 +7,6 @@ OBJ_FILES=\
 	Arithmetic16.a \
 	Arithmetic32.a \
 	ArithmeticBcd.a \
-	Cordic.a \
 	Main.o \
 	PowerOnReset.o \
 	BrownOutReset.o \
@@ -31,7 +30,6 @@ clean:
 	$(MAKE) -C Arithmetic16 clean
 	$(MAKE) -C Arithmetic32 clean
 	$(MAKE) -C ArithmeticBcd clean
-	$(MAKE) -C Cordic clean
 	$(MAKE) -C Clock clean
 	$(MAKE) -C ShiftRegister clean
 	$(MAKE) -C Smps clean
