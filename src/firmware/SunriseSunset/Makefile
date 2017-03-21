@@ -13,7 +13,9 @@ OBJ_FILES=\
 	CalculateSunriseState.o \
 	SunriseLoadLookupsStates.o \
 	LoadLookupsStates.o \
-	InterpolationStates.o \
+	LookupInterpolationStates.o \
+	LatitudeInterpolationStates.o \
+	LongitudeInterpolationStates.o \
 	AccumulatorToTimeStates.o \
 	SunriseStoreStates.o \
 	CalculateSunsetState.o \
