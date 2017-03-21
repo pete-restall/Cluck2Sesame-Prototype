@@ -8,6 +8,7 @@
 	#define POLL_AFTER_MOTOR pollLcd
 	#define POLL_AFTER_LCD pollUi
 	#define POLL_AFTER_UI pollSunriseSunset
-	#define POLL_AFTER_SUNRISESUNSET pollPowerManagement
+	#define POLL_AFTER_SUNRISESUNSET pollDoor
+	#define POLL_AFTER_DOOR pollPowerManagement
 
 	#endif

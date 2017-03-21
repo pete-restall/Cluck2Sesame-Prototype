@@ -5,7 +5,8 @@ OBJ_FILES=\
 	ConfigWords.o \
 	Platform.a \
 	Ui.a \
-	SunriseSunset.a
+	SunriseSunset.a \
+	Door.a
 
 all: $(HEX_FILENAME)
 
@@ -14,6 +15,7 @@ clean:
 	$(MAKE) -C Platform clean
 	$(MAKE) -C Ui clean
 	$(MAKE) -C SunriseSunset clean
+	$(MAKE) -C Door clean
 
 $(HEX_FILENAME): $(OBJ_FILES)
 	$(LD) $(LDARGS) -o $(HEX_FILENAME) $(OBJ_FILES)

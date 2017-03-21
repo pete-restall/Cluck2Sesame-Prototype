@@ -12,6 +12,7 @@
 	#define INITIALISE_AFTER_LCD initialiseIsr
 	#define INITIALISE_AFTER_ISR initialiseUi
 	#define INITIALISE_AFTER_UI initialiseSunriseSunset
-	#define INITIALISE_AFTER_SUNRISESUNSET initialisationCompleted
+	#define INITIALISE_AFTER_SUNRISESUNSET initialiseDoor
+	#define INITIALISE_AFTER_DOOR initialisationCompleted
 
 	#endif
