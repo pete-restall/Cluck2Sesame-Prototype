@@ -18,6 +18,7 @@ OBJ_FILES+=\
 	../../Motor/DisableMotorVddDummy.o \
 	../../Motor/IsMotorVddEnabledStubbedTrue.o \
 	../../Motor/PollMotorDummy.o \
+	../../Motor/TurnMotorDummies.o \
 	$(ASSERT_NO_ISR_OBJ_FILE)
 
 ENTIRE_SCREEN_SHIFT_OUT_OBJ_FILES=\

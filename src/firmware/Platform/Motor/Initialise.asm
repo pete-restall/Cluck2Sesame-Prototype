@@ -6,7 +6,6 @@
 	radix decimal
 
 	extern INITIALISE_AFTER_MOTOR
-	extern enableMotorVddCount
 
 PR2_FOR_15_625KHZ_PWM equ 63
 CCP1CON_SINGLEPWM_MASK equ 0

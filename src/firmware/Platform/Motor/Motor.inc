@@ -24,4 +24,9 @@ MOTOR_ISENSE_PIN equ RC3
 MOTOR_ISENSE_PIN_TRIS equ TRISC3
 MOTOR_ISENSE_PIN_ANSL equ ANS7
 
+	#ifndef __CLUCK2SESAME_PLATFORM_MOTOR_REGISTERS_ASM
+	extern enableMotorVddCount
+	extern motorCounter
+	#endif
+
 	#endif

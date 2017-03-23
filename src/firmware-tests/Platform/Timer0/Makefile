@@ -19,7 +19,11 @@ INITIALISE_TIMER0_OBJ_FILES=\
 ELAPSED_TICKS_OBJ_FILES=\
 	ElapsedTicksTest.o
 
-all: $(HEX_FILES) InitialiseAfterTimer0Mock.o
+TEST_DOUBLE_OBJ_FILES=\
+	InitialiseAfterTimer0Dummy.o \
+	InitialiseAfterTimer0Mock.o
+
+all: $(TEST_DOUBLE_OBJ_FILES) $(HEX_FILES)
 
 clean:
 	$(RM) -f $(BUILD_ARTEFACT_PATTERN)

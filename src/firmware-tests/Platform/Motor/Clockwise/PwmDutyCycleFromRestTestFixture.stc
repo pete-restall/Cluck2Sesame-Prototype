@@ -1,0 +1,5 @@
+load "PwmDutyCycleFromRestTest.cod"
+load i "../../../PreventInfiniteLoops.sti"
+p16f685.tmr1_freq=10
+run
+quit

@@ -21,6 +21,7 @@ TEST_DOUBLE_OBJ_FILES=\
 	../../Motor/EnableMotorVddDummy.o \
 	../../Motor/DisableMotorVddDummy.o \
 	../../Motor/IsMotorVddEnabledDummy.o \
+	../../Motor/TurnMotorDummies.o \
 	../../Isr/InitialiseAfterIsrDummy.o \
 	../../Adc/InitialiseAfterAdcDummy.o \
 	../../Clock/PollAfterClockDummy.o

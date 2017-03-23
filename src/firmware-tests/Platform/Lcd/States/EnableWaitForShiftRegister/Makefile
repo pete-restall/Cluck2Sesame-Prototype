@@ -32,6 +32,7 @@ ENABLE_MOTOR_VDD_WHEN_SHIFT_REGISTER_ENABLED_OBJ_FILES=\
 	../../../Motor/DisableMotorVddDummy.o \
 	../../../Motor/IsMotorVddEnabledStub.o \
 	../../../Motor/PollMotorDummy.o \
+	../../../Motor/TurnMotorDummies.o \
 	$(TEST_DOUBLE_OBJ_FILES)
 
 ENABLE_MOTOR_VDD_WHEN_SHIFT_REGISTER_DISABLED_OBJ_FILES=\
@@ -41,6 +42,7 @@ ENABLE_MOTOR_VDD_WHEN_SHIFT_REGISTER_DISABLED_OBJ_FILES=\
 	../../../Motor/DisableMotorVddDummy.o \
 	../../../Motor/IsMotorVddEnabledStub.o \
 	../../../Motor/PollMotorDummy.o \
+	../../../Motor/TurnMotorDummies.o \
 	$(TEST_DOUBLE_OBJ_FILES)
 
 ENABLE_MOTOR_VDD_CALLED_AFTER_SHIFT_REGISTER_CLEARED_OBJ_FILES=\
@@ -54,7 +56,8 @@ ENABLE_MOTOR_VDD_CALLED_AFTER_SHIFT_REGISTER_CLEARED_OBJ_FILES=\
 	../../../Motor/InitialiseMotorDummy.o \
 	../../../Motor/DisableMotorVddDummy.o \
 	../../../Motor/IsMotorVddEnabledDummy.o \
-	../../../Motor/PollMotorDummy.o
+	../../../Motor/PollMotorDummy.o \
+	../../../Motor/TurnMotorDummies.o
 
 SHIFT_REGISTER_NOT_CLEARED_BEFORE_ENABLED_OBJ_FILES=\
 	ShiftRegisterNotClearedBeforeEnabledTest.o \

@@ -6,11 +6,6 @@
 
 	radix decimal
 
-	udata
-	global enableMotorVddCount
-
-enableMotorVddCount res 1
-
 Motor code
 	global enableMotorVdd
 	global disableMotorVdd
@@ -38,6 +33,7 @@ disableMotorVdd:
 	bsf MOTOR_TRIS, MOTOR_VDD_EN_PIN_TRIS
 
 disableMotorVddReturn:
+	; TODO: DISABLE PWM PINS
 	fcall disableSmps
 	return
 

@@ -11,6 +11,7 @@ TEST_DOUBLE_OBJ_FILES=\
 	../../../Motor/DisableMotorVddDummy.o \
 	../../../Motor/IsMotorVddEnabledStub.o \
 	../../../Motor/PollMotorDummy.o \
+	../../../Motor/TurnMotorDummies.o \
 	../../PollAfterLcdMock.o \
 	../../ShiftRegisterDummies.o \
 

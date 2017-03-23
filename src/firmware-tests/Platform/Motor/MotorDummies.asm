@@ -8,11 +8,13 @@ MotorDummies code
 	global disableMotorVdd
 	global isMotorVddEnabled
 	global pollMotor
+	global turnMotorClockwise
 
 initialiseMotor:
 enableMotorVdd:
 disableMotorVdd:
 pollMotor:
+turnMotorClockwise:
 	return
 
 isMotorVddEnabled:
