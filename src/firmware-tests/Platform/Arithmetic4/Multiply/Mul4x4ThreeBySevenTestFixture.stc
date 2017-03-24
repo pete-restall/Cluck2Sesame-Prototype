@@ -1,4 +1,5 @@
 load "Mul4x4Test.cod"
+load i "../../../RandomiseRam.sti"
 load i "../../../PreventInfiniteLoops.sti"
 
 RAA=3

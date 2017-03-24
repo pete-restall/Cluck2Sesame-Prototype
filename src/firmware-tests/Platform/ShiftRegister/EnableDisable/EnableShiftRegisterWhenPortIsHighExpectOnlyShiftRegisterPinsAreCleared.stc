@@ -1,4 +1,5 @@
 load "EnableDisablePortTest.cod"
+load i "../../../RandomiseRam.sti"
 load i "../../../PreventInfiniteLoops.sti"
 
 forcePortcBeforeEnable=0xff

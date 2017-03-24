@@ -1,4 +1,5 @@
 load "EnableDisableSmpsRmwTest.cod"
+load i "../../../RandomiseRam.sti"
 load i "../../../PreventInfiniteLoops.sti"
 
 module library libgpsim_modules

@@ -1,4 +1,5 @@
 load "Mul16x16Test.cod"
+load i "../../../RandomiseRam.sti"
 load i "../../../PreventInfiniteLoops.sti"
 
 RBA=0xab

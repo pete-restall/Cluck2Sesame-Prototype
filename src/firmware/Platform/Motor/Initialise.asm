@@ -2,6 +2,7 @@
 	#include "TailCalls.inc"
 	#include "InitialisationChain.inc"
 	#include "Motor.inc"
+	#include "States.inc"
 
 	radix decimal
 
@@ -17,6 +18,7 @@ Motor code
 initialiseMotor:
 	banksel enableMotorVddCount
 	clrf enableMotorVddCount
+	clrf motorState
 
 setMotorCurrentSensePortToAnalogue:
 	banksel ANSEL

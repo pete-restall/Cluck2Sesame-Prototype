@@ -1,4 +1,5 @@
 load "ClockSwitchingTest.cod"
+load i "../../../RandomiseRam.sti"
 load i "../../../PreventInfiniteLoops.sti"
 
 numberOfEnsureFastClockCalls=2

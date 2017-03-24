@@ -1,4 +1,5 @@
 load "EnableMotorVddCalledAfterShiftRegisterClearedTest.cod"
+load i "../../../../RandomiseRam.sti"
 load i "../../../../PreventInfiniteLoops.sti"
 initialShiftRegisterBuffer=0
 expectedShiftRegisterBuffer=0

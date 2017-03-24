@@ -4,6 +4,7 @@
 	#include "TailCalls.inc"
 	#include "InitialisationChain.inc"
 	#include "../SunriseSunset.inc"
+	#include "States.inc"
 
 	radix decimal
 
@@ -13,8 +14,8 @@ SunriseSunset code
 	global initialiseSunriseSunset
 
 initialiseSunriseSunset:
-	; TODO: SET sunriseSunsetState TO SUN_STATE_UNINITIALISED
 	banksel latitudeOffset
+	clrf sunriseSunsetState
 	clrf latitudeOffset
 	clrf longitudeOffset
 	clrf sunriseHourBcd

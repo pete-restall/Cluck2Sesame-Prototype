@@ -20,6 +20,7 @@ TEST_DOUBLE_OBJ_FILES=\
 	IsrDummy.o
 
 all: $(TEST_DOUBLE_OBJ_FILES)
+	$(UTILITIES_DIR)/randomise-ram/randomise-ram RandomiseRam.sti
 	$(MAKE) -C Platform all
 	$(MAKE) -C Ui all
 	$(MAKE) -C SunriseSunset all

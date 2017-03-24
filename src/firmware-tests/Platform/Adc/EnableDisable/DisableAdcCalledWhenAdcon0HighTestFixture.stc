@@ -1,4 +1,5 @@
 load "EnableDisableAdcTest.cod"
+load i "../../../RandomiseRam.sti"
 load i "../../../PreventInfiniteLoops.sti"
 
 initialAdcon0=0xff

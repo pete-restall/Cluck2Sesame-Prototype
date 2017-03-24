@@ -1,4 +1,5 @@
 load "PollCalledRepeatedlyTest.cod"
+load i "../../../RandomiseRam.sti"
 load i "../../../PreventInfiniteLoops.sti"
 run
 quit

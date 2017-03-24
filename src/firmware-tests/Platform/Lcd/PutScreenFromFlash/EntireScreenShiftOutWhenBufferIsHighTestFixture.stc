@@ -1,4 +1,5 @@
 load "EntireScreenShiftOutTest.cod"
+load i "../../../RandomiseRam.sti"
 load i "../../../PreventInfiniteLoops.sti"
 initialShiftRegisterBuffer=0xff
 run

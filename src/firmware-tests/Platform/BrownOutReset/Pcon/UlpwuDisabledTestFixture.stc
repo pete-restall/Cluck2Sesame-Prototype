@@ -5,6 +5,7 @@ echo DOES NOT ALLOW SETTING OF THE SBOREN OR ULPWUE BITS !
 echo *************************************************************************
 
 load "UlpwuDisabledTest.cod"
+load i "../../../RandomiseRam.sti"
 load i "../../../PreventInfiniteLoops.sti"
 run
 quit

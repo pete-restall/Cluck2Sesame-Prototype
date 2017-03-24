@@ -1,4 +1,5 @@
 load "PortcTest.cod"
+load i "../../../RandomiseRam.sti"
 load i "../../../PreventInfiniteLoops.sti"
 
 portc=0x00

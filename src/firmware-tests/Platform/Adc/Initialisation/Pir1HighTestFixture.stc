@@ -1,4 +1,5 @@
 load "Pir1Test.cod"
+load i "../../../RandomiseRam.sti"
 load i "../../../PreventInfiniteLoops.sti"
 initialPir1=b'01001111'
 expectedPir1=b'00001111'

@@ -1,0 +1,23 @@
+module load pulldown vssForButtons
+vssForButtons.voltage=0
+vssForButtons.resistance=0
+
+module load pullup r209
+r209.voltage=3.3
+r209.resistance=47000
+
+module load pullup r210
+r210.voltage=3.3
+r210.resistance=47000
+
+module load switch j201
+module load switch j202
+
+node vssForButtonsNode
+attach vssForButtonsNode vssForButtons j201.A j202.A
+
+node rb6
+attach rb6 j201.B portb6 r209
+
+node rb5
+attach rb5 j202.B portb5 r210

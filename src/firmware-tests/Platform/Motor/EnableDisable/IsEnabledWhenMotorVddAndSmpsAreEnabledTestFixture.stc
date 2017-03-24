@@ -1,4 +1,5 @@
 load "IsEnabledTest.cod"
+load i "../../../RandomiseRam.sti"
 load i "../../../PreventInfiniteLoops.sti"
 
 stubIsSmpsEnabled=123

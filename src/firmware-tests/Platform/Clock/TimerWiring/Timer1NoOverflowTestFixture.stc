@@ -1,4 +1,5 @@
 load "Timer1OverflowIncrementsTimeTest.cod"
+load i "../../../RandomiseRam.sti"
 break c 100000000
 
 numberOfClockPulsesA=0x00

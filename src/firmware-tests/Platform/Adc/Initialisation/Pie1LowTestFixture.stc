@@ -1,4 +1,5 @@
 load "Pie1Test.cod"
+load i "../../../RandomiseRam.sti"
 load i "../../../PreventInfiniteLoops.sti"
 initialPie1=0x00
 expectedPie1=0x40

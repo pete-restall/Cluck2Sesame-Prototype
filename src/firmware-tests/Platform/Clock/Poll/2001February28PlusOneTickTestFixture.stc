@@ -1,4 +1,5 @@
 load "PollWithTickedFlagTest.cod"
+load i "../../../RandomiseRam.sti"
 load i "../../../PreventInfiniteLoops.sti"
 
 clockYearBcd=0x01

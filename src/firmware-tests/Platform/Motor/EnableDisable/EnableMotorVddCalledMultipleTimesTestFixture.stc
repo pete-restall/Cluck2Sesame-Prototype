@@ -1,4 +1,5 @@
 load "EnableDisableMotorVddTest.cod"
+load i "../../../RandomiseRam.sti"
 load i "../../../PreventInfiniteLoops.sti"
 
 numberOfEnableCalls=7

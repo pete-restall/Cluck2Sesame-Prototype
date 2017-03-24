@@ -1,4 +1,5 @@
 load "InterruptEnableTest.cod"
+load i "../../../RandomiseRam.sti"
 load i "../../../PreventInfiniteLoops.sti"
 intcon=0xff
 expectedIntcon=b'11111000'

@@ -1,4 +1,5 @@
 load "ShiftOutTest.cod"
+load i "../../../RandomiseRam.sti"
 load i "../../../PreventInfiniteLoops.sti"
 load i "ShiftRegisterFixture.sti"
 initialShiftRegisterBuffer=0b01010101

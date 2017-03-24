@@ -1,4 +1,5 @@
 load "ContrastWhenLcdEnabledTest.cod"
+load i "../../../RandomiseRam.sti"
 load i "../../../PreventInfiniteLoops.sti"
 
 p16f685.frequency=4000000

@@ -1,4 +1,5 @@
 load "PortaTest.cod"
+load i "../../../RandomiseRam.sti"
 load i "../../../PreventInfiniteLoops.sti"
 
 porta=0x3f

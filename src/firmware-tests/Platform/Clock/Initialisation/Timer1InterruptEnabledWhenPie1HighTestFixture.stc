@@ -1,4 +1,5 @@
 load "Timer1InterruptEnabledTest.cod"
+load i "../../../RandomiseRam.sti"
 load i "../../../PreventInfiniteLoops.sti"
 initialPie1=0xff
 run

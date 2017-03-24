@@ -1,6 +1,8 @@
 module library libgpsim_modules
 module library libgpsim_extras
 load "../firmware/Cluck2Sesame.cod"
+load i "RandomiseRam.sti"
 load i "Testbench/ShiftRegister.sti"
 load i "Testbench/Lcd.sti"
+load i "Testbench/Buttons.sti"
 tmr1_freq=32768

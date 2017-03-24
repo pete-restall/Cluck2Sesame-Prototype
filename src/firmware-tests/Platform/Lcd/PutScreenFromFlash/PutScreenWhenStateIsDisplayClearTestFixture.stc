@@ -1,4 +1,5 @@
 load "PutScreenWhenStateIsNotIdleTest.cod"
+load i "../../../RandomiseRam.sti"
 load i "../../../PreventInfiniteLoops.sti"
 initialLcdState=0x0f
 initialLcdNextState=0x34

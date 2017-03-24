@@ -56,6 +56,8 @@ passedTestCount=`cat ${runLog} | grep "^\[PASSED\]" | wc -l`;
 totalTestCount=`cat ${runLog} | grep "gpsim - the GNUPIC simulator" | wc -l`;
 spuriousFailureCount=`cat ${runLog} | grep "ERROR" | wc -l`;
 timeoutCount=`cat ${runLog} | grep "cycle break" | wc -l`;
+runawayCount=`cat ${runLog} | grep "increment PC=0x1000 == memory size 0x1000" | wc -l`;
+unexpectedBreaksCount=$((`cat ${runLog} | pcregrep -M "[^]]\nHit a Breakpoint" | wc -l` / 2));
 
 if [ ${passedTestCount} -eq ${totalTestCount} ]; then
 	if [ $((${spuriousFailureCount} + ${timeoutCount})) -eq 0 ]; then
@@ -70,6 +72,12 @@ else
 	result="FAILURE";
 fi
 
-echo "[RESULT: ${result}] ${totalTestCount} tests run for module ${module}, ${passedTestCount} of which passed.  There were ${spuriousFailureCount} gpsim errors that didn't trigger breakpoints, and ${timeoutCount} timeouts." |& ${tee};
+echo "------------------------------------------------------------------------------" |& ${tee};
+echo "[RESULT: ${result}] ${totalTestCount} tests run for module ${module}, ${passedTestCount} of which passed." |& ${tee};
+echo "There were:" |& ${tee};
+echo -e "\t${spuriousFailureCount} gpsim errors that didn't trigger breakpoints" |& ${tee};
+echo -e "\t${runawayCount} runaway code executions" |& ${tee};
+echo -e "\t${timeoutCount} timeouts" |& ${tee};
+echo -e "\t${unexpectedBreaksCount} unexpected breakpoints" |& ${tee};
 
 exit ${exitCode};

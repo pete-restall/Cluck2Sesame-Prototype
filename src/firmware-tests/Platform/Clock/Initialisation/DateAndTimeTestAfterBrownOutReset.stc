@@ -1,4 +1,5 @@
 load "DateAndTimeTest.cod"
+load i "../../../RandomiseRam.sti"
 load i "../../../PreventInfiniteLoops.sti"
 
 isBrownOutReset=0xff

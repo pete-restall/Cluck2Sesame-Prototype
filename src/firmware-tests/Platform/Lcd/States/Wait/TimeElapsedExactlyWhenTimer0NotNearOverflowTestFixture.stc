@@ -1,4 +1,5 @@
 load "TimeElapsedTest.cod"
+load i "../../../../RandomiseRam.sti"
 load i "../../../../PreventInfiniteLoops.sti"
 
 timer0Seed=5
