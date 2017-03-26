@@ -4,8 +4,10 @@
 
 TurnMotorDummies code
 	global turnMotorClockwise
+	global turnMotorAntiClockwise
 
 turnMotorClockwise:
+turnMotorAntiClockwise:
 	return
 
 	end

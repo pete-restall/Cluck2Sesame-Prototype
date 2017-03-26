@@ -7,5 +7,6 @@
 	extern isMotorVddEnabled
 	extern pollMotor
 	extern turnMotorClockwise
+	extern turnMotorAntiClockwise
 
 	#endif

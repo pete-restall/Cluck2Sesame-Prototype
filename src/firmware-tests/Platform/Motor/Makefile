@@ -24,17 +24,17 @@ TEST_DOUBLE_OBJ_FILES=\
 	PollMotorDummy.o \
 	TurnMotorDummies.o
 
-all:
+all: $(TEST_DOUBLE_OBJ_FILES)
 	$(MAKE) -C Initialisation all
 	$(MAKE) -C EnableDisable all
 	$(MAKE) -C Poll all
-	$(MAKE) -C Clockwise all
+	$(MAKE) -C Turn all
 
 clean:
 	$(RM) -f $(BUILD_ARTEFACT_PATTERN)
 	$(MAKE) -C Initialisation clean
 	$(MAKE) -C EnableDisable clean
 	$(MAKE) -C Poll clean
-	$(MAKE) -C Clockwise clean
+	$(MAKE) -C Turn clean
 
 include $(MAKEFILE_RULES)

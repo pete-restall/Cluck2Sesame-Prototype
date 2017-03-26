@@ -7,6 +7,8 @@
 
 	radix decimal
 
+	extern testAct
+
 NUMBER_OF_SOFT_START_SAMPLES equ 40
 NUMBER_OF_SAMPLES equ NUMBER_OF_SOFT_START_SAMPLES + 10
 
@@ -38,8 +40,8 @@ synchroniseTestWithTimer1:
 	banksel TMR1L
 	movlw 1
 
-testAct:
-	fcall turnMotorClockwise
+callTurnFromFixture:
+	fcall testAct
 
 waitForFirstTick:
 	xorwf TMR1L, W

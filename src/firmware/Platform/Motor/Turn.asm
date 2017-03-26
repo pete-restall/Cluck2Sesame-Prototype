@@ -6,8 +6,10 @@
 
 Motor code
 	global turnMotorClockwise
+	global turnMotorAntiClockwise
 
 turnMotorClockwise:
+turnMotorAntiClockwise:
 	; TODO: IF motorState != MOTOR_STATE_IDLE || MOTOR_STATE_TURNING_*, RETURN 0...
 
 	setMotorState MOTOR_STATE_SOFTSTART
