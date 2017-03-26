@@ -1,7 +1,8 @@
 HEX_FILES=\
 	PwmDutyCycleFromRestTest.hex \
 	PulseSteeringFromRestTest.hex \
-	PwmDutyCycleForReverseTest.hex
+	PwmDutyCycleForReverseTest.hex \
+	PulseSteeringForReverseTest.hex
 
 TEST_DOUBLE_OBJ_FILES=\
 	../../../Smps/EnableSmpsDummy.o \
@@ -24,6 +25,10 @@ PWM_DUTY_CYCLE_FOR_REVERSE_OBJ_FILES=\
 	../PwmDutyCycleForReverseTestFixture.o \
 	$(TEST_DOUBLE_OBJ_FILES)
 
+PULSE_STEERING_FOR_REVERSE_OBJ_FILES=\
+	PulseSteeringForReverseTest.o \
+	$(TEST_DOUBLE_OBJ_FILES)
+
 all: $(HEX_FILES)
 
 clean:
@@ -37,5 +42,8 @@ PulseSteeringFromRestTest.hex: $(OBJ_FILES) $(PULSE_STEERING_FROM_REST_OBJ_FILES
 
 PwmDutyCycleForReverseTest.hex: $(OBJ_FILES) $(PWM_DUTY_CYCLE_FOR_REVERSE_OBJ_FILES)
 	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(PWM_DUTY_CYCLE_FOR_REVERSE_OBJ_FILES)
+
+PulseSteeringForReverseTest.hex: $(OBJ_FILES) $(PULSE_STEERING_FOR_REVERSE_OBJ_FILES)
+	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(PULSE_STEERING_FOR_REVERSE_OBJ_FILES)
 
 include $(MAKEFILE_RULES)

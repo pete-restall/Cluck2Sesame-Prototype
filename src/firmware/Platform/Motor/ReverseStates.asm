@@ -17,6 +17,10 @@
 
 
 	defineMotorStateInSameSection MOTOR_STATE_REVERSE2
+		banksel PSTRCON
+		movlw (1 << STRA) | (1 << STRB)
+		xorwf PSTRCON
+
 		setMotorWaitState NUMBER_OF_TICKS_25MS, MOTOR_STATE_SOFTSTART
 		returnFromMotorState
 
