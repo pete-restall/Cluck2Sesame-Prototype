@@ -15,7 +15,7 @@ NUMBER_OF_SAMPLES equ NUMBER_OF_SOFT_START_SAMPLES + 10
 	udata
 dutyCycleSamples res NUMBER_OF_SAMPLES
 
-PwmDutyCycleFromRestTest code
+PwmDutyCycleFromRestTestFixture code
 	global testArrange
 
 testArrange:
@@ -25,6 +25,12 @@ testArrange:
 	fcall initialiseIsSmpsEnabledStub
 
 	fcall initialiseTimer0
+
+preventWeirdGpsimBugOfNonIncrementingTmr0:
+	banksel TMR0
+	movf TMR0
+
+resumeInitialisation:
 	fcall initialiseMotor
 	fcall enableMotorVdd
 
@@ -35,17 +41,15 @@ waitUntilMotorVddIsEnabled:
 	btfsc STATUS, Z
 	goto waitUntilMotorVddIsEnabled
 
+callTurnInTest:
+	fcall testAct
+
 synchroniseTestWithTimer1:
 	call startTimer1
 	banksel TMR1L
-	movlw 1
-
-callTurnFromFixture:
-	fcall testAct
 
 waitForFirstTick:
-	xorwf TMR1L, W
-	btfss STATUS, Z
+	btfss TMR1L, 0
 	goto waitForFirstTick
 	clrf TMR1L
 
@@ -82,6 +86,7 @@ i += 1
 
 	while (i < NUMBER_OF_SAMPLES)
 		.aliasForAssert dutyCycleSamples + i, _a
+		.command "_a"
 		.assert "_a == 0xff, 'Expected duty cycle to be 100% after soft start.'"
 i += 1
 	endw

@@ -8,6 +8,8 @@ OBJ_FILES=\
 	IdleState.o \
 	WaitState.o \
 	SoftStartStates.o \
+	SoftStopStates.o \
+	ReverseStates.o \
 	Turn.o
 
 all: $(LIB_FILENAME)

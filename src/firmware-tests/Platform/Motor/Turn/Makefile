@@ -1,5 +1,6 @@
 TEST_FIXTURE_OBJ_FILES=\
-	PwmDutyCycleFromRestTest.o
+	PwmDutyCycleFromRestTestFixture.o \
+	PwmDutyCycleForReverseTestFixture.o
 
 all: $(TEST_FIXTURE_OBJ_FILES)
 	$(MAKE) -C Clockwise all

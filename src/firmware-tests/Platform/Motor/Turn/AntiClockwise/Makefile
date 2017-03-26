@@ -3,7 +3,7 @@ HEX_FILES=\
 
 PWM_DUTY_CYCLE_FROM_REST_OBJ_FILES=\
 	PwmDutyCycleFromRestTest.o \
-	../PwmDutyCycleFromRestTest.o \
+	../PwmDutyCycleFromRestTestFixture.o \
 	../../../Smps/EnableSmpsDummy.o \
 	../../../Smps/DisableSmpsDummy.o \
 	../../../Smps/IsSmpsEnabledStub.o \

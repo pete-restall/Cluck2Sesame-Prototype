@@ -5,7 +5,6 @@
 
 	radix decimal
 
-NUMBER_OF_TICKS_25MS equ 196
 NUMBER_OF_DUTY_CYCLE_INCREMENTS equ 40
 DUTY_CYCLE_INCREMENT equ 6
 
@@ -28,10 +27,12 @@ DUTY_CYCLE_INCREMENT equ 6
 		goto increaseDutyCycle
 
 softStartFinished:
+		movf motorStateAfterStarted, W
+		movwf motorState
+
 		banksel CCPR1L
 		movlw 0xff
 		movwf CCPR1L
-		setMotorState MOTOR_STATE_IDLE
 		returnFromMotorState
 
 increaseDutyCycle:

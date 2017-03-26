@@ -9,6 +9,8 @@
 	global motorNextState
 	global motorStateParameter0
 	global motorStateParameter1
+	global motorStateAfterStarted
+	global motorStateAfterStopped
 
 	global enableMotorVddCount
 
@@ -18,6 +20,8 @@ motorState res 1
 motorNextState res 1
 motorStateParameter0 res 1
 motorStateParameter1 res 1
+motorStateAfterStarted res 1
+motorStateAfterStopped res 1
 
 enableMotorVddCount res 1
 
