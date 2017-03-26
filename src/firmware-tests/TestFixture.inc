@@ -7,6 +7,12 @@
 	nop
 	endm
 
+.command macro gpsimCommand
+	nop
+	.direct "c", gpsimCommand
+	nop
+	endm
+
 .signalTestCompletion macro
 	extern testCompleted
 	banksel testCompleted
@@ -14,16 +20,12 @@
 	endm
 
 .done macro
-	nop
-	.direct "c", "echo [PASSED]"
-	nop
+	.command "echo [PASSED]"
 	.signalTestCompletion
 	endm
 
 .assertTraceExternally macro
-	nop
-	.direct "c", "echo [PENDING]"
-	nop
+	.command "echo [PENDING]"
 	.signalTestCompletion
 	endm
 

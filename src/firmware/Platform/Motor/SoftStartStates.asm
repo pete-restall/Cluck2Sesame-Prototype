@@ -6,8 +6,8 @@
 	radix decimal
 
 NUMBER_OF_TICKS_25MS equ 196
-NUMBER_OF_DUTY_CYCLE_INCREMENTS equ 5
-DUTY_CYCLE_INCREMENT equ 25
+NUMBER_OF_DUTY_CYCLE_INCREMENTS equ 40
+DUTY_CYCLE_INCREMENT equ 6
 
 	defineMotorState MOTOR_STATE_SOFTSTART
 		banksel CCPR1L
@@ -15,9 +15,9 @@ DUTY_CYCLE_INCREMENT equ 25
 		movwf CCPR1L
 
 		banksel motorCounter
-		movlw 4 * NUMBER_OF_DUTY_CYCLE_INCREMENTS
+		movlw NUMBER_OF_DUTY_CYCLE_INCREMENTS
 		movwf motorCounter
-		
+
 		setMotorWaitState NUMBER_OF_TICKS_25MS, MOTOR_STATE_SOFTSTART2
 		returnFromMotorState
 
@@ -25,7 +25,7 @@ DUTY_CYCLE_INCREMENT equ 25
 	defineMotorStateInSameSection MOTOR_STATE_SOFTSTART2
 		banksel motorCounter
 		decfsz motorCounter
-		goto incrementDutyCycleIfCounterIsMultipleOfFour
+		goto increaseDutyCycle
 
 softStartFinished:
 		banksel CCPR1L
@@ -34,14 +34,9 @@ softStartFinished:
 		setMotorState MOTOR_STATE_IDLE
 		returnFromMotorState
 
-incrementDutyCycleIfCounterIsMultipleOfFour:
-		movlw 3
-		andwf motorCounter, W
-		movlw 0
-		btfsc STATUS, Z
-		movlw DUTY_CYCLE_INCREMENT
-
+increaseDutyCycle:
 		banksel CCPR1L
+		movlw DUTY_CYCLE_INCREMENT
 		addwf CCPR1L
 
 waitForAnother25ms:

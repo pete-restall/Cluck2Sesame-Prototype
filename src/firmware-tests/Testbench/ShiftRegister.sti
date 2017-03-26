@@ -1,4 +1,6 @@
 module load ttl595 u203
+u203.xpos=396
+u203.ypos=90
 node ds
 node shcp
 node stcp
@@ -7,12 +9,16 @@ attach shcp portc0 u203.SCK
 attach stcp portc1 u203.RCK
 
 module load pullup vddForMr
+vddForMr.xpos=576
+vddForMr.ypos=72
 vddForMr.voltage=3.3
 vddForMr.resistance=0
 node _mr
 attach _mr vddForMr u203.MR
 
 module load pullup r214
+r214.xpos=648
+r214.ypos=126
 r214.voltage=3.3
 r214.resistance=100000
 node _oe
