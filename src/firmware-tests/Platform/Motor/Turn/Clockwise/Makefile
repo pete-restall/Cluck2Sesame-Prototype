@@ -1,5 +1,6 @@
 HEX_FILES=\
 	PwmDutyCycleFromRestTest.hex \
+	PulseSteeringFromRestTest.hex \
 	PwmDutyCycleForReverseTest.hex
 
 TEST_DOUBLE_OBJ_FILES=\
@@ -14,6 +15,10 @@ PWM_DUTY_CYCLE_FROM_REST_OBJ_FILES=\
 	../PwmDutyCycleFromRestTestFixture.o \
 	$(TEST_DOUBLE_OBJ_FILES)
 
+PULSE_STEERING_FROM_REST_OBJ_FILES=\
+	PulseSteeringFromRestTest.o \
+	$(TEST_DOUBLE_OBJ_FILES)
+
 PWM_DUTY_CYCLE_FOR_REVERSE_OBJ_FILES=\
 	PwmDutyCycleForReverseTest.o \
 	../PwmDutyCycleForReverseTestFixture.o \
@@ -26,6 +31,9 @@ clean:
 
 PwmDutyCycleFromRestTest.hex: $(OBJ_FILES) $(PWM_DUTY_CYCLE_FROM_REST_OBJ_FILES)
 	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(PWM_DUTY_CYCLE_FROM_REST_OBJ_FILES)
+
+PulseSteeringFromRestTest.hex: $(OBJ_FILES) $(PULSE_STEERING_FROM_REST_OBJ_FILES)
+	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(PULSE_STEERING_FROM_REST_OBJ_FILES)
 
 PwmDutyCycleForReverseTest.hex: $(OBJ_FILES) $(PWM_DUTY_CYCLE_FOR_REVERSE_OBJ_FILES)
 	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(PWM_DUTY_CYCLE_FOR_REVERSE_OBJ_FILES)
