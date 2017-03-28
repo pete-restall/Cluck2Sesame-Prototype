@@ -1,6 +1,7 @@
 	#ifndef __CLUCK2SESAME_PLATFORM_MOTOR_MOTOR_INC
 	#define __CLUCK2SESAME_PLATFORM_MOTOR_MOTOR_INC
 	#include "Mcu.inc"
+	#include "Flags.inc"
 
 	radix decimal
 

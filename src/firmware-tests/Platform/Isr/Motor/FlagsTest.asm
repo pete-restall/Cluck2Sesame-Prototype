@@ -13,12 +13,16 @@ MOTOR_ADC_CHANNEL equ b'00011100'
 
 	udata
 	global adcResult
+	global initialPstrcon
 	global initialMotorFlags
+	global expectedPstrcon
 	global expectedMotorFlags
 
 adcResult res 1
 initialMotorFlags res 1
+initialPstrcon res 1
 expectedMotorFlags res 1
+expectedPstrcon res 1
 
 FlagsTest code
 	global testArrange
@@ -42,6 +46,11 @@ testArrange:
 	clrf ADRESL
 	movwf ADRESH
 
+	banksel initialPstrcon
+	movf initialPstrcon, W
+	banksel PSTRCON
+	movwf PSTRCON
+
 	banksel PIR1
 	bsf PIR1, ADIF
 
@@ -52,6 +61,10 @@ testAssert:
 	.aliasForAssert motorFlags, _a
 	.aliasForAssert expectedMotorFlags, _b
 	.assert "_a == _b, 'Expected motorFlags == expectedMotorFlags.'"
+
+	.aliasForAssert PSTRCON, _a
+	.aliasForAssert expectedPstrcon, _b
+	.assert "_a == _b, 'Expected PSTRCON == expectedPstrcon.'"
 	return
 
 	end

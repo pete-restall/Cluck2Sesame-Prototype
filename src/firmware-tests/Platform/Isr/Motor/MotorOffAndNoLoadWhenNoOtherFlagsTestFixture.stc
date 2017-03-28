@@ -2,9 +2,11 @@ load "FlagsTest.cod"
 load i "../../../RandomiseRam.sti"
 load i "../../../PreventInfiniteLoops.sti"
 
-adcResult=0x7f
-initialMotorFlags=0xf8
-expectedMotorFlags=0xfa
+adcResult=0x3f
+initialPstrcon=0x10
+initialMotorFlags=0x00
+expectedMotorFlags=0x00
+expectedPstrcon=0x10
 
 run
 quit

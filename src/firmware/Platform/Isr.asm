@@ -10,6 +10,9 @@
 
 	extern INITIALISE_AFTER_ISR
 
+MOTOR_LOAD_FLAGS_MASK equ (1 << MOTOR_FLAG_NOLOAD) | (1 << MOTOR_FLAG_NOMINALLOAD) | (1 << MOTOR_FLAG_OVERLOAD)
+MOTOR_PSTRCON_OUTPUT_MASK equ ~(1 << STRSYNC)
+
 	udata_shr
 contextSavingW res 1
 contextSavingStatus res 1
@@ -18,6 +21,8 @@ lcdContrastAccumulator res 1
 Isr code 0x0004
 	global isr
 	global initialiseIsr
+
+	; TODO: MIGHT NEED TO BUMP MCU FREQUENCY TO 8MHz - 73 CYCLES (OR THEREABOUTS) OUT OF 88 USED IN WORST-CASE...
 
 isr:
 	; Context saving - note swapf does not alter any STATUS bits, movf does:
@@ -40,7 +45,15 @@ preventSleepForSinglePollLoopIteration:
 	goto clockTicked
 	bcf PIR1, ADIF
 
-motorCurrentMonitor:
+motorCurrentMonitoring:
+	; TODO: THIS IS ONLY REQUIRED IF THE ADC CHANNEL IS THE MOTOR CHANNEL...
+	banksel PSTRCON
+	movlw MOTOR_PSTRCON_OUTPUT_MASK
+	andwf PSTRCON, W
+	btfsc STATUS, Z
+	goto endOfMotorCurrentMonitoring
+
+setMotorFlags:
 	banksel ADRESH
 	movlw 1 << MOTOR_FLAG_NOLOAD
 	btfsc ADRESH, 6
@@ -51,9 +64,20 @@ motorCurrentMonitor:
 	banksel motorFlags
 	iorwf motorFlags
 	xorlw 0xff
-	xorlw (1 << MOTOR_FLAG_NOLOAD) | (1 << MOTOR_FLAG_NOMINALLOAD) | (1 << MOTOR_FLAG_OVERLOAD)
+	xorlw MOTOR_LOAD_FLAGS_MASK
 	andwf motorFlags
 
+disableMotorOutputsIfFlagsMasked:
+	swapf motorFlags, W
+	andlw MOTOR_LOAD_FLAGS_MASK
+	andwf motorFlags, W
+	movlw 0xff
+	btfss STATUS, Z
+	movlw ~MOTOR_PSTRCON_OUTPUT_MASK
+	banksel PSTRCON
+	andwf PSTRCON
+
+endOfMotorCurrentMonitoring:
 lcdDeltaSigmaContrastControl:
 	banksel lcdFlags ; TODO: MAKE ALL LCD VARIABLES OF THE SAME BANK !
 	btfss lcdFlags, LCD_FLAG_ENABLED

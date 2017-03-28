@@ -19,7 +19,9 @@ initialiseMotor:
 	banksel enableMotorVddCount
 	clrf enableMotorVddCount
 	clrf motorState
-	clrf motorFlags
+
+	movlw MOTOR_FLAG_PREVENT_OVERLOAD
+	movwf motorFlags
 
 setMotorCurrentSensePortToAnalogue:
 	banksel ANSEL

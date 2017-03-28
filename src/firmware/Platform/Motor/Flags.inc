@@ -1,0 +1,9 @@
+	#ifndef __CLUCK2SESAME_PLATFORM_MOTOR_FLAGS_INC
+	#define __CLUCK2SESAME_PLATFORM_MOTOR_FLAGS_INC
+
+	radix decimal
+
+	#define __CLUCK2SESAME_PLATFORM_MOTOR_FLAGSONLY
+	#include "../Motor.inc"
+
+	#endif

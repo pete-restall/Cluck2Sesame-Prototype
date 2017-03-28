@@ -15,7 +15,8 @@ testAct:
 
 testAssert:
 	banksel motorFlags
-	.assert "motorFlags == 0, 'Expected motorFlags to be cleared.'"
+	.aliasLiteralForAssert MOTOR_FLAG_PREVENT_OVERLOAD, _b
+	.assert "motorFlags == _b, 'Expected motorFlags to be MOTOR_FLAG_PREVENT_OVERLOAD.'"
 	return
 
 	end
