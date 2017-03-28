@@ -6,7 +6,8 @@ HEX_FILES=\
 	T2conTest.hex \
 	Ccp1conTest.hex \
 	Ccpr1lTest.hex \
-	PstrconTest.hex
+	PstrconTest.hex \
+	FlagsTest.hex
 
 TEST_DOUBLE_OBJ_FILES=\
 	../../Smps/EnableDisableSmpsMocks.o \
@@ -46,6 +47,10 @@ PSTRCON_OBJ_FILES=\
 	$(TEST_DOUBLE_OBJ_FILES) \
 	PstrconTest.o
 
+FLAGS_OBJ_FILES=\
+	$(TEST_DOUBLE_OBJ_FILES) \
+	FlagsTest.o
+
 all: $(HEX_FILES)
 
 clean:
@@ -74,5 +79,8 @@ Ccpr1lTest.hex: $(OBJ_FILES) $(CCPR1L_OBJ_FILES)
 
 PstrconTest.hex: $(OBJ_FILES) $(PSTRCON_OBJ_FILES)
 	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(PSTRCON_OBJ_FILES)
+
+FlagsTest.hex: $(OBJ_FILES) $(FLAGS_OBJ_FILES)
+	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(FLAGS_OBJ_FILES)
 
 include $(MAKEFILE_RULES)

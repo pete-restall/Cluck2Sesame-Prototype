@@ -6,8 +6,7 @@ export OBJ_FILES=\
 	$(PLATFORM_DIR)/ArithmeticBcd.a \
 	$(TEST_FIXTURE_OBJ_FILES) \
 	$(CURDIR)/InitialiseAfterClockMock.o \
-	$(CURDIR)/../Isr/InitialiseAfterIsrDummy.o \
-	$(CURDIR)/PollAfterClockMock.o
+	$(CURDIR)/../Isr/InitialiseAfterIsrDummy.o
 
 TEST_DOUBLE_OBJ_FILES=\
 	InitialiseAfterClockMock.o \

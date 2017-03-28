@@ -3,6 +3,7 @@
 	#include "Lcd/Isr.inc"
 	#include "PowerManagement/PowerManagement.inc"
 	#include "Clock.inc"
+	#include "Motor.inc"
 	#include "InitialisationChain.inc"
 
 	radix decimal
@@ -12,7 +13,6 @@
 	udata_shr
 contextSavingW res 1
 contextSavingStatus res 1
-contextSavingPclath res 1
 lcdContrastAccumulator res 1
 
 Isr code 0x0004
@@ -26,9 +26,6 @@ isr:
 	swapf contextSavingW
 	swapf STATUS, W
 	movwf contextSavingStatus
-	movf PCLATH, W
-	movwf contextSavingPclath
-	clrf PCLATH
 
 adcSampled:
 	banksel ADCON0
@@ -43,8 +40,22 @@ preventSleepForSinglePollLoopIteration:
 	goto clockTicked
 	bcf PIR1, ADIF
 
+motorCurrentMonitor:
+	banksel ADRESH
+	movlw 1 << MOTOR_FLAG_NOLOAD
+	btfsc ADRESH, 6
+	movlw 1 << MOTOR_FLAG_NOMINALLOAD
+	btfsc ADRESH, 7
+	movlw 1 << MOTOR_FLAG_OVERLOAD
+
+	banksel motorFlags
+	iorwf motorFlags
+	xorlw 0xff
+	xorlw (1 << MOTOR_FLAG_NOLOAD) | (1 << MOTOR_FLAG_NOMINALLOAD) | (1 << MOTOR_FLAG_OVERLOAD)
+	andwf motorFlags
+
 lcdDeltaSigmaContrastControl:
-	banksel lcdFlags
+	banksel lcdFlags ; TODO: MAKE ALL LCD VARIABLES OF THE SAME BANK !
 	btfss lcdFlags, LCD_FLAG_ENABLED
 	goto clockTicked
 
@@ -69,8 +80,6 @@ clockTicked:
 	bsf clockFlags, CLOCK_FLAG_TICKED
 
 endOfIsr:
-	movf contextSavingPclath, W
-	movwf PCLATH
 	swapf contextSavingStatus, W
 	movwf STATUS
 	swapf contextSavingW, W

@@ -19,6 +19,7 @@ initialiseMotor:
 	banksel enableMotorVddCount
 	clrf enableMotorVddCount
 	clrf motorState
+	clrf motorFlags
 
 setMotorCurrentSensePortToAnalogue:
 	banksel ANSEL

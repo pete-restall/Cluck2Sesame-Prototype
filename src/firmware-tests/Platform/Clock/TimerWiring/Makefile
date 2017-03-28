@@ -8,7 +8,8 @@ OBJ_FILES+=\
 	$(PLATFORM_DIR)/Arithmetic32.a \
 	../../ResetFlagsStubs.o \
 	../../PowerManagementDummies.o \
-	../../Lcd/LcdContrastDummies.o
+	../../Lcd/LcdContrastDummies.o \
+	../../Motor/MotorDummies.o
 
 TIMER1_OVERFLOW_INCREMENTS_TIME_OBJ_FILES=\
 	Timer1OverflowIncrementsTimeTest.o

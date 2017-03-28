@@ -16,7 +16,8 @@ TEST_DOUBLE_OBJ_FILES=\
 	DisableSmpsDummy.o \
 	IsSmpsEnabledDummy.o \
 	IsSmpsEnabledStub.o \
-	PollSmpsDummy.o
+	PollSmpsDummy.o \
+	SmpsDummies.o
 
 all: $(TEST_DOUBLE_OBJ_FILES)
 	$(MAKE) -C Initialisation all

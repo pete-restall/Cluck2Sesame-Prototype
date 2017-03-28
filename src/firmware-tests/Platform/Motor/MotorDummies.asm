@@ -2,6 +2,11 @@
 
 	radix decimal
 
+	udata
+	global motorFlags
+
+motorFlags res 1
+
 MotorDummies code
 	global initialiseMotor
 	global enableMotorVdd

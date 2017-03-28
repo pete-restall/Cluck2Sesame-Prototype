@@ -1,6 +1,7 @@
 OBJ_FILES+=\
 	$(ASSERT_NO_ISR_OBJ_FILE) \
-	../../ResetFlagsStubs.o
+	../../ResetFlagsStubs.o \
+	../PollAfterClockMock.o
 
 HEX_FILES=\
 	PollWithNoTickedFlagTest.hex \

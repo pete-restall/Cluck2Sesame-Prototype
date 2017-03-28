@@ -28,6 +28,7 @@ NUMBER_OF_TICKS_25MS equ 196
 
 	#ifndef __CLUCK2SESAME_PLATFORM_MOTOR_REGISTERS_ASM
 	extern enableMotorVddCount
+	extern motorFlags
 	extern motorCounter
 	#endif
 

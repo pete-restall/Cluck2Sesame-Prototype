@@ -5,6 +5,8 @@
 	radix decimal
 
 	udata
+	global motorFlags
+
 	global motorState
 	global motorNextState
 	global motorStateParameter0
@@ -15,6 +17,8 @@
 	global enableMotorVddCount
 
 	global motorCounter
+
+motorFlags res 1
 
 motorState res 1
 motorNextState res 1

@@ -1,5 +1,6 @@
 OBJ_FILES+=\
 	$(ASSERT_NO_ISR_OBJ_FILE) \
+	../PollAfterClockDummy.o \
 	../../ResetFlagsStubs.o
 
 HEX_FILES=\
