@@ -16,6 +16,7 @@ MOTOR_PSTRCON_OUTPUT_MASK equ ~(1 << STRSYNC)
 	udata_shr
 contextSavingW res 1
 contextSavingStatus res 1
+contextSavingPclath res 1
 lcdContrastAccumulator res 1
 
 Isr code 0x0004
@@ -31,6 +32,9 @@ isr:
 	swapf contextSavingW
 	swapf STATUS, W
 	movwf contextSavingStatus
+	movf PCLATH, W
+	movwf contextSavingPclath
+	clrf PCLATH
 
 adcSampled:
 	banksel ADCON0
@@ -104,6 +108,8 @@ clockTicked:
 	bsf clockFlags, CLOCK_FLAG_TICKED
 
 endOfIsr:
+	movf contextSavingPclath, W
+	movwf PCLATH
 	swapf contextSavingStatus, W
 	movwf STATUS
 	swapf contextSavingW, W
