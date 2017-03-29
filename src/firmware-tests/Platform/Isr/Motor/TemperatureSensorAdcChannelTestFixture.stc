@@ -1,0 +1,8 @@
+load "NonMotorAdcChannelTest.cod"
+load i "../../../RandomiseRam.sti"
+load i "../../../PreventInfiniteLoops.sti"
+
+adcChannel=10
+
+run
+quit

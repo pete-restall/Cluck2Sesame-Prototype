@@ -10,6 +10,7 @@
 
 	extern INITIALISE_AFTER_ISR
 
+MOTOR_ADC_CHANNEL equ b'00011100'
 MOTOR_LOAD_FLAGS_MASK equ (1 << MOTOR_FLAG_NOLOAD) | (1 << MOTOR_FLAG_NOMINALLOAD) | (1 << MOTOR_FLAG_OVERLOAD)
 MOTOR_PSTRCON_OUTPUT_MASK equ ~(1 << STRSYNC)
 
@@ -23,7 +24,8 @@ Isr code 0x0004
 	global isr
 	global initialiseIsr
 
-	; TODO: MIGHT NEED TO BUMP MCU FREQUENCY TO 8MHz - 73 CYCLES (OR THEREABOUTS) OUT OF 88 USED IN WORST-CASE...
+	; TODO: MIGHT NEED TO BUMP MCU FREQUENCY TO 8MHz - 85 CYCLES (OR
+	; THEREABOUTS) OUT OF 88 USED IN WORST-CASE, INCLUDING CLOCK TICK...
 
 isr:
 	; Context saving - note swapf does not alter any STATUS bits, movf does:
@@ -48,6 +50,14 @@ preventSleepForSinglePollLoopIteration:
 	btfss PIR1, ADIF
 	goto clockTicked
 	bcf PIR1, ADIF
+
+disableMotorOutputsIfNotMonitoringCurrent:
+	banksel ADCON0
+	movlw b'00111100'
+	andwf ADCON0, W
+	xorlw MOTOR_ADC_CHANNEL
+	btfss STATUS, Z
+	goto disableMotorOutputs
 
 motorCurrentMonitoring:
 	; TODO: THIS IS ONLY REQUIRED IF THE ADC CHANNEL IS THE MOTOR CHANNEL...
@@ -77,6 +87,7 @@ disableMotorOutputsIfFlagsMasked:
 	andwf motorFlags, W
 	movlw 0xff
 	btfss STATUS, Z
+disableMotorOutputs:
 	movlw ~MOTOR_PSTRCON_OUTPUT_MASK
 	banksel PSTRCON
 	andwf PSTRCON
