@@ -33,6 +33,7 @@ all: $(TEST_DOUBLE_OBJ_FILES)
 	$(MAKE) -C Isr all
 	$(MAKE) -C Flash all
 	$(MAKE) -C PowerManagement all
+	$(MAKE) -C Buttons all
 
 clean:
 	$(RM) -f $(BUILD_ARTEFACT_PATTERN)
@@ -56,5 +57,6 @@ clean:
 	$(MAKE) -C Isr clean
 	$(MAKE) -C Flash clean
 	$(MAKE) -C PowerManagement clean
+	$(MAKE) -C Buttons clean
 
 include $(MAKEFILE_RULES)

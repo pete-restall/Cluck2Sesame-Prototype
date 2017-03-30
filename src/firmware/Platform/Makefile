@@ -21,7 +21,8 @@ OBJ_FILES=\
 	Lcd.a \
 	Adc.a \
 	Flash.o \
-	PowerManagement.a
+	PowerManagement.a \
+	Buttons.a
 
 all: $(LIB_FILENAME)
 
@@ -38,6 +39,7 @@ clean:
 	$(MAKE) -C Lcd clean
 	$(MAKE) -C Adc clean
 	$(MAKE) -C PowerManagement clean
+	$(MAKE) -C Buttons clean
 
 $(LIB_FILENAME): $(OBJ_FILES)
 	$(GPLIB_MERGE) $(LIB_FILENAME) $(OBJ_FILES)

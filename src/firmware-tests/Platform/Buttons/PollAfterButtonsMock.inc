@@ -1,0 +1,7 @@
+	#ifndef __CLUCK2SESAME_TESTS_PLATFORM_BUTTONS_POLLAFTERBUTTONSMOCK_INC
+	#define __CLUCK2SESAME_TESTS_PLATFORM_BUTTONS_POLLAFTERBUTTONSMOCK_INC
+
+	extern initialisePollAfterButtonsMock
+	extern calledPollAfterButtons
+
+	#endif
