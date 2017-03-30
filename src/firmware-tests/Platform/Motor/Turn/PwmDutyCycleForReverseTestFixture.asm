@@ -10,8 +10,8 @@
 	extern testArrangeStartTurning
 	extern testActReverse
 
-NUMBER_OF_STOP_SAMPLES equ 41
-NUMBER_OF_START_SAMPLES equ 40
+NUMBER_OF_STOP_SAMPLES equ 43
+NUMBER_OF_START_SAMPLES equ 43
 
 StopSampleBuffer udata
 dutyCycleStopSamples res NUMBER_OF_STOP_SAMPLES
@@ -116,7 +116,11 @@ testAssert:
 	.command "echo Stop Samples:"
 	while (i < NUMBER_OF_STOP_SAMPLES)
 		.aliasForAssert dutyCycleStopSamples + i, _a
-		.aliasLiteralForAssert 240 - 6 * i, _b
+		if (255 - 6 * (i + 1) >= 0)
+			.aliasLiteralForAssert 255 - 6 * (i + 1), _b
+		else
+			.aliasLiteralForAssert 0, _b
+		endif
 		.command "_a"
 		.assert "_a == _b, 'Soft stop duty cycle mismatch.'"
 i += 1
@@ -126,7 +130,11 @@ i = 0
 	.command "echo Start Samples:"
 	while (i < NUMBER_OF_START_SAMPLES)
 		.aliasForAssert dutyCycleStartSamples + i, _a
-		.aliasLiteralForAssert 6 * (i + 1), _b
+		if (6 * (i + 1) > 255)
+			.aliasLiteralForAssert 255, _b
+		else
+			.aliasLiteralForAssert 6 * (i + 1), _b
+		endif
 		.command "_a"
 		.assert "_a == _b, 'Soft start duty cycle mismatch.'"
 i += 1

@@ -1,6 +1,6 @@
 load "PwmDutyCycleFromRestTest.cod"
 load i "../../../../RandomiseRam.sti"
 load i "../../../../PreventInfiniteLoops.sti"
-p16f685.tmr1_freq=40
+p16f685.tmr1_freq=100
 run
 quit

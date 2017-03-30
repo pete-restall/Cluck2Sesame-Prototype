@@ -21,6 +21,7 @@ MOTOR_FLAG_PREVENT_NOLOAD equ 4 + MOTOR_FLAG_NOLOAD
 	extern pollMotor
 	extern turnMotorClockwise
 	extern turnMotorAntiClockwise
+	extern stopMotor
 	#endif
 
 	#endif

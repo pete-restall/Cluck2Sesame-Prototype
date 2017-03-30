@@ -2,19 +2,23 @@
 	#include "FarCalls.inc"
 	#include "Timer0.inc"
 	#include "Motor.inc"
-	#include "../../Smps/IsSmpsEnabledStub.inc"
+	#include "../../../Smps/IsSmpsEnabledStub.inc"
 	#include "TestFixture.inc"
 
 	radix decimal
 
-	extern testAct
-
-NUMBER_OF_SAMPLES equ 50
+DUTY_CYCLE_DECREMENT equ 6
+NUMBER_OF_SAMPLES equ 45
 
 	udata
+	global initialDutyCycle
+
+initialDutyCycle res 1
+
+StopSampleBuffer udata
 dutyCycleSamples res NUMBER_OF_SAMPLES
 
-PwmDutyCycleFromRestTestFixture code
+SoftStopTest code
 	global testArrange
 
 testArrange:
@@ -40,8 +44,15 @@ waitUntilMotorVddIsEnabled:
 	btfsc STATUS, Z
 	goto waitUntilMotorVddIsEnabled
 
-callTurnInTest:
-	fcall testAct
+setDutyCycleAndPulseSteering:
+	banksel initialDutyCycle
+	movf initialDutyCycle, W
+	banksel CCPR1L
+	movwf CCPR1L
+
+	banksel PSTRCON
+	movlw 0xff
+	movwf PSTRCON
 
 synchroniseTestWithTimer1:
 	call startTimer1
@@ -51,6 +62,9 @@ waitForFirstTick:
 	btfss TMR1L, 0
 	goto waitForFirstTick
 	clrf TMR1L
+
+testAct:
+	fcall stopMotor
 
 sampleUntilNoMoreBufferSpace:
 	fcall pollMotor
@@ -76,14 +90,18 @@ testAssert:
 	variable i = 0
 	.command "echo Samples:"
 	while (i < NUMBER_OF_SAMPLES)
+assertDutyCycleIsDecrementedButNotPastZero_#v(i):
+		banksel initialDutyCycle
+		movlw DUTY_CYCLE_DECREMENT
+		subwf initialDutyCycle, W
+		btfss STATUS, C
+		clrw
+		movwf initialDutyCycle
+
 		.aliasForAssert dutyCycleSamples + i, _a
-		if (6 * (i + 1) > 255)
-			.aliasLiteralForAssert 255, _b
-		else
-			.aliasLiteralForAssert 6 * (i + 1), _b
-		endif
+		.aliasForAssert initialDutyCycle, _b
 		.command "_a"
-		.assert "_a == _b, 'Soft start duty cycle mismatch.'"
+		.assert "_a == _b, 'Soft stop duty cycle mismatch.'"
 i += 1
 	endw
 

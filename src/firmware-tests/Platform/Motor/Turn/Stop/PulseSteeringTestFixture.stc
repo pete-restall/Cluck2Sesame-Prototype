@@ -1,6 +1,8 @@
-load "PwmDutyCycleFromRestTest.cod"
+load "PulseSteeringTest.cod"
 load i "../../../../RandomiseRam.sti"
 load i "../../../../PreventInfiniteLoops.sti"
-p16f685.tmr1_freq=100
+
+initialPstrcon=0x1f
+
 run
 quit

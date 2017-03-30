@@ -7,10 +7,11 @@ OBJ_FILES=\
 	DisabledState.o \
 	IdleState.o \
 	WaitState.o \
-	SoftStartStates.o \
-	SoftStopStates.o \
+	SoftStartState.o \
+	SoftStopState.o \
 	ReverseStates.o \
-	Turn.o
+	Turn.o \
+	Stop.o
 
 all: $(LIB_FILENAME)
 
