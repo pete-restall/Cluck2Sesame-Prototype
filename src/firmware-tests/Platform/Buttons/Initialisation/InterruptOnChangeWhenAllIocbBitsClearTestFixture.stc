@@ -1,5 +1,8 @@
-load "InitialisationChainTest.cod"
+load "InterruptOnChangeTest.cod"
 load i "../../../RandomiseRam.sti"
 load i "../../../PreventInfiniteLoops.sti"
+
+initialIocb=0x00
+
 run
 quit

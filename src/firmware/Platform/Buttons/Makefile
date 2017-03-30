@@ -1,5 +1,6 @@
 LIB_FILENAME=../Buttons.a
 OBJ_FILES=\
+	Registers.o \
 	Initialise.o \
 	Poll.o
 

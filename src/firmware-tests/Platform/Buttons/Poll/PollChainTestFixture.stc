@@ -1,5 +1,5 @@
 load "PollChainTest.cod"
-load i "../../RandomiseRam.sti"
-load i "../../PreventInfiniteLoops.sti"
+load i "../../../RandomiseRam.sti"
+load i "../../../PreventInfiniteLoops.sti"
 run
 quit
