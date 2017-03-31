@@ -4,7 +4,7 @@ HEX_FILES=\
 INITIALISATION_CHAIN_OBJ_FILES=\
 	InitialisationChainTest.o \
 	../InitialiseAfterIsrMock.o \
-	../ClockDummies.o \
+	../ClockDummies.o
 
 all: $(HEX_FILES)
 

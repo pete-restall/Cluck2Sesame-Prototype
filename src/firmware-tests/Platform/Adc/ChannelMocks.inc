@@ -1,0 +1,9 @@
+	#ifndef __CLUCK2SESAME_TESTS_PLATFORM_ADC_CHANNELMOCKS_INC
+	#define __CLUCK2SESAME_TESTS_PLATFORM_ADC_CHANNELMOCKS_INC
+
+	extern initialiseSetAdcChannelMock
+	extern initialiseReleaseAdcChannelMock
+	extern calledSetAdcChannel
+	extern calledReleaseAdcChannel
+
+	#endif

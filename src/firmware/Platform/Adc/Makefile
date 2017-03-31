@@ -1,7 +1,8 @@
 LIB_FILENAME=../Adc.a
 OBJ_FILES=\
 	Initialise.o \
-	EnableDisable.o
+	EnableDisable.o \
+	Channel.o
 
 all: $(LIB_FILENAME)
 

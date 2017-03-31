@@ -4,5 +4,7 @@
 	extern initialiseAdc
 	extern enableAdc
 	extern disableAdc
+	extern setAdcChannel
+	extern releaseAdcChannel
 
 	#endif

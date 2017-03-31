@@ -21,12 +21,10 @@ NonMotorAdcChannelTest code
 testArrange:
 	fcall initialiseAdc
 
-setAdcChannel:
 	banksel adcChannel
-	rlf adcChannel
-	rlf adcChannel
-	movlw b'00111100'
-	andwf adcChannel, W
+	movf adcChannel, W
+	fcall setAdcChannel
+
 	banksel ADCON0
 	movwf ADCON0
 	bsf ADCON0, ADON

@@ -5,7 +5,8 @@ export OBJ_FILES=\
 	$(TEST_FIXTURE_OBJ_FILES) \
 	$(PLATFORM_DIR)/Timer0.o \
 	$(PLATFORM_DIR)/Flash.o \
-	$(PLATFORM_DIR)/PowerManagement.a
+	$(PLATFORM_DIR)/PowerManagement.a \
+	$(CURDIR)/../Adc/ChannelDummies.o
 
 TEST_DOUBLE_OBJ_FILES=\
 	InitialiseAfterLcdDummy.o \

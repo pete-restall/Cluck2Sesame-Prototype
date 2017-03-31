@@ -1,6 +1,7 @@
 	#include "Mcu.inc"
 	#include "TailCalls.inc"
 	#include "InitialisationChain.inc"
+	#include "Adc.inc"
 
 	radix decimal
 
@@ -8,7 +9,7 @@
 
 LEFT_JUSTIFIED_MASK equ 0x00
 VDD_AS_VREF_MASK equ 0x00
-DEFAULT_CHANNEL_MASK equ b'00110100'
+DEFAULT_CHANNEL_MASK equ ADCON0_UNUSED_CHANNEL
 
 ADCON0_MASK equ LEFT_JUSTIFIED_MASK | VDD_AS_VREF_MASK | DEFAULT_CHANNEL_MASK
 

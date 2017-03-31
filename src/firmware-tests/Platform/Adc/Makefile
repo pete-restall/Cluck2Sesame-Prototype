@@ -6,13 +6,21 @@ export OBJ_FILES=\
 	$(ASSERT_NO_ISR_OBJ_FILE) \
 	$(CURDIR)/InitialiseAfterAdcMock.o
 
-all: InitialiseAfterAdcDummy.o InitialiseAfterAdcMock.o
+TEST_DOUBLE_OBJ_FILES=\
+	InitialiseAfterAdcDummy.o \
+	InitialiseAfterAdcMock.o \
+	ChannelDummies.o \
+	ChannelMocks.o
+
+all: $(TEST_DOUBLE_OBJ_FILES)
 	$(MAKE) -C Initialisation all
 	$(MAKE) -C EnableDisable all
+	$(MAKE) -C Channel all
 
 clean:
 	$(RM) -f $(BUILD_ARTEFACT_PATTERN)
 	$(MAKE) -C Initialisation clean
 	$(MAKE) -C EnableDisable clean
+	$(MAKE) -C Channel clean
 
 include $(MAKEFILE_RULES)

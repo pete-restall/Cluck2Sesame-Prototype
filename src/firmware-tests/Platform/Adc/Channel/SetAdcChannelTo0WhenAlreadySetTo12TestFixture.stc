@@ -1,0 +1,9 @@
+load "SetAdcChannelWhenAlreadySetTest.cod"
+load i "../../../RandomiseRam.sti"
+load i "../../../PreventInfiniteLoops.sti"
+
+initialAdcChannel=12
+attemptedAdcChannel=0
+
+run
+quit
