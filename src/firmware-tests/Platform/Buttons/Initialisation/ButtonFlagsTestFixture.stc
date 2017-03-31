@@ -1,4 +1,4 @@
-load "ButtonStatesTest.cod"
+load "ButtonFlagsTest.cod"
 load i "../../../RandomiseRam.sti"
 load i "../../../PreventInfiniteLoops.sti"
 run

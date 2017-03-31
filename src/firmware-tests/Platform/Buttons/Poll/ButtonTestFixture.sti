@@ -1,0 +1,42 @@
+module library libgpsim_modules
+module load and2 button1And
+module load not button1Not
+module load and2 button2And
+module load not button2Not
+
+symbol BUTTON_RELEASED=0
+symbol BUTTON_PRESSED=1
+
+node button1
+attach button1 button1And.in0 
+
+node button1Gate
+attach button1Gate portc1 button1And.in1
+
+node button1Inverted
+attach button1Inverted button1And.out button1Not.in0
+
+node button1In
+attach button1In portb6 button1Not.out
+
+node button2
+attach button2 button2And.in0 
+
+node button2Gate
+attach button2Gate portc2 button2And.in1
+
+node button2Inverted
+attach button2Inverted button2And.out button2Not.in0
+
+node button2In
+attach button2In portb5 button2Not.out
+
+stimulus asynchronous_stimulus
+	initial_state 0
+	start_cycle 0
+	period 10000
+	{
+		0, 0
+	}
+	name released
+	end

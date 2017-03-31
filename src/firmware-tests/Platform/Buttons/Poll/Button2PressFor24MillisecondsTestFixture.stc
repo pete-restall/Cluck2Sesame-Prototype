@@ -1,0 +1,38 @@
+load "ButtonPressTest.cod"
+load i "../../../RandomiseRam.sti"
+load i "../../../PreventInfiniteLoops.sti"
+load i "ButtonTestFixture.sti"
+
+expectedButton1State=BUTTON_RELEASED
+expectedButton2State=BUTTON_RELEASED
+
+stimulus asynchronous_stimulus
+	initial_state 0
+	start_cycle 0
+	period 50000
+	{
+		10000, 1,
+		40000, 0
+	}
+	name buttonPulse
+	end
+
+stimulus asynchronous_stimulus
+	initial_state 1
+	start_cycle 0
+	period 50000
+	{
+		10000, 0,
+		34000, 1
+	}
+	name synchronisingPulse
+	end
+
+attach button1 released
+attach button2 buttonPulse
+
+node timer1
+attach timer1 porta5 synchronisingPulse
+
+run
+quit

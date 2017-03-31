@@ -1,7 +1,15 @@
 	#ifndef __CLUCK2SESAME_PLATFORM_BUTTONS_BUTTONS_INC
 	#define __CLUCK2SESAME_PLATFORM_BUTTONS_BUTTONS_INC
 
-	extern button1State
-	extern button2State
+	radix decimal
+
+	#define __CLUCK2SESAME_PLATFORM_BUTTONS_FLAGSONLY
+	#include "../Buttons.inc"
+
+BUTTON_FLAG_COUNTING1 equ 4 + BUTTON_FLAG_PRESSED1
+BUTTON_FLAG_COUNTING2 equ 4 + BUTTON_FLAG_PRESSED2
+
+	extern button1Timestamp
+	extern button2Timestamp
 
 	#endif

@@ -5,7 +5,7 @@
 
 	radix decimal
 
-ButtonStatesTest code
+ButtonFlagsTest code
 	global testArrange
 
 testArrange:
@@ -14,9 +14,8 @@ testAct:
 	fcall initialiseButtons
 
 testAssert:
-	banksel button1State
-	.assert "button1State == 0, 'Expected button1State to be cleared.'"
-	.assert "button2State == 0, 'Expected button2State to be cleared.'"
+	banksel buttonFlags
+	.assert "buttonFlags == 0, 'Expected buttonFlags to be cleared.'"
 
 	return
 

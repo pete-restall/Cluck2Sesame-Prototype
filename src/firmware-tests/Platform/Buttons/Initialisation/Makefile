@@ -1,18 +1,27 @@
 HEX_FILES=\
 	InitialisationChainTest.hex \
 	InterruptOnChangeTest.hex \
-	ButtonStatesTest.hex
+	AnselTest.hex \
+	ButtonFlagsTest.hex
 
 INITIALISATION_CHAIN_OBJ_FILES=\
 	InitialisationChainTest.o \
-	../PollAfterButtonsMock.o
+	../InitialiseAfterButtonsMock.o \
+	../PollAfterButtonsDummy.o
 
 INTERRUPT_ON_CHANGE_OBJ_FILES=\
 	InterruptOnChangeTest.o \
+	../InitialiseAfterButtonsDummy.o \
 	../PollAfterButtonsDummy.o
 
-BUTTON_STATES_OBJ_FILES=\
-	ButtonStatesTest.o \
+ANSEL_OBJ_FILES=\
+	AnselTest.o \
+	../InitialiseAfterButtonsDummy.o \
+	../PollAfterButtonsDummy.o
+
+BUTTON_FLAGS_OBJ_FILES=\
+	ButtonFlagsTest.o \
+	../InitialiseAfterButtonsDummy.o \
 	../PollAfterButtonsDummy.o
 
 all: $(HEX_FILES)
@@ -26,7 +35,10 @@ InitialisationChainTest.hex: $(OBJ_FILES) $(INITIALISATION_CHAIN_OBJ_FILES)
 InterruptOnChangeTest.hex: $(OBJ_FILES) $(INTERRUPT_ON_CHANGE_OBJ_FILES)
 	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(INTERRUPT_ON_CHANGE_OBJ_FILES)
 
-ButtonStatesTest.hex: $(OBJ_FILES) $(BUTTON_STATES_OBJ_FILES)
-	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(BUTTON_STATES_OBJ_FILES)
+AnselTest.hex: $(OBJ_FILES) $(ANSEL_OBJ_FILES)
+	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(ANSEL_OBJ_FILES)
+
+ButtonFlagsTest.hex: $(OBJ_FILES) $(BUTTON_FLAGS_OBJ_FILES)
+	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(BUTTON_FLAGS_OBJ_FILES)
 
 include $(MAKEFILE_RULES)

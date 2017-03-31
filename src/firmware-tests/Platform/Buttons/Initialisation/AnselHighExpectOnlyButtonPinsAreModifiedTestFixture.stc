@@ -1,0 +1,11 @@
+load "AnselTest.cod"
+load i "../../../RandomiseRam.sti"
+load i "../../../PreventInfiniteLoops.sti"
+
+ansel=0xff
+anselh=0x0f
+expectedANSEL=0xff
+expectedANSELH=0x07
+
+run
+quit

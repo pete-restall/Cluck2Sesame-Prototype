@@ -11,13 +11,15 @@ Buttons code
 	global initialiseButtons
 
 initialiseButtons:
+	banksel ANSELH
+	bcf ANSELH, ANS11
+
 	banksel IOCB
 	bsf IOCB, IOCB5
 	bsf IOCB, IOCB6
 
-	banksel button1State
-	clrf button1State
-	clrf button2State
+	banksel buttonFlags
+	clrf buttonFlags
 
 	tcall INITIALISE_AFTER_BUTTONS
 

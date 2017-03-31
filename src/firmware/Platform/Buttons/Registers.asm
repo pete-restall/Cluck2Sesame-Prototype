@@ -3,10 +3,12 @@
 	radix decimal
 
 	udata
-	global button1State
-	global button2State
+	global buttonFlags
+	global button1Timestamp
+	global button2Timestamp
 
-button1State res 1
-button2State res 1
+buttonFlags res 1
+button1Timestamp res 1
+button2Timestamp res 1
 
 	end
