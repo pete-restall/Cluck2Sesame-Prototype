@@ -7,6 +7,9 @@ TEST_DOUBLE_OBJ_FILES=\
 	../../../Smps/DisableSmpsDummy.o \
 	../../../Smps/IsSmpsEnabledStub.o \
 	../../../Smps/PollSmpsDummy.o \
+	../../../Adc/InitialiseAdcDummy.o \
+	../../../Adc/EnableDisableAdcDummies.o \
+	../../../Adc/ChannelMocks.o \
 	../../PollAfterMotorDummy.o
 
 SOFT_STOP_OBJ_FILES=\

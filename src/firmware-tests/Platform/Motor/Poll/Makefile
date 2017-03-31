@@ -5,6 +5,7 @@ POLL_CHAIN_OBJ_FILES=\
 	PollChainTest.o \
 	../../Smps/EnableDisableSmpsDummies.o \
 	../../Smps/PollSmpsDummy.o \
+	../../Adc/AdcDummies.o \
 	../PollAfterMotorMock.o
 
 all: $(HEX_FILES)

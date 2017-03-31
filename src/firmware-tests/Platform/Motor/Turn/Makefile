@@ -1,6 +1,8 @@
 TEST_FIXTURE_OBJ_FILES=\
 	PwmDutyCycleFromRestTestFixture.o \
-	PwmDutyCycleForReverseTestFixture.o
+	PwmDutyCycleForReverseTestFixture.o \
+	SetAdcChannelFromRestIsSuccessfulTestFixture.o \
+	SetAdcChannelFromRestIsUnsuccessfulTestFixture.o
 
 all: $(TEST_FIXTURE_OBJ_FILES)
 	$(MAKE) -C Clockwise all

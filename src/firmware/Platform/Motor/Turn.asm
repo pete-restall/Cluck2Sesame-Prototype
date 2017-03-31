@@ -1,5 +1,7 @@
 	#include "Mcu.inc"
+	#include "FarCalls.inc"
 	#include "Motor.inc"
+	#include "Adc.inc"
 	#include "States.inc"
 
 	radix decimal
@@ -10,17 +12,22 @@ Motor code
 
 turnMotorClockwise:
 	bsf STATUS, C
-	goto ifAlreadyTurningThenInitialStateIsForReversal
+	goto ensureAdcChannelCanBeUsedToMonitorMotorCurrent
 
 turnMotorAntiClockwise:
 	bcf STATUS, C
 
-ifAlreadyTurningThenInitialStateIsForReversal:
+ensureAdcChannelCanBeUsedToMonitorMotorCurrent:
+	movlw MOTOR_ISENSE_ADC_CHANNEL
+	fcall setAdcChannel
+	xorlw 0
+	btfsc STATUS, Z
+	retlw 0
+
 	; TODO: IF motorState != MOTOR_STATE_IDLE || MOTOR_STATE_TURNING_*,
 	;       RETURN 0.
 	; TODO: IF ALREADY TURNING (IN SAME DIRECTION) THEN RETURN 1.
-	; TODO: ONLY START TURNING IF ADC CHANNEL CAN BE CHANGED / LOCKED (IE. NOT
-	;       IN USE BY ANOTHER MODULE); IF CANNOT CHANGE CHANNEL THEN RETURN 0.
+ifAlreadyTurningThenInitialStateIsForReversal:
 	banksel CCPR1L
 	movf CCPR1L
 	btfss STATUS, Z
@@ -45,7 +52,7 @@ setStatesAndReturn:
 	movwf motorState
 	movlw MOTOR_STATE_TURNING
 	movwf motorStateAfterStarted
-	return
+	retlw 1
 
 
 	defineMotorStateInSameSection MOTOR_STATE_TURNING

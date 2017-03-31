@@ -9,8 +9,12 @@ export OBJ_FILES=\
 TEST_DOUBLE_OBJ_FILES=\
 	InitialiseAfterAdcDummy.o \
 	InitialiseAfterAdcMock.o \
+	AdcDummies.o \
+	InitialiseAdcDummy.o \
+	EnableDisableAdcDummies.o \
 	ChannelDummies.o \
-	ChannelMocks.o
+	ChannelMocks.o \
+	ChannelStubs.o
 
 all: $(TEST_DOUBLE_OBJ_FILES)
 	$(MAKE) -C Initialisation all

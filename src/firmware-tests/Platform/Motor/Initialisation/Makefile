@@ -13,6 +13,7 @@ TEST_DOUBLE_OBJ_FILES=\
 	../../Smps/EnableDisableSmpsMocks.o \
 	../../Smps/IsSmpsEnabledStub.o \
 	../../Smps/PollSmpsDummy.o \
+	../../Adc/AdcDummies.o \
 	../PollAfterMotorMock.o
 
 ANSEL_OBJ_FILES=\
