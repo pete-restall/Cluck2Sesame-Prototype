@@ -1,0 +1,11 @@
+load "Timer2Test.cod"
+load i "../../../RandomiseRam.sti"
+load i "../../../PreventInfiniteLoops.sti"
+
+numberOfEnableCalls=2
+numberOfDisableCalls=1
+initialT2con=0x43
+expectedT2con=0x47
+
+run
+quit

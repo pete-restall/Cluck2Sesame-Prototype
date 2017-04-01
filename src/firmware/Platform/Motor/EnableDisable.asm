@@ -34,6 +34,12 @@ setMotorStateToIdleIfFirstCall:
 
 	movlw MOTOR_STATE_IDLE
 	movwf motorState
+
+startPwmTimer:
+	banksel TMR2
+	clrf TMR2
+	banksel T2CON
+	bsf T2CON, TMR2ON
 	return
 
 disableMotorVdd:
@@ -49,6 +55,9 @@ disableMotorVdd:
 	banksel motorState
 	movlw MOTOR_STATE_DISABLED
 	movwf motorState
+
+	banksel T2CON
+	bcf T2CON, TMR2ON
 
 disableMotorVddReturn:
 	fcall disableAdc

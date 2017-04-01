@@ -19,6 +19,8 @@ stopMotor:
 
 
 	defineMotorStateInSameSection MOTOR_STATE_STOPPED
+		; TODO: RELEASE THE ADC CHANNEL...
+
 		banksel PSTRCON
 		movlw ~MOTOR_PSTRCON_OUTPUT_MASK
 		andwf PSTRCON

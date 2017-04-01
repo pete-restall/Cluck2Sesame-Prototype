@@ -7,7 +7,8 @@ HEX_FILES=\
 	IsEnabledTest.hex \
 	MotorStateTest.hex \
 	EnableForSecondTimeWhenMotorStateNotIdleTest.hex \
-	EnableForFirstTimeWhenMotorStateNotDisabledTest.hex
+	EnableForFirstTimeWhenMotorStateNotDisabledTest.hex \
+	Timer2Test.hex
 
 TEST_DOUBLE_OBJ_FILES=\
 	../../Smps/EnableDisableSmpsMocks.o \
@@ -54,6 +55,10 @@ ENABLE_FOR_FIRST_TIME_WHEN_MOTOR_STATE_NOT_DISABLED_OBJ_FILES=\
 	EnableForFirstTimeWhenMotorStateNotDisabledTest.o \
 	$(TEST_DOUBLE_OBJ_FILES)
 
+TIMER2_OBJ_FILES=\
+	Timer2Test.o \
+	$(TEST_DOUBLE_OBJ_FILES)
+
 all: $(HEX_FILES)
 
 clean:
@@ -85,5 +90,8 @@ EnableForSecondTimeWhenMotorStateNotIdleTest.hex: $(OBJ_FILES) $(ENABLE_FOR_SECO
 
 EnableForFirstTimeWhenMotorStateNotDisabledTest.hex: $(OBJ_FILES) $(ENABLE_FOR_FIRST_TIME_WHEN_MOTOR_STATE_NOT_DISABLED_OBJ_FILES)
 	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(ENABLE_FOR_FIRST_TIME_WHEN_MOTOR_STATE_NOT_DISABLED_OBJ_FILES)
+
+Timer2Test.hex: $(OBJ_FILES) $(TIMER2_OBJ_FILES)
+	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(TIMER2_OBJ_FILES)
 
 include $(MAKEFILE_RULES)

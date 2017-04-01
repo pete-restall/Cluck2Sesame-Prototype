@@ -5,22 +5,27 @@
 
 	radix decimal
 
-	extern motorState
-
 	udata
 	global numberOfEnableCalls
 	global numberOfDisableCalls
-	global expectedMotorState
+	global initialT2con
+	global expectedT2con
 
 numberOfEnableCalls res 1
 numberOfDisableCalls res 1
-expectedMotorState res 1
+initialT2con res 1
+expectedT2con res 1
 
-MotorStateTest code
+Timer2Test code
 	global testArrange
 
 testArrange:
 	fcall initialiseMotor
+
+	banksel initialT2con
+	movf initialT2con, W
+	banksel T2CON
+	movwf T2CON
 
 testAct:
 	banksel numberOfEnableCalls
@@ -47,9 +52,9 @@ callDisableMotorVddInLoop:
 	goto callDisableMotorVddInLoop
 
 testAssert:
-	.aliasForAssert motorState, _a
-	.aliasForAssert expectedMotorState, _b
-	.assert "_a == _b, 'Expected motorState == expectedMotorState.'"
+	.aliasForAssert T2CON, _a
+	.aliasForAssert expectedT2con, _b
+	.assert "_a == _b, 'T2CON expectation mismatch.'"
 	return
 
 	end

@@ -52,7 +52,7 @@ assertSoftStop:
 	.assert "_a == _b, 'Expected pulse steering into P1B (only) for soft stop.'"
 
 	banksel PORTC
-	movlw (1 << RC4) | (1 << RC5)
+	movlw (1 << RC5)
 	andwf PORTC, W
 	.aliasWForAssert _a
 	.assert "_a == 0, 'Expected unused PWM pin to be held low.'"
@@ -66,7 +66,7 @@ assertSoftStart:
 	.assert "_a == _b, 'Expected pulse steering into P1A (only) for soft start.'"
 
 	banksel PORTC
-	movlw (1 << RC4) | (1 << RC5)
+	movlw (1 << RC4)
 	andwf PORTC, W
 	.aliasWForAssert _a
 	.assert "_a == 0, 'Expected unused PWM pin to be held low.'"

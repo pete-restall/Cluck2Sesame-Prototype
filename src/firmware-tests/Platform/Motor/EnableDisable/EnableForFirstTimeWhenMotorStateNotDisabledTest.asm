@@ -2,7 +2,6 @@
 	#include "FarCalls.inc"
 	#include "Motor.inc"
 	#include "../../../../firmware/Platform/Motor/States.inc"
-	#include "../../Smps/IsSmpsEnabledStub.inc"
 	#include "TestFixture.inc"
 
 	radix decimal
@@ -16,9 +15,6 @@ EnableForFirstTimeWhenMotorStateNotDisabledTest code
 	global testArrange
 
 testArrange:
-	movlw 1
-	fcall initialiseIsSmpsEnabledStub
-
 	fcall initialiseMotor
 
 ensureMotorStateIsNotDisabled:

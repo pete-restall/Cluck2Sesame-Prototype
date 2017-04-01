@@ -1,7 +1,6 @@
 	#include "Mcu.inc"
 	#include "FarCalls.inc"
 	#include "Motor.inc"
-	#include "../../Smps/IsSmpsEnabledStub.inc"
 	#include "TestFixture.inc"
 
 	radix decimal
@@ -15,9 +14,6 @@ EnableForSecondTimeWhenMotorStateNotIdleTest code
 	global testArrange
 
 testArrange:
-	movlw 1
-	fcall initialiseIsSmpsEnabledStub
-
 	fcall initialiseMotor
 	fcall enableMotorVdd
 
