@@ -1,0 +1,8 @@
+	#ifndef __CLUCK2SESAME_TESTS_PLATFORM_ADC_ENABLEDISABLEADCMOCKS_INC
+	#define __CLUCK2SESAME_TESTS_PLATFORM_ADC_ENABLEDISABLEADCMOCKS_INC
+
+	extern initialiseEnableAndDisableAdcMocks
+	extern calledEnableAdcCount
+	extern calledDisableAdcCount
+
+	#endif

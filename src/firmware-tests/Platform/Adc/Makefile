@@ -12,6 +12,7 @@ TEST_DOUBLE_OBJ_FILES=\
 	AdcDummies.o \
 	InitialiseAdcDummy.o \
 	EnableDisableAdcDummies.o \
+	EnableDisableAdcMocks.o \
 	ChannelDummies.o \
 	ChannelMocks.o \
 	ChannelStubs.o

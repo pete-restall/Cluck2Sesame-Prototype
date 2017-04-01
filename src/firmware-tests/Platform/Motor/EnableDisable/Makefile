@@ -3,6 +3,7 @@ HEX_FILES=\
 	EnableDisableMotorVddRmwTest.hex \
 	EnableDisableSmpsTest.hex \
 	EnableDisableSmpsOrderTest.hex \
+	EnableDisableAdcTest.hex \
 	IsEnabledTest.hex \
 	MotorStateTest.hex \
 	EnableForSecondTimeWhenMotorStateNotIdleTest.hex \
@@ -12,7 +13,9 @@ TEST_DOUBLE_OBJ_FILES=\
 	../../Smps/EnableDisableSmpsMocks.o \
 	../../Smps/IsSmpsEnabledStub.o \
 	../../Smps/PollSmpsDummy.o \
-	../../Adc/AdcDummies.o \
+	../../Adc/InitialiseAdcDummy.o \
+	../../Adc/EnableDisableAdcMocks.o \
+	../../Adc/ChannelDummies.o \
 	../PollAfterMotorMock.o
 
 ENABLE_DISABLE_MOTOR_VDD_OBJ_FILES=\
@@ -29,6 +32,10 @@ ENABLE_DISABLE_SMPS_OBJ_FILES=\
 
 ENABLE_DISABLE_SMPS_ORDER_OBJ_FILES=\
 	EnableDisableSmpsOrderTest.o \
+	$(TEST_DOUBLE_OBJ_FILES)
+
+ENABLE_DISABLE_ADC_OBJ_FILES=\
+	EnableDisableAdcTest.o \
 	$(TEST_DOUBLE_OBJ_FILES)
 
 IS_ENABLED_OBJ_FILES=\
@@ -63,6 +70,9 @@ EnableDisableSmpsTest.hex: $(OBJ_FILES) $(ENABLE_DISABLE_SMPS_OBJ_FILES)
 
 EnableDisableSmpsOrderTest.hex: $(OBJ_FILES) $(ENABLE_DISABLE_SMPS_ORDER_OBJ_FILES)
 	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(ENABLE_DISABLE_SMPS_ORDER_OBJ_FILES)
+
+EnableDisableAdcTest.hex: $(OBJ_FILES) $(ENABLE_DISABLE_ADC_OBJ_FILES)
+	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(ENABLE_DISABLE_ADC_OBJ_FILES)
 
 IsEnabledTest.hex: $(OBJ_FILES) $(IS_ENABLED_OBJ_FILES)
 	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(IS_ENABLED_OBJ_FILES)

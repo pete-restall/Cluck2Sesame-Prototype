@@ -2,6 +2,7 @@
 	#include "FarCalls.inc"
 	#include "TailCalls.inc"
 	#include "../Smps.inc"
+	#include "../Adc.inc"
 	#include "Motor.inc"
 	#include "States.inc"
 
@@ -14,8 +15,7 @@ Motor code
 
 enableMotorVdd:
 	fcall enableSmps
-
-	; TODO: ENABLE THE ADC...OTHERWISE THERE IS NO CURRENT SENSING...
+	fcall enableAdc
 
 	banksel MOTOR_TRIS
 	bcf MOTOR_TRIS, MOTOR_VDD_EN_PIN_TRIS
@@ -44,13 +44,14 @@ disableMotorVdd:
 	banksel MOTOR_TRIS
 	bsf MOTOR_TRIS, MOTOR_VDD_EN_PIN_TRIS
 
-	; TODO: DISABLE PWM PINS
+	; TODO: DISABLE PWM PINS - UN-NECESSARY IF MOTOR IS *ALWAYS* STOPPED PRIOR
+	; TO DISABLING THE MOTOR VDD
 	banksel motorState
 	movlw MOTOR_STATE_DISABLED
 	movwf motorState
 
 disableMotorVddReturn:
-	; TODO: DISABLE THE ADC...
+	fcall disableAdc
 	tcall disableSmps
 
 isMotorVddEnabled:

@@ -1,0 +1,11 @@
+load "EnableDisableAdcTest.cod"
+load i "../../../RandomiseRam.sti"
+load i "../../../PreventInfiniteLoops.sti"
+
+numberOfEnableCalls=0
+numberOfDisableCalls=1
+expectedCalledEnableAdcCount=0
+expectedCalledDisableAdcCount=1
+
+run
+quit
