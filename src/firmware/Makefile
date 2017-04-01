@@ -1,3 +1,6 @@
+export DATE_YYYYMMDD=`date +"%Y%m%d"`
+export FIRMWARE_VERSION="UK$(DATE_YYYYMMDD)000000"
+
 HEX_FILENAME=Cluck2Sesame.hex
 
 OBJ_FILES=\

@@ -1,5 +1,9 @@
 %.o: %.asm
 	$(AS) $(ASARGS) -o $@ $<
 
+%.pp.o: %.asm 
+	cat $< | sed "s/{{FIRMWARE_VER}}/$(FIRMWARE_VERSION)/g" > "`basename $< .asm`.pp.asm"
+	$(AS) $(ASARGS) -o $@ $<
+
 %.a: %
 	$(MAKE) -C $< all

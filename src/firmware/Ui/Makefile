@@ -1,7 +1,8 @@
 LIB_FILENAME=../Ui.a
 OBJ_FILES=\
 	Initialise.o \
-	Poll.o
+	Poll.o \
+	Screens.pp.o
 
 all: $(LIB_FILENAME)
 

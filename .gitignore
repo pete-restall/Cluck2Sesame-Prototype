@@ -19,6 +19,7 @@
 /src/schematics/pcbtrain/Cluck2Sesame
 .*.swp
 *.log*
+*.pp.asm
 *.lst
 *.map
 *.cod
