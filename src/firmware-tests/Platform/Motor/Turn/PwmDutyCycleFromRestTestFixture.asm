@@ -3,6 +3,7 @@
 	#include "Timer0.inc"
 	#include "Motor.inc"
 	#include "../../Smps/IsSmpsEnabledStub.inc"
+	#include "../../Adc/ChannelStubs.inc"
 	#include "TestFixture.inc"
 
 	radix decimal
@@ -22,6 +23,9 @@ testArrange:
 
 	movlw 1
 	fcall initialiseIsSmpsEnabledStub
+
+	movlw 1
+	fcall initialiseSetAdcChannelStub
 
 	fcall initialiseTimer0
 

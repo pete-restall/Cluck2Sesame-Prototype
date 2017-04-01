@@ -3,6 +3,7 @@
 	#include "TailCalls.inc"
 	#include "../Smps.inc"
 	#include "Motor.inc"
+	#include "States.inc"
 
 	radix decimal
 
@@ -14,6 +15,8 @@ Motor code
 enableMotorVdd:
 	fcall enableSmps
 
+	; TODO: ENABLE THE ADC...OTHERWISE THERE IS NO CURRENT SENSING...
+
 	banksel MOTOR_TRIS
 	bcf MOTOR_TRIS, MOTOR_VDD_EN_PIN_TRIS
 
@@ -22,6 +25,15 @@ enableMotorVdd:
 
 	banksel enableMotorVddCount
 	incf enableMotorVddCount
+
+setMotorStateToIdleIfFirstCall:
+	movlw 1
+	xorwf enableMotorVddCount, W
+	btfss STATUS, Z
+	return
+
+	movlw MOTOR_STATE_IDLE
+	movwf motorState
 	return
 
 disableMotorVdd:
@@ -32,10 +44,14 @@ disableMotorVdd:
 	banksel MOTOR_TRIS
 	bsf MOTOR_TRIS, MOTOR_VDD_EN_PIN_TRIS
 
-disableMotorVddReturn:
 	; TODO: DISABLE PWM PINS
-	fcall disableSmps
-	return
+	banksel motorState
+	movlw MOTOR_STATE_DISABLED
+	movwf motorState
+
+disableMotorVddReturn:
+	; TODO: DISABLE THE ADC...
+	tcall disableSmps
 
 isMotorVddEnabled:
 	clrw

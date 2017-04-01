@@ -3,8 +3,8 @@ load i "../../../../RandomiseRam.sti"
 load i "../../../../PreventInfiniteLoops.sti"
 load i "../../MotorStates.sti"
 
-setAdcChannelResult=0
-initialMotorState=MOTOR_STATE_IDLE
+setAdcChannelResult=1
+initialMotorState=MOTOR_STATE_WAIT
 
 run
 quit

@@ -1,0 +1,11 @@
+load "MotorStateTest.cod"
+load i "../../../RandomiseRam.sti"
+load i "../../../PreventInfiniteLoops.sti"
+load i "../MotorStates.sti"
+
+numberOfEnableCalls=2
+numberOfDisableCalls=1
+expectedMotorState=MOTOR_STATE_IDLE
+
+run
+quit

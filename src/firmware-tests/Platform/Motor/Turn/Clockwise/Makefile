@@ -4,7 +4,7 @@ HEX_FILES=\
 	PwmDutyCycleForReverseTest.hex \
 	PulseSteeringForReverseTest.hex \
 	SetAdcChannelFromRestIsSuccessfulTest.hex \
-	SetAdcChannelFromRestIsUnsuccessfulTest.hex
+	PreConditionsFromRestAreUnsuccessfulTest.hex
 
 TEST_DOUBLE_OBJ_FILES=\
 	../../../Smps/EnableSmpsDummy.o \
@@ -39,9 +39,9 @@ SET_ADC_CHANNEL_FROM_REST_IS_SUCCESSFUL_OBJ_FILES=\
 	../SetAdcChannelFromRestIsSuccessfulTestFixture.o \
 	$(TEST_DOUBLE_OBJ_FILES)
 
-SET_ADC_CHANNEL_FROM_REST_IS_UNSUCCESSFUL_OBJ_FILES=\
-	SetAdcChannelFromRestIsUnsuccessfulTest.o \
-	../SetAdcChannelFromRestIsUnsuccessfulTestFixture.o \
+PRE_CONDITIONS_FROM_REST_ARE_UNSUCCESSFUL_OBJ_FILES=\
+	PreConditionsFromRestAreUnsuccessfulTest.o \
+	../PreConditionsFromRestAreUnsuccessfulTestFixture.o \
 	$(TEST_DOUBLE_OBJ_FILES)
 
 all: $(HEX_FILES)
@@ -64,7 +64,7 @@ PulseSteeringForReverseTest.hex: $(OBJ_FILES) $(PULSE_STEERING_FOR_REVERSE_OBJ_F
 SetAdcChannelFromRestIsSuccessfulTest.hex: $(OBJ_FILES) $(SET_ADC_CHANNEL_FROM_REST_IS_SUCCESSFUL_OBJ_FILES)
 	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(SET_ADC_CHANNEL_FROM_REST_IS_SUCCESSFUL_OBJ_FILES)
 
-SetAdcChannelFromRestIsUnsuccessfulTest.hex: $(OBJ_FILES) $(SET_ADC_CHANNEL_FROM_REST_IS_UNSUCCESSFUL_OBJ_FILES)
-	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(SET_ADC_CHANNEL_FROM_REST_IS_UNSUCCESSFUL_OBJ_FILES)
+PreConditionsFromRestAreUnsuccessfulTest.hex: $(OBJ_FILES) $(PRE_CONDITIONS_FROM_REST_ARE_UNSUCCESSFUL_OBJ_FILES)
+	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(PRE_CONDITIONS_FROM_REST_ARE_UNSUCCESSFUL_OBJ_FILES)
 
 include $(MAKEFILE_RULES)

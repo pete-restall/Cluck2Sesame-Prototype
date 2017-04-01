@@ -3,6 +3,7 @@
 	#include "Timer0.inc"
 	#include "Motor.inc"
 	#include "../../Smps/IsSmpsEnabledStub.inc"
+	#include "../../Adc/ChannelStubs.inc"
 	#include "TestFixture.inc"
 
 	radix decimal
@@ -28,6 +29,9 @@ testArrange:
 	movlw 1
 	fcall initialiseIsSmpsEnabledStub
 
+	movlw 1
+	fcall initialiseSetAdcChannelStub
+
 	fcall initialiseTimer0
 
 preventWeirdGpsimBugOfNonIncrementingTmr0:
@@ -47,6 +51,7 @@ waitUntilMotorVddIsEnabled:
 
 callTestToTurnAtFullSpeed:
 	fcall testArrangeStartTurning
+	.assert "W != 0, 'Unable to turn motor in the initial direction.'"
 
 waitUntilTurningAtFullSpeed:
 	fcall pollMotor

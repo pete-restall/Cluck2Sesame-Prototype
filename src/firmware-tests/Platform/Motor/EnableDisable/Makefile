@@ -3,7 +3,10 @@ HEX_FILES=\
 	EnableDisableMotorVddRmwTest.hex \
 	EnableDisableSmpsTest.hex \
 	EnableDisableSmpsOrderTest.hex \
-	IsEnabledTest.hex
+	IsEnabledTest.hex \
+	MotorStateTest.hex \
+	EnableForSecondTimeWhenMotorStateNotIdleTest.hex \
+	EnableForFirstTimeWhenMotorStateNotDisabledTest.hex
 
 TEST_DOUBLE_OBJ_FILES=\
 	../../Smps/EnableDisableSmpsMocks.o \
@@ -13,24 +16,36 @@ TEST_DOUBLE_OBJ_FILES=\
 	../PollAfterMotorMock.o
 
 ENABLE_DISABLE_MOTOR_VDD_OBJ_FILES=\
-	$(TEST_DOUBLE_OBJ_FILES) \
-	EnableDisableMotorVddTest.o
+	EnableDisableMotorVddTest.o \
+	$(TEST_DOUBLE_OBJ_FILES)
 
 ENABLE_DISABLE_MOTOR_VDD_RMW_OBJ_FILES=\
-	$(TEST_DOUBLE_OBJ_FILES) \
-	EnableDisableMotorVddRmwTest.o
+	EnableDisableMotorVddRmwTest.o \
+	$(TEST_DOUBLE_OBJ_FILES)
 
 ENABLE_DISABLE_SMPS_OBJ_FILES=\
-	$(TEST_DOUBLE_OBJ_FILES) \
-	EnableDisableSmpsTest.o
+	EnableDisableSmpsTest.o \
+	$(TEST_DOUBLE_OBJ_FILES)
 
 ENABLE_DISABLE_SMPS_ORDER_OBJ_FILES=\
-	$(TEST_DOUBLE_OBJ_FILES) \
-	EnableDisableSmpsOrderTest.o
+	EnableDisableSmpsOrderTest.o \
+	$(TEST_DOUBLE_OBJ_FILES)
 
 IS_ENABLED_OBJ_FILES=\
-	$(TEST_DOUBLE_OBJ_FILES) \
-	IsEnabledTest.o
+	IsEnabledTest.o \
+	$(TEST_DOUBLE_OBJ_FILES)
+
+MOTOR_STATE_OBJ_FILES=\
+	MotorStateTest.o \
+	$(TEST_DOUBLE_OBJ_FILES)
+
+ENABLE_FOR_SECOND_TIME_WHEN_MOTOR_STATE_NOT_IDLE_OBJ_FILES=\
+	EnableForSecondTimeWhenMotorStateNotIdleTest.o \
+	$(TEST_DOUBLE_OBJ_FILES)
+
+ENABLE_FOR_FIRST_TIME_WHEN_MOTOR_STATE_NOT_DISABLED_OBJ_FILES=\
+	EnableForFirstTimeWhenMotorStateNotDisabledTest.o \
+	$(TEST_DOUBLE_OBJ_FILES)
 
 all: $(HEX_FILES)
 
@@ -51,5 +66,14 @@ EnableDisableSmpsOrderTest.hex: $(OBJ_FILES) $(ENABLE_DISABLE_SMPS_ORDER_OBJ_FIL
 
 IsEnabledTest.hex: $(OBJ_FILES) $(IS_ENABLED_OBJ_FILES)
 	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(IS_ENABLED_OBJ_FILES)
+
+MotorStateTest.hex: $(OBJ_FILES) $(MOTOR_STATE_OBJ_FILES)
+	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(MOTOR_STATE_OBJ_FILES)
+
+EnableForSecondTimeWhenMotorStateNotIdleTest.hex: $(OBJ_FILES) $(ENABLE_FOR_SECOND_TIME_WHEN_MOTOR_STATE_NOT_IDLE_OBJ_FILES)
+	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(ENABLE_FOR_SECOND_TIME_WHEN_MOTOR_STATE_NOT_IDLE_OBJ_FILES)
+
+EnableForFirstTimeWhenMotorStateNotDisabledTest.hex: $(OBJ_FILES) $(ENABLE_FOR_FIRST_TIME_WHEN_MOTOR_STATE_NOT_DISABLED_OBJ_FILES)
+	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(ENABLE_FOR_FIRST_TIME_WHEN_MOTOR_STATE_NOT_DISABLED_OBJ_FILES)
 
 include $(MAKEFILE_RULES)

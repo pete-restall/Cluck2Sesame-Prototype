@@ -12,20 +12,33 @@ Motor code
 
 turnMotorClockwise:
 	bsf STATUS, C
-	goto ensureAdcChannelCanBeUsedToMonitorMotorCurrent
+	goto ensureMotorIsInSteadyState
 
 turnMotorAntiClockwise:
 	bcf STATUS, C
 
+ensureMotorIsInSteadyState:
+checkIfMotorIsInIdleState:
+	banksel motorState
+	movf motorState, W
+	xorlw MOTOR_STATE_IDLE
+	btfsc STATUS, Z
+	goto ensureAdcChannelCanBeUsedToMonitorMotorCurrent
+
+ensureMotorIsInTurningState:
+	movf motorState, W
+	xorlw MOTOR_STATE_TURNING
+	btfss STATUS, Z
+	retlw 0
+
 ensureAdcChannelCanBeUsedToMonitorMotorCurrent:
+	; TODO: IF ADC IS NOT ENABLED THEN RETURN 0.
 	movlw MOTOR_ISENSE_ADC_CHANNEL
 	fcall setAdcChannel
 	xorlw 0
 	btfsc STATUS, Z
 	retlw 0
 
-	; TODO: IF motorState != MOTOR_STATE_IDLE || MOTOR_STATE_TURNING_*,
-	;       RETURN 0.
 	; TODO: IF ALREADY TURNING (IN SAME DIRECTION) THEN RETURN 1.
 ifAlreadyTurningThenInitialStateIsForReversal:
 	banksel CCPR1L

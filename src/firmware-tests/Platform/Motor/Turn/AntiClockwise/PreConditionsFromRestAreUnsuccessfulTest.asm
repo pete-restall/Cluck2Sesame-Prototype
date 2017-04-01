@@ -4,11 +4,11 @@
 
 	radix decimal
 
-SetAdcChannelFromRestIsUnsuccessfulTest code
+PreConditionsFromRestAreUnsuccessfulTest code
 	global testAct
 
 testAct:
-	fcall turnMotorClockwise
+	fcall turnMotorAntiClockwise
 	return
 
 	end

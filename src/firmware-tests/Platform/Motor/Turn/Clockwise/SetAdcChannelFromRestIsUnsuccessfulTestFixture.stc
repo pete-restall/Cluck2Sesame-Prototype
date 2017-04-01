@@ -1,5 +1,10 @@
-load "SetAdcChannelFromRestIsUnsuccessfulTest.cod"
+load "PreConditionsFromRestAreUnsuccessfulTest.cod"
 load i "../../../../RandomiseRam.sti"
 load i "../../../../PreventInfiniteLoops.sti"
+load i "../../MotorStates.sti"
+
+setAdcChannelResult=0
+initialMotorState=MOTOR_STATE_IDLE
+
 run
 quit

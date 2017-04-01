@@ -23,6 +23,8 @@ waitBeforeDecreasingDutyCycleAgain:
 softStopFinished:
 		clrf CCPR1L
 
+		; TODO: RELEASE THE ADC CHANNEL...
+
 		banksel motorStateAfterStopped
 		movf motorStateAfterStopped, W
 		movwf motorState
