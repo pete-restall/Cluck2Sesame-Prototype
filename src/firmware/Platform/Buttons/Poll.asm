@@ -25,11 +25,11 @@ buttonSampledClosed:
 	btfsc buttonFlags, BUTTON_FLAG_PRESSED#v(number)
 	goto endOfButtonSampling
 
-	btfsc buttonFlags, BUTTON_FLAG_COUNTING#v(number)
+	btfsc buttonFlags, BUTTON_FLAG_POTENTIALLY#v(number)
 	goto buttonSampledClosedMultipleTimes
 
 buttonSampledClosedForFirstTime:
-	bsf buttonFlags, BUTTON_FLAG_COUNTING#v(number)
+	bsf buttonFlags, BUTTON_FLAG_POTENTIALLY#v(number)
 	storeTimer0 button#v(number)Timestamp
 	goto endOfButtonSampling
 
@@ -44,7 +44,7 @@ buttonSampledClosedMultipleTimes:
 buttonSampledOpen:
 	banksel buttonFlags
 	bcf buttonFlags, BUTTON_FLAG_PRESSED#v(number)
-	bcf buttonFlags, BUTTON_FLAG_COUNTING#v(number)
+	bcf buttonFlags, BUTTON_FLAG_POTENTIALLY#v(number)
 
 endOfButtonSampling:
 	endm

@@ -6,11 +6,13 @@ Ui code
 	global backlightNowScreen
 	global backlightInTheDarkScreen
 	global dateAndTimeEntryScreen
+	global openAndCloseOffsetEntryScreen
+	global longitudeAndLatitudeScreen
 	global doorCalibrationScreen
 	global mainScreen
 	global overrideScreen
 	global firmwareScreen
-	global reconfigureScreen
+	global settingsScreen
 
 backlightNowScreen:
 	da "Backlight Now   "
@@ -28,6 +30,10 @@ openAndCloseOffsetEntryScreen:
 	da "Open  -00 mins  "
 	da "Close +00 mins  "
 
+longitudeAndLatitudeScreen:
+	da "Longitude +00.0 "
+	da "Latitude  +50.0 "
+
 doorCalibrationScreen:
 	da "Open the Door..."
 	da "< DOWN      UP >"
@@ -44,7 +50,7 @@ firmwareScreen:
 	da "  Cluck2Sesame  "
 	da "{{FIRMWARE_VER}}"
 
-reconfigureScreen:
+settingsScreen:
 	da "Settings        "
 	da "                "
 
