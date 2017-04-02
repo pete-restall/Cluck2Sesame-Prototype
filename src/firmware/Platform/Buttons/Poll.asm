@@ -25,11 +25,11 @@ buttonSampledClosed:
 	btfsc buttonFlags, BUTTON_FLAG_PRESSED#v(number)
 	goto endOfButtonSampling
 
-	btfsc buttonFlags, BUTTON_FLAG_POTENTIALLY#v(number)
+	btfsc buttonFlags, BUTTON_FLAG_COUNTING#v(number)
 	goto buttonSampledClosedMultipleTimes
 
 buttonSampledClosedForFirstTime:
-	bsf buttonFlags, BUTTON_FLAG_POTENTIALLY#v(number)
+	bsf buttonFlags, BUTTON_FLAG_COUNTING#v(number)
 	storeTimer0 button#v(number)Timestamp
 	goto endOfButtonSampling
 
@@ -44,7 +44,7 @@ buttonSampledClosedMultipleTimes:
 buttonSampledOpen:
 	banksel buttonFlags
 	bcf buttonFlags, BUTTON_FLAG_PRESSED#v(number)
-	bcf buttonFlags, BUTTON_FLAG_POTENTIALLY#v(number)
+	bcf buttonFlags, BUTTON_FLAG_COUNTING#v(number)
 
 endOfButtonSampling:
 	endm
@@ -53,6 +53,9 @@ Buttons code
 	global pollButtons
 
 pollButtons:
+	; TODO: NEED TO SET BUTTON_FLAG_POTENTIALLY{1,2} TO ALLOW DETECTION OF DUAL
+	; PRESSES; THE 'COUNTING' FLAG WON'T DO IT, WE NEED TO USE A 'TIME SINCE
+	; LAST EVENT OR SOMETHING...
 	pollForButton RB6, 1
 	pollForButton RB5, 2
 	tcall POLL_AFTER_BUTTONS
