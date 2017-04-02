@@ -19,6 +19,7 @@ all:
 	$(MAKE) -C EnableSetContrast all
 	$(MAKE) -C EnableDisplayOn all
 	$(MAKE) -C WriteRegister all
+	$(MAKE) -C WriteCharacter all
 
 clean:
 	$(RM) -f $(BUILD_ARTEFACT_PATTERN)
@@ -37,5 +38,6 @@ clean:
 	$(MAKE) -C EnableSetContrast clean
 	$(MAKE) -C EnableDisplayOn clean
 	$(MAKE) -C WriteRegister clean
+	$(MAKE) -C WriteCharacter clean
 
 include $(MAKEFILE_RULES)

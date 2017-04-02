@@ -1,0 +1,15 @@
+load "ShiftOutTest.cod"
+load i "../../../../RandomiseRam.sti"
+load i "../../../../PreventInfiniteLoops.sti"
+
+initialLcdStateParameter0=0x11
+initialShiftRegisterBuffer=0xff
+expectedShiftOut1=0b11000101
+expectedShiftOut2=0b11000111
+expectedShiftOut3=0b11000101
+expectedShiftOut4=0b11000101
+expectedShiftOut5=0b11000111
+expectedShiftOut6=0b11000101
+
+run
+quit

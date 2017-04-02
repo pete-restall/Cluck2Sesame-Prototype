@@ -104,7 +104,11 @@ storeCommandAsParameterForState:
 
 
 	defineLcdStateInSameSection LCD_STATE_WRITE_CHARACTER
-		; TODO: THIS STATE NEEDS WRITING...
+		banksel lcdNextState
+		movf lcdNextState, W
+		movwf lcdState
+		movf lcdStateParameter0, W
+		call writeCharacter
 		returnFromLcdState
 
 	end
