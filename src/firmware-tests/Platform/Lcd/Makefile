@@ -37,6 +37,7 @@ all: $(TEST_DOUBLE_OBJ_FILES) $(TEST_FIXTURES)
 	$(MAKE) -C Contrast all
 	$(MAKE) -C IsLcdIdle all
 	$(MAKE) -C PutScreenFromFlash all
+	$(MAKE) -C PutCharacters all
 	$(MAKE) -C SetCursorPosition all
 	$(MAKE) -C BlinkingCursor all
 
@@ -48,6 +49,7 @@ clean:
 	$(MAKE) -C Contrast clean
 	$(MAKE) -C IsLcdIdle clean
 	$(MAKE) -C PutScreenFromFlash clean
+	$(MAKE) -C PutCharacters clean
 	$(MAKE) -C SetCursorPosition clean
 	$(MAKE) -C BlinkingCursor clean
 

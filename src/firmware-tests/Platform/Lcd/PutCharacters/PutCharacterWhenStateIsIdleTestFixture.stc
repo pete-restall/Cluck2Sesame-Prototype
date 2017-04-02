@@ -1,0 +1,16 @@
+load "PutCharacterTest.cod"
+load i "../../../RandomiseRam.sti"
+load i "../../../PreventInfiniteLoops.sti"
+load i "../LcdStates.sti"
+
+initialW=0x58
+initialLcdState=LCD_STATE_IDLE
+initialLcdNextState=0x17
+initialLcdCommand=0x93
+expectedW=1
+expectedLcdState=LCD_STATE_WRITE_CHARACTER
+expectedLcdNextState=LCD_STATE_IDLE
+expectedLcdCommand=0x58
+
+run
+quit

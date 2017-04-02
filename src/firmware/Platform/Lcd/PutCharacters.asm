@@ -15,6 +15,8 @@ Lcd code
 	global putBcdDigits
 
 putCharacter:
+	goto writeCharacterFromWWithIdleNextState
+
 putBcdDigit:
 putBcdDigits:
 	return
