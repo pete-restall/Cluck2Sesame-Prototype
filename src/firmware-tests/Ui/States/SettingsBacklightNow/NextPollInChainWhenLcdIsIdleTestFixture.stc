@@ -1,0 +1,8 @@
+load "NextPollInChainTest.cod"
+load i "../../../RandomiseRam.sti"
+load i "../../../PreventInfiniteLoops.sti"
+
+isLcdIdleResult=1
+
+run
+quit

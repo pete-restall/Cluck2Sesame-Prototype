@@ -11,6 +11,7 @@ export OBJ_FILES=\
 TEST_DOUBLE_OBJ_FILES=\
 	InitialiseAfterLcdDummy.o \
 	InitialiseAfterLcdMock.o \
+	EnableDisableLcdMocks.o \
 	InitialiseShiftRegisterDummy.o \
 	InitialiseShiftRegisterMock.o \
 	EnableShiftRegisterDummy.o \
@@ -25,7 +26,11 @@ TEST_DOUBLE_OBJ_FILES=\
 	PollAfterLcdMock.o \
 	AdcDummies.o \
 	AdcMocks.o \
-	LcdContrastDummies.o
+	LcdContrastDummies.o \
+	LcdDummies.o \
+	AllButEnableDisableLcdDummies.o \
+	AllButIsLcdIdleDummies.o \
+	IsLcdIdleStub.o
 
 TEST_FIXTURES=\
 	WriteRegisterTestFixture.o

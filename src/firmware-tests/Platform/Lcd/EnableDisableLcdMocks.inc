@@ -1,0 +1,8 @@
+	#ifndef __CLUCK2SESAME_TESTS_PLATFORM_LCD_ENABLEDISABLELCDMOCKS_INC
+	#define __CLUCK2SESAME_TESTS_PLATFORM_LCD_ENABLEDISABLELCDMOCKS_INC
+
+	extern initialiseEnableAndDisableLcdMocks
+	extern calledEnableLcdCount
+	extern calledDisableLcdCount
+
+	#endif

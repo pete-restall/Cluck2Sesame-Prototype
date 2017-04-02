@@ -1,12 +1,24 @@
+ASARGS+=-I $(FIRMWARE_DIR)/Ui
+
 HEX_FILES=\
-	InitialisationChainTest.hex
+	InitialisationChainTest.hex \
+	InitialStateTest.hex
 
 TEST_DOUBLE_OBJ_FILES=\
-	../PollAfterUiMock.o
+	../PollAfterUiDummy.o \
+	$(PLATFORM_TESTS_DIR)/PowerManagement/PowerManagementDummies.o \
+	$(PLATFORM_TESTS_DIR)/Lcd/LcdDummies.o \
+	$(PLATFORM_TESTS_DIR)/Buttons/ButtonsDummies.o
 
 INITIALISATION_CHAIN_OBJ_FILES=\
-	$(TEST_DOUBLE_OBJ_FILES) \
-	InitialisationChainTest.o
+	InitialisationChainTest.o \
+	../InitialiseAfterUiMock.o \
+	$(TEST_DOUBLE_OBJ_FILES)
+
+INITIAL_STATE_OBJ_FILES=\
+	InitialStateTest.o \
+	../InitialiseAfterUiDummy.o \
+	$(TEST_DOUBLE_OBJ_FILES)
 
 all: $(HEX_FILES)
 
@@ -15,5 +27,8 @@ clean:
 
 InitialisationChainTest.hex: $(OBJ_FILES) $(INITIALISATION_CHAIN_OBJ_FILES)
 	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(INITIALISATION_CHAIN_OBJ_FILES)
+
+InitialStateTest.hex: $(OBJ_FILES) $(INITIAL_STATE_OBJ_FILES)
+	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(INITIAL_STATE_OBJ_FILES)
 
 include $(MAKEFILE_RULES)

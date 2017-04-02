@@ -3,7 +3,11 @@ HEX_FILES=\
 
 POLL_CHAIN_OBJ_FILES=\
 	PollChainTest.o \
-	../PollAfterUiMock.o
+	../InitialiseAfterUiDummy.o \
+	../PollAfterUiMock.o \
+	$(PLATFORM_TESTS_DIR)/PowerManagement/PowerManagementDummies.o \
+	$(PLATFORM_TESTS_DIR)/Lcd/LcdDummies.o \
+	$(PLATFORM_TESTS_DIR)/Buttons/ButtonsDummies.o
 
 all: $(HEX_FILES)
 

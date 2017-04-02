@@ -11,7 +11,8 @@ TEST_DOUBLE_OBJ_FILES=\
 	InitialiseAfterButtonsMock.o \
 	InitialiseAfterButtonsDummy.o \
 	PollAfterButtonsMock.o \
-	PollAfterButtonsDummy.o
+	PollAfterButtonsDummy.o \
+	ButtonsDummies.o
 
 all: $(TEST_DOUBLE_OBJ_FILES)
 	$(MAKE) -C Initialisation all

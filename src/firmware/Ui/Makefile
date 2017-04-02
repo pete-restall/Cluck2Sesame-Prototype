@@ -1,8 +1,12 @@
 LIB_FILENAME=../Ui.a
 OBJ_FILES=\
+	Registers.o \
 	Initialise.o \
 	Poll.o \
-	Screens.pp.o
+	Screens.pp.o \
+	BootState.o \
+	SettingsBacklightNowStates.o \
+	WaitButtonPressStates.o
 
 all: $(LIB_FILENAME)
 
