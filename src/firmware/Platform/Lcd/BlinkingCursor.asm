@@ -7,8 +7,6 @@
 LCD_CMD_BLINKINGCURSOR equ LCD_CMD_DISPLAYON | b'00000011'
 LCD_CMD_NOCURSOR equ LCD_CMD_DISPLAYON | b'00000000'
 
-	udata
-
 Lcd code
 	global enableLcdBlinkingCursor
 	global disableLcdBlinkingCursor

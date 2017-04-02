@@ -5,10 +5,6 @@
 
 	radix decimal
 
-	extern isLcdIdle
-
-	udata
-
 Lcd code
 	global putCharacter
 	global putBcdDigit
@@ -18,7 +14,10 @@ putCharacter:
 	goto writeCharacterFromWWithIdleNextState
 
 putBcdDigit:
+	; TODO: THIS FUNCTION NEEDS WRITING
+
 putBcdDigits:
+	; TODO: THIS FUNCTION NEEDS WRITING
 	return
 
 	end
