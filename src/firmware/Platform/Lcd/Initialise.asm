@@ -9,15 +9,6 @@
 	radix decimal
 
 	extern INITIALISE_AFTER_LCD
-	extern enableLcdCount
-	extern lcdContrast
-
-	udata
-	global lcdFlags
-	global lcdWorkingRegister
-
-lcdFlags res 1
-lcdWorkingRegister res 1
 
 Lcd code
 	global initialiseLcd
@@ -26,11 +17,9 @@ initialiseLcd:
 	banksel enableLcdCount
 	clrf enableLcdCount
 
-	banksel lcdContrast
 	movlw DEFAULT_LCD_CONTRAST
 	movwf lcdContrast
 
-	banksel lcdFlags
 	clrf lcdFlags
 
 	banksel LCD_CONTRAST_ANSEL

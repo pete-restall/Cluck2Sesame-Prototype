@@ -34,6 +34,7 @@ all: $(TEST_DOUBLE_OBJ_FILES)
 	$(MAKE) -C Contrast all
 	$(MAKE) -C IsLcdIdle all
 	$(MAKE) -C PutScreenFromFlash all
+	$(MAKE) -C BlinkingCursor all
 
 clean:
 	$(RM) -f $(BUILD_ARTEFACT_PATTERN)
@@ -43,5 +44,6 @@ clean:
 	$(MAKE) -C Contrast clean
 	$(MAKE) -C IsLcdIdle clean
 	$(MAKE) -C PutScreenFromFlash clean
+	$(MAKE) -C BlinkingCursor clean
 
 include $(MAKEFILE_RULES)

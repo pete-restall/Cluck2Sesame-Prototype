@@ -5,6 +5,7 @@
 	#include "TailCalls.inc"
 	#include "../ShiftRegister.inc"
 	#include "Lcd.inc"
+	#include "States.inc"
 
 	radix decimal
 
@@ -73,5 +74,13 @@ resetEnableBit:
 	bcf shiftRegisterBuffer, LCD_EN_BIT
 	fcall shiftOut
 	return
+
+
+	defineLcdStateInSameSection LCD_STATE_WRITE_REGISTER
+		returnFromLcdState
+
+
+	defineLcdStateInSameSection LCD_STATE_WRITE_CHARACTER
+		returnFromLcdState
 
 	end

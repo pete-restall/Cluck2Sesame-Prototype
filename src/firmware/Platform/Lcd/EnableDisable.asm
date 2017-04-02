@@ -7,11 +7,6 @@
 
 	radix decimal
 
-	udata
-	global enableLcdCount
-
-enableLcdCount res 1
-
 Lcd code
 	global enableLcd
 	global disableLcd

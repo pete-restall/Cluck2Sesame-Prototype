@@ -16,11 +16,11 @@ Ui code
 
 backlightNowScreen:
 	da "Backlight Now   "
-	da "ON    off       "
+	da "[ON]        OFF "
 
 backlightInTheDarkScreen:
 	da "Backlight Usual "
-	da "on    off   AUTO"
+	da " ON  OFF  [AUTO]"
 
 dateAndTimeEntryScreen:
 	da "Date and Time   "
@@ -44,7 +44,7 @@ mainScreen:
 
 overrideScreen:
 	da "Door Override   "
-	da "open  close  OFF"
+	da " OPEN CLOSE[OFF]"
 
 firmwareScreen:
 	da "  Cluck2Sesame  "

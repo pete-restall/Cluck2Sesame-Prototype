@@ -1,0 +1,15 @@
+load "DisableBlinkingCursorTest.cod"
+load i "../../../RandomiseRam.sti"
+load i "../../../PreventInfiniteLoops.sti"
+load i "../LcdStates.sti"
+
+initialLcdState=LCD_STATE_IDLE
+initialLcdNextState=0x12
+initialLcdCommand=0x34
+expectedW=1
+expectedLcdState=LCD_STATE_WRITE_REGISTER
+expectedLcdNextState=LCD_STATE_IDLE
+expectedLcdCommand=0x0c
+
+run
+quit

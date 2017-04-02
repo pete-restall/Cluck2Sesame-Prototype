@@ -1,9 +1,9 @@
 LIB_FILENAME=../Lcd.a
 OBJ_FILES=\
+	Registers.o \
 	Initialise.o \
 	EnableDisable.o \
 	Poll.o \
-	Contrast.o \
 	DisabledState.o \
 	EnableWaitForShiftRegisterState.o \
 	EnableWaitForMotorVddState.o \
@@ -21,7 +21,10 @@ OBJ_FILES=\
 	WaitState.o \
 	IdleState.o \
 	Write.o \
-	PutScreenFromFlash.o
+	PutScreenFromFlash.o \
+	PutCharacters.o \
+	SetCharacterPosition.o \
+	BlinkingCursor.o
 
 all: $(LIB_FILENAME)
 

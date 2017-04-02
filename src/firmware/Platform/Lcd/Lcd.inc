@@ -35,9 +35,14 @@ LCD_CMD_DISPLAYON equ b'00001100'
 LCD_CMD_SETDDRAMADDRESS equ b'10000000'
 LCD_CMD_SETDDRAMADDRESS_LINE2 equ LCD_CMD_SETDDRAMADDRESS | 0x40
 
-	#ifndef __CLUCK2SESAME_PLATFORM_LCD_INITIALISE_ASM
+	extern lcdContrast
+	extern enableLcdCount
+	extern lcdFlags
 	extern lcdWorkingRegister
-	#endif
+	extern flashPointerMsb
+	extern flashPointerLsb
+	extern numberOfCharactersRemaining
+	extern characters
 
 	#ifndef __CLUCK2SESAME_PLATFORM_LCD_WRITE_ASM
 	extern writeRegister

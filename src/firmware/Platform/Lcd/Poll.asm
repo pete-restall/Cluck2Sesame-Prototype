@@ -10,17 +10,6 @@
 
 	extern POLL_AFTER_LCD
 
-	udata
-	global lcdState
-	global lcdStateParameter0
-	global lcdStateParameter1
-	global lcdNextState
-
-lcdState res 1
-lcdStateParameter0 res 1
-lcdStateParameter1 res 1
-lcdNextState res 1
-
 Lcd code
 	global pollLcd
 	global pollNextInChainAfterLcd

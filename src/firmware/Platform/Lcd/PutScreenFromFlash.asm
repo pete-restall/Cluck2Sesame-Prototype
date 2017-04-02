@@ -11,12 +11,6 @@ LCD_SCREEN_SIZE equ 2 * LCD_LINE_SIZE
 
 	extern isLcdIdle
 
-	udata
-flashPointerMsb res 1
-flashPointerLsb res 1
-numberOfCharactersRemaining res 1
-characters res 2
-
 Lcd code
 	global putScreenFromFlash
 
