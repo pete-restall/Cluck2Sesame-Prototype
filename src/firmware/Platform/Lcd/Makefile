@@ -23,7 +23,7 @@ OBJ_FILES=\
 	Write.o \
 	PutScreenFromFlash.o \
 	PutCharacters.o \
-	SetCharacterPosition.o \
+	SetCursorPosition.o \
 	BlinkingCursor.o
 
 all: $(LIB_FILENAME)

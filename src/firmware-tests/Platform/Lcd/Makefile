@@ -27,13 +27,17 @@ TEST_DOUBLE_OBJ_FILES=\
 	AdcMocks.o \
 	LcdContrastDummies.o
 
-all: $(TEST_DOUBLE_OBJ_FILES)
+TEST_FIXTURES=\
+	WriteRegisterTestFixture.o
+
+all: $(TEST_DOUBLE_OBJ_FILES) $(TEST_FIXTURES)
 	$(MAKE) -C Initialisation all
 	$(MAKE) -C EnableDisable all
 	$(MAKE) -C States all
 	$(MAKE) -C Contrast all
 	$(MAKE) -C IsLcdIdle all
 	$(MAKE) -C PutScreenFromFlash all
+	$(MAKE) -C SetCursorPosition all
 	$(MAKE) -C BlinkingCursor all
 
 clean:
@@ -44,6 +48,7 @@ clean:
 	$(MAKE) -C Contrast clean
 	$(MAKE) -C IsLcdIdle clean
 	$(MAKE) -C PutScreenFromFlash clean
+	$(MAKE) -C SetCursorPosition clean
 	$(MAKE) -C BlinkingCursor clean
 
 include $(MAKEFILE_RULES)

@@ -13,6 +13,7 @@ Lcd code
 	global writeRegister
 	global writeCharacter
 	global writeRegisterNibble
+	global writeRegisterFromWWithIdleNextState
 
 writeRegisterNibble:
 	banksel lcdFlags
@@ -75,12 +76,31 @@ resetEnableBit:
 	fcall shiftOut
 	return
 
+writeRegisterFromWWithIdleNextState:
+	banksel lcdWorkingRegister
+	movwf lcdWorkingRegister
+	movlw LCD_STATE_IDLE
+	xorwf lcdState, W
+	btfss STATUS, Z
+	retlw 0
+
+storeCommandAsParameterForState:
+	movlw LCD_STATE_WRITE_REGISTER
+	movwf lcdState
+	movlw LCD_STATE_IDLE
+	movwf lcdNextState
+	movf lcdWorkingRegister, W
+	movwf lcdStateParameter0
+	retlw 1
+
 
 	defineLcdStateInSameSection LCD_STATE_WRITE_REGISTER
+		; TODO: THIS STATE NEEDS WRITING...
 		returnFromLcdState
 
 
 	defineLcdStateInSameSection LCD_STATE_WRITE_CHARACTER
+		; TODO: THIS STATE NEEDS WRITING...
 		returnFromLcdState
 
 	end

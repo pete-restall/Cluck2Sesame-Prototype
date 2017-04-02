@@ -24,7 +24,7 @@ Isr code 0x0004
 	global isr
 	global initialiseIsr
 
-	; TODO: MIGHT NEED TO BUMP MCU FREQUENCY TO 8MHz - 85 CYCLES (OR
+	; TODO: MIGHT NEED TO BUMP MCU FREQUENCY TO 8MHz - 83 CYCLES (OR
 	; THEREABOUTS) OUT OF 88 USED IN WORST-CASE, INCLUDING CLOCK TICK...
 
 isr:
@@ -94,11 +94,10 @@ disableMotorOutputs:
 
 endOfMotorCurrentMonitoring:
 lcdDeltaSigmaContrastControl:
-	banksel lcdFlags ; TODO: MAKE ALL LCD VARIABLES OF THE SAME BANK !
+	banksel lcdFlags
 	btfss lcdFlags, LCD_FLAG_ENABLED
 	goto clockTicked
 
-	banksel lcdContrast
 	movf lcdContrast, W
 	addwf lcdContrastAccumulator
 

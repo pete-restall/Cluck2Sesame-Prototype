@@ -4,11 +4,11 @@
 
 	radix decimal
 
-EnableBlinkingCursorTest code
+SetCursorPositionTest code
 	global testAct
 
 testAct:
-	fcall enableLcdBlinkingCursor
+	fcall setLcdCursorPosition
 	return
 
 	end

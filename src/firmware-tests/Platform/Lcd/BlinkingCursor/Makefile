@@ -14,10 +14,12 @@ TEST_DOUBLE_OBJ_FILES=\
 
 ENABLE_BLINKING_CURSOR_OBJ_FILES=\
 	EnableBlinkingCursorTest.o \
+	../WriteRegisterTestFixture.o \
 	$(TEST_DOUBLE_OBJ_FILES)
 
 DISABLE_BLINKING_CURSOR_OBJ_FILES=\
 	DisableBlinkingCursorTest.o \
+	../WriteRegisterTestFixture.o \
 	$(TEST_DOUBLE_OBJ_FILES)
 
 all: $(HEX_FILES)

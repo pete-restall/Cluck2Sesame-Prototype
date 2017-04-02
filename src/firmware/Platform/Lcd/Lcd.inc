@@ -48,6 +48,7 @@ LCD_CMD_SETDDRAMADDRESS_LINE2 equ LCD_CMD_SETDDRAMADDRESS | 0x40
 	extern writeRegister
 	extern writeCharacter
 	extern writeRegisterNibble
+	extern writeRegisterFromWWithIdleNextState
 	#endif
 
 	#endif

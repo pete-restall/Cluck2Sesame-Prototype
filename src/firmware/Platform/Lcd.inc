@@ -14,7 +14,7 @@ LCD_SECOND_LINE equ b'01000000'
 	extern putCharacter
 	extern putBcdDigit
 	extern putBcdDigits
-	extern setLcdCharacterPosition
+	extern setLcdCursorPosition
 	extern enableLcdBlinkingCursor
 	extern disableLcdBlinkingCursor
 

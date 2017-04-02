@@ -1,0 +1,15 @@
+load "SetCursorPositionTest.cod"
+load i "../../../RandomiseRam.sti"
+load i "../../../PreventInfiniteLoops.sti"
+load i "../LcdStates.sti"
+
+initialLcdState=LCD_STATE_WAIT
+initialLcdNextState=0x16
+initialLcdCommand=0x17
+expectedW=0
+expectedLcdState=LCD_STATE_WAIT
+expectedLcdNextState=0x16
+expectedLcdCommand=0x17
+
+run
+quit
