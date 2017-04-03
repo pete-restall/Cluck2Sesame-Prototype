@@ -13,7 +13,7 @@
 		btfsc STATUS, Z
 		goto returnFromState
 
-		; TODO: CALL setLcdBacklightFlag()
+		fcall setLcdBacklightFlag
 		loadFlashAddressOf screen
 		fcall putScreenFromFlash
 

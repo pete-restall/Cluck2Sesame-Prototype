@@ -17,5 +17,7 @@ LCD_SECOND_LINE equ b'01000000'
 	extern setLcdCursorPosition
 	extern enableLcdBlinkingCursor
 	extern disableLcdBlinkingCursor
+	extern setLcdBacklightFlag
+	extern clearLcdBacklightFlag
 
 	#endif

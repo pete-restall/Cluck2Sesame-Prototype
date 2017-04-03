@@ -31,12 +31,12 @@ ENSURE_FAST_CLOCK_OBJ_FILES=\
 ENABLE_LCD_OBJ_FILES=\
 	EnableLcdTest.o \
 	../../PollAfterUiDummy.o \
+	AllButEnableDisableLcdDummies.o \
 	$(PLATFORM_TESTS_DIR)/PowerManagement/PowerManagementMocks.o \
 	$(PLATFORM_TESTS_DIR)/Lcd/EnableDisableLcdMocks.o \
-	$(PLATFORM_TESTS_DIR)/Lcd/AllButEnableDisableLcdDummies.o \
 	$(TEST_DOUBLE_OBJ_FILES)
 
-all: $(HEX_FILES)
+all: AllButEnableDisableLcdDummies.o $(HEX_FILES)
 
 clean:
 	$(RM) -f $(BUILD_ARTEFACT_PATTERN)

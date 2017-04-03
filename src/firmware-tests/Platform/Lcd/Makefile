@@ -28,12 +28,11 @@ TEST_DOUBLE_OBJ_FILES=\
 	AdcMocks.o \
 	LcdContrastDummies.o \
 	LcdDummies.o \
-	AllButEnableDisableLcdDummies.o \
-	AllButIsLcdIdleDummies.o \
 	IsLcdIdleStub.o \
 	PutScreenFromFlashDummy.o \
 	PutScreenFromFlashMock.o \
-	AllButIsLcdIdleAndPutScreenFromFlashDummies.o
+	BacklightDummies.o \
+	BacklightMocks.o
 
 TEST_FIXTURES=\
 	WriteRegisterTestFixture.o

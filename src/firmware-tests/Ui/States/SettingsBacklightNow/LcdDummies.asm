@@ -2,13 +2,12 @@
 
 	radix decimal
 
-AllButIsLcdIdleDummies code
+LcdDummies code
 	global initialiseLcd
 	global enableLcd
 	global disableLcd
 	global isLcdEnabled
 	global pollLcd
-	global putScreenFromFlash
 	global putCharacter
 	global putBcdDigit
 	global putBcdDigits
@@ -21,7 +20,6 @@ enableLcd:
 disableLcd:
 isLcdEnabled:
 pollLcd:
-putScreenFromFlash:
 putCharacter:
 putBcdDigit:
 putBcdDigits:

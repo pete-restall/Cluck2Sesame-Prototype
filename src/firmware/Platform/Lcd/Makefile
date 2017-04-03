@@ -24,7 +24,8 @@ OBJ_FILES=\
 	PutScreenFromFlash.o \
 	PutCharacters.o \
 	SetCursorPosition.o \
-	BlinkingCursor.o
+	BlinkingCursor.o \
+	Backlight.o
 
 all: $(LIB_FILENAME)
 

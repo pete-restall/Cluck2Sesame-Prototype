@@ -1,0 +1,8 @@
+	#ifndef __CLUCK2SESAME_TESTS_PLATFORM_LCD_BACKLIGHTMOCKS_INC
+	#define __CLUCK2SESAME_TESTS_PLATFORM_LCD_BACKLIGHTMOCKS_INC
+
+	extern initialiseLcdBacklightMocks
+	extern calledSetLcdBacklightFlag
+	extern calledClearLcdBacklightFlag
+
+	#endif

@@ -14,6 +14,8 @@ AllButEnableDisableLcdDummies code
 	global setLcdCursorPosition
 	global enableLcdBlinkingCursor
 	global disableLcdBlinkingCursor
+	global setLcdBacklightFlag
+	global clearLcdBacklightFlag
 
 initialiseLcd:
 isLcdEnabled:
@@ -26,6 +28,8 @@ putBcdDigits:
 setLcdCursorPosition:
 enableLcdBlinkingCursor:
 disableLcdBlinkingCursor:
+setLcdBacklightFlag:
+clearLcdBacklightFlag:
 	return
 
 	end
