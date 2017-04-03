@@ -12,11 +12,11 @@ OBJ_FILES+=\
 
 TEST_DOUBLE_OBJ_FILES=\
 	../PollAfterLcdDummy.o \
-	../InitialiseShiftRegisterDummy.o \
-	../EnableShiftRegisterDummy.o \
-	../DisableShiftRegisterDummy.o \
-	../IsShiftRegisterEnabledStubbedTrue.o \
-	../ShiftOutDummy.o \
+	$(PLATFORM_TESTS_DIR)/ShiftRegister/InitialiseShiftRegisterDummy.o \
+	$(PLATFORM_TESTS_DIR)/ShiftRegister/EnableShiftRegisterDummy.o \
+	$(PLATFORM_TESTS_DIR)/ShiftRegister/DisableShiftRegisterDummy.o \
+	$(PLATFORM_TESTS_DIR)/ShiftRegister/IsShiftRegisterEnabledStubbedTrue.o \
+	$(PLATFORM_TESTS_DIR)/ShiftRegister/ShiftOutDummy.o \
 	../../Motor/InitialiseMotorDummy.o \
 	../../Motor/EnableMotorVddDummy.o \
 	../../Motor/DisableMotorVddDummy.o \

@@ -10,27 +10,27 @@ OBJ_FILES+=\
 
 SHIFT_OUT_OBJ_FILES=\
 	ShiftOutTest.o \
-	../../ShiftOutMock.o \
+	$(PLATFORM_TESTS_DIR)/ShiftRegister/ShiftOutMock.o \
 	../../PollAfterLcdDummy.o \
-	../../InitialiseShiftRegisterDummy.o \
-	../../EnableShiftRegisterDummy.o \
-	../../DisableShiftRegisterDummy.o \
-	../../IsShiftRegisterEnabledDummy.o
+	$(PLATFORM_TESTS_DIR)/ShiftRegister/InitialiseShiftRegisterDummy.o \
+	$(PLATFORM_TESTS_DIR)/ShiftRegister/EnableShiftRegisterDummy.o \
+	$(PLATFORM_TESTS_DIR)/ShiftRegister/DisableShiftRegisterDummy.o \
+	$(PLATFORM_TESTS_DIR)/ShiftRegister/IsShiftRegisterEnabledDummy.o
 
 NEXT_POLL_IN_CHAIN_OBJ_FILES=\
 	NextPollInChainTest.o \
 	../../PollAfterLcdMock.o \
-	../../ShiftRegisterDummies.o
+	$(PLATFORM_TESTS_DIR)/ShiftRegister/ShiftRegisterDummies.o
 
 NEXT_STATE_OBJ_FILES=\
 	NextStateTest.o \
 	../../PollAfterLcdDummy.o \
-	../../ShiftRegisterDummies.o
+	$(PLATFORM_TESTS_DIR)/ShiftRegister/ShiftRegisterDummies.o
 
 IS_LCD_ENABLED_OBJ_FILES=\
 	IsLcdEnabledTest.o \
 	../../PollAfterLcdDummy.o \
-	../../ShiftRegisterDummies.o
+	$(PLATFORM_TESTS_DIR)/ShiftRegister/ShiftRegisterDummies.o
 
 all: $(HEX_FILES)
 

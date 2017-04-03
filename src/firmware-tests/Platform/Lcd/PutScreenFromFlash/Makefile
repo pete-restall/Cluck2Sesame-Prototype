@@ -9,10 +9,10 @@ OBJ_FILES+=\
 	../PollAfterLcdDummy.o \
 	../InitialiseAfterLcdDummy.o \
 	../AdcDummies.o \
-	../InitialiseShiftRegisterDummy.o \
-	../EnableShiftRegisterDummy.o \
-	../DisableShiftRegisterDummy.o \
-	../IsShiftRegisterEnabledStubbedTrue.o \
+	$(PLATFORM_TESTS_DIR)/ShiftRegister/InitialiseShiftRegisterDummy.o \
+	$(PLATFORM_TESTS_DIR)/ShiftRegister/EnableShiftRegisterDummy.o \
+	$(PLATFORM_TESTS_DIR)/ShiftRegister/DisableShiftRegisterDummy.o \
+	$(PLATFORM_TESTS_DIR)/ShiftRegister/IsShiftRegisterEnabledStubbedTrue.o \
 	../../Motor/InitialiseMotorDummy.o \
 	../../Motor/EnableMotorVddDummy.o \
 	../../Motor/DisableMotorVddDummy.o \
@@ -26,11 +26,11 @@ ENTIRE_SCREEN_SHIFT_OUT_OBJ_FILES=\
 
 PUT_SCREEN_WHEN_STATE_IS_IDLE_OBJ_FILES=\
 	PutScreenWhenStateIsIdleTest.o \
-	../ShiftOutDummy.o
+	$(PLATFORM_TESTS_DIR)/ShiftRegister/ShiftOutDummy.o
 
 PUT_SCREEN_WHEN_STATE_IS_NOT_IDLE_OBJ_FILES=\
 	PutScreenWhenStateIsNotIdleTest.o \
-	../ShiftOutDummy.o
+	$(PLATFORM_TESTS_DIR)/ShiftRegister/ShiftOutDummy.o
 
 all: $(HEX_FILES)
 

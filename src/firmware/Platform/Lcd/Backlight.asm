@@ -1,5 +1,6 @@
 	#include "Mcu.inc"
 	#include "Lcd.inc"
+	#include "ShiftRegister.inc"
 
 	radix decimal
 
@@ -8,8 +9,13 @@ Lcd code
 	global clearLcdBacklightFlag
 
 setLcdBacklightFlag:
+	banksel shiftRegisterBuffer
+	bsf shiftRegisterBuffer, LCD_BACKLIGHT_EN_BIT
+	return
+
 clearLcdBacklightFlag:
-	; TODO: FUNCTIONALITY NEEDS WRITING...
+	banksel shiftRegisterBuffer
+	bcf shiftRegisterBuffer, LCD_BACKLIGHT_EN_BIT
 	return
 
 	end

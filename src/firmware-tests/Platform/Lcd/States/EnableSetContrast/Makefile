@@ -4,7 +4,7 @@ HEX_FILES=\
 	EnableAdcTest.hex
 
 OBJ_FILES+=\
-	../../ShiftRegisterDummies.o \
+	$(PLATFORM_TESTS_DIR)/ShiftRegister/ShiftRegisterDummies.o \
 	../../../Motor/MotorDummies.o
 
 NEXT_POLL_IN_CHAIN_OBJ_FILES=\

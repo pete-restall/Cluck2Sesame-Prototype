@@ -13,7 +13,7 @@ TEST_DOUBLE_OBJ_FILES=\
 	../../../Motor/PollMotorDummy.o \
 	../../../Motor/TurnMotorDummies.o \
 	../../PollAfterLcdMock.o \
-	../../ShiftRegisterDummies.o \
+	$(PLATFORM_TESTS_DIR)/ShiftRegister/ShiftRegisterDummies.o \
 
 MOTOR_VDD_ENABLED_OBJ_FILES=\
 	MotorVddEnabledTest.o \

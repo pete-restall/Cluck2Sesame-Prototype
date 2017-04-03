@@ -9,7 +9,7 @@ TEST_DOUBLE_OBJ_FILES=\
 	../InitialiseAfterLcdDummy.o \
 	../PollAfterLcdDummy.o \
 	../AdcDummies.o \
-	../ShiftRegisterDummies.o \
+	$(PLATFORM_TESTS_DIR)/ShiftRegister/ShiftRegisterDummies.o \
 	../../Motor/MotorDummies.o
 
 ENABLE_BLINKING_CURSOR_OBJ_FILES=\

@@ -12,16 +12,6 @@ TEST_DOUBLE_OBJ_FILES=\
 	InitialiseAfterLcdDummy.o \
 	InitialiseAfterLcdMock.o \
 	EnableDisableLcdMocks.o \
-	InitialiseShiftRegisterDummy.o \
-	InitialiseShiftRegisterMock.o \
-	EnableShiftRegisterDummy.o \
-	DisableShiftRegisterDummy.o \
-	EnableDisableShiftRegisterMocks.o \
-	IsShiftRegisterEnabledDummy.o \
-	IsShiftRegisterEnabledStub.o \
-	ShiftOutDummy.o \
-	ShiftOutMock.o \
-	ShiftRegisterDummies.o \
 	PollAfterLcdDummy.o \
 	PollAfterLcdMock.o \
 	AdcDummies.o \
@@ -47,6 +37,7 @@ all: $(TEST_DOUBLE_OBJ_FILES) $(TEST_FIXTURES)
 	$(MAKE) -C PutCharacters all
 	$(MAKE) -C SetCursorPosition all
 	$(MAKE) -C BlinkingCursor all
+	$(MAKE) -C Backlight all
 
 clean:
 	$(RM) -f $(BUILD_ARTEFACT_PATTERN)
@@ -59,5 +50,6 @@ clean:
 	$(MAKE) -C PutCharacters clean
 	$(MAKE) -C SetCursorPosition clean
 	$(MAKE) -C BlinkingCursor clean
+	$(MAKE) -C Backlight clean
 
 include $(MAKEFILE_RULES)

@@ -1,7 +1,7 @@
 	#include "Mcu.inc"
 	#include "FarCalls.inc"
 	#include "Lcd.inc"
-	#include "../EnableDisableShiftRegisterMocks.inc"
+	#include "../../ShiftRegister/EnableDisableShiftRegisterMocks.inc"
 	#include "TestFixture.inc"
 
 	radix decimal

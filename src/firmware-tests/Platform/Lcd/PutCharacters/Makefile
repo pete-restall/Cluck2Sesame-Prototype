@@ -8,7 +8,7 @@ TEST_DOUBLE_OBJ_FILES=\
 	../InitialiseAfterLcdDummy.o \
 	../PollAfterLcdDummy.o \
 	../AdcDummies.o \
-	../ShiftRegisterDummies.o \
+	$(PLATFORM_TESTS_DIR)/ShiftRegister/ShiftRegisterDummies.o \
 	../../Motor/MotorDummies.o
 
 PUT_CHARACTER_OBJ_FILES=\

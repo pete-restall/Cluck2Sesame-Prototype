@@ -9,11 +9,11 @@ HEX_FILES=\
 TEST_DOUBLE_OBJ_FILES=\
 	../../PollAfterLcdMock.o \
 	../../AdcDummies.o \
-	../../IsShiftRegisterEnabledStub.o \
-	../../InitialiseShiftRegisterDummy.o \
-	../../EnableShiftRegisterDummy.o \
-	../../DisableShiftRegisterDummy.o \
-	../../ShiftOutDummy.o
+	$(PLATFORM_TESTS_DIR)/ShiftRegister/IsShiftRegisterEnabledStub.o \
+	$(PLATFORM_TESTS_DIR)/ShiftRegister/InitialiseShiftRegisterDummy.o \
+	$(PLATFORM_TESTS_DIR)/ShiftRegister/EnableShiftRegisterDummy.o \
+	$(PLATFORM_TESTS_DIR)/ShiftRegister/DisableShiftRegisterDummy.o \
+	$(PLATFORM_TESTS_DIR)/ShiftRegister/ShiftOutDummy.o
 
 SHIFT_REGISTER_ENABLED_NEXT_STATE_OBJ_FILES=\
 	ShiftRegisterEnabledNextStateTest.o \
@@ -47,12 +47,12 @@ ENABLE_MOTOR_VDD_WHEN_SHIFT_REGISTER_DISABLED_OBJ_FILES=\
 
 ENABLE_MOTOR_VDD_CALLED_AFTER_SHIFT_REGISTER_CLEARED_OBJ_FILES=\
 	EnableMotorVddCalledAfterShiftRegisterClearedTest.o \
-	../../IsShiftRegisterEnabledStub.o \
+	$(PLATFORM_TESTS_DIR)/ShiftRegister/IsShiftRegisterEnabledStub.o \
+	$(PLATFORM_TESTS_DIR)/ShiftRegister/InitialiseShiftRegisterDummy.o \
+	$(PLATFORM_TESTS_DIR)/ShiftRegister/EnableShiftRegisterDummy.o \
+	$(PLATFORM_TESTS_DIR)/ShiftRegister/DisableShiftRegisterDummy.o \
 	../../AdcDummies.o \
 	../../PollAfterLcdDummy.o \
-	../../InitialiseShiftRegisterDummy.o \
-	../../EnableShiftRegisterDummy.o \
-	../../DisableShiftRegisterDummy.o \
 	../../../Motor/InitialiseMotorDummy.o \
 	../../../Motor/DisableMotorVddDummy.o \
 	../../../Motor/IsMotorVddEnabledDummy.o \
@@ -61,13 +61,13 @@ ENABLE_MOTOR_VDD_CALLED_AFTER_SHIFT_REGISTER_CLEARED_OBJ_FILES=\
 
 SHIFT_REGISTER_NOT_CLEARED_BEFORE_ENABLED_OBJ_FILES=\
 	ShiftRegisterNotClearedBeforeEnabledTest.o \
-	../../IsShiftRegisterEnabledStub.o \
-	../../ShiftOutMock.o \
+	$(PLATFORM_TESTS_DIR)/ShiftRegister/IsShiftRegisterEnabledStub.o \
+	$(PLATFORM_TESTS_DIR)/ShiftRegister/ShiftOutMock.o \
+	$(PLATFORM_TESTS_DIR)/ShiftRegister/InitialiseShiftRegisterDummy.o \
+	$(PLATFORM_TESTS_DIR)/ShiftRegister/EnableShiftRegisterDummy.o \
+	$(PLATFORM_TESTS_DIR)/ShiftRegister/DisableShiftRegisterDummy.o \
 	../../AdcDummies.o \
 	../../PollAfterLcdDummy.o \
-	../../InitialiseShiftRegisterDummy.o \
-	../../EnableShiftRegisterDummy.o \
-	../../DisableShiftRegisterDummy.o \
 	../../../Motor/MotorDummies.o
 
 all: $(HEX_FILES)

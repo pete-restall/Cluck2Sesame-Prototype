@@ -10,7 +10,18 @@ export OBJ_FILES=\
 TEST_DOUBLES=\
 	InitialiseAfterShiftRegisterMock.o \
 	EnableDisableMotorVddStubs.o \
-	PollMotorMock.o
+	PollMotorMock.o \
+	ShiftRegisterDummies.o \
+	InitialiseShiftRegisterDummy.o \
+	InitialiseShiftRegisterMock.o \
+	EnableShiftRegisterDummy.o \
+	DisableShiftRegisterDummy.o \
+	EnableDisableShiftRegisterMocks.o \
+	IsShiftRegisterEnabledDummy.o \
+	IsShiftRegisterEnabledStub.o \
+	IsShiftRegisterEnabledStubbedTrue.o \
+	ShiftOutDummy.o \
+	ShiftOutMock.o
 
 all: $(TEST_DOUBLES)
 	$(MAKE) -C Initialisation all

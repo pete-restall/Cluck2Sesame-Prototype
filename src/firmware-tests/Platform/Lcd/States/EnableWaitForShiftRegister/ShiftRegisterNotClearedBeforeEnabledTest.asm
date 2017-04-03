@@ -2,8 +2,8 @@
 	#include "FarCalls.inc"
 	#include "Lcd.inc"
 	#include "../../LcdStates.inc"
-	#include "../../IsShiftRegisterEnabledStub.inc"
-	#include "../../ShiftOutMock.inc"
+	#include "../../../ShiftRegister/IsShiftRegisterEnabledStub.inc"
+	#include "../../../ShiftRegister/ShiftOutMock.inc"
 	#include "TestFixture.inc"
 
 	radix decimal

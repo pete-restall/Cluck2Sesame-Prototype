@@ -9,7 +9,7 @@ IS_LCD_IDLE_OBJ_FILES=\
 	../InitialiseAfterLcdDummy.o \
 	../PollAfterLcdDummy.o \
 	../AdcDummies.o \
-	../ShiftRegisterDummies.o \
+	$(PLATFORM_TESTS_DIR)/ShiftRegister/ShiftRegisterDummies.o \
 	../../Motor/MotorDummies.o
 
 all: $(HEX_FILES)

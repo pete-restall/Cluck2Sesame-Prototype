@@ -8,7 +8,7 @@ OBJ_FILES+=\
 
 TEST_DOUBLE_OBJ_FILES=\
 	../../PollAfterLcdMock.o \
-	../../ShiftRegisterDummies.o
+	$(PLATFORM_TESTS_DIR)/ShiftRegister/ShiftRegisterDummies.o
 
 TIME_NOT_ELAPSED_OBJ_FILES=\
 	TimeNotElapsedTest.o \

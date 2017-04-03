@@ -14,11 +14,11 @@ HEX_FILES=\
 	ContrastPinAfterNotDisabledTest.hex
 
 SHIFT_REGISTER_DUMMY_OBJ_FILES=\
-	../InitialiseShiftRegisterDummy.o \
-	../EnableShiftRegisterDummy.o \
-	../DisableShiftRegisterDummy.o \
-	../IsShiftRegisterEnabledStubbedTrue.o \
-	../ShiftOutDummy.o
+	$(PLATFORM_TESTS_DIR)/ShiftRegister/InitialiseShiftRegisterDummy.o \
+	$(PLATFORM_TESTS_DIR)/ShiftRegister/EnableShiftRegisterDummy.o \
+	$(PLATFORM_TESTS_DIR)/ShiftRegister/DisableShiftRegisterDummy.o \
+	$(PLATFORM_TESTS_DIR)/ShiftRegister/IsShiftRegisterEnabledStubbedTrue.o \
+	$(PLATFORM_TESTS_DIR)/ShiftRegister/ShiftOutDummy.o
 
 OBJ_FILES+=\
 	$(ASSERT_NO_ISR_OBJ_FILE) \
@@ -28,9 +28,9 @@ OBJ_FILES+=\
 
 ENABLE_DISABLE_SHIFT_REGISTER_OBJ_FILES=\
 	EnableDisableShiftRegisterTest.o \
-	../EnableDisableShiftRegisterMocks.o \
-	../InitialiseShiftRegisterMock.o \
-	../ShiftOutMock.o \
+	$(PLATFORM_TESTS_DIR)/ShiftRegister/EnableDisableShiftRegisterMocks.o \
+	$(PLATFORM_TESTS_DIR)/ShiftRegister/InitialiseShiftRegisterMock.o \
+	$(PLATFORM_TESTS_DIR)/ShiftRegister/ShiftOutMock.o \
 	../AdcDummies.o
 
 STATE_AFTER_ENABLED_FIRST_TIME_OBJ_FILES=\

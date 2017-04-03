@@ -3,7 +3,7 @@
 	#include "Lcd.inc"
 	#include "../../LcdStates.inc"
 	#include "../../PollAfterLcdMock.inc"
-	#include "../../IsShiftRegisterEnabledStub.inc"
+	#include "../../../ShiftRegister/IsShiftRegisterEnabledStub.inc"
 	#include "../../../Motor/EnableMotorVddMock.inc"
 	#include "TestFixture.inc"
 

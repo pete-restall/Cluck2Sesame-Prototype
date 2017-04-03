@@ -2,7 +2,7 @@
 	#include "FarCalls.inc"
 	#include "Lcd.inc"
 	#include "../../LcdStates.inc"
-	#include "../../IsShiftRegisterEnabledStub.inc"
+	#include "../../../ShiftRegister/IsShiftRegisterEnabledStub.inc"
 	#include "../../PollAfterLcdMock.inc"
 	#include "TestFixture.inc"
 

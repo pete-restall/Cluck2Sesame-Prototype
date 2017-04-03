@@ -1,0 +1,9 @@
+load "SetFlagShiftOutTest.cod"
+load i "../../../RandomiseRam.sti"
+load i "../../../PreventInfiniteLoops.sti"
+
+initialShiftRegisterBuffer=0x00
+expectedShiftRegisterBuffer=0x40
+
+run
+quit

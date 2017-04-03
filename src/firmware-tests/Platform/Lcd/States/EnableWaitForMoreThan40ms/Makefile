@@ -4,7 +4,7 @@ HEX_FILES=\
 
 TEST_DOUBLE_OBJ_FILES=\
 	../../PollAfterLcdMock.o \
-	../../ShiftRegisterDummies.o \
+	$(PLATFORM_TESTS_DIR)/ShiftRegister/ShiftRegisterDummies.o \
 	../../AdcDummies.o \
 	../../../Motor/MotorDummies.o
 
