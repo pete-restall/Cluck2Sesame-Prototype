@@ -1,0 +1,9 @@
+	#ifndef __CLUCK2SESAME_TESTS_PLATFORM_LCD_PUTSCREENFROMFLASHMOCK_INC
+	#define __CLUCK2SESAME_TESTS_PLATFORM_LCD_PUTSCREENFROMFLASHMOCK_INC
+
+	extern initialisePutScreenFromFlashMock
+	extern calledPutScreenFromFlash
+	extern calledPutScreenFromFlashEeadr
+	extern calledPutScreenFromFlashEeadrh
+
+	#endif

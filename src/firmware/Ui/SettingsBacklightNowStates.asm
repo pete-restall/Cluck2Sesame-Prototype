@@ -1,5 +1,6 @@
 	#include "Mcu.inc"
 	#include "FarCalls.inc"
+	#include "Flash.inc"
 	#include "Lcd.inc"
 	#include "States.inc"
 	#include "WaitButtonPressState.inc"
@@ -13,7 +14,8 @@
 		goto returnFromState
 
 		; TODO: CALL setLcdBacklightFlag()
-		; TODO: CALL putScreenFromFlash(screen)
+		loadFlashAddressOf screen
+		fcall putScreenFromFlash
 
 		waitForButtonPress UI_STATE_SETTINGS_BACKLIGHTNOW_LEFT, UI_STATE_SETTINGS_BACKLIGHTNOW_RIGHT, UI_STATE_SETTINGS_BACKLIGHTNOW_ENTER
 

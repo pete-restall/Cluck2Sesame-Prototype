@@ -30,7 +30,10 @@ TEST_DOUBLE_OBJ_FILES=\
 	LcdDummies.o \
 	AllButEnableDisableLcdDummies.o \
 	AllButIsLcdIdleDummies.o \
-	IsLcdIdleStub.o
+	IsLcdIdleStub.o \
+	PutScreenFromFlashDummy.o \
+	PutScreenFromFlashMock.o \
+	AllButIsLcdIdleAndPutScreenFromFlashDummies.o
 
 TEST_FIXTURES=\
 	WriteRegisterTestFixture.o
