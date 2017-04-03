@@ -25,3 +25,11 @@ attach vssForLcdNode vssForLcd lcd.d1
 attach vssForLcdNode vssForLcd lcd.d2
 attach vssForLcdNode vssForLcd lcd.d3
 attach vssForLcdNode vssForLcd lcd.RW
+
+module load led backlight
+backlight.xpos=684
+backlight.ypos=252
+backlight.color="blue"
+backlight.ActiveState="high"
+node backlightEn
+attach backlightEn u203.Q6 backlight.in
