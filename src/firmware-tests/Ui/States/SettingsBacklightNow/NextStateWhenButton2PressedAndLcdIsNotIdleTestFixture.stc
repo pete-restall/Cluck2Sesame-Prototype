@@ -1,10 +1,13 @@
-load "NextStateIsUnchangedTest.cod"
+load "NextStateIsOptionChangedTest.cod"
 load i "../../../RandomiseRam.sti"
 load i "../../../PreventInfiniteLoops.sti"
 load i "../UiStates.sti"
 
 initialUiState=UI_STATE_SETTINGS_BACKLIGHTNOW_RIGHT
 initialIsLcdIdle=0
+expectOptionAndButtonChanges=0
+expectOptionSelectionChanges=1
+expectedUiSelectedOptionPosition=0x4b
 
 run
 quit

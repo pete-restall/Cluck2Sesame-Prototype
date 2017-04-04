@@ -6,7 +6,8 @@ OBJ_FILES=\
 	Screens.pp.o \
 	BootState.o \
 	SettingsBacklightNowStates.o \
-	WaitButtonPressStates.o
+	WaitButtonPressStates.o \
+	OptionStates.o
 
 all: $(LIB_FILENAME)
 

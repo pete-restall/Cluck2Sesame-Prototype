@@ -3,6 +3,7 @@
 	#include "TestFixture.inc"
 	#include "States.inc"
 	#include "WaitButtonPressState.inc"
+	#include "OptionStates.inc"
 
 .assertStateIs macro expected
 	.aliasForAssert uiState, _a

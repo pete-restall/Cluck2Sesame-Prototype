@@ -1,0 +1,11 @@
+load "NextStateWaitsForButtonPressTest.cod"
+load i "../../../RandomiseRam.sti"
+load i "../../../PreventInfiniteLoops.sti"
+load i "../UiStates.sti"
+
+initialIsLcdIdle=1
+initialUiState=UI_STATE_OPTION_CHANGED
+expectUiButtonEventBaseStateChanges=0
+
+run
+quit

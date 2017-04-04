@@ -6,7 +6,7 @@ load i "../UiStates.sti"
 initialIsLcdIdle=0
 initialUiState=UI_STATE_SETTINGS_BACKLIGHTNOW_RIGHT
 expectedCalledSetLcdBacklightFlag=0
-expectedCalledClearLcdBacklightFlag=0
+expectedCalledClearLcdBacklightFlag=1
 
 run
 quit

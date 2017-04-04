@@ -1,8 +1,8 @@
 	#include "Mcu.inc"
 	#include "FarCalls.inc"
 	#include "Ui.inc"
-	#include "../../UiStates.inc"
-	#include "../../../Platform/Lcd/IsLcdIdleStub.inc"
+	#include "../UiStates.inc"
+	#include "../../Platform/Lcd/IsLcdIdleStub.inc"
 	#include "TestFixture.inc"
 
 	radix decimal
@@ -14,7 +14,7 @@
 initialIsLcdIdle res 1
 initialUiState res 1
 
-NextStateIsUnchangedTest code
+NextStateIsUnchangedTestFixture code
 	global testArrange
 
 testArrange:
