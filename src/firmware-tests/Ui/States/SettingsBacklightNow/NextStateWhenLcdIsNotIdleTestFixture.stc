@@ -1,5 +1,10 @@
-load "NextStateWhenLcdIsNotIdleTest.cod"
+load "NextStateIsUnchangedTest.cod"
 load i "../../../RandomiseRam.sti"
 load i "../../../PreventInfiniteLoops.sti"
+load i "../UiStates.sti"
+
+initialUiState=UI_STATE_SETTINGS_BACKLIGHTNOW
+initialIsLcdIdle=0
+
 run
 quit

@@ -1,0 +1,12 @@
+load "BacklightTest.cod"
+load i "../../../RandomiseRam.sti"
+load i "../../../PreventInfiniteLoops.sti"
+load i "../UiStates.sti"
+
+initialIsLcdIdle=0
+initialUiState=UI_STATE_SETTINGS_BACKLIGHTNOW_LEFT
+expectedCalledSetLcdBacklightFlag=0
+expectedCalledClearLcdBacklightFlag=0
+
+run
+quit

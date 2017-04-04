@@ -3,7 +3,7 @@ load i "../../../RandomiseRam.sti"
 load i "../../../PreventInfiniteLoops.sti"
 load i "../UiStates.sti"
 
-initialUiState=UI_STATE_SETTINGS_BACKLIGHTNOW
+initialUiState=UI_STATE_SETTINGS_BACKLIGHTNOW_RIGHT
 initialIsLcdIdle=1
 
 run

@@ -7,17 +7,29 @@
 
 	radix decimal
 
-NextStateWhenLcdIsIdleTest code
+	udata
+	global initialIsLcdIdle
+	global initialUiState
+
+initialIsLcdIdle res 1
+initialUiState res 1
+
+NextStateWaitsForButtonPressTest code
 	global testArrange
 
 testArrange:
 	fcall initialiseUi
 
-	movlw 1
+	banksel initialIsLcdIdle
+	movf initialIsLcdIdle, W
 	fcall initialiseIsLcdIdleStub
 
+	banksel initialUiState
+	movf initialUiState, W
+	banksel uiState
+	movwf uiState
+
 testAct:
-	setUiState UI_STATE_SETTINGS_BACKLIGHTNOW
 	fcall pollUi
 
 testAssert:

@@ -1,10 +1,10 @@
-load "NextStateWaitsForButtonPressTest.cod"
+load "NextStateIsUnchangedTest.cod"
 load i "../../../RandomiseRam.sti"
 load i "../../../PreventInfiniteLoops.sti"
 load i "../UiStates.sti"
 
-initialUiState=UI_STATE_SETTINGS_BACKLIGHTNOW
-initialIsLcdIdle=1
+initialUiState=UI_STATE_SETTINGS_BACKLIGHTNOW_RIGHT
+initialIsLcdIdle=0
 
 run
 quit

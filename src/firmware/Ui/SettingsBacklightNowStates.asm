@@ -11,23 +11,38 @@
 		fcall isLcdIdle
 		xorlw 0
 		btfsc STATUS, Z
-		goto returnFromState
+		returnFromUiState
 
-		fcall setLcdBacklightFlag ; TODO: THIS SHOULDN'T BE THE DEFAULT STATE - MIGHT DRAIN THE BATTERY IF A SPONTANEOUS RESET OCCURS...
 		loadFlashAddressOf screen
 		fcall putScreenFromFlash
 
 		waitForButtonPress UI_STATE_SETTINGS_BACKLIGHTNOW_LEFT, UI_STATE_SETTINGS_BACKLIGHTNOW_RIGHT, UI_STATE_SETTINGS_BACKLIGHTNOW_ENTER
 
-returnFromState:
 		returnFromUiState
 
 
 	defineUiStateInSameSection UI_STATE_SETTINGS_BACKLIGHTNOW_LEFT
+		fcall isLcdIdle
+		xorlw 0
+		btfsc STATUS, Z
+		returnFromUiState
+
+
+		waitForButtonPress UI_STATE_SETTINGS_BACKLIGHTNOW_LEFT, UI_STATE_SETTINGS_BACKLIGHTNOW_RIGHT, UI_STATE_SETTINGS_BACKLIGHTNOW_ENTER
+
 		returnFromUiState
 
 
 	defineUiStateInSameSection UI_STATE_SETTINGS_BACKLIGHTNOW_RIGHT
+		fcall isLcdIdle
+		xorlw 0
+		btfsc STATUS, Z
+		returnFromUiState
+
+		fcall clearLcdBacklightFlag
+
+		waitForButtonPress UI_STATE_SETTINGS_BACKLIGHTNOW_LEFT, UI_STATE_SETTINGS_BACKLIGHTNOW_RIGHT, UI_STATE_SETTINGS_BACKLIGHTNOW_ENTER
+
 		returnFromUiState
 
 
