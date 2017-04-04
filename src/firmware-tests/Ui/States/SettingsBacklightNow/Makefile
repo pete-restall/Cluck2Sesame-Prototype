@@ -1,6 +1,5 @@
 HEX_FILES=\
 	NextPollInChainTest.hex \
-	NextStateWaitsForButtonPressTest.hex \
 	NextStateIsUnchangedTest.hex \
 	NextStateIsOptionChangedTest.hex \
 	PutScreenWhenLcdIsNotIdleTest.hex \
@@ -16,14 +15,6 @@ TEST_DOUBLES=\
 NEXT_POLL_IN_CHAIN_OBJ_FILES=\
 	NextPollInChainTest.o \
 	../../PollAfterUiMock.o \
-	$(PLATFORM_TESTS_DIR)/Lcd/PutScreenFromFlashDummy.o \
-	$(PLATFORM_TESTS_DIR)/Lcd/BacklightDummies.o \
-	$(TEST_DOUBLES)
-
-NEXT_STATE_WAITS_FOR_BUTTON_PRESS_OBJ_FILES=\
-	NextStateWaitsForButtonPressTest.o \
-	../NextStateWaitsForButtonPressTestFixture.o \
-	../../PollAfterUiDummy.o \
 	$(PLATFORM_TESTS_DIR)/Lcd/PutScreenFromFlashDummy.o \
 	$(PLATFORM_TESTS_DIR)/Lcd/BacklightDummies.o \
 	$(TEST_DOUBLES)
@@ -70,9 +61,6 @@ clean:
 
 NextPollInChainTest.hex: $(OBJ_FILES) $(NEXT_POLL_IN_CHAIN_OBJ_FILES)
 	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(NEXT_POLL_IN_CHAIN_OBJ_FILES)
-
-NextStateWaitsForButtonPressTest.hex: $(OBJ_FILES) $(NEXT_STATE_WAITS_FOR_BUTTON_PRESS_OBJ_FILES)
-	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(NEXT_STATE_WAITS_FOR_BUTTON_PRESS_OBJ_FILES)
 
 NextStateIsUnchangedTest.hex: $(OBJ_FILES) $(NEXT_STATE_IS_UNCHANGED_OBJ_FILES)
 	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(NEXT_STATE_IS_UNCHANGED_OBJ_FILES)
