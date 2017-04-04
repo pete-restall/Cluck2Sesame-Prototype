@@ -13,7 +13,7 @@
 		btfsc STATUS, Z
 		goto returnFromState
 
-		fcall setLcdBacklightFlag
+		fcall setLcdBacklightFlag ; TODO: THIS SHOULDN'T BE THE DEFAULT STATE - MIGHT DRAIN THE BATTERY IF A SPONTANEOUS RESET OCCURS...
 		loadFlashAddressOf screen
 		fcall putScreenFromFlash
 
@@ -36,6 +36,6 @@ returnFromState:
 
 screen:
 	da "Backlight (Now) "
-	da "[ON]        OFF "
+	da " ON        [OFF]"
 
 	end

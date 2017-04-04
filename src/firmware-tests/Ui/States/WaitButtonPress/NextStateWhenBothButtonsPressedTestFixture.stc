@@ -1,0 +1,11 @@
+load "ButtonPressTest.cod"
+load i "../../../RandomiseRam.sti"
+load i "../../../PreventInfiniteLoops.sti"
+load i "../UiStates.sti"
+
+initialButtonFlags=0x03
+initialUiButtonEventBaseState=0x8a
+expectedUiState=0x8c
+
+run
+quit
