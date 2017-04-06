@@ -10,21 +10,28 @@ Ui code
 	global setUiStateForButtonEvents
 
 	defineUiStateInSameSection UI_STATE_WAIT_BUTTONPRESS
-		#if (BUTTON_FLAG_PRESSED1 != 0) || (BUTTON_FLAG_PRESSED2 != 1)
+		#if (BUTTON_FLAG_PRESSED1 != 0) || (BUTTON_FLAG_PRESSED2 != 1) || (BUTTON_FLAG_PRESSEDBOTH != 2)
 		error "Optimisation assumptions made regarding buttonFlags values"
 		#endif
 
 		banksel buttonFlags
-		movf buttonFlags, W
+		movf buttonFlags
+		btfss STATUS, Z
+		returnFromUiState
+
+		banksel uiState
+		movlw UI_STATE_WAIT_BUTTONPRESS2
+		movwf uiState
+		returnFromUiState
+
+	defineUiStateInSameSection UI_STATE_WAIT_BUTTONPRESS2
+		banksel buttonFlags
+		movf buttonFlags
 		btfsc STATUS, Z
 		goto endOfState
 
-		andlw BUTTON_FLAG_POTENTIALLY1_MASK | BUTTON_FLAG_POTENTIALLY2_MASK
-		btfss STATUS, Z
-		goto endOfState
-
-		decf buttonFlags, W
-		andlw b'00000011'
+		bcf STATUS, C
+		rrf buttonFlags, W
 
 		banksel uiButtonEventBaseState
 		addwf uiButtonEventBaseState, W

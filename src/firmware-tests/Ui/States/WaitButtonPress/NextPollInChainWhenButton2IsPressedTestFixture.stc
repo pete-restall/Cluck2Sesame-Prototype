@@ -1,8 +1,0 @@
-load "NextPollInChainTest.cod"
-load i "../../../RandomiseRam.sti"
-load i "../../../PreventInfiniteLoops.sti"
-
-initialButtonFlags=0x02
-
-run
-quit

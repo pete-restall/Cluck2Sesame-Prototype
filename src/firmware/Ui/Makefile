@@ -6,6 +6,8 @@ OBJ_FILES=\
 	Screens.pp.o \
 	BootState.o \
 	SettingsBacklightNowStates.o \
+	SettingsBacklightInTheDarkStates.o \
+	SettingsDateTimeStates.o \
 	WaitButtonPressStates.o \
 	OptionStates.o
 

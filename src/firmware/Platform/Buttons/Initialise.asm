@@ -20,6 +20,10 @@ initialiseButtons:
 
 	banksel buttonFlags
 	clrf buttonFlags
+	clrf buttonLastCheckTimestamp
+	movlw 0xff
+	movwf button1State
+	movwf button2State
 
 	tcall INITIALISE_AFTER_BUTTONS
 

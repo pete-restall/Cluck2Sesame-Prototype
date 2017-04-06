@@ -9,9 +9,11 @@
 	udata
 	global expectedButton1State
 	global expectedButton2State
+	global expectedBothButtonsState
 
 expectedButton1State res 1
 expectedButton2State res 1
+expectedBothButtonsState res 1
 
 ButtonPressTest code
 	global testArrange
@@ -78,12 +80,31 @@ assertButton2:
 assertButton2IsReleased:
 	.aliasWForAssert _a
 	.assert "_a == 0, 'Expected button 2 to be released.'"
-	return
+	goto assertBothButtons
 
 assertButton2IsPressed:
 	.aliasWForAssert _a
 	.assert "_a != 0, 'Expected button 2 to be pressed.'"
 
+assertBothButtons:
+	banksel buttonFlags
+	movlw 0
+	btfsc buttonFlags, BUTTON_FLAG_PRESSEDBOTH
+	movlw 0xff
+
+	banksel expectedBothButtonsState
+	movf expectedBothButtonsState
+	btfss STATUS, Z
+	goto assertBothButtonsArePressed
+
+assertBothButtonsAreReleased:
+	.aliasWForAssert _a
+	.assert "_a == 0, 'Expected both buttons to be released.'"
+	return
+
+assertBothButtonsArePressed:
+	.aliasWForAssert _a
+	.assert "_a != 0, 'Expected both buttons to be pressed.'"
 	return
 
 initialiseTimer1:

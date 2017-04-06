@@ -1,6 +1,7 @@
 	#include "Mcu.inc"
 	#include "FarCalls.inc"
 	#include "Lcd.inc"
+	#include "Buttons.inc"
 	#include "States.inc"
 	#include "OptionStates.inc"
 
@@ -33,6 +34,7 @@ ARROW_CHARACTER equ 0x7e
 		fcall isLcdIdle
 		xorlw 0
 		btfsc STATUS, Z
+		returnFromUiState
 
 		call loadCurrentPositionIntoFsr
 		movlw UI_STATE_WAIT_BUTTONPRESS

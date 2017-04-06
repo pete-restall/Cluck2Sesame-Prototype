@@ -10,14 +10,12 @@ TEST_FIXTURE_OBJ_FILES=\
 all: $(TEST_FIXTURE_OBJ_FILES)
 	$(MAKE) -C Boot all
 	$(MAKE) -C SettingsBacklightNow all
-	$(MAKE) -C WaitButtonPress all
 	$(MAKE) -C Option all
 
 clean:
 	$(RM) -f $(BUILD_ARTEFACT_PATTERN)
 	$(MAKE) -C Boot clean
 	$(MAKE) -C SettingsBacklightNow clean
-	$(MAKE) -C WaitButtonPress clean
 	$(MAKE) -C Option clean
 
 include $(MAKEFILE_RULES)

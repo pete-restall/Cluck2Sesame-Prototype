@@ -8,56 +8,71 @@
 
 	extern POLL_AFTER_BUTTONS
 
-NUMBER_OF_TICKS_25MS equ 195
-
-pollForButton macro portBit, number
-	local buttonSampledOpen
-	local buttonSampledClosed
-	local buttonSampledClosedForFirstTime
-	local buttonSampledClosedMultipleTimes
-	local endOfButtonSampling
-
-	banksel PORTB
-	btfsc PORTB, portBit
-	goto buttonSampledOpen
-
-buttonSampledClosed:
-	btfsc buttonFlags, BUTTON_FLAG_PRESSED#v(number)
-	goto endOfButtonSampling
-
-	btfsc buttonFlags, BUTTON_FLAG_COUNTING#v(number)
-	goto buttonSampledClosedMultipleTimes
-
-buttonSampledClosedForFirstTime:
-	bsf buttonFlags, BUTTON_FLAG_COUNTING#v(number)
-	storeTimer0 button#v(number)Timestamp
-	goto endOfButtonSampling
-
-buttonSampledClosedMultipleTimes:
-	elapsedSinceTimer0 button#v(number)Timestamp
-	sublw NUMBER_OF_TICKS_25MS
-	banksel buttonFlags
-	btfss STATUS, C
-	bsf buttonFlags, BUTTON_FLAG_PRESSED#v(number)
-	goto endOfButtonSampling
-
-buttonSampledOpen:
-	banksel buttonFlags
-	bcf buttonFlags, BUTTON_FLAG_PRESSED#v(number)
-	bcf buttonFlags, BUTTON_FLAG_COUNTING#v(number)
-
-endOfButtonSampling:
-	endm
+NUMBER_OF_TICKS_6_25MS equ 49
 
 Buttons code
 	global pollButtons
 
 pollButtons:
-	; TODO: NEED TO SET BUTTON_FLAG_POTENTIALLY{1,2} TO ALLOW DETECTION OF DUAL
-	; PRESSES; THE 'COUNTING' FLAG WON'T DO IT, WE NEED TO USE A 'TIME SINCE
-	; LAST EVENT OR SOMETHING...
-	pollForButton RB6, 1
-	pollForButton RB5, 2
+	elapsedSinceTimer0 buttonLastCheckTimestamp
+	sublw NUMBER_OF_TICKS_6_25MS
+	btfsc STATUS, C
+	goto endOfButtonPoll
+
+	storeTimer0 buttonLastCheckTimestamp
+
+	banksel PORTB
+	movlw (1 << RB5) | (1 << RB6)
+	andwf PORTB, W
+
+	banksel buttonSnapshot
+	movwf buttonSnapshot
+	rlf buttonSnapshot
+
+shiftbuttonStateIntoIndividualBuffers:
+	rlf buttonSnapshot
+	rlf button1State
+	rlf buttonSnapshot
+	rlf button2State
+
+noButtonsPressedWillResetState:
+	clrf buttonFlags
+	movf button1State, W
+	andwf button2State, W
+	andlw 0x0f
+	xorlw 0x0f
+	btfsc STATUS, Z
+	goto endOfButtonPoll
+
+bothButtonsPressedWillSetState:
+	movf button1State, W
+	iorwf button2State, W
+	andlw 0x0f
+	btfsc STATUS, Z
+	goto bothPressed
+
+oneButtonPressedAndTheOtherNotPressedWillSetState:
+	movf button1State, W
+	andlw 0x0f
+	btfsc STATUS, Z
+	bsf buttonFlags, BUTTON_FLAG_PRESSED1
+
+	movf button2State, W
+	andlw 0x0f
+	btfsc STATUS, Z
+	bsf buttonFlags, BUTTON_FLAG_PRESSED2
+
+	movf buttonFlags, W
+	xorlw BUTTON_FLAG_PRESSED1_MASK | BUTTON_FLAG_PRESSED2_MASK
+	btfsc STATUS, Z
+	clrf buttonFlags
+
+	goto endOfButtonPoll
+
+bothPressed:
+	bsf buttonFlags, BUTTON_FLAG_PRESSEDBOTH
+
+endOfButtonPoll:
 	tcall POLL_AFTER_BUTTONS
 
 	end

@@ -4,8 +4,8 @@ load i "../../../PreventInfiniteLoops.sti"
 load i "ButtonTestFixture.sti"
 
 expectedButton1State=BUTTON_RELEASED
-expectedButton2State=BUTTON_PRESSED
-expectedBothButtonsState=BUTTON_RELEASED
+expectedButton2State=BUTTON_RELEASED
+expectedBothButtonsState=BUTTON_PRESSED
 
 stimulus asynchronous_stimulus
 	initial_state 0
@@ -15,7 +15,18 @@ stimulus asynchronous_stimulus
 		10000, 1,
 		50000, 0
 	}
-	name buttonPulse
+	name button1Pulse
+	end
+
+stimulus asynchronous_stimulus
+	initial_state 0
+	start_cycle 0
+	period 50000
+	{
+		20000, 1,
+		50000, 0
+	}
+	name button2Pulse
 	end
 
 stimulus asynchronous_stimulus
@@ -24,13 +35,13 @@ stimulus asynchronous_stimulus
 	period 50000
 	{
 		10000, 0,
-		36000, 1
+		46000, 1
 	}
 	name synchronisingPulse
 	end
 
-attach button1 released
-attach button2 buttonPulse
+attach button1 button1Pulse
+attach button2 button2Pulse
 
 node timer1
 attach timer1 porta5 synchronisingPulse

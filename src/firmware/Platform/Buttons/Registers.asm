@@ -4,11 +4,15 @@
 
 	udata
 	global buttonFlags
-	global button1Timestamp
-	global button2Timestamp
+	global buttonLastCheckTimestamp
+	global buttonSnapshot
+	global button1State
+	global button2State
 
 buttonFlags res 1
-button1Timestamp res 1
-button2Timestamp res 1
+buttonLastCheckTimestamp res 1
+buttonSnapshot res 1
+button1State res 1
+button2State res 1
 
 	end

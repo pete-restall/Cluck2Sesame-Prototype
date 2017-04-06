@@ -5,6 +5,7 @@ load i "ButtonTestFixture.sti"
 
 expectedButton1State=BUTTON_PRESSED
 expectedButton2State=BUTTON_RELEASED
+expectedBothButtonsState=BUTTON_RELEASED
 
 stimulus asynchronous_stimulus
 	initial_state 0
