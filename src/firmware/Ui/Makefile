@@ -3,13 +3,20 @@ OBJ_FILES=\
 	Registers.o \
 	Initialise.o \
 	Poll.o \
-	Screens.pp.o \
 	BootState.o \
 	SettingsBacklightNowStates.o \
 	SettingsBacklightInTheDarkStates.o \
 	SettingsDateTimeStates.o \
 	WaitButtonPressStates.o \
-	OptionStates.o
+	OptionStates.o \
+	SettingsDateTimeStates.o \
+	SettingsOpenCloseOffsetsStates.o \
+	SettingsLocationStates.o \
+	SettingsDoorCalibrationStates.o \
+	HomeStates.o \
+	DoorOverrideStates.o \
+	VersionStates.pp.o \
+	AdjustSettingsStates.o
 
 all: $(LIB_FILENAME)
 

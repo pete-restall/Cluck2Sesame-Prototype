@@ -7,7 +7,7 @@
 
 	radix decimal
 
-	defineUiState UI_STATE_SETTINGS_DATETIME
+	defineUiState UI_STATE_SETTINGS_LOCATION
 		fcall isLcdIdle
 		xorlw 0
 		btfsc STATUS, Z
@@ -16,27 +16,27 @@
 		loadFlashAddressOf screen
 		fcall putScreenFromFlash
 
-		waitForButtonPress UI_STATE_SETTINGS_DATETIME_LEFT, UI_STATE_SETTINGS_DATETIME_RIGHT, UI_STATE_SETTINGS_DATETIME_ENTER
+		waitForButtonPress UI_STATE_SETTINGS_LOCATION_LEFT, UI_STATE_SETTINGS_LOCATION_RIGHT, UI_STATE_SETTINGS_LOCATION_ENTER
 
 		returnFromUiState
 
 
-	defineUiStateInSameSection UI_STATE_SETTINGS_DATETIME_LEFT
+	defineUiStateInSameSection UI_STATE_SETTINGS_LOCATION_LEFT
 		setUiState UI_STATE_WAIT_BUTTONPRESS
 		returnFromUiState
 
 
-	defineUiStateInSameSection UI_STATE_SETTINGS_DATETIME_RIGHT
+	defineUiStateInSameSection UI_STATE_SETTINGS_LOCATION_RIGHT
 		setUiState UI_STATE_WAIT_BUTTONPRESS
 		returnFromUiState
 
 
-	defineUiStateInSameSection UI_STATE_SETTINGS_DATETIME_ENTER
-		setUiState UI_STATE_SETTINGS_OPENCLOSEOFFSETS
+	defineUiStateInSameSection UI_STATE_SETTINGS_LOCATION_ENTER
+		setUiState UI_STATE_SETTINGS_DOORCALIBRATION
 		returnFromUiState
 
 screen:
-	da "Date and Time   "
-	da "20YY-MM-DD HH:MM"
+	da "Latitude  +50.0 "
+	da "Longitude +00.0 "
 
 	end

@@ -24,6 +24,7 @@ Ui code
 		movwf uiState
 		returnFromUiState
 
+
 	defineUiStateInSameSection UI_STATE_WAIT_BUTTONPRESS2
 		banksel buttonFlags
 		movf buttonFlags
