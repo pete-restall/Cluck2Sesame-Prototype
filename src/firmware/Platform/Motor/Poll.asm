@@ -1,6 +1,6 @@
 	#define __CLUCK2SESAME_PLATFORM_MOTOR_POLL_ASM
 
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "TailCalls.inc"
 	#include "TableJumps.inc"
 	#include "PollChain.inc"
@@ -16,6 +16,7 @@ Motor code
 	global pollNextInChainAfterMotor
 
 pollMotor:
+	.unknownBank
 	tableDefinitionToJumpWith motorState
 	createMotorStateTable
 

@@ -1,6 +1,6 @@
 	#define __CLUCK2SESAME_PLATFORM_LCD_INITIALISE_ASM
 
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "TailCalls.inc"
 	#include "InitialisationChain.inc"
 	#include "Lcd.inc"
@@ -14,7 +14,7 @@ Lcd code
 	global initialiseLcd
 
 initialiseLcd:
-	banksel enableLcdCount
+	.safelySetBankFor enableLcdCount
 	clrf enableLcdCount
 
 	movlw DEFAULT_LCD_CONTRAST
@@ -22,13 +22,13 @@ initialiseLcd:
 
 	clrf lcdFlags
 
-	banksel LCD_CONTRAST_ANSEL
+	.setBankFor LCD_CONTRAST_ANSEL
 	bcf LCD_CONTRAST_ANSEL, LCD_CONTRAST_PIN_ANSEL
 
-	banksel LCD_CONTRAST_TRIS
+	.setBankFor LCD_CONTRAST_TRIS
 	bcf LCD_CONTRAST_TRIS, LCD_CONTRAST_PIN_TRIS
 
-	banksel LCD_CONTRAST_PORT
+	.setBankFor LCD_CONTRAST_PORT
 	bcf LCD_CONTRAST_PORT, LCD_CONTRAST_PIN
 
 	setLcdState LCD_STATE_DISABLED

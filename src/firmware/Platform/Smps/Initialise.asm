@@ -1,4 +1,4 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "TailCalls.inc"
 	#include "InitialisationChain.inc"
 	#include "Smps.inc"
@@ -12,24 +12,24 @@ Smps code
 
 initialiseSmps:
 flagSmpsVddAsEnabledAndStableAtBoot:
-	banksel enableSmpsCount
+	.safelySetBankFor enableSmpsCount
 	movlw 1
 	movwf enableSmpsCount
 
-	banksel smpsFlags
+	.setBankFor smpsFlags
 	movlw (1 << SMPS_FLAG_VDD_STABLE)
 	movwf smpsFlags
 
 setPortModeToAnalogue:
-	banksel ANSELH
+	.setBankFor ANSELH
 	bsf ANSELH, SMPS_EN_PIN_ANSH
 
 clearDigitalOutputs:
-	banksel SMPS_PORT
+	.setBankFor SMPS_PORT
 	bcf SMPS_PORT, SMPS_EN_PIN
 
 setPortDirections:
-	banksel SMPS_TRIS
+	.setBankFor SMPS_TRIS
 	bsf SMPS_TRIS, SMPS_EN_PIN_TRIS
 
 	tcall INITIALISE_AFTER_SMPS

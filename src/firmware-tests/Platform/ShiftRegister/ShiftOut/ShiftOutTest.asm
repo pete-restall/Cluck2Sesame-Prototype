@@ -1,4 +1,4 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "FarCalls.inc"
 	#include "ShiftRegister.inc"
 	#include "../EnableDisableMotorVddStubs.inc"

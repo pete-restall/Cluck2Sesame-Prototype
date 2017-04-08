@@ -1,9 +1,9 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "TestDoubles.inc"
 
 	radix decimal
 
-	udata
+SmpsRam udata
 stubReturnValue res 1
 
 IsSmpsEnabledStub code

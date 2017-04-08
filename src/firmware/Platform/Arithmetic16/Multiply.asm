@@ -1,4 +1,4 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "GeneralPurposeRegisters.inc"
 
 	radix decimal
@@ -7,7 +7,7 @@ Arithmetic16 code
 	global mul16x16
 
 mul16x16:
-	banksel RAA
+	.safelySetBankFor RAA
 	clrf RAA
 	clrf RAB
 	clrf RAC

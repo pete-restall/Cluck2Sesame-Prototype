@@ -1,4 +1,4 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "TailCalls.inc"
 	#include "../ShiftRegister.inc"
 	#include "../Adc.inc"
@@ -13,7 +13,7 @@ Lcd code
 	global isLcdEnabled
 
 enableLcd:
-	banksel enableLcdCount
+	.safelySetBankFor enableLcdCount
 	movf enableLcdCount
 	btfss STATUS, Z
 	goto enableLcdDone
@@ -21,22 +21,22 @@ enableLcd:
 	setLcdState LCD_STATE_ENABLE_WAITFORSHIFTREGISTER
 
 enableLcdDone:
-	banksel enableLcdCount
+	.setBankFor enableLcdCount
 	incf enableLcdCount
 	tcall enableShiftRegister
 
 disableLcd:
-	banksel enableLcdCount
+	.safelySetBankFor enableLcdCount
 	decfsz enableLcdCount
 	goto disableLcdDone
 
 	fcall disableAdc
 	setLcdState LCD_STATE_DISABLED
 
-	banksel lcdFlags
+	.setBankFor lcdFlags
 	bcf lcdFlags, LCD_FLAG_ENABLED
 
-	banksel LCD_CONTRAST_PORT
+	.setBankFor LCD_CONTRAST_PORT
 	bcf LCD_CONTRAST_PORT, LCD_CONTRAST_PIN
 
 disableLcdDone:
@@ -44,7 +44,7 @@ disableLcdDone:
 	tcall disableShiftRegister
 
 isLcdEnabled:
-	banksel lcdFlags
+	.safelySetBankFor lcdFlags
 	btfsc lcdFlags, LCD_FLAG_ENABLED
 	retlw 1
 	retlw 0

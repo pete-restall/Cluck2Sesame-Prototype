@@ -1,4 +1,4 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "GeneralPurposeRegisters.inc"
 
 	radix decimal
@@ -8,7 +8,7 @@ Arithmetic32 code
 	global signExtendToUpperWordB32
 
 signExtendToUpperWord32 macro reg
-	banksel reg
+	.safelySetBankFor reg
 	movlw 0x00
 	btfsc reg + 2, 7
 	movlw 0xff

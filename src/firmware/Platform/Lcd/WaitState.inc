@@ -1,9 +1,12 @@
 	#ifndef __CLUCK2SESAME_PLATFORM_LCD_WAITSTATE_INC
 	#define __CLUCK2SESAME_PLATFORM_LCD_WAITSTATE_INC
+	#include "Platform.inc"
 	#include "States.inc"
 	#include "Timer0.inc"
 
 	radix decimal
+
+	.module LCD
 
 	#define LCD_WAIT_PARAM_INITIAL_TICKS lcdStateParameter0
 	#define LCD_WAIT_PARAM_NUMBER_OF_TICKS lcdStateParameter1

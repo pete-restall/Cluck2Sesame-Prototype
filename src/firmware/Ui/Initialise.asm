@@ -1,4 +1,4 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "TailCalls.inc"
 	#include "InitialisationChain.inc"
 	#include "States.inc"
@@ -11,7 +11,7 @@ Ui code
 	global initialiseUi
 
 initialiseUi:
-	banksel uiState
+	.safelySetBankFor uiState
 	clrf uiState
 
 	tcall INITIALISE_AFTER_UI

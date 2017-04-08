@@ -1,10 +1,10 @@
 	#define __CLUCK2SESAME_PLATFORM_MOTOR_REGISTERS_ASM
 
-	#include "Mcu.inc"
+	#include "Platform.inc"
 
 	radix decimal
 
-	udata
+MotorRam udata
 	global motorFlags
 
 	global motorState

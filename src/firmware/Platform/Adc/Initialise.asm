@@ -1,4 +1,4 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "TailCalls.inc"
 	#include "InitialisationChain.inc"
 	#include "Adc.inc"
@@ -22,21 +22,21 @@ Adc code
 	global initialiseAdc
 
 initialiseAdc:
-	banksel enableAdcCount
+	.safelySetBankFor enableAdcCount
 	clrf enableAdcCount
 
-	banksel ADCON0
+	.setBankFor ADCON0
 	movlw ADCON0_MASK
 	movwf ADCON0
 
-	banksel ADCON1
+	.setBankFor ADCON1
 	movlw DIVIDE_BY_32
 	movwf ADCON1
 
-	banksel PIR1
+	.setBankFor PIR1
 	bcf PIR1, ADIF
 
-	banksel PIE1
+	.setBankFor PIE1
 	bsf PIE1, ADIE
 
 	tcall INITIALISE_AFTER_ADC

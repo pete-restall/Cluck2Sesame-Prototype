@@ -1,8 +1,8 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 
 	radix decimal
 
-	udata
+SunriseSunsetRam udata
 	global latitudeOffset
 	global longitudeOffset
 	global sunriseHourBcd

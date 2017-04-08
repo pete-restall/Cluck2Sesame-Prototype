@@ -1,12 +1,14 @@
 	#ifndef __CLUCK2SESAME_PLATFORM_SMPS_SMPS_INC
 	#define __CLUCK2SESAME_PLATFORM_SMPS_SMPS_INC
-	#include "Mcu.inc"
+	#include "Platform.inc"
 
 	radix decimal
 
+	.module SMPS
+
 	#ifndef __CLUCK2SESAME_PLATFORM_SMPS_ENABLEDISABLE_ASM
-	extern enableSmpsCount
-	extern smpsFlags
+	.externalVariable enableSmpsCount
+	.externalVariable smpsFlags
 	#endif
 
 SMPS_PORT equ PORTC

@@ -1,6 +1,6 @@
 	#define __CLUCK2SESAME_SUNRISESUNSET_INITIALISE_ASM
 
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "TailCalls.inc"
 	#include "InitialisationChain.inc"
 	#include "../SunriseSunset.inc"
@@ -14,7 +14,7 @@ SunriseSunset code
 	global initialiseSunriseSunset
 
 initialiseSunriseSunset:
-	banksel latitudeOffset
+	.safelySetBankFor sunriseSunsetState
 	clrf sunriseSunsetState
 	clrf latitudeOffset
 	clrf longitudeOffset

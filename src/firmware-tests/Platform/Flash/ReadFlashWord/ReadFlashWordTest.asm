@@ -1,4 +1,4 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "FarCalls.inc"
 	#include "Flash.inc"
 	#include "TestFixture.inc"

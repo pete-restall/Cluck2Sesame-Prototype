@@ -1,7 +1,10 @@
 	#ifndef __CLUCK2SESAME_SUNRISESUNSET_STATES_INC
 	#define __CLUCK2SESAME_SUNRISESUNSET_STATES_INC
+	#include "Platform.inc"
 
 	radix decimal
+
+	.module SUNRISESUNSET
 
 SUN_STATE_UNINITIALISED equ 0x00
 SUN_STATE_IDLE equ 0x01
@@ -39,24 +42,24 @@ SUN_STATE_LAST equ SUN_STATE_SUNSET_STOREASBCD
 	extern pollNextInChainAfterSunriseSunset
 	#endif
 
-	extern sunriseSunsetState
-	extern sunriseSunsetNextState
-	extern sunriseSunsetStoreState
+	.externalVariable sunriseSunsetState
+	.externalVariable sunriseSunsetNextState
+	.externalVariable sunriseSunsetStoreState
 
 setSunriseSunsetState macro state
-	banksel sunriseSunsetState
+	.setBankFor sunriseSunsetState
 	movlw state
 	movwf sunriseSunsetState
 	endm
 
 setSunriseSunsetNextState macro state
-	banksel sunriseSunsetNextState
+	.setBankFor sunriseSunsetNextState
 	movlw state
 	movwf sunriseSunsetNextState
 	endm
 
 setSunriseSunsetStoreState macro state
-	banksel sunriseSunsetStoreState
+	.setBankFor sunriseSunsetStoreState
 	movlw state
 	movwf sunriseSunsetStoreState
 	endm
@@ -65,6 +68,7 @@ defineSunriseSunsetStateInSameSection macro name
 	global sunriseSunsetState#v(name)
 
 sunriseSunsetState#v(name):
+	.knownBank sunriseSunsetState
 	endm
 
 defineSunriseSunsetState macro name

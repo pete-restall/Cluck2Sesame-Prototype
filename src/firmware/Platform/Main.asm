@@ -1,4 +1,4 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "FarCalls.inc"
 	#include "PowerOnReset.inc"
 	#include "BrownOutReset.inc"
@@ -14,7 +14,7 @@ Main code
 	global initialisationCompleted
 
 main:
-	banksel PCON
+	.safelySetBankFor PCON
 	btfss PCON, NOT_POR
 	goto powerOnReset
 	btfss PCON, NOT_BOR
@@ -37,7 +37,7 @@ pollingLoop:
 	goto pollingLoop
 
 initialisationCompleted:
-	banksel INTCON
+	.safelySetBankFor INTCON
 	movlw (1 << GIE) | (1 << PEIE)
 	iorwf INTCON
 

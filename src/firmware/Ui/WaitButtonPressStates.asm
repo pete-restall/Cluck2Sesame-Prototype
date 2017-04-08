@@ -1,4 +1,4 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "TailCalls.inc"
 	#include "Buttons.inc"
 	#include "States.inc"
@@ -14,19 +14,19 @@ Ui code
 		error "Optimisation assumptions made regarding buttonFlags values"
 		#endif
 
-		banksel buttonFlags
+		.setBankFor buttonFlags
 		movf buttonFlags
 		btfss STATUS, Z
 		returnFromUiState
 
-		banksel uiState
+		.setBankFor uiState
 		movlw UI_STATE_WAIT_BUTTONPRESS2
 		movwf uiState
 		returnFromUiState
 
 
 	defineUiStateInSameSection UI_STATE_WAIT_BUTTONPRESS2
-		banksel buttonFlags
+		.setBankFor buttonFlags
 		movf buttonFlags
 		btfsc STATUS, Z
 		goto endOfState
@@ -34,7 +34,7 @@ Ui code
 		bcf STATUS, C
 		rrf buttonFlags, W
 
-		banksel uiButtonEventBaseState
+		.setBankFor uiButtonEventBaseState
 		addwf uiButtonEventBaseState, W
 		movwf uiState
 
@@ -43,7 +43,7 @@ endOfState:
 
 
 setUiStateForButtonEvents:
-	banksel uiButtonEventBaseState
+	.safelySetBankFor uiButtonEventBaseState
 	movwf uiButtonEventBaseState
 	movlw UI_STATE_WAIT_BUTTONPRESS
 	movwf uiState

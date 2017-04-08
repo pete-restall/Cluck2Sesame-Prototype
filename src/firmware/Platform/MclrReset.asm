@@ -1,6 +1,6 @@
 	#define __CLUCK2SESAME_PLATFORM_MCLRRESET_ASM
 
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "TailCalls.inc"
 	#include "ResetFlags.inc"
 
@@ -12,11 +12,11 @@ MclrReset code
 	global initialiseAfterMclrReset
 
 initialiseAfterMclrReset:
-	banksel PCON
+	.safelySetBankFor PCON
 	movlw (1 << NOT_BOR) | (1 << NOT_POR)
 	movwf PCON
 
-	banksel resetFlags
+	.setBankFor resetFlags
 	clrf resetFlags
 
 	tcall initialiseAfterReset

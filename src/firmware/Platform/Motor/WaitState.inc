@@ -1,9 +1,12 @@
 	#ifndef __CLUCK2SESAME_PLATFORM_MOTOR_WAITSTATE_INC
 	#define __CLUCK2SESAME_PLATFORM_MOTOR_WAITSTATE_INC
+	#include "Platform.inc"
 	#include "States.inc"
 	#include "Timer0.inc"
 
 	radix decimal
+
+	.module MOTOR
 
 	#define MOTOR_WAIT_PARAM_INITIAL_TICKS motorStateParameter0
 	#define MOTOR_WAIT_PARAM_NUMBER_OF_TICKS motorStateParameter1

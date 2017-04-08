@@ -1,4 +1,4 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "TailCalls.inc"
 	#include "InitialisationChain.inc"
 	#include "ShiftRegister.inc"
@@ -17,21 +17,21 @@ ShiftRegister code
 	global initialiseShiftRegister
 
 initialiseShiftRegister:
-	banksel shiftRegisterBuffer
+	.safelySetBankFor shiftRegisterBuffer
 	clrf shiftRegisterBuffer
 
 setPortModes:
-	banksel ANSEL
+	.setBankFor ANSEL
 	movlw ~ANSEL_DIGITAL_MASK
 	andwf ANSEL
 
 clearDigitalOutputs:
-	banksel SHIFT_REGISTER_PORT
+	.setBankFor SHIFT_REGISTER_PORT
 	movlw ~(SHCP_PIN_MASK | STCP_PIN_MASK | DS_PIN_MASK)
 	andwf SHIFT_REGISTER_PORT
 
 setPortDirections:
-	banksel SHIFT_REGISTER_TRIS
+	.setBankFor SHIFT_REGISTER_TRIS
 	movlw ~(SHCP_PIN_TRIS_MASK | STCP_PIN_TRIS_MASK | DS_PIN_TRIS_MASK)
 	andwf SHIFT_REGISTER_TRIS
 

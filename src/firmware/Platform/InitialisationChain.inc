@@ -1,6 +1,8 @@
 	#ifndef __CLUCK2SESAME_PLATFORM_INITIALISATIONCHAIN_INC
 	#define __CLUCK2SESAME_PLATFORM_INITIALISATIONCHAIN_INC
 
+	radix decimal
+
 	#define INITIALISE_FIRST initialiseClock
 	#define INITIALISE_AFTER_CLOCK initialiseTimer0
 	#define INITIALISE_AFTER_TIMER0 initialisePowerManagement

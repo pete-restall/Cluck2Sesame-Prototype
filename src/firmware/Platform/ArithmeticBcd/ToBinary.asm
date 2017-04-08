@@ -1,4 +1,4 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "FarCalls.inc"
 	#include "GeneralPurposeRegisters.inc"
 	#include "Arithmetic4.inc"
@@ -9,8 +9,9 @@ ArithmeticBcd code
 	global bcdToBinary
 
 bcdToBinary:
+	.safelySetBankFor RAA
+
 multiplyMsdByTen:
-	banksel RAA
 	swapf RAA
 	movlw 10
 	movwf RBA

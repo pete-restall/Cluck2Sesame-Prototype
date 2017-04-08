@@ -1,4 +1,4 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "FarCalls.inc"
 	#include "Lcd.inc"
 	#include "../../../../firmware/Platform/Lcd/Isr.inc"

@@ -1,4 +1,4 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "GeneralPurposeRegisters.inc"
 
 	radix decimal
@@ -7,7 +7,7 @@ Arithmetic32 code
 	global div32x16
 
 div32x16:
-	banksel RBC
+	.safelySetBankFor RBC
 	movf RBC, W
 	iorwf RBD, W
 	btfsc STATUS, Z

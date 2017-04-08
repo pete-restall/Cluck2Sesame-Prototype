@@ -1,4 +1,4 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "TailCalls.inc"
 	#include "../Smps.inc"
 	#include "ShiftRegister.inc"
@@ -13,13 +13,13 @@ ShiftRegister code
 	global isShiftRegisterEnabled
 
 enableShiftRegister:
-	banksel SHIFT_REGISTER_PORT
+	.safelySetBankFor SHIFT_REGISTER_PORT
 	movlw ~ALL_SHIFT_REGISTER_PINS_MASK
 	andwf SHIFT_REGISTER_PORT
 	tcall enableSmps
 
 disableShiftRegister:
-	banksel SHIFT_REGISTER_PORT
+	.safelySetBankFor SHIFT_REGISTER_PORT
 	movlw ~ALL_SHIFT_REGISTER_PINS_MASK
 	andwf SHIFT_REGISTER_PORT
 	tcall disableSmps

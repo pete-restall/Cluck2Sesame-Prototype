@@ -1,7 +1,10 @@
 	#ifndef __CLUCK2SESAME_PLATFORM_LCD_STATES_INC
 	#define __CLUCK2SESAME_PLATFORM_LCD_STATES_INC
+	#include "Platform.inc"
 
 	radix decimal
+
+	.module LCD
 
 LCD_STATE_DISABLED equ 0x00
 LCD_STATE_IDLE equ 0x01
@@ -28,23 +31,23 @@ LCD_STATE_PUTSCREEN_NEXTLINE equ 0x15
 
 LCD_STATE_LAST equ LCD_STATE_PUTSCREEN_NEXTLINE
 
-	extern lcdState
-	extern lcdStateParameter0
-	extern lcdStateParameter1
-	extern lcdNextState
+	.externalVariable lcdState
+	.externalVariable lcdStateParameter0
+	.externalVariable lcdStateParameter1
+	.externalVariable lcdNextState
 
 	#ifndef __CLUCK2SESAME_PLATFORM_LCD_POLL_ASM
 	extern pollNextInChainAfterLcd
 	#endif
 
 setLcdState macro state
-	banksel lcdState
+	.setBankFor lcdState
 	movlw state
 	movwf lcdState
 	endm
 
 setLcdNextState macro state
-	banksel lcdNextState
+	.setBankFor lcdNextState
 	movlw state
 	movwf lcdNextState
 	endm
@@ -53,6 +56,7 @@ defineLcdStateInSameSection macro name
 	global lcdState#v(name)
 
 lcdState#v(name):
+	.knownBank lcdState
 	endm
 
 defineLcdState macro name

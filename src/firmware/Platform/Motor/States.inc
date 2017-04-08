@@ -1,7 +1,10 @@
 	#ifndef __CLUCK2SESAME_PLATFORM_MOTOR_STATES_INC
 	#define __CLUCK2SESAME_PLATFORM_MOTOR_STATES_INC
+	#include "Platform.inc"
 
 	radix decimal
+
+	.module MOTOR
 
 MOTOR_STATE_DISABLED equ 0x00
 MOTOR_STATE_IDLE equ 0x01
@@ -16,12 +19,12 @@ MOTOR_STATE_REVERSE2 equ 0x08
 MOTOR_STATE_LAST equ MOTOR_STATE_REVERSE2
 
 	#ifndef __CLUCK2SESAME_PLATFORM_MOTOR_REGISTERS_ASM
-	extern motorState
-	extern motorNextState
-	extern motorStateParameter0
-	extern motorStateParameter1
-	extern motorStateAfterStarted
-	extern motorStateAfterStopped
+	.externalVariable motorState
+	.externalVariable motorNextState
+	.externalVariable motorStateParameter0
+	.externalVariable motorStateParameter1
+	.externalVariable motorStateAfterStarted
+	.externalVariable motorStateAfterStopped
 	#endif
 
 	#ifndef __CLUCK2SESAME_PLATFORM_MOTOR_POLL_ASM
@@ -29,13 +32,13 @@ MOTOR_STATE_LAST equ MOTOR_STATE_REVERSE2
 	#endif
 
 setMotorState macro state
-	banksel motorState
+	.setBankFor motorState
 	movlw state
 	movwf motorState
 	endm
 
 setMotorNextState macro state
-	banksel motorNextState
+	.setBankFor motorNextState
 	movlw state
 	movwf motorNextState
 	endm
@@ -44,6 +47,7 @@ defineMotorStateInSameSection macro name
 	global motorState#v(name)
 
 motorState#v(name):
+	.knownBank motorState
 	endm
 
 defineMotorState macro name

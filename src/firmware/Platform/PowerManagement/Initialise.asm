@@ -1,6 +1,6 @@
 	#define __CLUCK2SESAME_PLATFORM_POWERMANAGEMENT_INITIALISE_ASM
 
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "TailCalls.inc"
 	#include "InitialisationChain.inc"
 
@@ -8,7 +8,7 @@
 
 	extern INITIALISE_AFTER_POWERMANAGEMENT
 
-	udata
+PowerManagementRam udata
 	global powerManagementFlags
 	global fastClockCount
 
@@ -19,7 +19,7 @@ PowerManagement code
 	global initialisePowerManagement
 
 initialisePowerManagement:
-	banksel powerManagementFlags
+	.safelySetBankFor powerManagementFlags
 	clrf powerManagementFlags
 
 	movlw 1

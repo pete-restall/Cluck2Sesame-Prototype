@@ -1,4 +1,4 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "FarCalls.inc"
 	#include "SunriseSunset.inc"
 	#include "States.inc"
@@ -24,7 +24,7 @@ storeReferenceDeltaMinutesFromEntry:
 
 	defineSunriseSunsetStateInSameSection SUN_STATE_LOADLOOKUPS2
 incrementIndexToNextEntryInLookupTable:
-		banksel lookupIndexHigh
+		.setBankFor lookupIndexHigh
 		incf lookupIndexHigh
 		incfsz lookupIndexLow
 		decf lookupIndexHigh
@@ -58,7 +58,8 @@ nextState:
 
 
 mergeLookupEntryReferenceMinute:
-	banksel lookupEntry
+	.knownBank sunriseSunsetState
+	.setBankFor lookupEntryReferenceMinuteLow
 	rlf lookupEntryReferenceMinuteLow ; C is undefined - doesn't matter
 	rlf lookupEntryReferenceMinuteLow ; C is now 0 as only 6 lower bits are set
 	rrf lookupEntryReferenceMinuteHigh

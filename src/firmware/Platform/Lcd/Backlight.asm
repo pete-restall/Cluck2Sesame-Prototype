@@ -1,4 +1,4 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "Lcd.inc"
 	#include "ShiftRegister.inc"
 
@@ -9,12 +9,12 @@ Lcd code
 	global clearLcdBacklightFlag
 
 setLcdBacklightFlag:
-	banksel shiftRegisterBuffer
+	.safelySetBankFor shiftRegisterBuffer
 	bsf shiftRegisterBuffer, LCD_BACKLIGHT_EN_BIT
 	return
 
 clearLcdBacklightFlag:
-	banksel shiftRegisterBuffer
+	.safelySetBankFor shiftRegisterBuffer
 	bcf shiftRegisterBuffer, LCD_BACKLIGHT_EN_BIT
 	return
 

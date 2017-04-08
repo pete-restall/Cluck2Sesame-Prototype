@@ -1,13 +1,13 @@
 	#define __CLUCK2SESAME_SUNRISESUNSET_REGISTERLOADANDANDSTORE_ASM
 
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "Arithmetic32.inc"
 	#include "SunriseSunset.inc"
 
 	radix decimal
 
-	extern dayOfYearHigh
-	extern dayOfYearLow
+	.externalVariableIn CLOCK, dayOfYearHigh
+	.externalVariableIn CLOCK, dayOfYearLow
 
 SunriseSunset code
 	global loadAccumulatorIntoA
@@ -29,43 +29,47 @@ SunriseSunset code
 	global storeLookupReferenceDeltaMinutesFromA
 
 loadAccumulatorIntoA:
+	.unknownBank
 	setupIndf accumulator
 
 loadIntoA:
+	.unknownBank
 	loadFromIndf32Into RAA
 	return
 
 loadAccumulatorIntoB:
+	.unknownBank
 	setupIndf accumulator
 
 loadIntoB:
+	.unknownBank
 	loadFromIndf32Into RBA
 	return
 
 loadDayOfYearIntoA:
-	banksel dayOfYearHigh
+	.safelySetBankFor dayOfYearHigh
 	movf dayOfYearHigh, W
-	banksel RAA
+	.setBankFor RAA
 	clrf RAA
 	clrf RAB
 	movwf RAC
-	banksel dayOfYearLow
+	.setBankFor dayOfYearLow
 	movf dayOfYearLow, W
-	banksel RAD
+	.setBankFor RAD
 	movwf RAD
 	return
 
 loadFirstLookupReferenceMinuteIntoB:
 loadLookupReferenceMinuteIntoB:
-	banksel lookupReferenceMinuteHigh
+	.safelySetBankFor lookupReferenceMinuteHigh
 	movf lookupReferenceMinuteHigh, W
-	banksel RBC
+	.setBankFor RBC
 	movwf RBC
-	banksel lookupReferenceMinuteLow
+	.setBankFor lookupReferenceMinuteLow
 	movf lookupReferenceMinuteLow, W
 
 loadWIntoRBDAndSignExtendUpperWord:
-	banksel RBD
+	.safelySetBankFor RBD
 	movwf RBD
 	movlw 0x00
 	btfsc RBC, 7
@@ -75,11 +79,11 @@ loadWIntoRBDAndSignExtendUpperWord:
 	return
 
 loadFirstLookupDeltaMinutesNorthIntoB:
-	banksel lookupReferenceDeltaMinutesNorth
+	.safelySetBankFor lookupReferenceDeltaMinutesNorth
 	movf lookupReferenceDeltaMinutesNorth, W
 
 loadWIntoB:
-	banksel RBD
+	.safelySetBankFor RBD
 	movwf RBD
 	rlf RBD, W
 	clrw
@@ -91,29 +95,29 @@ loadWIntoB:
 	return
 
 loadFirstLookupDeltaMinutesSouthIntoB:
-	banksel lookupReferenceDeltaMinutesSouth
+	.safelySetBankFor lookupReferenceDeltaMinutesSouth
 	movf lookupReferenceDeltaMinutesSouth, W
 	goto loadWIntoB
 
 loadSecondLookupReferenceMinuteIntoA:
-	banksel lookupEntry
+	.safelySetBankFor lookupEntry
 	movf lookupEntryReferenceMinuteHigh, W
-	banksel RAA
+	.setBankFor RAA
 	clrf RAA
 	clrf RAB
 	movwf RAC
-	banksel lookupEntry
+	.setBankFor lookupEntry
 	movf lookupEntryReferenceMinuteLow, W
-	banksel RAD
+	.setBankFor RAD
 	movwf RAD
 	return
 
 loadSecondLookupDeltaMinutesNorthIntoA:
-	banksel lookupEntryReferenceDeltaMinutesNorth
+	.safelySetBankFor lookupEntryReferenceDeltaMinutesNorth
 	movf lookupEntryReferenceDeltaMinutesNorth, W
 
 loadWIntoA:
-	banksel RAD
+	.safelySetBankFor RAD
 	movwf RAD
 	rlf RAD, W
 	clrw
@@ -125,67 +129,70 @@ loadWIntoA:
 	return
 
 loadSecondLookupDeltaMinutesSouthIntoA:
-	banksel lookupEntryReferenceDeltaMinutesSouth
+	.safelySetBankFor lookupEntryReferenceDeltaMinutesSouth
 	movf lookupEntryReferenceDeltaMinutesSouth, W
 	goto loadWIntoA
 
 loadLookupIndexRemainderIntoUpperB:
-	banksel lookupIndexRemainderHigh
+	.safelySetBankFor lookupIndexRemainderHigh
 	movf lookupIndexRemainderHigh, W
-	banksel RBA
+	.setBankFor RBA
 	movwf RBA
-	banksel lookupIndexRemainderLow
+	.setBankFor lookupIndexRemainderLow
 	movf lookupIndexRemainderLow, W
-	banksel RBB
+	.setBankFor RBB
 	movwf RBB
 	return
 
 loadLookupStepIntoLowerB:
-	banksel RBC
+	.safelySetBankFor RBC
 	clrf RBC
 	movlw LOOKUP_STEP
 	movwf RBD
 	return
 
 loadLookupReferenceDeltaMinutesIntoB:
-	banksel lookupReferenceDeltaMinutesHigh
+	.safelySetBankFor lookupReferenceDeltaMinutesHigh
 	movf lookupReferenceDeltaMinutesHigh, W
-	banksel RBC
+	.setBankFor RBC
 	movwf RBC
-	banksel lookupReferenceDeltaMinutesLow
+	.setBankFor lookupReferenceDeltaMinutesLow
 	movf lookupReferenceDeltaMinutesLow, W
 	goto loadWIntoRBDAndSignExtendUpperWord
 
 loadLookupReferenceDeltaMinutesIntoUpperB:
-	banksel lookupReferenceDeltaMinutesHigh
+	.safelySetBankFor lookupReferenceDeltaMinutesHigh
 	movf lookupReferenceDeltaMinutesHigh, W
-	banksel RBA
+	.setBankFor RBA
 	movwf RBA
-	banksel lookupReferenceDeltaMinutesLow
+	.setBankFor lookupReferenceDeltaMinutesLow
 	movf lookupReferenceDeltaMinutesLow, W
-	banksel RBB
+	.setBankFor RBB
 	movwf RBB
 	return
 
 storeAccumulatorFromA:
+	.unknownBank
 	setupIndf accumulator
 
 storeFromA:
+	.unknownBank
 	storeIntoIndf32From RAA
 	return
 
 storeLookupIndexFromA:
+	.unknownBank
 	setupIndf lookupIndexRemainder
 	goto storeFromA
 
 storeLookupReferenceDeltaMinutesFromA:
-	banksel RAC
+	.safelySetBankFor RAC
 	movf RAC, W
-	banksel lookupReferenceDeltaMinutesHigh
+	.setBankFor lookupReferenceDeltaMinutesHigh
 	movwf lookupReferenceDeltaMinutesHigh
-	banksel RAD
+	.setBankFor RAD
 	movf RAD, W
-	banksel lookupReferenceDeltaMinutesLow
+	.setBankFor lookupReferenceDeltaMinutesLow
 	movwf lookupReferenceDeltaMinutesLow
 	return
 

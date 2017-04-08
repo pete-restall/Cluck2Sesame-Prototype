@@ -1,4 +1,4 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "FarCalls.inc"
 	#include "Arithmetic32.inc"
 	#include "SunriseSunset.inc"
@@ -9,9 +9,9 @@
 	defineSunriseSunsetState SUN_STATE_INTERPOLATE_LONGITUDE
 loadLongitudeOffsetMultipliedByFourIntoDividend:
 		bcf STATUS, C
-		banksel longitudeOffset
+		.setBankFor longitudeOffset
 		rlf longitudeOffset, W
-		banksel RAD
+		.setBankFor RAD
 		movwf RAD
 		btfss STATUS, C
 		goto positiveLongitudeOffset
@@ -42,7 +42,7 @@ divideAndStoreQuotientAndRemainder:
 
 	defineSunriseSunsetStateInSameSection SUN_STATE_INTERPOLATE_LONGITUDE2
 roundUpIfRemainderIsAtLeastFive:
-		banksel lookupIndexRemainderLow
+		.setBankFor lookupIndexRemainderLow
 		movf lookupIndexRemainderLow, W
 		sublw 4
 		movf lookupIndexLow, W
@@ -50,7 +50,7 @@ roundUpIfRemainderIsAtLeastFive:
 		incf lookupIndexLow, W
 
 loadOffsetNumberOfMinutesIntoB:
-		banksel RBA
+		.setBankFor RBA
 		clrf RBA
 		clrf RBB
 		clrf RBC
@@ -58,7 +58,7 @@ loadOffsetNumberOfMinutesIntoB:
 
 loadNonOffsetNumberOfMinutesIntoA:
 		call loadAccumulatorIntoA
-		banksel longitudeOffset
+		.setBankFor longitudeOffset
 
 offsetMinutesAreNegativeIfLongitudeOffsetIsPositive:
 		btfsc longitudeOffset, 7

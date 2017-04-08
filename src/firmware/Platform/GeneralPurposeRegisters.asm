@@ -1,8 +1,8 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 
 	radix decimal
 
-GeneralPurposeRegisters udata
+GeneralPurposeRegistersRam udata
 	global RA
 	global RAA
 	global RAB

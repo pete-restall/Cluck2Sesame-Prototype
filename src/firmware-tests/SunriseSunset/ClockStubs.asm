@@ -2,7 +2,7 @@
 
 	radix decimal
 
-	udata
+ClockRam udata
 	global clockFlags
 	global clockYearBcd
 	global clockMonthBcd

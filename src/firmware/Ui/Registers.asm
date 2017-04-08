@@ -1,8 +1,8 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 
 	radix decimal
 
-	udata
+UiRam udata
 	global uiState
 	global uiNextState
 

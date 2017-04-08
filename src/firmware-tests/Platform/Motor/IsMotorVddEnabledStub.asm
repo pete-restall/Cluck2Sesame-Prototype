@@ -1,9 +1,9 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "TestDoubles.inc"
 
 	radix decimal
 
-	udata
+MotorRam udata
 returnValue res 1
 
 IsMotorVddEnabledStub code

@@ -1,4 +1,4 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "FarCalls.inc"
 	#include "Lcd.inc"
 	#include "Buttons.inc"
@@ -10,17 +10,19 @@ ARROW_CHARACTER equ 0x7e
 	radix decimal
 
 	defineUiState UI_STATE_OPTION_CHANGED
-		banksel uiOptionCounter
+		.setBankFor uiOptionCounter
 		movlw 3
 		movwf uiOptionCounter
 
 	defineUiStateInSameSection UI_STATE_OPTION_CHANGED2
+		.unknownBank
 		fcall isLcdIdle
 		xorlw 0
 		btfsc STATUS, Z
 		returnFromUiState
 
 		call loadCurrentPositionIntoFsr
+		.knownBank uiOptionCounter
 
 		movlw UI_STATE_OPTION_CHANGED3
 		movwf uiState
@@ -37,6 +39,7 @@ ARROW_CHARACTER equ 0x7e
 		returnFromUiState
 
 		call loadCurrentPositionIntoFsr
+		.knownBank uiOptionCounter
 		movlw UI_STATE_WAIT_BUTTONPRESS
 		decfsz uiOptionCounter
 		movlw UI_STATE_OPTION_CHANGED2
@@ -54,6 +57,7 @@ putArrowIfAtSelectedPositionElsePutSpace:
 
 
 loadCurrentPositionIntoFsr:
+		.safelySetBankFor uiOption1Position
 		bankisel uiOption1Position
 		movlw uiOption1Position - 1
 		addwf uiOptionCounter, W

@@ -1,4 +1,4 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "FarCalls.inc"
 	#include "Lcd.inc"
 	#include "States.inc"
@@ -9,7 +9,6 @@
 NUMBER_OF_TICKS_4_1_MS_PLUS_MARGIN equ 36
 
 	defineLcdState LCD_STATE_ENABLE_TRYSETBYTEMODE1
-
 		movlw b'00000011'
 		call writeRegisterNibble
 

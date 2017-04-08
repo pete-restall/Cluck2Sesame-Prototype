@@ -1,7 +1,12 @@
 	#ifndef __CLUCK2SESAME_PLATFORM_SHIFTREGISTER_INC
 	#define __CLUCK2SESAME_PLATFORM_SHIFTREGISTER_INC
+	#include "Modules.inc"
 
-	extern shiftRegisterBuffer
+	radix decimal
+
+	.module SHIFTREGISTER
+
+	.externalVariable shiftRegisterBuffer
 
 	extern initialiseShiftRegister
 	extern enableShiftRegister

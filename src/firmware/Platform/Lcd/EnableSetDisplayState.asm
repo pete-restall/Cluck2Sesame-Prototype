@@ -1,4 +1,4 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "FarCalls.inc"
 	#include "Lcd.inc"
 	#include "States.inc"
@@ -8,7 +8,6 @@ LCD_CMD_SETDISPLAY_MASK equ LCD_CMD_SETDISPLAY | LCD_CMD_SETDISPLAY_TWOLINES | L
 	radix decimal
 
 	defineLcdState LCD_STATE_ENABLE_SETDISPLAY
-
 		movlw LCD_CMD_SETDISPLAY_MASK
 		call writeRegister
 

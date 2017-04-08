@@ -1,4 +1,4 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "GeneralPurposeRegisters.inc"
 
 	radix decimal
@@ -12,7 +12,7 @@ negate32 macro reg
 	local adjustCarryAndZeroFlags
 
 twosComplement:
-	banksel reg
+	.safelySetBankFor reg
 	comf reg + 0
 	comf reg + 1
 	comf reg + 2

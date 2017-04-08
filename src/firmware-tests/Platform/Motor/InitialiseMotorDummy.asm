@@ -1,8 +1,8 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 
 	radix decimal
 
-	udata
+MotorRam udata
 	global motorFlags
 
 motorFlags res 1

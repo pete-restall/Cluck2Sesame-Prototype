@@ -1,4 +1,4 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "Motor.inc"
 	#include "States.inc"
 
@@ -10,7 +10,7 @@ Motor code
 	global stopMotor
 
 stopMotor:
-	banksel motorStateAfterStopped
+	.safelySetBankFor motorStateAfterStopped
 	movlw MOTOR_STATE_STOPPED
 	movwf motorStateAfterStopped
 
@@ -21,11 +21,11 @@ stopMotor:
 	defineMotorStateInSameSection MOTOR_STATE_STOPPED
 		; TODO: RELEASE THE ADC CHANNEL...
 
-		banksel PSTRCON
+		.setBankFor PSTRCON
 		movlw ~MOTOR_PSTRCON_OUTPUT_MASK
 		andwf PSTRCON
 
-		banksel MOTOR_PORT
+		.setBankFor MOTOR_PORT
 		movlw ~(MOTOR_PWMA_PIN_MASK | MOTOR_PWMB_PIN_MASK)
 		andwf MOTOR_PORT
 

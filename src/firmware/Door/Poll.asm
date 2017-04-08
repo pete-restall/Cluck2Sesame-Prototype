@@ -1,4 +1,4 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "TailCalls.inc"
 	#include "PollChain.inc"
 
@@ -10,6 +10,7 @@ Door code
 	global pollDoor
 
 pollDoor:
+	.unknownBank
 	tcall POLL_AFTER_DOOR
 
 	end

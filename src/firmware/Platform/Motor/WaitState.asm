@@ -1,4 +1,4 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "Timer0.inc"
 	#include "States.inc"
 	#include "WaitState.inc"
@@ -6,10 +6,9 @@
 	radix decimal
 
 	defineMotorState MOTOR_STATE_WAIT
-
 checkIfExpectedNumberOfTicksHasElapsed:
 		elapsedSinceTimer0 MOTOR_WAIT_PARAM_INITIAL_TICKS
-		banksel MOTOR_WAIT_PARAM_NUMBER_OF_TICKS
+		.setBankFor MOTOR_WAIT_PARAM_NUMBER_OF_TICKS
 		subwf MOTOR_WAIT_PARAM_NUMBER_OF_TICKS, W
 
 		btfss STATUS, C

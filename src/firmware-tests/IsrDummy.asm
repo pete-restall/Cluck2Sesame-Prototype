@@ -2,7 +2,7 @@
 
 	radix decimal
 
-	udata_shr
+IsrRam udata_shr
 contextSavingW res 1
 contextSavingStatus res 1
 contextSavingPclath res 1

@@ -1,4 +1,4 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "TailCalls.inc"
 	#include "PollChain.inc"
 
@@ -12,6 +12,7 @@ Smps code
 
 pollForWork:
 pollSmps:
+	.unknownBank
 	tcall POLL_AFTER_SMPS
 
 	end

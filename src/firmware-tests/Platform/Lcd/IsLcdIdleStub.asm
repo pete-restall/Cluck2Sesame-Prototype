@@ -1,8 +1,8 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 
 	radix decimal
 
-	udata
+LcdRam udata
 returnValue res 1
 
 IsLcdIdleStub code

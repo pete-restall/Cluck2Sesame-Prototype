@@ -1,4 +1,4 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "FarCalls.inc"
 	#include "Arithmetic16.inc"
 	#include "Arithmetic32.inc"
@@ -11,7 +11,7 @@ SunriseSunset code
 ; TODO: MOVE THIS INTO Arithmetic16 AND COMPREHENSIVELY TEST IT...
 muls16x16:
 twosComplementOnAccumulatorForNegativeArgument:
-	banksel RBA
+	.safelySetBankFor RBA
 	movf RBA, W
 	xorwf RBC, W
 

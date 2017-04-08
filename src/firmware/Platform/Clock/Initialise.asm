@@ -1,6 +1,6 @@
 	#define __CLUCK2SESAME_PLATFORM_CLOCK_ASM
 
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "TailCalls.inc"
 	#include "InitialisationChain.inc"
 	#include "ResetFlags.inc"
@@ -22,14 +22,14 @@ Clock code
 
 initialiseAfterReset:
 initialiseClock:
-	banksel clockFlags
+	.safelySetBankFor clockFlags
 	clrf clockFlags
 
-	banksel T1CON
+	.setBankFor T1CON
 	movlw TMR1CS_MASK | T1OSCEN_MASK | T1CKPS_DIVIDE_BY_8_MASK | T1SYNC_ASYNC_MASK | TMR1ON_MASK
 	movwf T1CON
 
-	banksel PIE1
+	.setBankFor PIE1
 	bsf PIE1, TMR1IE
 
 	fcall isLastResetDueToBrownOut
@@ -38,7 +38,7 @@ initialiseClock:
 	goto returnFromClockInitialisation
 
 clearDateAndTimeAfterNonBrownOutReset:
-	banksel clockYearBcd
+	.setBankFor clockYearBcd
 	movlw 1
 	clrf clockYearBcd
 	movwf clockMonthBcd

@@ -1,6 +1,6 @@
 	#define __CLUCK2SESAME_PLATFORM_CLOCK_ASM
 
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "FarCalls.inc"
 	#include "TailCalls.inc"
 	#include "ArithmeticBcd.inc"
@@ -45,14 +45,14 @@ incrementAndThenReturnIfNotOverflowed macro dateTimePartBcd
 	endm
 
 pollClock:
-	banksel clockFlags
+	.safelySetBankFor clockFlags
 	btfss clockFlags, CLOCK_FLAG_TICKED
 	goto pollNext
 
 	bcf clockFlags, CLOCK_FLAG_TICKED
 
 addSecondsSinceLastTimerOverflow:
-	banksel increment
+	.setBankFor increment
 	bankisel clockSecondBcd
 	setIncrement SECONDS_PER_TIMER_OVERFLOW_BCD
 	setModulus 0x60
@@ -67,7 +67,7 @@ overflowedIntoNextHour:
 	incrementAndThenReturnIfNotOverflowed clockHourBcd
 
 overflowedIntoNextDay:
-	banksel dayOfYearLow
+	.setBankFor dayOfYearLow
 	incf dayOfYearLow
 	btfsc STATUS, Z
 	incf dayOfYearHigh
@@ -80,7 +80,7 @@ overflowedIntoNextDay:
 lookupFebruaryNumberOfDaysInMonthBcd:
 checkIfYearIsDivisibleByFour:
 	movf clockYearBcd, W
-	banksel RAA
+	.setBankFor RAA
 	movwf RAA
 	fcall bcdToBinary
 	andlw b'00000011'
@@ -97,34 +97,34 @@ restoreRbbThatWasTrashedByBcdToBinaryCallThenResumeIncrementing:
 
 lookupNonFebruaryNumberOfDaysInMonthBcd:
 	movf clockMonthBcd, W
-	banksel RBB
+	.setBankFor RBB
 	movwf RBB
-	fcall lookupNumberOfDaysInMonthBcd
+	call lookupNumberOfDaysInMonthBcd
 
 setModulusToDaysInMonthOffsetByOneAndIncrementDay:
-	banksel modulus
+	.setBankFor modulus
 	movwf modulus
 	incf modulus
 	incrementAndThenReturnIfNotOverflowed clockDayBcd
 
 overflowedIntoNextMonth:
-	banksel clockDayBcd
+	.setBankFor clockDayBcd
 	clrf clockDayBcd
 	incf clockDayBcd
 
-	banksel modulus
+	.setBankFor modulus
 	setModulus TWELVE_MONTHS_MODULUS
 	incrementAndThenReturnIfNotOverflowed clockMonthBcd
 
 overflowedIntoNextYear:
-	banksel dayOfYearHigh
+	.setBankFor dayOfYearHigh
 	clrf dayOfYearHigh
 	clrf dayOfYearLow
 
 	clrf clockMonthBcd
 	incf clockMonthBcd
 
-	banksel modulus
+	.setBankFor modulus
 	setModulus YEAR99_MODULUS
 	incrementAndThenReturnIfNotOverflowed clockYearBcd
 

@@ -1,4 +1,4 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "Motor.inc"
 	#include "States.inc"
 	#include "WaitState.inc"
@@ -9,7 +9,7 @@ DUTY_CYCLE_INCREMENT equ 6
 
 	defineMotorState MOTOR_STATE_SOFTSTART
 increaseDutyCycle:
-		banksel CCPR1L
+		.setBankFor CCPR1L
 		movlw DUTY_CYCLE_INCREMENT
 		addwf CCPR1L, W
 		btfsc STATUS, C

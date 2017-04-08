@@ -1,4 +1,4 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "FarCalls.inc"
 	#include "Flash.inc"
 	#include "Lcd.inc"
@@ -23,6 +23,7 @@ AUTO_CURSOR_POSITION equ LCD_SECOND_LINE | 10
 
 		setButtonPressEventStates UI_STATE_SETTINGS_BACKLIGHTINTHEDARK_LEFT, UI_STATE_SETTINGS_BACKLIGHTINTHEDARK_RIGHT, UI_STATE_SETTINGS_BACKLIGHTINTHEDARK_ENTER
 
+		.setBankFor uiOption1Position
 		movlw ON_CURSOR_POSITION
 		movwf uiOption1Position
 

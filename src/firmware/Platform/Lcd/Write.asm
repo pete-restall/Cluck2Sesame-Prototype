@@ -1,6 +1,6 @@
 	#define __CLUCK2SESAME_PLATFORM_LCD_WRITE_ASM
 
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "FarCalls.inc"
 	#include "TailCalls.inc"
 	#include "../ShiftRegister.inc"
@@ -17,17 +17,17 @@ Lcd code
 	global writeRegisterFromWWithIdleNextState
 
 writeRegisterNibble:
-	banksel lcdFlags
+	.safelySetBankFor lcdFlags
 	bcf lcdFlags, LCD_FLAG_RS
 	goto writeNibble
 
 writeRegister:
-	banksel lcdFlags
+	.safelySetBankFor lcdFlags
 	bcf lcdFlags, LCD_FLAG_RS
 	goto writeHighNibbleOfByte
 
 writeCharacter:
-	banksel lcdFlags
+	.safelySetBankFor lcdFlags
 	bsf lcdFlags, LCD_FLAG_RS
 
 writeHighNibbleOfByte:
@@ -36,11 +36,11 @@ writeHighNibbleOfByte:
 	call writeNibble
 
 writeLowNibbleOfByte:
-	banksel lcdWorkingRegister
+	.safelySetBankFor lcdWorkingRegister
 	movf lcdWorkingRegister, W
 
 writeNibble:
-	banksel shiftRegisterBuffer
+	.safelySetBankFor shiftRegisterBuffer
 	andlw b'00001111'
 
 preserveNonLcdDataBitsInShiftRegisterBuffer:
@@ -57,22 +57,22 @@ moveLcdDataBitsIntoPlaceInShiftRegisterBuffer:
 	andwf shiftRegisterBuffer, W
 
 selectRegisterOrCharacterWrite:
-	banksel lcdFlags
+	.setBankFor lcdFlags
 	btfsc lcdFlags, LCD_FLAG_RS
 	iorlw 1 << LCD_RS_BIT
 
 shiftNibble:
-	banksel shiftRegisterBuffer
+	.setBankFor shiftRegisterBuffer
 	movwf shiftRegisterBuffer
 	fcall shiftOut
 
 setEnableBit:
-	banksel shiftRegisterBuffer
+	.setBankFor shiftRegisterBuffer
 	bsf shiftRegisterBuffer, LCD_EN_BIT
 	fcall shiftOut
 
 resetEnableBit:
-	banksel shiftRegisterBuffer
+	.setBankFor shiftRegisterBuffer
 	bcf shiftRegisterBuffer, LCD_EN_BIT
 	fcall shiftOut
 	return
@@ -86,7 +86,7 @@ writeRegisterFromWWithIdleNextState:
 	bsf STATUS, C
 
 ensureWriteOnlyWhenIdle:
-	banksel lcdWorkingRegister
+	.safelySetBankFor lcdWorkingRegister
 	movwf lcdWorkingRegister
 	movlw LCD_STATE_IDLE
 	xorwf lcdState, W
@@ -106,7 +106,7 @@ storeCommandAsParameterForState:
 
 
 	defineLcdStateInSameSection LCD_STATE_WRITE_REGISTER
-		banksel lcdNextState
+		.setBankFor lcdNextState
 		movf lcdNextState, W
 		movwf lcdState
 		movf lcdStateParameter0, W
@@ -115,7 +115,7 @@ storeCommandAsParameterForState:
 
 
 	defineLcdStateInSameSection LCD_STATE_WRITE_CHARACTER
-		banksel lcdNextState
+		.setBankFor lcdNextState
 		movf lcdNextState, W
 		movwf lcdState
 		movf lcdStateParameter0, W

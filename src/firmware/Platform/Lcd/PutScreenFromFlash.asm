@@ -1,4 +1,4 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "FarCalls.inc"
 	#include "Flash.inc"
 	#include "Lcd.inc"
@@ -21,14 +21,14 @@ putScreenFromFlash:
 	retlw 0
 
 storeFlashPointerAndNumberOfCharactersRemaining:
-	banksel EEADR
+	.setBankFor EEADR
 	movf EEADR, W
-	banksel flashPointerLsb
+	.setBankFor flashPointerLsb
 	movwf flashPointerLsb
 
-	banksel EEADRH
+	.setBankFor EEADRH
 	movf EEADRH, W
-	banksel flashPointerMsb
+	.setBankFor flashPointerMsb
 	movwf flashPointerMsb
 
 	movlw LCD_SCREEN_SIZE
@@ -41,22 +41,21 @@ setNextStateAndReturn:
 
 
 	defineLcdStateInSameSection LCD_STATE_PUTSCREEN_READFLASH
-
-		banksel flashPointerMsb
+		.setBankFor flashPointerMsb
 		movf flashPointerMsb, W
-		banksel EEADRH
+		.setBankFor EEADRH
 		movwf EEADRH
 
-		banksel flashPointerLsb
+		.setBankFor flashPointerLsb
 		movf flashPointerLsb, W
-		banksel EEADR
+		.setBankFor EEADR
 		movwf EEADR
 
 		fcall readFlashWordAsPairOfSevenBitBytes
 		storeFlashBytesInto characters
 
 incrementFlashPointer:
-		banksel flashPointerLsb
+		.setBankFor flashPointerLsb
 		incf flashPointerLsb
 		btfsc STATUS, Z
 		incf flashPointerMsb
@@ -66,15 +65,14 @@ incrementFlashPointer:
 
 
 	defineLcdStateInSameSection LCD_STATE_PUTSCREEN_PUTCHAR
-
-		banksel characters
+		.setBankFor characters
 		movf (characters + 0), W
 		btfsc numberOfCharactersRemaining, 0
 		movf (characters + 1), W
 
 		call writeCharacter
 
-		banksel numberOfCharactersRemaining
+		.setBankFor numberOfCharactersRemaining
 		decf numberOfCharactersRemaining
 		btfsc numberOfCharactersRemaining, 0
 		goto returnFromPutchar
@@ -103,7 +101,6 @@ returnFromPutchar:
 
 
 	defineLcdStateInSameSection LCD_STATE_PUTSCREEN_NEXTLINE
-
 		movlw LCD_CMD_SETDDRAMADDRESS_LINE2
 		call writeRegister
 		setLcdState LCD_STATE_PUTSCREEN_READFLASH

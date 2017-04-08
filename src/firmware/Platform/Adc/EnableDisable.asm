@@ -1,10 +1,10 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "FarCalls.inc"
 	#include "PowerManagement.inc"
 
 	radix decimal
 
-	udata
+AdcRam udata
 	global enableAdcCount
 
 enableAdcCount res 1
@@ -16,7 +16,7 @@ Adc code
 enableAdc:
 	fcall ensureFastClock
 
-	banksel enableAdcCount
+	.safelySetBankFor enableAdcCount
 	incf enableAdcCount, W
 	incf enableAdcCount
 	sublw 1
@@ -24,7 +24,7 @@ enableAdc:
 	return
 
 enableAdcOnlyOnTheFirstCall:
-	banksel ADCON0
+	.setBankFor ADCON0
 	bsf ADCON0, ADON
 	bsf ADCON0, GO
 	return
@@ -32,11 +32,11 @@ enableAdcOnlyOnTheFirstCall:
 disableAdc:
 	fcall allowSlowClock
 
-	banksel enableAdcCount
+	.safelySetBankFor enableAdcCount
 	decfsz enableAdcCount
 	return
 
-	banksel ADCON0
+	.setBankFor ADCON0
 	bcf ADCON0, ADON
 	return
 

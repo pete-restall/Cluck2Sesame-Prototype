@@ -2,6 +2,8 @@
 	#define __CLUCK2SESAME_PLATFORM_MCU_INC
 	#include "p16f685.inc"
 
+	radix decimal
+
 	#define MCU_FASTCLOCKFREQUENCYHZ 4000000
 
 	errorlevel -305

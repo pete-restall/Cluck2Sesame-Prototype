@@ -1,11 +1,11 @@
 	#define __CLUCK2SESAME_PLATFORM_SMPS_ENABLEDISABLE_ASM
 
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "Smps.inc"
 
 	radix decimal
 
-	udata
+SmpsRam udata
 	global enableSmpsCount
 	global smpsFlags
 
@@ -18,22 +18,22 @@ Smps code
 	global isSmpsEnabled
 
 enableSmps:
-	banksel SMPS_TRIS
+	.safelySetBankFor SMPS_TRIS
 	bsf SMPS_TRIS, SMPS_EN_PIN_TRIS
 
-	banksel enableSmpsCount
+	.setBankFor enableSmpsCount
 	incf enableSmpsCount
 	return
 
 disableSmps:
-	banksel enableSmpsCount
+	.safelySetBankFor enableSmpsCount
 	decfsz enableSmpsCount
 	return
 
-	banksel SMPS_TRIS
+	.setBankFor SMPS_TRIS
 	bcf SMPS_TRIS, SMPS_EN_PIN_TRIS
 
-	banksel SMPS_PORT
+	.setBankFor SMPS_PORT
 	bcf SMPS_PORT, SMPS_EN_PIN
 	return
 

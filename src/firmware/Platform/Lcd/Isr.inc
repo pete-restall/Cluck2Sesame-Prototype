@@ -1,7 +1,10 @@
 	#ifndef __CLUCK2SESAME_PLATFORM_LCD_ISR_INC
 	#define __CLUCK2SESAME_PLATFORM_LCD_ISR_INC
+	#include "Platform.inc"
 
 	radix decimal
+
+	.module LCD
 
 LCD_CONTRAST_PORT equ PORTA
 LCD_CONTRAST_PIN equ RA1
@@ -17,11 +20,11 @@ LCD_FLAG_ENABLED equ 0
 LCD_FLAG_RS equ 1
 
 	#ifndef __CLUCK2SESAME_PLATFORM_LCD_INITIALISE_ASM
-	extern lcdFlags
+	.externalVariable lcdFlags
 	#endif
 
 	#ifndef __CLUCK2SESAME_PLATFORM_LCD_CONTRAST_ASM
-	extern lcdContrast
+	.externalVariable lcdContrast
 	#endif
 
 	#endif

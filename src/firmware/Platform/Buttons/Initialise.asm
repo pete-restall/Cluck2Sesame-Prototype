@@ -1,4 +1,4 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "TailCalls.inc"
 	#include "InitialisationChain.inc"
 	#include "Buttons.inc"
@@ -11,14 +11,14 @@ Buttons code
 	global initialiseButtons
 
 initialiseButtons:
-	banksel ANSELH
+	.safelySetBankFor ANSELH
 	bcf ANSELH, ANS11
 
-	banksel IOCB
+	.setBankFor IOCB
 	bsf IOCB, IOCB5
 	bsf IOCB, IOCB6
 
-	banksel buttonFlags
+	.setBankFor buttonFlags
 	clrf buttonFlags
 	clrf buttonLastCheckTimestamp
 	movlw 0xff

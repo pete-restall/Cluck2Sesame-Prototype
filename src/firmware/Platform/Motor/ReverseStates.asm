@@ -1,4 +1,4 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "Motor.inc"
 	#include "States.inc"
 	#include "WaitState.inc"
@@ -6,7 +6,7 @@
 	radix decimal
 
 	defineMotorState MOTOR_STATE_REVERSE
-		banksel motorState
+		.setBankFor motorState
 		movlw MOTOR_STATE_SOFTSTOP
 		movwf motorState
 
@@ -17,7 +17,7 @@
 
 
 	defineMotorStateInSameSection MOTOR_STATE_REVERSE2
-		banksel PSTRCON
+		.setBankFor PSTRCON
 		movlw (1 << STRA) | (1 << STRB)
 		xorwf PSTRCON
 

@@ -1,9 +1,9 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "TestDoubles.inc"
 
 	radix decimal
 
-	udata
+AdcRam udata
 setAdcChannelResult res 1
 
 ChannelStubs code

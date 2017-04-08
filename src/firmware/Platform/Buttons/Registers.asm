@@ -1,8 +1,8 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 
 	radix decimal
 
-	udata
+ButtonsRam udata
 	global buttonFlags
 	global buttonLastCheckTimestamp
 	global buttonSnapshot

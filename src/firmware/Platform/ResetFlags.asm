@@ -1,11 +1,11 @@
 	#define __CLUCK2SESAME_PLATFORM_RESETFLAGS_ASM
 
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "ResetFlags.inc"
 
 	radix decimal
 
-	udata
+ResetFlagsRam udata
 	global resetFlags
 
 resetFlags res 1
@@ -14,7 +14,7 @@ ResetFlags code
 	global isLastResetDueToBrownOut
 
 isLastResetDueToBrownOut:
-	banksel resetFlags
+	.safelySetBankFor resetFlags
 	btfsc resetFlags, RESET_FLAG_BROWNOUT
 	retlw 1
 	retlw 0

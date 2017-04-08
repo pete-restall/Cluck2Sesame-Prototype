@@ -1,4 +1,4 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "FarCalls.inc"
 	#include "TailCalls.inc"
 	#include "../Smps.inc"
@@ -17,13 +17,13 @@ enableMotorVdd:
 	fcall enableSmps
 	fcall enableAdc
 
-	banksel MOTOR_TRIS
+	.setBankFor MOTOR_TRIS
 	bcf MOTOR_TRIS, MOTOR_VDD_EN_PIN_TRIS
 
-	banksel MOTOR_PORT
+	.setBankFor MOTOR_PORT
 	bcf MOTOR_PORT, MOTOR_VDD_EN_PIN
 
-	banksel enableMotorVddCount
+	.setBankFor enableMotorVddCount
 	incf enableMotorVddCount
 
 setMotorStateToIdleIfFirstCall:
@@ -36,27 +36,27 @@ setMotorStateToIdleIfFirstCall:
 	movwf motorState
 
 startPwmTimer:
-	banksel TMR2
+	.setBankFor TMR2
 	clrf TMR2
-	banksel T2CON
+	.setBankFor T2CON
 	bsf T2CON, TMR2ON
 	return
 
 disableMotorVdd:
-	banksel enableMotorVddCount
+	.safelySetBankFor enableMotorVddCount
 	decfsz enableMotorVddCount
 	goto disableMotorVddReturn
 
-	banksel MOTOR_TRIS
+	.setBankFor MOTOR_TRIS
 	bsf MOTOR_TRIS, MOTOR_VDD_EN_PIN_TRIS
 
 	; TODO: DISABLE PWM PINS - UN-NECESSARY IF MOTOR IS *ALWAYS* STOPPED PRIOR
 	; TO DISABLING THE MOTOR VDD
-	banksel motorState
+	.setBankFor motorState
 	movlw MOTOR_STATE_DISABLED
 	movwf motorState
 
-	banksel T2CON
+	.setBankFor T2CON
 	bcf T2CON, TMR2ON
 
 disableMotorVddReturn:
@@ -65,7 +65,7 @@ disableMotorVddReturn:
 
 isMotorVddEnabled:
 	clrw
-	banksel enableMotorVddCount
+	.safelySetBankFor enableMotorVddCount
 	movf enableMotorVddCount
 	btfsc STATUS, Z
 	return

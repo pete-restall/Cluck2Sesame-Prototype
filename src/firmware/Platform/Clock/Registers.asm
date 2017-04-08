@@ -1,10 +1,10 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 
 	radix decimal
 
 	extern POLL_AFTER_CLOCK
 
-	udata
+ClockRam udata
 	global clockFlags
 	global clockYearBcd
 	global clockMonthBcd

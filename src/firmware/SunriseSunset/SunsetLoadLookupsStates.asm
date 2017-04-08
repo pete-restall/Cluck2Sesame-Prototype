@@ -1,4 +1,4 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "FarCalls.inc"
 	#include "Flash.inc"
 	#include "SunriseSunset.inc"
@@ -25,23 +25,24 @@
 
 
 loadLookupIndexIntoFlashAddress:
-	banksel lookupIndexLow
+	.knownBank sunriseSunsetState
+	.setBankFor lookupIndexLow
 	bcf STATUS, C
 	rlf lookupIndexLow, W
-	banksel EEADR
+	.setBankFor EEADR
 	addlw low(sunsetLookupTable)
 	movwf EEADR
 
-	banksel EEADRH
+	.setBankFor EEADRH
 	movlw high(sunsetLookupTable)
 	movwf EEADRH
 	btfsc STATUS, C
 	incf EEADRH
 
-	banksel lookupIndexHigh
+	.setBankFor lookupIndexHigh
 	rlf lookupIndexLow, W
 	rlf lookupIndexHigh, W
-	banksel EEADRH
+	.setBankFor EEADRH
 	addwf EEADRH
 
 	return

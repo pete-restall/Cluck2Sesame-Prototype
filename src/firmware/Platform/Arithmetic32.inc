@@ -1,6 +1,11 @@
 	#ifndef __CLUCK2SESAME_PLATFORM_ARITHMETIC32_INC
 	#define __CLUCK2SESAME_PLATFORM_ARITHMETIC32_INC
+	#include "Platform.inc"
 	#include "GeneralPurposeRegisters.inc"
+
+	radix decimal
+
+	.module ARITHMETIC32
 
 setupIndf macro reg
 	bankisel reg
@@ -9,7 +14,7 @@ setupIndf macro reg
 	endm
 
 loadFromIndf32Into macro dest
-	banksel dest
+	.setBankFor dest
 	local i = 0
 	while (i < 3)
 		movf INDF, W
@@ -27,7 +32,7 @@ loadFrom32 macro src, dest
 	endm
 
 storeIntoIndf32From macro src
-	banksel src
+	.setBankFor src
 	local i = 0
 	while (i < 3)
 		movf src + i, W

@@ -1,4 +1,4 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "FarCalls.inc"
 	#include "Motor.inc"
 	#include "Adc.inc"
@@ -19,7 +19,7 @@ turnMotorAntiClockwise:
 
 ensureMotorIsInSteadyState:
 checkIfMotorIsInIdleState:
-	banksel motorState
+	.safelySetBankFor motorState
 	movf motorState, W
 	xorlw MOTOR_STATE_IDLE
 	btfsc STATUS, Z
@@ -41,24 +41,24 @@ ensureAdcChannelCanBeUsedToMonitorMotorCurrent:
 
 	; TODO: IF ALREADY TURNING (IN SAME DIRECTION) THEN RETURN 1.
 ifAlreadyTurningThenInitialStateIsForReversal:
-	banksel CCPR1L
+	.setBankFor CCPR1L
 	movf CCPR1L
 	btfss STATUS, Z
 	goto reverseMotor
 
 startMotor:
-	banksel PSTRCON
+	.safelySetBankFor PSTRCON
 	btfsc STATUS, C
 	bsf PSTRCON, STRA
 	btfss STATUS, C
 	bsf PSTRCON, STRB
 
-	banksel motorState
+	.setBankFor motorState
 	movlw MOTOR_STATE_SOFTSTART
 	goto setStatesAndReturn
 
 reverseMotor:
-	banksel motorState
+	.setBankFor motorState
 	movlw MOTOR_STATE_REVERSE
 
 setStatesAndReturn:

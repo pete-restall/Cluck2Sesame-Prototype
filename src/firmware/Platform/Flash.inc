@@ -1,8 +1,13 @@
 	#ifndef __CLUCK2SESAME_PLATFORM_FLASH_INC
 	#define __CLUCK2SESAME_PLATFORM_FLASH_INC
+	#include "Platform.inc"
+
+	radix decimal
+
+	.module FLASH
 
 loadFlashAddressOf macro label
-	banksel EEADRH
+	.setBankFor EEADRH
 	movlw high(label)
 	movwf EEADRH
 	movlw low(label)
@@ -10,12 +15,12 @@ loadFlashAddressOf macro label
 	endm
 
 storeFlashBytesInto macro buffer
-	banksel buffer
+	.setBankFor buffer
 	movwf (buffer + 0)
 
-	banksel EEDAT
+	.setBankFor EEDAT
 	movf EEDAT, W
-	banksel buffer
+	.setBankFor buffer
 	movwf (buffer + 1)
 	endm
 

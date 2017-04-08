@@ -1,4 +1,4 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "FarCalls.inc"
 	#include "Arithmetic32.inc"
 	#include "SunriseSunset.inc"
@@ -30,7 +30,7 @@
 
 	defineSunriseSunsetStateInSameSection SUN_STATE_INTERPOLATE_LOOKUP2
 		call loadAccumulatorIntoA
-		banksel RAA
+		.setBankFor RAA
 		btfss RAA, 7
 		goto loadDivisorIntoAccumulatorBAndDivide
 
@@ -41,13 +41,13 @@ loadDivisorIntoAccumulatorBAndDivide:
 		call loadLookupStepIntoLowerB
 		fcall div32x16
 
-		banksel accumulatorUpperHigh
+		.setBankFor accumulatorUpperHigh
 		btfsc accumulatorUpperHigh, 7
 		goto storeNegativeAccumulatorFromA
 
 storePositiveAccumulatorFromA:
 		call storeAccumulatorFromA
-		banksel accumulatorUpperHigh
+		.setBankFor accumulatorUpperHigh
 		clrf accumulatorUpperHigh
 		clrf accumulatorUpperLow
 		goto nextState
@@ -57,7 +57,7 @@ storeNegativeAccumulatorFromA:
 		call storeAccumulatorFromA
 
 nextState:
-		banksel sunriseSunsetNextState
+		.safelySetBankFor sunriseSunsetNextState
 		movf sunriseSunsetNextState, W
 		movwf sunriseSunsetState
 		returnFromSunriseSunsetState
@@ -69,13 +69,13 @@ nextState:
 		fcall add32
 
 storeAccumulatorIntoLookupReferenceMinute:
-		banksel RAC
+		.setBankFor RAC
 		movf RAC, W
-		banksel lookupReferenceMinuteHigh
+		.setBankFor lookupReferenceMinuteHigh
 		movwf lookupReferenceMinuteHigh
-		banksel RAD
+		.setBankFor RAD
 		movf RAD, W
-		banksel lookupReferenceMinuteLow
+		.setBankFor lookupReferenceMinuteLow
 		movwf lookupReferenceMinuteLow
 
 nextStateDependsOnLatitudeAboveOrBelowReference:

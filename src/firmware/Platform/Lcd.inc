@@ -1,5 +1,10 @@
 	#ifndef __CLUCK2SESAME_PLATFORM_LCD_INC
 	#define __CLUCK2SESAME_PLATFORM_LCD_INC
+	#include "Platform.inc"
+
+	radix decimal
+
+	.module LCD
 
 LCD_FIRST_LINE equ b'00000000'
 LCD_SECOND_LINE equ b'01000000'

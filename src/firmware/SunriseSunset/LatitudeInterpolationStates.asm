@@ -1,4 +1,4 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "FarCalls.inc"
 	#include "Arithmetic32.inc"
 	#include "SunriseSunset.inc"
@@ -8,7 +8,7 @@
 
 	defineSunriseSunsetState SUN_STATE_INTERPOLATE_LATITUDE
 loadAbsoluteLatitudeOffsetAsDividend:
-		banksel latitudeOffset
+		.setBankFor latitudeOffset
 		rlf latitudeOffset, W
 		movf latitudeOffset, W
 		btfsc STATUS, C
@@ -16,7 +16,7 @@ loadAbsoluteLatitudeOffsetAsDividend:
 		btfsc STATUS, C
 		addlw 1
 
-		banksel RAA
+		.setBankFor RAA
 		clrf RAA
 		clrf RAB
 		movwf RAC
@@ -30,7 +30,7 @@ loadLookupTableLatitudeDeltaAsDivisor:
 		fcall div32x16
 		call storeAccumulatorFromA
 
-		banksel accumulator
+		.setBankFor accumulator
 		clrf accumulatorUpperHigh
 		clrf accumulatorUpperLow
 
@@ -44,19 +44,19 @@ loadLookupTableLatitudeDeltaAsDivisor:
 		fcall muls16x16
 
 storeAccumulatorFromAShiftedRight8Bits:
-		banksel RAA
+		.setBankFor RAA
 		movf RAA, W
-		banksel accumulatorUpperLow
+		.setBankFor accumulatorUpperLow
 		movwf accumulatorUpperLow
 
-		banksel RAB
+		.setBankFor RAB
 		movf RAB, W
-		banksel accumulatorLowerHigh
+		.setBankFor accumulatorLowerHigh
 		movwf accumulatorLowerHigh
 
-		banksel RAC
+		.setBankFor RAC
 		movf RAC, W
-		banksel accumulatorLowerLow
+		.setBankFor accumulatorLowerLow
 		movwf accumulatorLowerLow
 
 		clrf accumulatorUpperHigh

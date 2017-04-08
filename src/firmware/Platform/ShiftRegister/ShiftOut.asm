@@ -1,9 +1,9 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "ShiftRegister.inc"
 
 	radix decimal
 
-	udata
+ShiftRegisterRam udata
 	global shiftRegisterBuffer
 
 shiftRegisterBuffer res 1
@@ -22,20 +22,21 @@ shiftOut:
 	call shiftOutNextBit
 
 storeShiftedValue:
+	.knownBank SHIFT_REGISTER_PORT
 	bsf SHIFT_REGISTER_PORT, STCP_PIN
 	bcf SHIFT_REGISTER_PORT, STCP_PIN
 
 adjustShiftRegisterBufferToAppearUnmodified:
-	banksel shiftRegisterBuffer
+	.setBankFor shiftRegisterBuffer
 	rlf shiftRegisterBuffer
 	return
 
 shiftOutNextBit:
-	banksel shiftRegisterBuffer
+	.safelySetBankFor shiftRegisterBuffer
 	rlf shiftRegisterBuffer
 
 shiftOutCarry:
-	banksel SHIFT_REGISTER_PORT
+	.setBankFor SHIFT_REGISTER_PORT
 	bcf SHIFT_REGISTER_PORT, DS_PIN
 	btfsc STATUS, C
 	bsf SHIFT_REGISTER_PORT, DS_PIN

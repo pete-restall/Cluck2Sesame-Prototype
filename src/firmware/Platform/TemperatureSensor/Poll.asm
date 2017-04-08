@@ -1,4 +1,4 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "TailCalls.inc"
 	#include "PollChain.inc"
 
@@ -10,6 +10,7 @@ TemperatureSensor code
 	global pollTemperatureSensor
 
 pollTemperatureSensor:
+	.unknownBank
 	tcall POLL_AFTER_TEMPERATURESENSOR
 
 	end

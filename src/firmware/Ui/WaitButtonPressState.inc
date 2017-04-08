@@ -1,9 +1,12 @@
 	#ifndef __CLUCK2SESAME_UI_WAITBUTTONPRESSSTATE_INC
 	#define __CLUCK2SESAME_UI_WAITBUTTONPRESSSTATE_INC
+	#include "Platform.inc"
 
 	radix decimal
 
-	extern uiButtonEventBaseState
+	.module UI
+
+	.externalVariable uiButtonEventBaseState
 
 ensureStateContinguity macro onButton1, onButton2, onBothButtons
 	#if (onBothButtons != onButton2 + 1) || (onButton2 != onButton1 + 1)
@@ -20,7 +23,7 @@ waitForButtonPress macro onButton1, onButton2, onBothButtons
 
 setButtonPressEventStates macro onButton1, onButton2, onBothButtons
 	ensureStateContinguity onButton1, onButton2, onBothButtons
-	banksel uiButtonEventBaseState
+	.setBankFor uiButtonEventBaseState
 	movlw onButton1
 	movwf uiButtonEventBaseState
 	endm

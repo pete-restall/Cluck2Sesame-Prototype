@@ -1,4 +1,4 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "GeneralPurposeRegisters.inc"
 	#include "Adc.inc"
 
@@ -10,7 +10,7 @@ Adc code
 
 setAdcChannel:
 storeShiftedChannelInRza:
-	banksel RZA
+	.safelySetBankFor RZA
 	movwf RZA
 	rlf RZA
 	rlf RZA
@@ -19,7 +19,7 @@ storeShiftedChannelInRza:
 
 	; TODO: IF CHANNEL IS ALREADY WHAT IS SET THEN RETURN 'SET_ADC_CHANNEL_SAME'...
 returnWithoutModifyingAdcon0IfCurrentChannelIsNotUnused:
-	banksel ADCON0
+	.setBankFor ADCON0
 	movlw ADCON0_CHANNEL_MASK
 	andwf ADCON0, W
 	xorlw ADCON0_UNUSED_CHANNEL
@@ -29,17 +29,17 @@ returnWithoutModifyingAdcon0IfCurrentChannelIsNotUnused:
 switchToNewChannel:
 	movlw ~ADCON0_CHANNEL_MASK
 	andwf ADCON0, W
-	banksel RZA
+	.safelySetBankFor RZA
 	iorwf RZA, W
-	banksel ADCON0
+	.setBankFor ADCON0
 	movwf ADCON0
 	retlw SET_ADC_CHANNEL_SUCCESS
 
 releaseAdcChannel:
-	banksel RZA
+	.setBankFor RZA
 	movlw ADCON0_UNUSED_CHANNEL
 	movwf RZA
-	banksel ADCON0
+	.setBankFor ADCON0
 	goto switchToNewChannel
 
 	end

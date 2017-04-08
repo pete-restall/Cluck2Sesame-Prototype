@@ -1,4 +1,4 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "PowerManagement.inc"
 
 	radix decimal
@@ -11,10 +11,10 @@ PowerManagement code
 	global allowSlowClock
 
 ensureFastClock:
-	banksel fastClockCount
+	.safelySetBankFor fastClockCount
 	incf fastClockCount
 
-	banksel OSCCON
+	.setBankFor OSCCON
 	movlw OSCCON_HFINTOSC_4MHZ
 	movwf OSCCON
 
@@ -24,11 +24,11 @@ waitUntilHfintoscIsStable:
 	return
 
 allowSlowClock:
-	banksel fastClockCount
+	.safelySetBankFor fastClockCount
 	decfsz fastClockCount
 	return
 
-	banksel OSCCON
+	.setBankFor OSCCON
 	movlw OSCCON_LFINTOSC_31KHZ
 	movwf OSCCON
 	return

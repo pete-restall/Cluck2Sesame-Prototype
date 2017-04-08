@@ -1,4 +1,4 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "TailCalls.inc"
 	#include "States.inc"
 
@@ -10,7 +10,7 @@
 	returnFromLcdState
 
 isLcdIdle:
-	banksel lcdState
+	.safelySetBankFor lcdState
 	movf lcdState, W
 	xorlw LCD_STATE_IDLE
 	btfss STATUS, Z

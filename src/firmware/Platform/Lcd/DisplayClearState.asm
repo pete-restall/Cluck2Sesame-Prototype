@@ -1,4 +1,4 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "FarCalls.inc"
 	#include "Lcd.inc"
 	#include "States.inc"
@@ -9,7 +9,6 @@
 NUMBER_OF_TICKS_1_52_MS_PLUS_MARGIN equ 13
 
 	defineLcdState LCD_STATE_DISPLAYCLEAR
-
 		movlw LCD_CMD_DISPLAYCLEAR
 		call writeRegister
 

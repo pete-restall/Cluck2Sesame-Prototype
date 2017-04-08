@@ -1,4 +1,4 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "FarCalls.inc"
 	#include "Arithmetic32.inc"
 	#include "SunriseSunset.inc"
@@ -8,7 +8,7 @@
 
 	defineSunriseSunsetState SUN_STATE_ACCUMULATORTOHOURS
 		call loadAccumulatorIntoA
-		banksel RBC
+		.setBankFor RBC
 		clrf RBC
 		movlw 60
 		movwf RBD
@@ -17,7 +17,7 @@ divideAndStoreResultAndRemainderInAccumulator:
 		fcall div32x16
 		call storeAccumulatorFromA
 
-		banksel sunriseSunsetStoreState
+		.setBankFor sunriseSunsetStoreState
 		movf sunriseSunsetStoreState, W
 		movwf sunriseSunsetState
 		returnFromSunriseSunsetState

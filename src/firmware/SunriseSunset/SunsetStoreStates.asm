@@ -1,4 +1,4 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "FarCalls.inc"
 	#include "ArithmeticBcd.inc"
 	#include "SunriseSunset.inc"
@@ -7,14 +7,14 @@
 	radix decimal
 
 	defineSunriseSunsetState SUN_STATE_SUNSET_STORE
-		banksel accumulatorLowerLow
+		.setBankFor accumulatorLowerLow
 		movf accumulatorLowerLow, W
-		banksel sunsetHourBcd
+		.setBankFor sunsetHourBcd
 		movwf sunsetHourBcd
 
-		banksel accumulatorUpperLow
+		.setBankFor accumulatorUpperLow
 		movf accumulatorUpperLow, W
-		banksel sunsetMinuteBcd
+		.setBankFor sunsetMinuteBcd
 		movwf sunsetMinuteBcd
 
 		setSunriseSunsetState SUN_STATE_SUNSET_STOREASBCD
@@ -22,19 +22,19 @@
 
 
 	defineSunriseSunsetStateInSameSection SUN_STATE_SUNSET_STOREASBCD
-		banksel sunsetHourBcd
+		.setBankFor sunsetHourBcd
 		movf sunsetHourBcd, W
-		banksel RAA
+		.setBankFor RAA
 		movwf RAA
 		fcall binaryToBcd
-		banksel sunsetHourBcd
+		.setBankFor sunsetHourBcd
 		movwf sunsetHourBcd
 
 		movf sunsetMinuteBcd, W
-		banksel RAA
+		.setBankFor RAA
 		movwf RAA
 		fcall binaryToBcd
-		banksel sunsetMinuteBcd
+		.setBankFor sunsetMinuteBcd
 		movwf sunsetMinuteBcd
 
 		setSunriseSunsetState SUN_STATE_IDLE

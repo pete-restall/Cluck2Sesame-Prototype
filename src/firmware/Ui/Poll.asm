@@ -1,6 +1,6 @@
 	#define __CLUCK2SESAME_UI_POLL_ASM
 
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "TailCalls.inc"
 	#include "TableJumps.inc"
 	#include "PollChain.inc"
@@ -15,6 +15,7 @@ Ui code
 	global pollNextInChainAfterUi
 
 pollUi:
+	.unknownBank
 	tableDefinitionToJumpWith uiState
 	createUiStateTable
 

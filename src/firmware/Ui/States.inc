@@ -1,7 +1,10 @@
 	#ifndef __CLUCK2SESAME_UI_STATES_INC
 	#define __CLUCK2SESAME_UI_STATES_INC
+	#include "Platform.inc"
 
 	radix decimal
+
+	.module UI
 
 UI_STATE_BOOT equ 0x00
 UI_STATE_SETTINGS_BACKLIGHTNOW equ 0x01
@@ -54,21 +57,21 @@ UI_STATE_LAST equ UI_STATE_ADJUSTSETTINGS_ENTER
 
 UI_STATE_SETTINGS equ UI_STATE_SETTINGS_BACKLIGHTNOW
 
-	extern uiState
-	extern uiNextState
+	.externalVariable uiState
+	.externalVariable uiNextState
 
 	#ifndef __CLUCK2SESAME_UI_POLL_ASM
 	extern pollNextInChainAfterUi
 	#endif
 
 setUiState macro state
-	banksel uiState
+	.setBankFor uiState
 	movlw state
 	movwf uiState
 	endm
 
 setUiNextState macro state
-	banksel uiNextState
+	.setBankFor uiNextState
 	movlw state
 	movwf uiNextState
 	endm
@@ -77,6 +80,7 @@ defineUiStateInSameSection macro name
 	global uiState#v(name)
 
 uiState#v(name):
+	.knownBank uiState
 	endm
 
 defineUiState macro name

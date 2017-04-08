@@ -1,7 +1,10 @@
 	#ifndef __CLUCK2SESAME_PLATFORM_ADC_INC
 	#define __CLUCK2SESAME_PLATFORM_ADC_INC
+	#include "Platform.inc"
 
 	radix decimal
+
+	.module ADC
 
 SET_ADC_CHANNEL_FAILURE equ 0
 SET_ADC_CHANNEL_SUCCESS equ 1

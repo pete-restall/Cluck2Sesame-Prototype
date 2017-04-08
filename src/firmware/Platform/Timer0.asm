@@ -1,4 +1,4 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "TailCalls.inc"
 	#include "InitialisationChain.inc"
 
@@ -15,7 +15,7 @@ Timer0 code
 	global initialiseTimer0
 
 initialiseTimer0:
-	banksel OPTION_REG
+	.safelySetBankFor OPTION_REG
 	movlw NON_TIMER0_MASK
 	andwf OPTION_REG
 	movlw PRESCALER_DIVIDE_BY_128

@@ -1,4 +1,4 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "TailCalls.inc"
 	#include "PollChain.inc"
 	#include "Timer0.inc"
@@ -14,6 +14,7 @@ Buttons code
 	global pollButtons
 
 pollButtons:
+	.unknownBank
 	elapsedSinceTimer0 buttonLastCheckTimestamp
 	sublw NUMBER_OF_TICKS_6_25MS
 	btfsc STATUS, C
@@ -21,11 +22,11 @@ pollButtons:
 
 	storeTimer0 buttonLastCheckTimestamp
 
-	banksel PORTB
+	.setBankFor PORTB
 	movlw (1 << RB5) | (1 << RB6)
 	andwf PORTB, W
 
-	banksel buttonSnapshot
+	.setBankFor buttonSnapshot
 	movwf buttonSnapshot
 	rlf buttonSnapshot
 

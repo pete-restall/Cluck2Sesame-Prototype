@@ -1,4 +1,4 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 
 	radix decimal
 
@@ -8,14 +8,14 @@ Flash code
 
 readFlashWordAsPairOfSevenBitBytes:
 	call readFlashWord
-	banksel EEDAT
+	.safelySetBankFor EEDAT
 	rlf EEDAT, W
 	rlf EEDATH, W
 	bcf EEDAT, 7
 	return
 
 readFlashWord:
-	banksel EECON1
+	.safelySetBankFor EECON1
 	bsf EECON1, EEPGD
 	bsf EECON1, RD
 	nop

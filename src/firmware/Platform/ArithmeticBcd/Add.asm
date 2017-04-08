@@ -1,4 +1,4 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "GeneralPurposeRegisters.inc"
 
 	radix decimal
@@ -10,6 +10,7 @@ ArithmeticBcd code
 	global addBcd
 
 addBcd:
+	.safelySetBankFor RBA
 	movf RBA, W
 	addwf RAA
 

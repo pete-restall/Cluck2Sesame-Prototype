@@ -1,4 +1,4 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "TailCalls.inc"
 	#include "../ShiftRegister.inc"
 	#include "../Motor.inc"
@@ -8,14 +8,13 @@
 	radix decimal
 
 	defineLcdState LCD_STATE_ENABLE_WAITFORSHIFTREGISTER
-
 		fcall isShiftRegisterEnabled
 		andlw 0xff
 		btfsc STATUS, Z
 		goto endOfState
 
 clearShiftRegister:
-		banksel shiftRegisterBuffer
+		.setBankFor shiftRegisterBuffer
 		movlw NON_LCD_BITS_MASK
 		andwf shiftRegisterBuffer
 		fcall shiftOut

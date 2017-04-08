@@ -1,8 +1,8 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 
 	radix decimal
 
-	udata
+ShiftRegisterRam udata
 	global shiftRegisterBuffer
 
 shiftRegisterBuffer res 1

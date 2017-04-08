@@ -1,4 +1,4 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "TailCalls.inc"
 	#include "PollChain.inc"
 	#include "PowerManagement.inc"
@@ -10,22 +10,22 @@ PowerManagement code
 
 pollPowerManagement:
 doNotSleepIfAdcIsRunning:
-	banksel ADCON0
+	.safelySetBankFor ADCON0
 	btfsc ADCON0, ADON
 	goto returnFromPoll
 
 doNotSleepIfTimer2IsRunning:
-	banksel T2CON
+	.setBankFor T2CON
 	btfsc T2CON, TMR2ON
 	goto returnFromPoll
 
 doNotSleepIfPrevented:
-	banksel powerManagementFlags
+	.setBankFor powerManagementFlags
 	btfss powerManagementFlags, POWER_FLAG_PREVENTSLEEP
 	sleep
 
 returnFromPoll:
-	banksel powerManagementFlags
+	.safelySetBankFor powerManagementFlags
 	bcf powerManagementFlags, POWER_FLAG_PREVENTSLEEP
 	return
 

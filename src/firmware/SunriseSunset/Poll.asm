@@ -1,6 +1,6 @@
 	#define __CLUCK2SESAME_SUNRISESUNSET_POLL_ASM
 
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "TailCalls.inc"
 	#include "TableJumps.inc"
 	#include "PollChain.inc"
@@ -15,6 +15,7 @@ SunriseSunset code
 	global pollNextInChainAfterSunriseSunset
 
 pollSunriseSunset:
+	.unknownBank
 	tableDefinitionToJumpWith sunriseSunsetState
 	createSunriseSunsetStateTable
 

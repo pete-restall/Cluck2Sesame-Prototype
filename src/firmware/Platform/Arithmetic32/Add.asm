@@ -1,4 +1,4 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "GeneralPurposeRegisters.inc"
 
 	radix decimal
@@ -8,6 +8,7 @@ Arithmetic32 code
 
 add32:
 add32LeastSignificantByte:
+	.safelySetBankFor RBD
 	movf RBD, W
 	addwf RAD
 

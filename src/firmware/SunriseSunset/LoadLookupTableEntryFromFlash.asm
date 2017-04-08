@@ -1,6 +1,6 @@
 	#define __CLUCK2SESAME_SUNRISESUNSET_LOADLOOKUPTABLEENTRYFROMFLASH_ASM
 
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "FarCalls.inc"
 	#include "Flash.inc"
 	#include "Arithmetic32.inc"
@@ -16,19 +16,19 @@ loadLookupTableEntryFromFlash:
 	fcall readFlashWord
 	call storeIntoIndf
 
-	banksel EEADR
+	.setBankFor EEADR
 	incf EEADR
-	banksel EEADRH
+	.setBankFor EEADRH
 	btfsc STATUS, Z
 	incf EEADRH
 	fcall readFlashWord
 
 storeIntoIndf:
-	banksel EEDATH
+	.safelySetBankFor EEDATH
 	movf EEDATH, W
 	movwf INDF
 	incf FSR
-	banksel EEDAT
+	.setBankFor EEDAT
 	movf EEDAT, W
 	movwf INDF
 	incf FSR

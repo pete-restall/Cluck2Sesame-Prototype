@@ -1,8 +1,11 @@
 	#ifndef __CLUCK2SESAME_SUNRISESUNSET_SUNRISESUNSET_INC
 	#define __CLUCK2SESAME_SUNRISESUNSET_SUNRISESUNSET_INC
+	#include "Platform.inc"
 	#include "../SunriseSunset.inc"
 
 	radix decimal
+
+	.module SUNRISESUNSET
 
 LOOKUP_STEP equ 6
 LOOKUP_LENGTH equ 366 / LOOKUP_STEP
@@ -12,34 +15,34 @@ LOOKUP_LATITUDE_DELTA equ LOOKUP_LATITUDE_DELTA_DEGREES * 10
 	extern sunriseLookupTable
 	extern sunsetLookupTable
 
-	extern lookupIndex
-	extern lookupIndexHigh
-	extern lookupIndexLow
-	extern lookupIndexRemainder
-	extern lookupIndexRemainderHigh
-	extern lookupIndexRemainderLow
+	.externalVariable lookupIndex
+	.externalVariable lookupIndexHigh
+	.externalVariable lookupIndexLow
+	.externalVariable lookupIndexRemainder
+	.externalVariable lookupIndexRemainderHigh
+	.externalVariable lookupIndexRemainderLow
 
-	extern lookupReferenceMinute
-	extern lookupReferenceMinuteHigh
-	extern lookupReferenceMinuteLow
-	extern lookupReferenceDeltaMinutesHigh
-	extern lookupReferenceDeltaMinutesNorth
-	extern lookupReferenceDeltaMinutesLow
-	extern lookupReferenceDeltaMinutesSouth
+	.externalVariable lookupReferenceMinute
+	.externalVariable lookupReferenceMinuteHigh
+	.externalVariable lookupReferenceMinuteLow
+	.externalVariable lookupReferenceDeltaMinutesHigh
+	.externalVariable lookupReferenceDeltaMinutesNorth
+	.externalVariable lookupReferenceDeltaMinutesLow
+	.externalVariable lookupReferenceDeltaMinutesSouth
 
-	extern lookupEntry
-	extern lookupEntryReferenceMinuteHigh
-	extern lookupEntryReferenceDeltaMinutesNorth
-	extern lookupEntryReferenceMinuteLow
-	extern lookupEntryReferenceDeltaMinutesSouth
+	.externalVariable lookupEntry
+	.externalVariable lookupEntryReferenceMinuteHigh
+	.externalVariable lookupEntryReferenceDeltaMinutesNorth
+	.externalVariable lookupEntryReferenceMinuteLow
+	.externalVariable lookupEntryReferenceDeltaMinutesSouth
 
-	extern accumulator
-	extern accumulatorUpper
-	extern accumulatorUpperHigh
-	extern accumulatorUpperLow
-	extern accumulatorLower
-	extern accumulatorLowerHigh
-	extern accumulatorLowerLow
+	.externalVariable accumulator
+	.externalVariable accumulatorUpper
+	.externalVariable accumulatorUpperHigh
+	.externalVariable accumulatorUpperLow
+	.externalVariable accumulatorLower
+	.externalVariable accumulatorLowerHigh
+	.externalVariable accumulatorLowerLow
 
 	#ifndef __CLUCK2SESAME_SUNRISESUNSET_REGISTERLOADANDANDSTORE_ASM
 	extern loadAccumulatorIntoA

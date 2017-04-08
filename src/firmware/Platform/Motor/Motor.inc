@@ -1,9 +1,11 @@
 	#ifndef __CLUCK2SESAME_PLATFORM_MOTOR_MOTOR_INC
 	#define __CLUCK2SESAME_PLATFORM_MOTOR_MOTOR_INC
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "Flags.inc"
 
 	radix decimal
+
+	.module MOTOR
 
 MOTOR_PORT equ PORTC
 MOTOR_TRIS equ TRISC
@@ -32,9 +34,9 @@ NUMBER_OF_TICKS_SOFTSTART equ NUMBER_OF_TICKS_10MS
 NUMBER_OF_TICKS_SOFTSTOP equ NUMBER_OF_TICKS_10MS
 
 	#ifndef __CLUCK2SESAME_PLATFORM_MOTOR_REGISTERS_ASM
-	extern enableMotorVddCount
-	extern motorFlags
-	extern motorCounter
+	.externalVariable enableMotorVddCount
+	.externalVariable motorFlags
+	.externalVariable motorCounter
 	#endif
 
 	#endif

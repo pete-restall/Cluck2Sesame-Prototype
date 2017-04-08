@@ -1,20 +1,25 @@
 	#ifndef __CLUCK2SESAME_PLATFORM_GENERALPURPOSEREGISTERS_INC
 	#define __CLUCK2SESAME_PLATFORM_GENERALPURPOSEREGISTERS_INC
+	#include "Platform.inc"
 
-	extern RA
-	extern RAA
-	extern RAB
-	extern RAC
-	extern RAD
+	radix decimal
 
-	extern RB
-	extern RBA
-	extern RBB
-	extern RBC
-	extern RBD
+	.module GENERALPURPOSEREGISTERS
 
-	extern RZ
-	extern RZA
-	extern RZB
+	.externalVariable RA
+	.externalVariable RAA
+	.externalVariable RAB
+	.externalVariable RAC
+	.externalVariable RAD
+
+	.externalVariable RB
+	.externalVariable RBA
+	.externalVariable RBB
+	.externalVariable RBC
+	.externalVariable RBD
+
+	.externalVariable RZ
+	.externalVariable RZA
+	.externalVariable RZB
 
 	#endif

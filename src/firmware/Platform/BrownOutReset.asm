@@ -1,6 +1,6 @@
 	#define __CLUCK2SESAME_PLATFORM_BROWNOUTRESET_ASM
 
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "TailCalls.inc"
 	#include "ResetFlags.inc"
 
@@ -12,11 +12,11 @@ BrownOutReset code
 	global initialiseAfterBrownOutReset
 
 initialiseAfterBrownOutReset:
-	banksel PCON
+	.safelySetBankFor PCON
 	movlw (1 << NOT_BOR) | (1 << NOT_POR)
 	movwf PCON
 
-	banksel resetFlags
+	.setBankFor resetFlags
 	movlw 1 << RESET_FLAG_BROWNOUT
 	movwf resetFlags
 

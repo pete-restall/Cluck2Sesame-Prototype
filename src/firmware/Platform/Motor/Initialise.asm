@@ -1,4 +1,4 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "TailCalls.inc"
 	#include "InitialisationChain.inc"
 	#include "Motor.inc"
@@ -16,7 +16,7 @@ Motor code
 	global initialiseMotor
 
 initialiseMotor:
-	banksel enableMotorVddCount
+	.safelySetBankFor enableMotorVddCount
 	clrf enableMotorVddCount
 	clrf motorState
 
@@ -24,41 +24,41 @@ initialiseMotor:
 	movwf motorFlags
 
 setMotorCurrentSensePortToAnalogue:
-	banksel ANSEL
+	.setBankFor ANSEL
 	bsf ANSEL, MOTOR_ISENSE_PIN_ANSL
 
 setMotorVddEnablePortToAnalogue:
-	banksel ANSELH
+	.setBankFor ANSELH
 	bsf ANSELH, MOTOR_VDD_EN_PIN_ANSH
 
 clearDigitalOutputs:
-	banksel MOTOR_PORT
+	.setBankFor MOTOR_PORT
 	movlw ~(MOTOR_VDD_EN_PIN_MASK | MOTOR_PWMA_PIN_MASK | MOTOR_PWMB_PIN_MASK)
 	andwf MOTOR_PORT
 
 setPortDirections:
-	banksel MOTOR_TRIS
+	.setBankFor MOTOR_TRIS
 	bsf MOTOR_TRIS, MOTOR_VDD_EN_PIN_TRIS
 	bsf MOTOR_TRIS, MOTOR_ISENSE_PIN_TRIS
 	bcf MOTOR_TRIS, MOTOR_PWMA_PIN_TRIS
 	bcf MOTOR_TRIS, MOTOR_PWMB_PIN_TRIS
 
 configurePwmModule:
-	banksel T2CON
+	.setBankFor T2CON
 	clrf T2CON
 
-	banksel PR2
+	.setBankFor PR2
 	movlw PR2_FOR_15_625KHZ_PWM
 	movwf PR2
 
-	banksel CCP1CON
+	.setBankFor CCP1CON
 	movlw CCP1CON_SINGLEPWM_MASK | CCP1CON_ALLPWMACTIVEHIGH_MASK
 	movwf CCP1CON
 
-	banksel CCPR1L
+	.setBankFor CCPR1L
 	clrf CCPR1L
 
-	banksel PSTRCON
+	.setBankFor PSTRCON
 	movlw 1 << STRSYNC
 	movwf PSTRCON
 

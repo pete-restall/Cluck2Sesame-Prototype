@@ -1,4 +1,4 @@
-	#include "Mcu.inc"
+	#include "Platform.inc"
 	#include "ResetFlags.inc"
 	#include "TestDoubles.inc"
 
