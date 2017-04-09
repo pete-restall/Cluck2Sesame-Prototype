@@ -1,4 +1,6 @@
 	#include "Platform.inc"
+	#include "FarCalls.inc"
+	#include "Adc.inc"
 	#include "Motor.inc"
 	#include "States.inc"
 
@@ -19,8 +21,6 @@ stopMotor:
 
 
 	defineMotorStateInSameSection MOTOR_STATE_STOPPED
-		; TODO: RELEASE THE ADC CHANNEL...
-
 		.setBankFor PSTRCON
 		movlw ~MOTOR_PSTRCON_OUTPUT_MASK
 		andwf PSTRCON
@@ -30,6 +30,8 @@ stopMotor:
 		andwf MOTOR_PORT
 
 		setMotorState MOTOR_STATE_IDLE
+
+		fcall releaseAdcChannel
 		returnFromMotorState
 
 	end

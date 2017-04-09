@@ -11,15 +11,18 @@ Motor code
 	global turnMotorAntiClockwise
 
 turnMotorClockwise:
-	bsf STATUS, C
+	.safelySetBankFor motorFlags
+	bsf motorFlags, MOTOR_FLAG_DIRECTION_CLOCKWISE
 	goto ensureMotorIsInSteadyState
 
 turnMotorAntiClockwise:
-	bcf STATUS, C
+	.safelySetBankFor motorFlags
+	bcf motorFlags, MOTOR_FLAG_DIRECTION_CLOCKWISE
 
 ensureMotorIsInSteadyState:
+	.knownBank motorFlags
+
 checkIfMotorIsInIdleState:
-	.safelySetBankFor motorState
 	movf motorState, W
 	xorlw MOTOR_STATE_IDLE
 	btfsc STATUS, Z
@@ -47,21 +50,26 @@ ifAlreadyTurningThenInitialStateIsForReversal:
 	goto reverseMotor
 
 startMotor:
-	.safelySetBankFor PSTRCON
+	.setBankFor motorFlags
+	#if (MOTOR_FLAG_DIRECTION_CLOCKWISE != 7)
+		error "Expected MOTOR_FLAG_DIRECTION_CLOCKWISE to be bit 7 for easy retrieval"
+	#endif
+	rlf motorFlags, W
+
+	.setBankFor PSTRCON
 	btfsc STATUS, C
 	bsf PSTRCON, STRA
 	btfss STATUS, C
 	bsf PSTRCON, STRB
 
-	.setBankFor motorState
 	movlw MOTOR_STATE_SOFTSTART
 	goto setStatesAndReturn
 
 reverseMotor:
-	.setBankFor motorState
 	movlw MOTOR_STATE_REVERSE
 
 setStatesAndReturn:
+	.safelySetBankFor motorState
 	movwf motorState
 	movlw MOTOR_STATE_TURNING
 	movwf motorStateAfterStarted

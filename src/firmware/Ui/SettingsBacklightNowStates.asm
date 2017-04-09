@@ -27,7 +27,7 @@ OFF_CURSOR_POSITION equ LCD_SECOND_LINE | 11
 
 		movlw OFF_CURSOR_POSITION
 		movwf uiOption2Position
-		movwf uiSelectedOptionPosition
+		movwf uiSelectedOptionPosition ; TODO: BUG !  ONLY VALID IF FROM BOOT - IF LIGHT IS ON WHEN THIS IS ENTERED THEN THE OPTION SHOULD BE UPDATED...
 
 		movlw UI_OPTION_POSITIONUNUSED
 		movwf uiOption3Position

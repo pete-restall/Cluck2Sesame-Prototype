@@ -6,4 +6,6 @@
 	#define __CLUCK2SESAME_PLATFORM_MOTOR_FLAGSONLY
 	#include "../Motor.inc"
 
+MOTOR_FLAG_DIRECTION_CLOCKWISE equ 7
+
 	#endif

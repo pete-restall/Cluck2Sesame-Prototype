@@ -8,7 +8,8 @@ TEST_DOUBLE_OBJ_FILES=\
 	../PollAfterUiDummy.o \
 	$(PLATFORM_TESTS_DIR)/PowerManagement/PowerManagementDummies.o \
 	$(PLATFORM_TESTS_DIR)/Lcd/LcdDummies.o \
-	$(PLATFORM_TESTS_DIR)/Buttons/ButtonsDummies.o
+	$(PLATFORM_TESTS_DIR)/Buttons/ButtonsDummies.o \
+	$(PLATFORM_TESTS_DIR)/Motor/MotorDummies.o
 
 INITIALISATION_CHAIN_OBJ_FILES=\
 	InitialisationChainTest.o \

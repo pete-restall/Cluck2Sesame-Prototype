@@ -1,0 +1,15 @@
+module load led doorUp
+doorUp.xpos=270
+doorUp.ypos=324
+doorUp.color="green"
+doorUp.ActiveState="high"
+node p1a
+attach p1a portc5 doorUp.in
+
+module load led doorDown
+doorDown.xpos=270
+doorDown.ypos=378
+doorDown.color="red"
+doorDown.ActiveState="high"
+node p1b
+attach p1b portc4 doorDown.in

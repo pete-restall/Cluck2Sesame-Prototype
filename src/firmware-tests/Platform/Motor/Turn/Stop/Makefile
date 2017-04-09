@@ -1,6 +1,9 @@
+ASARGS+=-I $(PLATFORM_DIR)/Motor
+
 HEX_FILES=\
 	SoftStopTest.hex \
-	PulseSteeringTest.hex
+	PulseSteeringTest.hex \
+	ReleaseAdcChannelTest.hex
 
 TEST_DOUBLE_OBJ_FILES=\
 	../../../Smps/EnableSmpsDummy.o \
@@ -20,6 +23,10 @@ PULSE_STEERING_OBJ_FILES=\
 	PulseSteeringTest.o \
 	$(TEST_DOUBLE_OBJ_FILES)
 
+RELEASE_ADC_CHANNEL_OBJ_FILES=\
+	ReleaseAdcChannelTest.o \
+	$(TEST_DOUBLE_OBJ_FILES)
+
 all: $(HEX_FILES)
 
 clean:
@@ -30,5 +37,8 @@ SoftStopTest.hex: $(OBJ_FILES) $(SOFT_STOP_OBJ_FILES)
 
 PulseSteeringTest.hex: $(OBJ_FILES) $(PULSE_STEERING_OBJ_FILES)
 	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(PULSE_STEERING_OBJ_FILES)
+
+ReleaseAdcChannelTest.hex: $(OBJ_FILES) $(RELEASE_ADC_CHANNEL_OBJ_FILES)
+	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(RELEASE_ADC_CHANNEL_OBJ_FILES)
 
 include $(MAKEFILE_RULES)

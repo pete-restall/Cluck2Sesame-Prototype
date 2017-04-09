@@ -31,3 +31,10 @@ r210.resistance=47000
 
 node rb5
 attach rb5 portb5 r210.pin j202.B
+
+module load switch shortButtons
+shortButtons.xpos=36
+shortButtons.ypos=630
+
+attach rb5 shortButtons.A
+attach rb6 shortButtons.B

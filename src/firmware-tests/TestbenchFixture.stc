@@ -5,4 +5,5 @@ load i "RandomiseRam.sti"
 load i "Testbench/ShiftRegister.sti"
 load i "Testbench/Lcd.sti"
 load i "Testbench/Buttons.sti"
+load i "Testbench/Motor.sti"
 tmr1_freq=32768

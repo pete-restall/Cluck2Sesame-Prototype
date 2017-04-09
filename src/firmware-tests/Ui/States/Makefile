@@ -1,6 +1,7 @@
 export ASARGS+=-I $(FIRMWARE_DIR)/Ui
 export OBJ_FILES+=\
-	$(CURDIR)/../InitialiseAfterUiDummy.o
+	$(CURDIR)/../InitialiseAfterUiDummy.o \
+	$(PLATFORM_TESTS_DIR)/Motor/MotorDummies.o
 
 TEST_FIXTURE_OBJ_FILES=\
 	NextStateIsUnchangedTestFixture.o \
