@@ -8,7 +8,8 @@ export OBJ_FILES=\
 
 TEST_DOUBLE_OBJ_FILES=\
 	InitialiseAfterDoorMock.o \
-	PollAfterDoorMock.o
+	PollAfterDoorMock.o \
+	DoorDummies.o
 
 all: $(TEST_DOUBLE_OBJ_FILES)
 	$(MAKE) -C Initialisation all

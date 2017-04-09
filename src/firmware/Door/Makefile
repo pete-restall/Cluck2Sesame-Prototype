@@ -1,7 +1,8 @@
 LIB_FILENAME=../Door.a
 OBJ_FILES=\
 	Initialise.o \
-	Poll.o
+	Poll.o \
+	CalibrationStates.o
 
 all: $(LIB_FILENAME)
 

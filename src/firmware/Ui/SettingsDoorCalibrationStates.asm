@@ -4,6 +4,7 @@
 	#include "Buttons.inc"
 	#include "Lcd.inc"
 	#include "Motor.inc"
+	#include "Door.inc"
 	#include "States.inc"
 	#include "WaitButtonPressState.inc"
 
@@ -47,7 +48,14 @@ RIGHT_ARROW equ 0x7e
 
 
 	defineUiStateInSameSection UI_STATE_SETTINGS_DOORCALIBRATION_ENTER
-		setUiState UI_STATE_HOME
+		fcall calibrateDoorFromOpenPosition
+		xorlw 0
+		movlw UI_STATE_HOME
+		btfsc STATUS, Z
+		movlw UI_STATE_WAIT_BUTTONPRESS
+
+		.setBankFor uiState
+		movwf uiState
 		returnFromUiState
 
 
@@ -62,6 +70,8 @@ RIGHT_ARROW equ 0x7e
 
 
 	defineUiStateInSameSection UI_STATE_SETTINGS_DOORCALIBRATION_LOWERING
+		; TODO: IF CURRENT > NO LOAD, THEN WE'VE WOUND TOO FAR - STOP
+
 		.setBankFor buttonFlags
 		btfsc buttonFlags, BUTTON_FLAG_PRESSED1
 		returnFromUiState

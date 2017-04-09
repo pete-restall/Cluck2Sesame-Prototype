@@ -8,5 +8,6 @@
 
 	extern initialiseDoor
 	extern pollDoor
+	extern calibrateDoorFromOpenPosition
 
 	#endif
