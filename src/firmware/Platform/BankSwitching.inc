@@ -9,8 +9,16 @@
 
 	variable currentBank = UNKNOWN_BANK
 
-.knownBank macro bank
-currentBank = bank & BANK_MASK
+.trySetCurrentBankFor macro reg1, reg2
+	#ifdef reg1
+currentBank = reg1 & BANK_MASK
+	#else
+currentBank = reg2 & BANK_MASK
+	#endif
+	endm
+
+.knownBank macro reg
+	.trySetCurrentBankFor BANK_FOR_#v(0)reg, reg
 	endm
 
 .unknownBank macro

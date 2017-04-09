@@ -37,18 +37,18 @@ OFF_CURSOR_POSITION equ LCD_SECOND_LINE | 11
 
 
 	defineUiStateInSameSection UI_STATE_SETTINGS_BACKLIGHTNOW_LEFT
-		fcall setLcdBacklightFlag
 		setUiState UI_STATE_OPTION_CHANGED
 		movlw ON_CURSOR_POSITION
 		movwf uiSelectedOptionPosition
+		fcall setLcdBacklightFlag
 		returnFromUiState
 
 
 	defineUiStateInSameSection UI_STATE_SETTINGS_BACKLIGHTNOW_RIGHT
-		fcall clearLcdBacklightFlag
 		setUiState UI_STATE_OPTION_CHANGED
 		movlw OFF_CURSOR_POSITION
 		movwf uiSelectedOptionPosition
+		fcall clearLcdBacklightFlag
 		returnFromUiState
 
 

@@ -10,12 +10,12 @@ ARROW_CHARACTER equ 0x7e
 	radix decimal
 
 	defineUiState UI_STATE_OPTION_CHANGED
-		.setBankFor uiOptionCounter
+		.knownBank uiState
 		movlw 3
 		movwf uiOptionCounter
 
 	defineUiStateInSameSection UI_STATE_OPTION_CHANGED2
-		.unknownBank
+		.knownBank uiState
 		fcall isLcdIdle
 		xorlw 0
 		btfsc STATUS, Z

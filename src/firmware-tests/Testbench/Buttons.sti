@@ -1,35 +1,33 @@
-module load pullup vddForButtons
-vddForButtons.xpos=36
-vddForButtons.ypos=414
-vddForButtons.resistance=0
+module load pulldown vssForButtons
+vssForButtons.xpos=36
+vssForButtons.ypos=414
+vssForButtons.resistance=1
 
-node vddForButtonsNode
-attach vddForButtonsNode vddForButtons.pin
+node vssForButtonsNode
+attach vssForButtonsNode vssForButtons.pin
 
 module load switch j201
 j201.xpos=36
 j201.ypos=486
-attach vddForButtonsNode j201.A
+attach vssForButtonsNode j201.A
+
+module load pullup r209
+r209.xpos=126
+r209.ypos=486
+r209.resistance=47000
+
+node rb6
+attach rb6 portb6 r209.pin j201.B
 
 module load switch j202
 j202.xpos=36
-j202.ypos=576
-attach vddForButtonsNode j202.A
+j202.ypos=558
+attach vssForButtonsNode j202.A
 
-module load not j201Inverter
-j201Inverter.xpos=126
-j201Inverter.ypos=486
-node j201InverterInNode
-attach j201InverterInNode j201Inverter.in0 j201.B
-
-module load not j202Inverter
-j202Inverter.xpos=126
-j202Inverter.ypos=576
-node j202InverterInNode
-attach j202InverterInNode j202Inverter.in0 j202.B
-
-node rb6
-attach rb6 portb6 j201Inverter.out
+module load pullup r210
+r210.xpos=126
+r210.ypos=558
+r210.resistance=47000
 
 node rb5
-attach rb5 portb5 j202Inverter.out
+attach rb5 portb5 r210.pin j202.B
