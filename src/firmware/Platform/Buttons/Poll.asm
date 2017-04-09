@@ -54,12 +54,12 @@ bothButtonsPressedWillSetState:
 
 oneButtonPressedAndTheOtherNotPressedWillSetState:
 	movf button1State, W
-	andlw 0x0f
+	andlw 0x7f
 	btfsc STATUS, Z
 	bsf buttonFlags, BUTTON_FLAG_PRESSED1
 
 	movf button2State, W
-	andlw 0x0f
+	andlw 0x7f
 	btfsc STATUS, Z
 	bsf buttonFlags, BUTTON_FLAG_PRESSED2
 

@@ -3,29 +3,28 @@ load i "../../../RandomiseRam.sti"
 load i "../../../PreventInfiniteLoops.sti"
 load i "ButtonTestFixture.sti"
 
-expectedButton1State=BUTTON_RELEASED
+expectedButton1State=BUTTON_PRESSED
 expectedButton2State=BUTTON_RELEASED
 expectedBothButtonsState=BUTTON_RELEASED
 
 stimulus asynchronous_stimulus
 	initial_state 0
 	start_cycle 0
-	period 50000
+	period 70000
 	{
 		10000, 1,
-		40000, 0
+		60000, 0
 	}
 	name buttonPulse
 	end
 
 stimulus asynchronous_stimulus
 	initial_state 1
-	start_cycle 1
-	period 50000
+	start_cycle 0
+	period 70000
 	{
 		10000, 0,
-		34000, 1,
-		34001, 0
+		55000, 1
 	}
 	name synchronisingPulse
 	end
