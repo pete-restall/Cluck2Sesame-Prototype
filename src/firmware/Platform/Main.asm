@@ -32,7 +32,6 @@ brownOutReset:
 	fcall initialiseAfterBrownOutReset
 
 pollingLoop:
- fcall preventSleep ; TODO: TEMPORARY !!!!!!!!!!!!!!!!!!!!!!!!
 	fcall pollForWork
 	goto pollingLoop
 

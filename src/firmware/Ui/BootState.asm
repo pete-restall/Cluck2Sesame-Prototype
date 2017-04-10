@@ -9,7 +9,8 @@
 	defineUiState UI_STATE_BOOT
 		fcall ensureFastClock
 		fcall enableLcd
-		setUiState UI_STATE_SETTINGS
+		setUiNextState UI_STATE_SETTINGS
+		setUiState UI_STATE_WAIT_LCDENABLED
 		returnFromUiState
 
 	end
