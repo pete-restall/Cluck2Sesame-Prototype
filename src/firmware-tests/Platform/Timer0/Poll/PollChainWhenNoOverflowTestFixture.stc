@@ -1,0 +1,8 @@
+load "PollChainTest.cod"
+load i "../../../RandomiseRam.sti"
+load i "../../../PreventInfiniteLoops.sti"
+
+initialT0If=0
+
+run
+quit

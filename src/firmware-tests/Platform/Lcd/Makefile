@@ -3,7 +3,8 @@ export OBJ_FILES=\
 	$(SUT_OBJ_FILE) \
 	$(PLATFORM_CORE_OBJ_FILES) \
 	$(TEST_FIXTURE_OBJ_FILES) \
-	$(PLATFORM_DIR)/Timer0.o \
+	$(PLATFORM_DIR)/Timer0.a \
+	$(PLATFORM_TESTS_DIR)/Timer0/PollAfterTimer0Dummy.o \
 	$(PLATFORM_DIR)/Flash.o \
 	$(PLATFORM_DIR)/PowerManagement.a \
 	$(CURDIR)/../Adc/ChannelDummies.o

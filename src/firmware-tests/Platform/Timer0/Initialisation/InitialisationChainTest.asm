@@ -2,7 +2,7 @@
 	#include "FarCalls.inc"
 	#include "Timer0.inc"
 	#include "TestFixture.inc"
-	#include "InitialiseAfterTimer0Mock.inc"
+	#include "../InitialiseAfterTimer0Mock.inc"
 
 	radix decimal
 

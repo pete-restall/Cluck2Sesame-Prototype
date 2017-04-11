@@ -2,11 +2,12 @@ export SUT_OBJ_FILE=$(PLATFORM_DIR)/Motor.a
 export OBJ_FILES=\
 	$(SUT_OBJ_FILE) \
 	$(PLATFORM_CORE_OBJ_FILES) \
-	$(PLATFORM_DIR)/Timer0.o \
+	$(PLATFORM_DIR)/Timer0.a \
 	$(TEST_FIXTURE_OBJ_FILES) \
 	$(ASSERT_NO_ISR_OBJ_FILE) \
 	$(CURDIR)/InitialiseAfterMotorMock.o \
-	$(CURDIR)/../Timer0/InitialiseAfterTimer0Dummy.o
+	$(PLATFORM_TESTS_DIR)/Timer0/InitialiseAfterTimer0Dummy.o \
+	$(PLATFORM_TESTS_DIR)/Timer0/PollAfterTimer0Dummy.o
 
 TEST_DOUBLE_OBJ_FILES=\
 	InitialiseAfterMotorMock.o \

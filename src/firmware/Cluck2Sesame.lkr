@@ -73,6 +73,7 @@ SECTION    NAME=PowerManagementRam            RAM=gpr0
 SECTION    NAME=ResetFlagsRam                 RAM=gpr0
 SECTION    NAME=ShiftRegisterRam              RAM=gpr0
 SECTION    NAME=SmpsRam                       RAM=gpr0
+SECTION    NAME=Timer0Ram                     RAM=gpr0
 
 SECTION    NAME=DoorRam                       RAM=gpr1
 SECTION    NAME=SunriseSunsetRam              RAM=gpr1

@@ -1,0 +1,10 @@
+load "OverflowIncrementsSlowTimerTest.cod"
+load i "../../../RandomiseRam.sti"
+load i "../../../PreventInfiniteLoops.sti"
+
+numberOfOverflowsHigh=0
+numberOfOverflowsLow=15
+expectedSlowTmr0=1
+
+run
+quit

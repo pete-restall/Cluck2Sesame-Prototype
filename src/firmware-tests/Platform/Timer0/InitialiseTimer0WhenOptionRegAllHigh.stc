@@ -1,7 +1,0 @@
-load "InitialiseTimer0Test.cod"
-load i "../../RandomiseRam.sti"
-load i "../../PreventInfiniteLoops.sti"
-initialOptionReg=0xff
-expectedOptionReg=b'11000110'
-run
-quit

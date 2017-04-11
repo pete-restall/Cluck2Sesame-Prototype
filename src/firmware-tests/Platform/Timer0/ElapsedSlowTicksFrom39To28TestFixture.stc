@@ -1,0 +1,10 @@
+load "ElapsedSlowTicksTest.cod"
+load i "../../RandomiseRam.sti"
+load i "../../PreventInfiniteLoops.sti"
+
+firstSlowTmr0=0
+secondSlowTmr0=0
+expectedElapsedSlowTicks=0
+
+run
+quit

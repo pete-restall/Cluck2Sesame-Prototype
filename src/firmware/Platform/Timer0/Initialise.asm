@@ -1,6 +1,7 @@
 	#include "Platform.inc"
 	#include "TailCalls.inc"
 	#include "InitialisationChain.inc"
+	#include "Timer0.inc"
 
 	radix decimal
 
@@ -15,9 +16,21 @@ Timer0 code
 	global initialiseTimer0
 
 initialiseTimer0:
-	.safelySetBankFor OPTION_REG
+	.safelySetBankFor slowTmr0
+	clrf slowTmr0
+	clrf tmr0Overflow
+
+	.setBankFor OPTION_REG
 	movlw NON_TIMER0_MASK
 	andwf OPTION_REG
+
+	.setBankFor INTCON
+	bcf INTCON, T0IF
+
+	.setBankFor TMR0
+	clrf TMR0
+
+	.setBankFor OPTION_REG
 	movlw PRESCALER_DIVIDE_BY_128
 	iorwf OPTION_REG
 	tcall INITIALISE_AFTER_TIMER0

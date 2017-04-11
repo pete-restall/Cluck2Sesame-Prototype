@@ -1,0 +1,7 @@
+	#ifndef __CLUCK2SESAME_TESTS_PLATFORM_TIMER0_POLLAFTERTIMER0MOCK_INC
+	#define __CLUCK2SESAME_TESTS_PLATFORM_TIMER0_POLLAFTERTIMER0MOCK_INC
+
+	extern initialisePollAfterTimer0Mock
+	extern calledPollAfterTimer0
+
+	#endif

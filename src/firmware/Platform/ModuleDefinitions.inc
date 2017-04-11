@@ -24,6 +24,7 @@
 	.defineModule RESETFLAGS, BANK0
 	.defineModule SHIFTREGISTER, BANK0
 	.defineModule SMPS, BANK0
+	.defineModule TIMER0, BANK0
 
 	.defineModule DOOR, BANK1
 	.defineModule SUNRISESUNSET, BANK1

@@ -12,7 +12,7 @@ OBJ_FILES=\
 	BrownOutReset.o \
 	MclrReset.o \
 	ResetFlags.o \
-	Timer0.o \
+	Timer0.a \
 	TemperatureSensor.a \
 	Clock.a \
 	ShiftRegister.a \
