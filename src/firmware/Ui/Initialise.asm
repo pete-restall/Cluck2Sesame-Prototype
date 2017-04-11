@@ -1,6 +1,7 @@
 	#include "Platform.inc"
 	#include "TailCalls.inc"
 	#include "InitialisationChain.inc"
+	#include "Ui.inc"
 	#include "States.inc"
 
 	radix decimal
@@ -11,7 +12,8 @@ Ui code
 	global initialiseUi
 
 initialiseUi:
-	.safelySetBankFor uiState
+	.safelySetBankFor uiFlags
+	clrf uiFlags
 	clrf uiState
 
 	tcall INITIALISE_AFTER_UI

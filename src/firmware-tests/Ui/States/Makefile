@@ -2,6 +2,7 @@ export ASARGS+=-I $(FIRMWARE_DIR)/Ui
 export OBJ_FILES+=\
 	$(CURDIR)/../InitialiseAfterUiDummy.o \
 	$(FIRMWARE_TESTS_DIR)/Door/DoorDummies.o \
+	$(PLATFORM_TESTS_DIR)/Timer0/Timer0Dummies.o \
 	$(PLATFORM_TESTS_DIR)/Motor/MotorDummies.o
 
 TEST_FIXTURE_OBJ_FILES=\

@@ -3,7 +3,7 @@ OBJ_FILES=\
 	Registers.o \
 	Initialise.o \
 	Poll.o \
-	BootState.o \
+	BootAndWakeupStates.o \
 	WaitLcdEnabledState.o \
 	SettingsBacklightNowStates.o \
 	SettingsBacklightInTheDarkStates.o \
@@ -17,7 +17,8 @@ OBJ_FILES=\
 	HomeStates.o \
 	DoorOverrideStates.o \
 	VersionStates.pp.o \
-	AdjustSettingsStates.o
+	AdjustSettingsStates.o \
+	SleepStates.o
 
 all: $(LIB_FILENAME)
 

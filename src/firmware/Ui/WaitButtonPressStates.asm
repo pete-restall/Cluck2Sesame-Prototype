@@ -1,10 +1,14 @@
 	#include "Platform.inc"
 	#include "TailCalls.inc"
+	#include "Timer0.inc"
 	#include "Buttons.inc"
+	#include "Ui.inc"
 	#include "States.inc"
 	#include "WaitButtonPressState.inc"
 
 	radix decimal
+
+NUMBER_OF_SLOWTICKS_10S equ 39
 
 Ui code
 	global setUiStateForButtonEvents
@@ -22,6 +26,8 @@ Ui code
 		.setBankFor uiState
 		movlw UI_STATE_WAIT_BUTTONPRESS2
 		movwf uiState
+
+		storeSlowTimer0 uiButtonReleasedTimestamp
 		returnFromUiState
 
 
@@ -29,16 +35,31 @@ Ui code
 		.setBankFor buttonFlags
 		movf buttonFlags
 		btfsc STATUS, Z
-		goto endOfState
+		goto buttonStillNotPressed
 
+buttonPressed:
 		bcf STATUS, C
 		rrf buttonFlags, W
 
 		.setBankFor uiButtonEventBaseState
 		addwf uiButtonEventBaseState, W
 		movwf uiState
+		returnFromUiState
 
-endOfState:
+buttonStillNotPressed:
+		.knownBank buttonFlags
+		.setBankFor uiFlags
+		btfsc uiFlags, UI_FLAG_PREVENTSLEEP
+		returnFromUiState
+
+		elapsedSinceSlowTimer0 uiButtonReleasedTimestamp
+		sublw NUMBER_OF_SLOWTICKS_10S
+		btfsc STATUS, C
+		returnFromUiState
+
+		.setBankFor uiState
+		movlw UI_STATE_SLEEP
+		movwf uiState
 		returnFromUiState
 
 

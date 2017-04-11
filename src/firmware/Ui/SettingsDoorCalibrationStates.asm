@@ -5,6 +5,7 @@
 	#include "Lcd.inc"
 	#include "Motor.inc"
 	#include "Door.inc"
+	#include "Ui.inc"
 	#include "States.inc"
 	#include "WaitButtonPressState.inc"
 
@@ -56,6 +57,7 @@ RIGHT_ARROW equ 0x7e
 
 		.setBankFor uiState
 		movwf uiState
+		bcf uiFlags, UI_FLAG_PREVENTSLEEP
 		returnFromUiState
 
 

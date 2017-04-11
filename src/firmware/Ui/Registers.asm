@@ -3,10 +3,12 @@
 	radix decimal
 
 UiRam udata
+	global uiFlags
 	global uiState
 	global uiNextState
 
 	global uiButtonEventBaseState
+	global uiButtonReleasedTimestamp
 
 	global uiOption1Position
 	global uiOption2Position
@@ -14,10 +16,12 @@ UiRam udata
 	global uiSelectedOptionPosition
 	global uiOptionCounter
 
+uiFlags res 1
 uiState res 1
 uiNextState res 1
 
 uiButtonEventBaseState res 1
+uiButtonReleasedTimestamp res 1
 
 uiOption1Position res 1
 uiOption2Position res 1

@@ -2,15 +2,25 @@
 	#include "TailCalls.inc"
 	#include "PowerManagement.inc"
 	#include "Lcd.inc"
+	#include "Ui.inc"
 	#include "States.inc"
 
 	radix decimal
 
 	defineUiState UI_STATE_BOOT
+		bsf uiFlags, UI_FLAG_PREVENTSLEEP
+		setUiNextState UI_STATE_SETTINGS
+		goto fullPowerMode
+
+	defineUiStateInSameSection UI_STATE_WAKEUP
+		bcf uiFlags, UI_FLAG_PREVENTSLEEP
+		setUiNextState UI_STATE_HOME
+
+fullPowerMode:
+		setUiState UI_STATE_WAIT_LCDENABLED
 		fcall ensureFastClock
 		fcall enableLcd
-		setUiNextState UI_STATE_SETTINGS
-		setUiState UI_STATE_WAIT_LCDENABLED
+		fcall preventSleep
 		returnFromUiState
 
 	end

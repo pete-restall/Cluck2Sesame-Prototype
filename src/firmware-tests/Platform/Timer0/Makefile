@@ -13,7 +13,8 @@ TEST_DOUBLE_OBJ_FILES=\
 	InitialiseAfterTimer0Dummy.o \
 	InitialiseAfterTimer0Mock.o \
 	PollAfterTimer0Mock.o \
-	PollAfterTimer0Dummy.o
+	PollAfterTimer0Dummy.o \
+	Timer0Dummies.o
 
 ELAPSED_TICKS_OBJ_FILES=\
 	ElapsedTicksTest.o \
