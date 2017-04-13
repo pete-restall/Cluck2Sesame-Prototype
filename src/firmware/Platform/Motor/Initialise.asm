@@ -20,7 +20,7 @@ initialiseMotor:
 	clrf enableMotorVddCount
 	clrf motorState
 
-	movlw MOTOR_FLAG_PREVENT_OVERLOAD
+	movlw 1 << MOTOR_FLAG_PREVENT_OVERLOAD
 	movwf motorFlags
 
 setMotorCurrentSensePortToAnalogue:
