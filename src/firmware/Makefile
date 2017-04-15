@@ -13,6 +13,9 @@ OBJ_FILES=\
 
 all: $(HEX_FILENAME)
 
+install: all
+	$(PICKIT3_IPE) -P16F685 -OL -M -Y -F$(HEX_FILENAME)
+
 clean:
 	$(RM) -f $(BUILD_ARTEFACT_PATTERN)
 	$(MAKE) -C Platform clean

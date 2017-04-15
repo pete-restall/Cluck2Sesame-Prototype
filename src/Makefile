@@ -12,11 +12,16 @@ export LD=gplink
 export LDARGS=-S 2 -O 2 -s $(LKR_FILENAME) -m -c
 export BUILD_ARTEFACT_PATTERN=*.hex *.cod *.cof *.map *.lst *.o *.a *.log
 export GPLIB_MERGE=$(UTILITIES_DIR)/gplib-merge.sh
+export MPLABX_DIR=/opt/microchip/mplabx/v3.55
+export PICKIT3_IPE=$(MPLABX_DIR)/mplab_ipe/ipecmd.sh -TPPK3
 
 all:
 	$(MAKE) -C utilities all
 	$(MAKE) -C firmware all
 	$(MAKE) -C firmware-tests all
+
+firmware-install:
+	$(MAKE) -C firmware install
 
 clean:
 	$(MAKE) -C utilities clean

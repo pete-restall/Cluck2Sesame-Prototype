@@ -8,6 +8,8 @@
 /src/utilities/trigonometry/cordic/cordic-float
 /src/utilities/trigonometry/cordic/cordic-fixed
 /src/utilities/trigonometry/smoothstep/smoothstep
+/src/firmware/MPLABXLog.xml*
+/src/firmware/log.*
 /src/firmware-tests/RandomiseRam.sti
 /**/.~*
 /src/schematics/~*.sch
