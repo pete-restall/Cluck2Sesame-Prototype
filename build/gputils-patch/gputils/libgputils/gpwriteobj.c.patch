@@ -1,8 +1,0 @@
-35a36
->   void *existing_name;
-45a47,51
-> 
->   existing_name = (const char *) memmem(Table, nbytes, Name, sizeof_name);
->   if (existing_name != NULL) {
->       return (unsigned int) (existing_name - (void *) Table);
->   }
