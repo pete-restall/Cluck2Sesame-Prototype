@@ -4,7 +4,11 @@
 	extern initialiseEnableAndDisableSmpsMocks
 	extern calledEnableSmpsCount
 	extern calledEnableSmpsTrisc
+	extern calledEnableSmpsHighPowerModeCount
+	extern calledEnableSmpsHighPowerModeTrisc
 	extern calledDisableSmpsCount
 	extern calledDisableSmpsTrisc
+	extern calledDisableSmpsHighPowerModeCount
+	extern calledDisableSmpsHighPowerModeTrisc
 
 	#endif

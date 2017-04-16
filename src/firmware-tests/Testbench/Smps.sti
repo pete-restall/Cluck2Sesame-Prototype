@@ -1,0 +1,7 @@
+module load led highPower
+highPower.xpos=370
+highPower.ypos=324
+highPower.color="red"
+highPower.ActiveState="high"
+node smpsHighPowerEn
+attach smpsHighPowerEn u203.Q7 highPower.in

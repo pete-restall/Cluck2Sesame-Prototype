@@ -16,8 +16,8 @@ ENABLE_DISABLE_PORT_OBJ_FILES=\
 
 IS_SHIFT_REGISTER_ENABLED_OBJ_FILES=\
 	IsShiftRegisterEnabledTest.o \
-	../../Smps/EnableSmpsDummy.o \
-	../../Smps/DisableSmpsDummy.o \
+	../../Smps/EnableSmpsDummies.o \
+	../../Smps/DisableSmpsDummies.o \
 	../../Smps/IsSmpsEnabledStub.o \
 	../../Smps/PollSmpsDummy.o
 

@@ -4,8 +4,8 @@ load i "../../../PreventInfiniteLoops.sti"
 
 numberOfEnableCalls=8
 numberOfDisableCalls=8
-expectedCalledEnableSmpsCount=8
-expectedCalledDisableSmpsCount=8
+expectedCalledEnableSmpsHighPowerModeCount=8
+expectedCalledDisableSmpsHighPowerModeCount=8
 
 run
 quit

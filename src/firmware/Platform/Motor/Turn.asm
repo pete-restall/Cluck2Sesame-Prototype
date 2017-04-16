@@ -44,8 +44,9 @@ ensureAdcChannelCanBeUsedToMonitorMotorCurrent:
 
 	; TODO: IF ALREADY TURNING (IN SAME DIRECTION) THEN RETURN 1.
 ifAlreadyTurningThenInitialStateIsForReversal:
-	.setBankFor CCPR1L
-	movf CCPR1L
+	.setBankFor PSTRCON
+	movlw (1 << STRA) | (1 << STRB)
+	andwf PSTRCON, W
 	btfss STATUS, Z
 	goto reverseMotor
 

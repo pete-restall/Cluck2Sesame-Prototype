@@ -5,7 +5,9 @@
 
 	extern initialiseSmps
 	extern enableSmps
+	extern enableSmpsHighPowerMode
 	extern disableSmps
+	extern disableSmpsHighPowerMode
 	extern isSmpsEnabled
 	extern pollSmps
 

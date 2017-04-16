@@ -1,0 +1,14 @@
+load "EnableDisableSmpsHighPowerModeShiftOutTest.cod"
+load i "../../../RandomiseRam.sti"
+load i "../../../PreventInfiniteLoops.sti"
+
+initialShiftRegisterBuffer=0x42
+isShiftRegisterEnabledResult=1
+numberOfEnableCalls=6
+numberOfDisableCalls=6
+expectedShiftOutCount=2
+expectedShiftRegisterBuffer1=0xc2
+expectedShiftRegisterBuffer2=0x42
+
+run
+quit

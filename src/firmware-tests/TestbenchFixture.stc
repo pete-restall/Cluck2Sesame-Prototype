@@ -6,4 +6,5 @@ load i "Testbench/ShiftRegister.sti"
 load i "Testbench/Lcd.sti"
 load i "Testbench/Buttons.sti"
 load i "Testbench/Motor.sti"
+load i "Testbench/Smps.sti"
 tmr1_freq=32768

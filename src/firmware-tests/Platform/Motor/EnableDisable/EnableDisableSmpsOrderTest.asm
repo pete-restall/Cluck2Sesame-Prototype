@@ -19,13 +19,13 @@ testAct:
 
 testAssert:
 	movlw 1 << TRISC6
-	banksel calledEnableSmpsTrisc
+	banksel calledEnableSmpsHighPowerModeTrisc
 
-	andwf calledEnableSmpsTrisc
-	.assert "(calledEnableSmpsTrisc & 0xff) != 0, 'Expected MOTOR_VDD_EN to be disabled when enableSmps() called.'"
+	andwf calledEnableSmpsHighPowerModeTrisc
+	.assert "(calledEnableSmpsHighPowerModeTrisc & 0xff) != 0, 'Expected MOTOR_VDD_EN to be disabled when enableSmpsHighPowerMode() called.'"
 
-	andwf calledDisableSmpsTrisc
-	.assert "(calledDisableSmpsTrisc & 0xff) != 0, 'Expected MOTOR_VDD_EN to be disabled when disableSmps() called.'"
+	andwf calledDisableSmpsHighPowerModeTrisc
+	.assert "(calledDisableSmpsHighPowerModeTrisc & 0xff) != 0, 'Expected MOTOR_VDD_EN to be disabled when disableSmpsHighPowerMode() called.'"
 	return
 
 	end

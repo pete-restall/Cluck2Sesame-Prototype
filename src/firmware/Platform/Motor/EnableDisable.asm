@@ -14,7 +14,7 @@ Motor code
 	global isMotorVddEnabled
 
 enableMotorVdd:
-	fcall enableSmps
+	fcall enableSmpsHighPowerMode
 	fcall enableAdc
 
 	.setBankFor MOTOR_TRIS
@@ -26,12 +26,13 @@ enableMotorVdd:
 	.setBankFor enableMotorVddCount
 	incf enableMotorVddCount
 
-setMotorStateToIdleIfFirstCall:
+returnIfNotFirstCallToEnableMotorVdd:
 	movlw 1
 	xorwf enableMotorVddCount, W
 	btfss STATUS, Z
 	return
 
+setMotorStateToIdle:
 	movlw MOTOR_STATE_IDLE
 	movwf motorState
 
@@ -61,7 +62,7 @@ disableMotorVdd:
 
 disableMotorVddReturn:
 	fcall disableAdc
-	tcall disableSmps
+	tcall disableSmpsHighPowerMode
 
 isMotorVddEnabled:
 	clrw

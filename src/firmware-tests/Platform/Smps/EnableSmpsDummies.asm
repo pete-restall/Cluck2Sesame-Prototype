@@ -2,10 +2,12 @@
 
 	radix decimal
 
-EnableSmpsDummy code
+EnableSmpsDummies code
 	global enableSmps
+	global enableSmpsHighPowerMode
 
 enableSmps:
+enableSmpsHighPowerMode:
 	return
 
 	end

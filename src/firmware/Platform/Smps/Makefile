@@ -1,5 +1,6 @@
 LIB_FILENAME=../Smps.a
 OBJ_FILES=\
+	Registers.o \
 	Initialise.o \
 	EnableDisable.o \
 	Poll.o

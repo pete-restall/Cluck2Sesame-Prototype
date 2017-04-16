@@ -5,7 +5,7 @@
 
 	radix decimal
 
-DUTY_CYCLE_INCREMENT equ 6
+DUTY_CYCLE_INCREMENT equ 2
 
 	defineMotorState MOTOR_STATE_SOFTSTART
 increaseDutyCycle:

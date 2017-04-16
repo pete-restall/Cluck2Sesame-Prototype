@@ -1,21 +1,21 @@
-	#define __CLUCK2SESAME_PLATFORM_SMPS_ENABLEDISABLE_ASM
-
 	#include "Platform.inc"
 	#include "Smps.inc"
 
 	radix decimal
 
-SmpsRam udata
-	global enableSmpsCount
-	global smpsFlags
-
-enableSmpsCount res 1
-smpsFlags res 1
-
 Smps code
 	global enableSmps
+	global enableSmpsHighPowerMode
 	global disableSmps
+	global disableSmpsHighPowerMode
 	global isSmpsEnabled
+
+enableSmpsHighPowerMode:
+	.safelySetBankFor enableSmpsHighPowerModeCount
+	incf enableSmpsHighPowerModeCount
+	decfsz enableSmpsHighPowerModeCount, W
+	goto enableSmps
+	bsf smpsFlags, SMPS_FLAG_HIGHPOWERMODE
 
 enableSmps:
 	.safelySetBankFor SMPS_TRIS
@@ -24,6 +24,12 @@ enableSmps:
 	.setBankFor enableSmpsCount
 	incf enableSmpsCount
 	return
+
+disableSmpsHighPowerMode:
+	.safelySetBankFor enableSmpsHighPowerModeCount
+	decfsz enableSmpsHighPowerModeCount
+	goto disableSmps
+	bsf smpsFlags, SMPS_FLAG_HIGHPOWERMODE
 
 disableSmps:
 	.safelySetBankFor enableSmpsCount

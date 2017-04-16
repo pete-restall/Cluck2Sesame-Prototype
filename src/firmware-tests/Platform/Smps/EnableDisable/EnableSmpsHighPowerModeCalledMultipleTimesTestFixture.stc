@@ -1,0 +1,11 @@
+load "EnableDisableSmpsHighPowerModeTest.cod"
+load i "../../../RandomiseRam.sti"
+load i "../../../PreventInfiniteLoops.sti"
+
+numberOfEnableCalls=15
+numberOfDisableCalls=0
+expectedPortValue=0
+expectedTrisValue=1
+
+run
+quit

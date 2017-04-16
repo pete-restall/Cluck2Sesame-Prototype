@@ -1,11 +1,11 @@
-load "EnableDisableSmpsTest.cod"
+load "EnableDisableSmpsShiftOutTest.cod"
 load i "../../../RandomiseRam.sti"
 load i "../../../PreventInfiniteLoops.sti"
 
+isShiftRegisterEnabledResult=1
 numberOfEnableCalls=1
 numberOfDisableCalls=0
-expectedCalledEnableSmpsHighPowerModeCount=1
-expectedCalledDisableSmpsHighPowerModeCount=0
+expectedShiftOutCount=0
 
 run
 quit

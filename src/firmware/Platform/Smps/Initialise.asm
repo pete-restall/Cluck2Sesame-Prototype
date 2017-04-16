@@ -15,9 +15,10 @@ flagSmpsVddAsEnabledAndStableAtBoot:
 	.safelySetBankFor enableSmpsCount
 	movlw 1
 	movwf enableSmpsCount
+	clrf enableSmpsHighPowerModeCount
 
 	.setBankFor smpsFlags
-	movlw (1 << SMPS_FLAG_VDD_STABLE)
+	movlw (1 << SMPS_FLAG_VDDSTABLE)
 	movwf smpsFlags
 
 setPortModeToAnalogue:

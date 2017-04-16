@@ -1,8 +1,12 @@
 HEX_FILES=\
 	PollChainTest.hex
 
+TEST_DOUBLE_OBJ_FILES=\
+	$(PLATFORM_TESTS_DIR)/ShiftRegister/ShiftRegisterDummies.o
+
 POLL_CHAIN_OBJ_FILES=\
-	PollChainTest.o
+	PollChainTest.o \
+	$(TEST_DOUBLE_OBJ_FILES)
 
 all: $(HEX_FILES)
 

@@ -5,8 +5,8 @@ HEX_FILES=\
 	ShiftRegisterBufferClearedTest.hex
 
 OBJ_FILES+=\
-	../../Smps/EnableSmpsDummy.o \
-	../../Smps/DisableSmpsDummy.o \
+	../../Smps/EnableSmpsDummies.o \
+	../../Smps/DisableSmpsDummies.o \
 	../../Smps/IsSmpsEnabledDummy.o \
 	../../Smps/PollSmpsDummy.o
 

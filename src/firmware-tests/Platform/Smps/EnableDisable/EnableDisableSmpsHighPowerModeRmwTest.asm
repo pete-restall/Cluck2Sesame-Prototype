@@ -4,16 +4,16 @@
 
 	radix decimal
 
-EnableDisableSmpsRmwTest code
+EnableDisableSmpsHighPowerModeRmwTest code
 	global doEnableCall
 	global doDisableCall
 
 doEnableCall:
-	fcall enableSmps
+	fcall enableSmpsHighPowerMode
 	return
 
 doDisableCall:
-	fcall disableSmps
+	fcall disableSmpsHighPowerMode
 	return
 
 	end

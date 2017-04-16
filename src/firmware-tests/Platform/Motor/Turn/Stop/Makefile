@@ -6,8 +6,8 @@ HEX_FILES=\
 	ReleaseAdcChannelTest.hex
 
 TEST_DOUBLE_OBJ_FILES=\
-	../../../Smps/EnableSmpsDummy.o \
-	../../../Smps/DisableSmpsDummy.o \
+	../../../Smps/EnableSmpsDummies.o \
+	../../../Smps/DisableSmpsDummies.o \
 	../../../Smps/IsSmpsEnabledStub.o \
 	../../../Smps/PollSmpsDummy.o \
 	../../../Adc/InitialiseAdcDummy.o \

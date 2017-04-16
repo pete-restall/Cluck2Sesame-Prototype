@@ -10,6 +10,7 @@
 
 	extern testAct
 
+DUTY_CYCLE_INCREMENT equ 2
 NUMBER_OF_SAMPLES equ 50
 
 	udata
@@ -81,10 +82,10 @@ testAssert:
 	.command "echo Samples:"
 	while (i < NUMBER_OF_SAMPLES)
 		.aliasForAssert dutyCycleSamples + i, _a
-		if (6 * (i + 1) > 255)
+		if (DUTY_CYCLE_INCREMENT * (i + 1) > 255)
 			.aliasLiteralForAssert 255, _b
 		else
-			.aliasLiteralForAssert 6 * (i + 1), _b
+			.aliasLiteralForAssert DUTY_CYCLE_INCREMENT * (i + 1), _b
 		endif
 		.command "_a"
 		.assert "_a == _b, 'Soft start duty cycle mismatch.'"

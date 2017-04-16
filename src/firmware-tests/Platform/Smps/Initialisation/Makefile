@@ -3,14 +3,20 @@ HEX_FILES=\
 	PortcTest.hex \
 	InitialisationChainTest.hex
 
+TEST_DOUBLE_OBJ_FILES=\
+	$(PLATFORM_TESTS_DIR)/ShiftRegister/ShiftRegisterDummies.o
+
 ANSEL_OBJ_FILES=\
-	AnselTest.o
+	AnselTest.o \
+	$(TEST_DOUBLE_OBJ_FILES)
 
 PORTC_OBJ_FILES=\
-	PortcTest.o
+	PortcTest.o \
+	$(TEST_DOUBLE_OBJ_FILES)
 
 INITIALISATION_CHAIN_OBJ_FILES=\
-	InitialisationChainTest.o
+	InitialisationChainTest.o \
+	$(TEST_DOUBLE_OBJ_FILES)
 
 all: $(HEX_FILES)
 

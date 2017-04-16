@@ -12,8 +12,8 @@ TEST_DOUBLE_OBJ_FILES=\
 	PollAfterSmpsMock.o \
 	EnableDisableSmpsDummies.o \
 	EnableDisableSmpsMocks.o \
-	EnableSmpsDummy.o \
-	DisableSmpsDummy.o \
+	EnableSmpsDummies.o \
+	DisableSmpsDummies.o \
 	IsSmpsEnabledDummy.o \
 	IsSmpsEnabledStub.o \
 	PollSmpsDummy.o \

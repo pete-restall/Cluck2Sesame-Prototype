@@ -4,7 +4,7 @@
 
 	radix decimal
 
-EnableDisableSmpsRmwTest code
+EnableDisableSmpsShiftOutTest code
 	global doEnableCall
 	global doDisableCall
 
@@ -13,7 +13,7 @@ doEnableCall:
 	return
 
 doDisableCall:
-	fcall disableSmps
+	fcall enableSmps
 	return
 
 	end

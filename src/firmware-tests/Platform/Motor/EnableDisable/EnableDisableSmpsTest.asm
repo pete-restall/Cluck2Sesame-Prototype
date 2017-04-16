@@ -9,13 +9,13 @@
 	udata
 	global numberOfEnableCalls
 	global numberOfDisableCalls
-	global expectedCalledEnableSmpsCount
-	global expectedCalledDisableSmpsCount
+	global expectedCalledEnableSmpsHighPowerModeCount
+	global expectedCalledDisableSmpsHighPowerModeCount
 
 numberOfEnableCalls res 1
 numberOfDisableCalls res 1
-expectedCalledEnableSmpsCount res 1
-expectedCalledDisableSmpsCount res 1
+expectedCalledEnableSmpsHighPowerModeCount res 1
+expectedCalledDisableSmpsHighPowerModeCount res 1
 
 EnableDisableSmpsTest code
 	global testArrange
@@ -49,13 +49,13 @@ callDisableMotorVddInLoop:
 	goto callDisableMotorVddInLoop
 
 testAssert:
-	.aliasForAssert calledEnableSmpsCount, _a
-	.aliasForAssert expectedCalledEnableSmpsCount, _b
-	.assert "_a == _b, 'Expected calls to enableSmps() did not match expectation.'"
+	.aliasForAssert calledEnableSmpsHighPowerModeCount, _a
+	.aliasForAssert expectedCalledEnableSmpsHighPowerModeCount, _b
+	.assert "_a == _b, 'Expected calls to enableSmpsHighPowerMode() did not match expectation.'"
 
-	.aliasForAssert calledDisableSmpsCount, _a
-	.aliasForAssert expectedCalledDisableSmpsCount, _b
-	.assert "_a == _b, 'Expected calls to disableSmps() did not match expectation.'"
+	.aliasForAssert calledDisableSmpsHighPowerModeCount, _a
+	.aliasForAssert expectedCalledDisableSmpsHighPowerModeCount, _b
+	.assert "_a == _b, 'Expected calls to disableSmpsHighPowerMode() did not match expectation.'"
 	return
 
 	end
