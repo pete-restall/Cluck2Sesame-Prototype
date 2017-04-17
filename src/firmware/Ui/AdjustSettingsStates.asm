@@ -3,6 +3,7 @@
 	#include "Flash.inc"
 	#include "Lcd.inc"
 	#include "States.inc"
+	#include "Ui.inc"
 	#include "WaitButtonPressState.inc"
 
 	radix decimal
@@ -32,6 +33,7 @@
 
 
 	defineUiStateInSameSection UI_STATE_ADJUSTSETTINGS_ENTER
+		bsf uiFlags, UI_FLAG_PREVENTSLEEP
 		setUiState UI_STATE_SETTINGS
 		returnFromUiState
 
