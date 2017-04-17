@@ -5,7 +5,11 @@ HEX_FILES=\
 	EnableDisableSmpsHighPowerModeRmwTest.hex \
 	EnableDisableSmpsShiftOutTest.hex \
 	EnableDisableSmpsHighPowerModeShiftOutTest.hex \
-	IsEnabledAfterInitialisationTest.hex
+	IsEnabledAfterInitialisationTest.hex \
+	IsEnabledImmediatelyAfterEnableCallTest.hex \
+	IsEnabledAfterDelayTest.hex \
+	IsEnabledPowerManagementTest.hex \
+	IsEnabledAfterDisabledTest.hex
 
 TEST_FIXTURE_OBJ_FILES=\
 	EnableDisableSmpsTestFixture.o \
@@ -54,6 +58,22 @@ IS_ENABLED_AFTER_INITIALISATION_OBJ_FILES=\
 	IsEnabledAfterInitialisationTest.o \
 	../../ShiftRegister/ShiftRegisterDummies.o
 
+IS_ENABLED_IMMEDIATELY_AFTER_ENABLE_CALL_OBJ_FILES=\
+	IsEnabledImmediatelyAfterEnableCallTest.o \
+	../../ShiftRegister/ShiftRegisterDummies.o
+
+IS_ENABLED_AFTER_DELAY_OBJ_FILES=\
+	IsEnabledAfterDelayTest.o \
+	../../ShiftRegister/ShiftRegisterDummies.o
+
+IS_ENABLED_POWER_MANAGEMENT_OBJ_FILES=\
+	IsEnabledPowerManagementTest.o \
+	../../ShiftRegister/ShiftRegisterDummies.o
+
+IS_ENABLED_AFTER_DISABLED_OBJ_FILES=\
+	IsEnabledAfterDisabledTest.o \
+	../../ShiftRegister/ShiftRegisterDummies.o
+
 all: $(TEST_FIXTURE_OBJ_FILES) $(HEX_FILES)
 
 clean:
@@ -79,5 +99,17 @@ EnableDisableSmpsHighPowerModeShiftOutTest.hex: $(OBJ_FILES) $(ENABLE_DISABLE_SM
 
 IsEnabledAfterInitialisationTest.hex: $(OBJ_FILES) $(IS_ENABLED_AFTER_INITIALISATION_OBJ_FILES)
 	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(IS_ENABLED_AFTER_INITIALISATION_OBJ_FILES)
+
+IsEnabledImmediatelyAfterEnableCallTest.hex: $(OBJ_FILES) $(IS_ENABLED_IMMEDIATELY_AFTER_ENABLE_CALL_OBJ_FILES)
+	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(IS_ENABLED_IMMEDIATELY_AFTER_ENABLE_CALL_OBJ_FILES)
+
+IsEnabledAfterDelayTest.hex: $(OBJ_FILES) $(IS_ENABLED_AFTER_DELAY_OBJ_FILES)
+	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(IS_ENABLED_AFTER_DELAY_OBJ_FILES)
+
+IsEnabledPowerManagementTest.hex: $(OBJ_FILES) $(IS_ENABLED_POWER_MANAGEMENT_OBJ_FILES)
+	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(IS_ENABLED_POWER_MANAGEMENT_OBJ_FILES)
+
+IsEnabledAfterDisabledTest.hex: $(OBJ_FILES) $(IS_ENABLED_AFTER_DISABLED_OBJ_FILES)
+	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(IS_ENABLED_AFTER_DISABLED_OBJ_FILES)
 
 include $(MAKEFILE_RULES)

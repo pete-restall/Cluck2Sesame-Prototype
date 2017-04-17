@@ -1,0 +1,10 @@
+load "IsEnabledAfterDelayTest.cod"
+load i "../../../RandomiseRam.sti"
+load i "../../../PreventInfiniteLoops.sti"
+
+initialTmr0=63
+tmr0Increment=8
+expectIsSmpsEnabled=1
+
+run
+quit

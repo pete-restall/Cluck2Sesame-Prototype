@@ -3,6 +3,7 @@ export OBJ_FILES=\
 	$(SUT_OBJ_FILE) \
 	$(PLATFORM_CORE_OBJ_FILES) \
 	$(TEST_FIXTURE_OBJ_FILES) \
+	$(PLATFORM_DIR)/Timer0.a \
 	$(PLATFORM_TESTS_DIR)/ShiftRegister/ShiftRegisterDummies.o
 
 TEST_DOUBLE_OBJ_FILES=\

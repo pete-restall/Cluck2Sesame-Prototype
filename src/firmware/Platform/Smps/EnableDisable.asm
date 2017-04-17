@@ -1,4 +1,8 @@
 	#include "Platform.inc"
+	#include "FarCalls.inc"
+	#include "TailCalls.inc"
+	#include "Timer0.inc"
+	#include "PowerManagement.inc"
 	#include "Smps.inc"
 
 	radix decimal
@@ -23,7 +27,14 @@ enableSmps:
 
 	.setBankFor enableSmpsCount
 	incf enableSmpsCount
+	decfsz enableSmpsCount, W
 	return
+
+firstTimeSmpsHasBeenEnabled:
+	bsf smpsFlags, SMPS_FLAG_WAITFORSTABLEVDD
+	storeTimer0 smpsEnabledTimestamp
+	fcall ensureFastClock
+	tcall preventSleep
 
 disableSmpsHighPowerMode:
 	.safelySetBankFor enableSmpsHighPowerModeCount
@@ -36,6 +47,9 @@ disableSmps:
 	decfsz enableSmpsCount
 	return
 
+	bcf smpsFlags, SMPS_FLAG_VDDSTABLE
+	bcf smpsFlags, SMPS_FLAG_WAITFORSTABLEVDD
+
 	.setBankFor SMPS_TRIS
 	bcf SMPS_TRIS, SMPS_EN_PIN_TRIS
 
@@ -44,13 +58,9 @@ disableSmps:
 	return
 
 isSmpsEnabled:
-	movlw 1
-	; TODO: THE +3.3V LINE IS ONLY AVAILABLE > 1ms AFTER SMPS_EN IS ASSERTED.
-	; USE THE elapsedSinceTimer0() MACRO FOR THIS, SO EIGHT TICKS SHOULD
-	; BE > 1ms, ALONG WITH A pollSmps() THAT CHECKS THE TIMER VALUES
-	; TO SET smpsFlags.SMPS_FLAG_VDD_STABLE.  THE pollSmps() ALSO NEEDS TO
-	; ENSURE THAT CLOCK SWITCHING AND SLEEP ARE DISABLED UNTIL THE SMPS HAS
-	; BEEN VERIFIED AS STABLE.
-	return
+	.safelySetBankFor smpsFlags
+	btfss smpsFlags, SMPS_FLAG_VDDSTABLE
+	retlw 0
+	retlw 1
 
 	end

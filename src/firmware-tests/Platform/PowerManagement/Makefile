@@ -8,10 +8,12 @@ export OBJ_FILES=\
 
 TEST_DOUBLE_OBJ_FILES=\
 	InitialiseAfterPowerManagementMock.o \
+	InitialiseAfterPowerManagementDummy.o \
+	PollAfterPowerManagementDummy.o \
 	PowerManagementDummies.o \
 	PowerManagementMocks.o
 
-all:
+all: $(TEST_DOUBLE_OBJ_FILES)
 	$(MAKE) -C Initialisation all
 	$(MAKE) -C Poll all
 	$(MAKE) -C ClockSwitching all
