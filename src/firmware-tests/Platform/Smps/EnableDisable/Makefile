@@ -9,7 +9,9 @@ HEX_FILES=\
 	IsEnabledImmediatelyAfterEnableCallTest.hex \
 	IsEnabledAfterDelayTest.hex \
 	IsEnabledPowerManagementTest.hex \
-	IsEnabledAfterDisabledTest.hex
+	IsEnabledAfterDisabledTest.hex \
+	EnableSmpsPicVddTest.hex \
+	DisableSmpsPicVddTest.hex
 
 TEST_FIXTURE_OBJ_FILES=\
 	EnableDisableSmpsTestFixture.o \
@@ -74,6 +76,14 @@ IS_ENABLED_AFTER_DISABLED_OBJ_FILES=\
 	IsEnabledAfterDisabledTest.o \
 	../../ShiftRegister/ShiftRegisterDummies.o
 
+ENABLE_SMPS_PIC_VDD_OBJ_FILES=\
+	EnableSmpsPicVddTest.o \
+	../../ShiftRegister/ShiftRegisterDummies.o
+
+DISABLE_SMPS_PIC_VDD_OBJ_FILES=\
+	DisableSmpsPicVddTest.o \
+	../../ShiftRegister/ShiftRegisterDummies.o
+
 all: $(TEST_FIXTURE_OBJ_FILES) $(HEX_FILES)
 
 clean:
@@ -111,5 +121,11 @@ IsEnabledPowerManagementTest.hex: $(OBJ_FILES) $(IS_ENABLED_POWER_MANAGEMENT_OBJ
 
 IsEnabledAfterDisabledTest.hex: $(OBJ_FILES) $(IS_ENABLED_AFTER_DISABLED_OBJ_FILES)
 	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(IS_ENABLED_AFTER_DISABLED_OBJ_FILES)
+
+EnableSmpsPicVddTest.hex: $(OBJ_FILES) $(ENABLE_SMPS_PIC_VDD_OBJ_FILES)
+	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(ENABLE_SMPS_PIC_VDD_OBJ_FILES)
+
+DisableSmpsPicVddTest.hex: $(OBJ_FILES) $(DISABLE_SMPS_PIC_VDD_OBJ_FILES)
+	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(DISABLE_SMPS_PIC_VDD_OBJ_FILES)
 
 include $(MAKEFILE_RULES)

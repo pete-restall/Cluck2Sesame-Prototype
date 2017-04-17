@@ -55,6 +55,12 @@ disableSmps:
 
 	.setBankFor SMPS_PORT
 	bcf SMPS_PORT, SMPS_EN_PIN
+
+	.setBankFor PIC_VDD_PORT
+	bcf PIC_VDD_PORT, PIC_VDD_SMPS_EN_PIN
+
+	.setBankFor PIC_VDD_TRIS
+	bcf PIC_VDD_TRIS, PIC_VDD_SMPS_EN_PIN_TRIS
 	return
 
 isSmpsEnabled:

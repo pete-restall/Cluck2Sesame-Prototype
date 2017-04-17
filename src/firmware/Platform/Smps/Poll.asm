@@ -35,6 +35,9 @@ vddHasStabilised:
 	.setBankFor smpsFlags
 	bcf smpsFlags, SMPS_FLAG_WAITFORSTABLEVDD
 	bsf smpsFlags, SMPS_FLAG_VDDSTABLE
+
+	.setBankFor PIC_VDD_TRIS
+	bsf PIC_VDD_TRIS, PIC_VDD_SMPS_EN_PIN_TRIS
 	fcall allowSlowClock
 
 vddNotStableYet:
