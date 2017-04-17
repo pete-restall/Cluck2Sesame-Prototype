@@ -19,11 +19,11 @@ vssForLcd.xpos=648
 vssForLcd.ypos=72
 vssForLcd.resistance=1
 node vssForLcdNode
-attach vssForLcdNode vssForLcd lcd.d0
-attach vssForLcdNode vssForLcd lcd.d1
-attach vssForLcdNode vssForLcd lcd.d2
-attach vssForLcdNode vssForLcd lcd.d3
-attach vssForLcdNode vssForLcd lcd.RW
+attach vssForLcdNode vssForLcd.pin lcd.d0
+attach vssForLcdNode vssForLcd.pin lcd.d1
+attach vssForLcdNode vssForLcd.pin lcd.d2
+attach vssForLcdNode vssForLcd.pin lcd.d3
+attach vssForLcdNode vssForLcd.pin lcd.RW
 
 module load led backlight
 backlight.xpos=684

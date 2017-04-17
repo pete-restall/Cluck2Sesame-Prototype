@@ -1,7 +1,49 @@
 module load led highPower
-highPower.xpos=370
-highPower.ypos=324
+highPower.xpos=420
+highPower.ypos=528
 highPower.color="red"
 highPower.ActiveState="high"
 node smpsHighPowerEn
 attach smpsHighPowerEn u203.Q7 highPower.in
+
+module load pullup r103
+r103.xpos=552
+r103.ypos=432
+r103.resistance=220000
+
+module load led picVddSmps
+picVddSmps.xpos=552
+picVddSmps.ypos=528
+picVddSmps.color="green"
+picVddSmps.ActiveState="high"
+
+module load and2 picVddSmpsAnd
+picVddSmpsAnd.xpos=552
+picVddSmpsAnd.ypos=480
+node picVddSmpsAndIn0
+node picVddSmpsAndIn1
+node picVddSmpsAndOut
+attach picVddSmpsAndIn0 picVddSmpsAnd.in0 r103.pin
+attach picVddSmpsAndIn1 picVddSmpsAnd.in1 portb7
+attach picVddSmpsAndOut picVddSmpsAnd.out picVddSmps.in
+
+module load pullup r104
+r104.xpos=384
+r104.ypos=432
+r104.resistance=220000
+
+module load led smps
+smps.xpos=384
+smps.ypos=528
+smps.color="green"
+smps.ActiveState="high"
+
+module load and2 smpsAnd
+smpsAnd.xpos=384
+smpsAnd.ypos=480
+node smpsAndIn0
+node smpsAndIn1
+node smpsAndOut
+attach smpsAndIn0 smpsAnd.in0 r104.pin
+attach smpsAndIn1 smpsAnd.in1 portb7
+attach smpsAndOut smpsAnd.out smps.in

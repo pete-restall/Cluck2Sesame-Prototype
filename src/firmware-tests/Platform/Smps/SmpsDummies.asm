@@ -9,6 +9,7 @@ SmpsDummies code
 	global disableSmps
 	global disableSmpsHighPowerMode
 	global isSmpsEnabled
+	global pollSmps
 
 initialiseSmps:
 enableSmps:
@@ -16,6 +17,7 @@ enableSmpsHighPowerMode:
 disableSmps:
 disableSmpsHighPowerMode:
 isSmpsEnabled:
+pollSmps:
 	return
 
 	end

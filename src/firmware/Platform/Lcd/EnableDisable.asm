@@ -2,6 +2,7 @@
 	#include "TailCalls.inc"
 	#include "../ShiftRegister.inc"
 	#include "../Adc.inc"
+	#include "../Motor.inc"
 	#include "Lcd.inc"
 	#include "States.inc"
 
@@ -30,7 +31,6 @@ disableLcd:
 	decfsz enableLcdCount
 	goto disableLcdDone
 
-	fcall disableAdc
 	setLcdState LCD_STATE_DISABLED
 
 	.setBankFor lcdFlags
@@ -39,8 +39,10 @@ disableLcd:
 	.setBankFor LCD_CONTRAST_PORT
 	bcf LCD_CONTRAST_PORT, LCD_CONTRAST_PIN
 
+	fcall disableAdc
+	fcall disableMotorVdd
+
 disableLcdDone:
-	; TODO: MOTOR VDD ALSO NEEDS TO BE DISABLED (BEFORE THE SHIFT REGISTER IS DISABLED)
 	tcall disableShiftRegister
 
 isLcdEnabled:

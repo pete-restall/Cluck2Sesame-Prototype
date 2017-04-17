@@ -3,7 +3,8 @@ export OBJ_FILES+=\
 	$(CURDIR)/../InitialiseAfterUiDummy.o \
 	$(FIRMWARE_TESTS_DIR)/Door/DoorDummies.o \
 	$(PLATFORM_TESTS_DIR)/Timer0/Timer0Dummies.o \
-	$(PLATFORM_TESTS_DIR)/Motor/MotorDummies.o
+	$(PLATFORM_TESTS_DIR)/Motor/MotorDummies.o \
+	$(PLATFORM_TESTS_DIR)/Smps/SmpsDummies.o
 
 TEST_FIXTURE_OBJ_FILES=\
 	NextStateIsUnchangedTestFixture.o \
