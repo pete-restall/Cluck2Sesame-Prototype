@@ -1,0 +1,18 @@
+load "PutBcdDigitsTest.cod"
+load i "../../../RandomiseRam.sti"
+load i "../../../PreventInfiniteLoops.sti"
+load i "../LcdStates.sti"
+
+initialW=0x73
+initialLcdState=LCD_STATE_IDLE
+initialLcdNextState=0x44
+initialLcdCommand=0x93
+expectedW=1
+expectedFirstLcdState=LCD_STATE_WRITE_CHARACTER
+expectedFirstLcdCommand=0x37
+expectedSecondLcdState=LCD_STATE_WRITE_CHARACTER
+expectedSecondLcdCommand=0x33
+expectedFinalLcdState=LCD_STATE_IDLE
+
+run
+quit

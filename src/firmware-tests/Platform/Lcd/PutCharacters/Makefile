@@ -1,7 +1,8 @@
 ASARGS+=-I $(PLATFORM_DIR)/Lcd
 
 HEX_FILES=\
-	PutCharacterTest.hex
+	PutCharacterTest.hex \
+	PutBcdDigitsTest.hex
 
 TEST_DOUBLE_OBJ_FILES=\
 	$(ASSERT_NO_ISR_OBJ_FILE) \
@@ -13,7 +14,12 @@ TEST_DOUBLE_OBJ_FILES=\
 
 PUT_CHARACTER_OBJ_FILES=\
 	PutCharacterTest.o \
-	../WriteRegisterTestFixture.o \
+	../WriteTestFixture.o \
+	$(TEST_DOUBLE_OBJ_FILES)
+
+PUT_BCD_DIGITS_OBJ_FILES=\
+	PutBcdDigitsTest.o \
+	../DoubleWriteTestFixture.o \
 	$(TEST_DOUBLE_OBJ_FILES)
 
 all: $(HEX_FILES)
@@ -23,5 +29,8 @@ clean:
 
 PutCharacterTest.hex: $(OBJ_FILES) $(PUT_CHARACTER_OBJ_FILES)
 	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(PUT_CHARACTER_OBJ_FILES)
+
+PutBcdDigitsTest.hex: $(OBJ_FILES) $(PUT_BCD_DIGITS_OBJ_FILES)
+	$(LD) $(LDARGS) -o $@ $(OBJ_FILES) $(PUT_BCD_DIGITS_OBJ_FILES)
 
 include $(MAKEFILE_RULES)

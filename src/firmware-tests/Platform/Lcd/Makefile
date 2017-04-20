@@ -26,7 +26,8 @@ TEST_DOUBLE_OBJ_FILES=\
 	BacklightMocks.o
 
 TEST_FIXTURES=\
-	WriteRegisterTestFixture.o
+	WriteTestFixture.o \
+	DoubleWriteTestFixture.o
 
 all: $(TEST_DOUBLE_OBJ_FILES) $(TEST_FIXTURES)
 	$(MAKE) -C Initialisation all

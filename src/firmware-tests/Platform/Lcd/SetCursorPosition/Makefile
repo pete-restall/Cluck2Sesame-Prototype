@@ -13,7 +13,7 @@ TEST_DOUBLE_OBJ_FILES=\
 
 SET_CURSOR_POSITION_OBJ_FILES=\
 	SetCursorPositionTest.o \
-	../WriteRegisterTestFixture.o \
+	../WriteTestFixture.o \
 	$(TEST_DOUBLE_OBJ_FILES)
 
 all: $(HEX_FILES)

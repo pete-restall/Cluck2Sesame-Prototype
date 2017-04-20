@@ -77,7 +77,6 @@ resetEnableBit:
 	fcall shiftOut
 	return
 
-
 writeCharacterFromWWithIdleNextState:
 	bcf STATUS, C
 	goto ensureWriteOnlyWhenIdle

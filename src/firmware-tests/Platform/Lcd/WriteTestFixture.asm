@@ -30,7 +30,7 @@ expectedLcdState res 1
 expectedLcdNextState res 1
 expectedLcdCommand res 1
 
-WriteRegisterTestFixture code
+WriteTestFixture code
 	global testArrange
 
 testArrange:
