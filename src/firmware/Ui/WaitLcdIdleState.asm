@@ -6,12 +6,12 @@
 
 	radix decimal
 
-	defineUiState UI_STATE_WAIT_LCDENABLED
+	defineUiState UI_STATE_WAIT_LCDIDLE
 		fcall preventSleep
-		fcall isLcdEnabled
+		fcall isLcdIdle
 		xorlw 0
 		.setBankFor uiNextState
-		movlw UI_STATE_WAIT_LCDENABLED
+		movlw UI_STATE_WAIT_LCDIDLE
 		btfss STATUS, Z
 		movf uiNextState, W
 		movwf uiState

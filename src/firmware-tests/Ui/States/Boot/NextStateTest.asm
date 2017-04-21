@@ -18,8 +18,8 @@ testAct:
 
 testAssert:
 	.aliasForAssert uiState, _a
-	.aliasLiteralForAssert UI_STATE_WAIT_LCDENABLED, _b
-	.assert "_a == _b, 'Expected uiState == UI_STATE_WAIT_LCDENABLED.'"
+	.aliasLiteralForAssert UI_STATE_WAIT_LCDIDLE, _b
+	.assert "_a == _b, 'Expected uiState == UI_STATE_WAIT_LCDIDLE.'"
 	return
 
 	end

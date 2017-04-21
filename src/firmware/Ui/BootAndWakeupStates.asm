@@ -17,7 +17,8 @@
 		setUiNextState UI_STATE_HOME
 
 fullPowerMode:
-		setUiState UI_STATE_WAIT_LCDENABLED
+		.knownBank uiState
+		setUiState UI_STATE_WAIT_LCDIDLE
 		fcall ensureFastClock
 		fcall enableLcd
 		fcall preventSleep

@@ -16,6 +16,9 @@ UiRam udata
 	global uiSelectedOptionPosition
 	global uiOptionCounter
 
+	global uiDateTimePointer
+	global uiDateTimePosition
+
 uiFlags res 1
 uiState res 1
 uiNextState res 1
@@ -28,5 +31,8 @@ uiOption2Position res 1
 uiOption3Position res 1
 uiSelectedOptionPosition res 1
 uiOptionCounter res 1
+
+uiDateTimePointer res 1
+uiDateTimePosition res 1
 
 	end

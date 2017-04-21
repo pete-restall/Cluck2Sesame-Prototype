@@ -4,7 +4,7 @@ OBJ_FILES=\
 	Initialise.o \
 	Poll.o \
 	BootAndWakeupStates.o \
-	WaitLcdEnabledState.o \
+	WaitLcdIdleState.o \
 	SettingsBacklightNowStates.o \
 	SettingsBacklightInTheDarkStates.o \
 	SettingsDateTimeStates.o \

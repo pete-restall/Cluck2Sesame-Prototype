@@ -11,4 +11,7 @@ UI_FLAG_PREVENTSLEEP equ 0
 	.externalVariable uiFlags
 	.externalVariable uiButtonReleasedTimestamp
 
+	.externalVariable uiDateTimePointer
+	.externalVariable uiDateTimePosition
+
 	#endif

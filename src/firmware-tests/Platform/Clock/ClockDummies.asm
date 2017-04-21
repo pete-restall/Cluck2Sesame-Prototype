@@ -1,9 +1,8 @@
 	#include "Platform.inc"
-	#include "TestDoubles.inc"
 
 	radix decimal
 
-	udata
+ClockRam udata
 	global clockYearBcd
 	global clockMonthBcd
 	global clockDayBcd

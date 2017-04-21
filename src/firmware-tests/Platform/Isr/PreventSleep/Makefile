@@ -3,8 +3,7 @@ HEX_FILES=\
 
 PREVENT_SLEEP_OBJ_FILES=\
 	PreventSleepTest.o \
-	../InitialiseAfterIsrDummy.o \
-	../ClockDummies.o \
+	../InitialiseAfterIsrDummy.o
 
 all: $(HEX_FILES)
 

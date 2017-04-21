@@ -11,7 +11,8 @@ export OBJ_FILES=\
 TEST_DOUBLE_OBJ_FILES=\
 	InitialiseAfterClockMock.o \
 	PollAfterClockDummy.o \
-	PollAfterClockMock.o
+	PollAfterClockMock.o \
+	ClockDummies.o
 
 all: $(TEST_DOUBLE_OBJ_FILES)
 	$(MAKE) -C Initialisation all

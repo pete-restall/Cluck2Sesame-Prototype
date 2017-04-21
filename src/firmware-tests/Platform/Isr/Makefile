@@ -5,12 +5,12 @@ export OBJ_FILES=\
 	$(TEST_FIXTURE_OBJ_FILES) \
 	$(CURDIR)/../Lcd/LcdContrastDummies.o \
 	$(CURDIR)/../PowerManagementDummies.o \
-	$(CURDIR)/../Motor/MotorDummies.o
+	$(CURDIR)/../Motor/MotorDummies.o \
+	$(CURDIR)/../Clock/ClockDummies.o
 
 TEST_DOUBLE_OBJ_FILES=\
 	InitialiseAfterIsrDummy.o \
-	InitialiseAfterIsrMock.o \
-	ClockDummies.o
+	InitialiseAfterIsrMock.o
 
 all: $(TEST_DOUBLE_OBJ_FILES)
 	$(MAKE) -C Initialisation all

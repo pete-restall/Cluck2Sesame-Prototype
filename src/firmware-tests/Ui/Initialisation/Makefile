@@ -12,7 +12,8 @@ TEST_DOUBLE_OBJ_FILES=\
 	$(PLATFORM_TESTS_DIR)/Lcd/LcdDummies.o \
 	$(PLATFORM_TESTS_DIR)/Buttons/ButtonsDummies.o \
 	$(PLATFORM_TESTS_DIR)/Motor/MotorDummies.o \
-	$(PLATFORM_TESTS_DIR)/Smps/SmpsDummies.o
+	$(PLATFORM_TESTS_DIR)/Smps/SmpsDummies.o \
+	$(PLATFORM_TESTS_DIR)/Clock/ClockDummies.o
 
 INITIALISATION_CHAIN_OBJ_FILES=\
 	InitialisationChainTest.o \
