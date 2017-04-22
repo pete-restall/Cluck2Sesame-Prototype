@@ -9,14 +9,14 @@ export OBJ_FILES=\
 	$(FIRMWARE_DIR)/Platform/Arithmetic32.a \
 	$(FIRMWARE_DIR)/Platform/ArithmeticBcd.a \
 	$(FIRMWARE_DIR)/Platform/Flash.o \
-	$(CURDIR)/ClockStubs.o
+	$(PLATFORM_TESTS_DIR)/Clock/ClockStubs.o
 
 TEST_DOUBLE_OBJ_FILES=\
 	InitialiseAfterSunriseSunsetMock.o \
 	InitialiseAfterSunriseSunsetDummy.o \
 	PollAfterSunriseSunsetMock.o \
 	PollAfterSunriseSunsetDummy.o \
-	ClockStubs.o
+	SunriseSunsetDummies.o
 
 all: $(TEST_DOUBLE_OBJ_FILES)
 	$(MAKE) -C Initialisation all

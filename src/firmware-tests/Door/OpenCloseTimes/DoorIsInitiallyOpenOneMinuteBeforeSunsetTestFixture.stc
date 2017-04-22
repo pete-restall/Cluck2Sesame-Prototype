@@ -1,0 +1,15 @@
+load "InitialOpenCloseTimeTest.cod"
+load i "../../RandomiseRam.sti"
+load i "../../PreventInfiniteLoops.sti"
+load i "Birmingham.sti"
+
+dayOfYearHigh=1
+dayOfYearLow=61
+clockHourBcd=0x16
+clockMinuteBcd=0x08
+
+expectDoorIsOpen=1
+expectDoorIsClosed=0
+
+run
+quit

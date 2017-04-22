@@ -1,15 +1,14 @@
 	#include "Platform.inc"
+	#include "Door.inc"
 
 	radix decimal
 
-DoorDummies code
-	global initialiseDoor
-	global pollDoor
+Door code
 	global doorSettingsAreComplete
 
-initialiseDoor:
-pollDoor:
 doorSettingsAreComplete:
+	.safelySetBankFor doorFlags
+	bsf doorFlags, DOOR_FLAG_INITIALISED
 	return
 
 	end

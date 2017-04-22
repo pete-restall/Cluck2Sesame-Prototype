@@ -7,7 +7,7 @@
 	.module DOOR
 
 	extern initialiseDoor
+	extern doorSettingsAreComplete
 	extern pollDoor
-	extern calibrateDoorFromOpenPosition
 
 	#endif

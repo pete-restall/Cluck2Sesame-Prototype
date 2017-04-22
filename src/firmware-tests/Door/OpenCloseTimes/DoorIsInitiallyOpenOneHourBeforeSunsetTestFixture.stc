@@ -1,0 +1,15 @@
+load "InitialOpenCloseTimeTest.cod"
+load i "../../RandomiseRam.sti"
+load i "../../PreventInfiniteLoops.sti"
+load i "LochNess.sti"
+
+dayOfYearHigh=0
+dayOfYearLow=192
+clockHourBcd=0x20
+clockMinuteBcd=0x00
+
+expectDoorIsOpen=1
+expectDoorIsClosed=0
+
+run
+quit

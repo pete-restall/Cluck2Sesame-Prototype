@@ -2,7 +2,9 @@ HEX_FILES=\
 	InitialisationChainTest.hex
 
 TEST_DOUBLE_OBJ_FILES=\
-	../PollAfterDoorMock.o
+	../InitialiseAfterDoorMock.o \
+	../PollAfterDoorDummy.o \
+	$(FIRMWARE_TESTS_DIR)/SunriseSunset/SunriseSunsetDummies.o
 
 INITIALISATION_CHAIN_OBJ_FILES=\
 	$(TEST_DOUBLE_OBJ_FILES) \

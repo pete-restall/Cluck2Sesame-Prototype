@@ -12,7 +12,8 @@ TEST_DOUBLE_OBJ_FILES=\
 	InitialiseAfterClockMock.o \
 	PollAfterClockDummy.o \
 	PollAfterClockMock.o \
-	ClockDummies.o
+	ClockDummies.o \
+	ClockStubs.o
 
 all: $(TEST_DOUBLE_OBJ_FILES)
 	$(MAKE) -C Initialisation all

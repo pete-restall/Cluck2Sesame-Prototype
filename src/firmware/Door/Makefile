@@ -1,8 +1,13 @@
 LIB_FILENAME=../Door.a
 OBJ_FILES=\
+	Registers.o \
 	Initialise.o \
+	DoorSettingsAreComplete.o \
 	Poll.o \
-	CalibrationStates.o
+	NewDayStates.o \
+	SunriseSunsetStates.o \
+	OpenStates.o \
+	CloseStates.o
 
 all: $(LIB_FILENAME)
 

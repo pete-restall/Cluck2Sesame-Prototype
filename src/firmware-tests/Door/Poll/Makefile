@@ -3,7 +3,9 @@ HEX_FILES=\
 
 POLL_CHAIN_OBJ_FILES=\
 	PollChainTest.o \
-	../PollAfterDoorMock.o
+	../PollAfterDoorMock.o \
+	../InitialiseAfterDoorDummy.o \
+	$(FIRMWARE_TESTS_DIR)/SunriseSunset/SunriseSunsetDummies.o
 
 all: $(HEX_FILES)
 
