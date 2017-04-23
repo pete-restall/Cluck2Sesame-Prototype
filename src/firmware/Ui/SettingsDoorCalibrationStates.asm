@@ -49,15 +49,7 @@ RIGHT_ARROW equ 0x7e
 
 
 	defineUiStateInSameSection UI_STATE_SETTINGS_DOORCALIBRATION_ENTER
-		; TODO: DOOR CALIBRATION SHOULDN'T BE NEEDED AS WE CAN USE ISENSE
-		; fcall calibrateDoorFromOpenPosition
-		;xorlw 0
-		;movlw UI_STATE_HOME
-		;btfsc STATUS, Z
-		;movlw UI_STATE_WAIT_BUTTONPRESS
-
-		.setBankFor uiState
-		movwf uiState
+		setUiState UI_STATE_HOME
 		bcf uiFlags, UI_FLAG_PREVENTSLEEP
 
 		fcall doorSettingsAreComplete

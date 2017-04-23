@@ -5,13 +5,11 @@
 	radix decimal
 
 UI_FLAG_PREVENTSLEEP equ 0
+UI_FLAG_PUT_BANKISEL equ 1
 
 	.module UI
 
 	.externalVariable uiFlags
 	.externalVariable uiButtonReleasedTimestamp
-
-	.externalVariable uiDateTimePointer
-	.externalVariable uiDateTimePosition
 
 	#endif

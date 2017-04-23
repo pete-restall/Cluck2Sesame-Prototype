@@ -18,6 +18,7 @@ OBJ_FILES=\
 	DoorOverrideStates.o \
 	VersionStates.pp.o \
 	AdjustSettingsStates.o \
+	PutBcdStringStates.o \
 	SleepStates.o
 
 all: $(LIB_FILENAME)
