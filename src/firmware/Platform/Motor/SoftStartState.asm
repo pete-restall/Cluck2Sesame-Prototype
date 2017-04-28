@@ -21,9 +21,11 @@ waitBeforeIncreasingDutyCycleAgain:
 		returnFromMotorState
 
 softStartFinished:
+		.knownBank CCPR1L
 		movlw 0xff
 		movwf CCPR1L
 
+		.setBankFor motorStateAfterStarted
 		movf motorStateAfterStarted, W
 		movwf motorState
 		returnFromMotorState

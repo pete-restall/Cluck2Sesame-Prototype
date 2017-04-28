@@ -17,26 +17,33 @@ storeShiftedChannelInRza:
 	movlw ADCON0_CHANNEL_MASK
 	andwf RZA
 
-	; TODO: IF CHANNEL IS ALREADY WHAT IS SET THEN RETURN 'SET_ADC_CHANNEL_SAME'...
-returnWithoutModifyingAdcon0IfCurrentChannelIsNotUnused:
+returnWithoutModifyingAdcon0IfCurrentChannelIsNotSameOrUnused:
 	.setBankFor ADCON0
-	movlw ADCON0_CHANNEL_MASK
 	andwf ADCON0, W
 	xorlw ADCON0_UNUSED_CHANNEL
+	btfsc STATUS, Z
+	goto switchToNewChannel
+
+channelIsNotUnused:
+	.setBankFor RZA
+	xorlw ADCON0_UNUSED_CHANNEL
+	xorwf RZA, W
 	btfss STATUS, Z
 	retlw SET_ADC_CHANNEL_FAILURE
+	retlw SET_ADC_CHANNEL_SAME
 
 switchToNewChannel:
+	.knownBank ADCON0
 	movlw ~ADCON0_CHANNEL_MASK
 	andwf ADCON0, W
-	.safelySetBankFor RZA
+	.setBankFor RZA
 	iorwf RZA, W
 	.setBankFor ADCON0
 	movwf ADCON0
 	retlw SET_ADC_CHANNEL_SUCCESS
 
 releaseAdcChannel:
-	.setBankFor RZA
+	.safelySetBankFor RZA
 	movlw ADCON0_UNUSED_CHANNEL
 	movwf RZA
 	.setBankFor ADCON0

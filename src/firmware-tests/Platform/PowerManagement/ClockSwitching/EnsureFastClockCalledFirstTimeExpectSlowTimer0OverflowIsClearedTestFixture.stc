@@ -1,0 +1,10 @@
+load "SlowTimer0OverflowTest.cod"
+load i "../../../RandomiseRam.sti"
+load i "../../../PreventInfiniteLoops.sti"
+
+numberOfAdditionalEnsureFastClockCalls=0
+initialSlowTmr0=0x26
+expectedSlowTmr0=0x26
+
+run
+quit

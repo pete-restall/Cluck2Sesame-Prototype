@@ -13,4 +13,8 @@ DOOR_FLAG_CLOSED equ 2
 	.externalVariable doorFlags
 	.externalVariable doorTodayBcd
 
+	.externalVariable doorOperationStartedTimestamp
+	.externalVariable doorTurnStartedTimestamp
+	.externalVariable doorTurnFullSpeedTimestamp
+
 	#endif

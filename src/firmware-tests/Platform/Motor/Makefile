@@ -11,6 +11,7 @@ export OBJ_FILES=\
 
 TEST_DOUBLE_OBJ_FILES=\
 	InitialiseAfterMotorMock.o \
+	InitialiseAfterMotorDummy.o \
 	PollAfterMotorMock.o \
 	PollAfterMotorDummy.o \
 	MotorDummies.o \

@@ -1,4 +1,4 @@
-load "ChannelIsInternalReferenceTest.cod"
+load "ChannelIs0VComparatorReferenceTest.cod"
 load i "../../../RandomiseRam.sti"
 load i "../../../PreventInfiniteLoops.sti"
 run

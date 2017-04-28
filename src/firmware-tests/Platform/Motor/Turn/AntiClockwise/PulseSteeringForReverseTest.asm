@@ -45,7 +45,7 @@ assertSoftStop:
 	banksel CCPR1L
 	movf CCPR1L
 	btfsc STATUS, Z
-	goto assertSoftStart
+	goto forceP1AHighToForceRmwGlitchBehaviour
 
 	.aliasForAssert PSTRCON, _a
 	.aliasLiteralForAssert (1 << STRA) | (1 << STRSYNC), _b
@@ -57,6 +57,9 @@ assertSoftStop:
 	.aliasWForAssert _a
 	.assert "_a == 0, 'Expected unused PWM pin to be held low.'"
 	goto assertSoftStop
+
+forceP1AHighToForceRmwGlitchBehaviour:
+	call forceP1AHigh
 
 assertSoftStart:
 	fcall pollMotor
@@ -76,6 +79,21 @@ assertSoftStart:
 	btfss STATUS, Z
 	goto assertSoftStart
 
+	return
+
+forceP1AHigh:
+	banksel PSTRCON
+	bcf PSTRCON, STRA
+
+	banksel PIR1
+	bcf PIR1, TMR2IF
+
+waitForNextTimer2Period:
+	btfss PIR1, TMR2IF
+	goto waitForNextTimer2Period
+
+	banksel PORTC
+	bsf PORTC, RC5
 	return
 
 	end

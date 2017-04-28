@@ -7,7 +7,9 @@ OBJ_FILES=\
 	NewDayStates.o \
 	SunriseSunsetStates.o \
 	OpenStates.o \
-	CloseStates.o
+	CloseStates.o \
+	MotorStates.o \
+	MotorVddStates.o
 
 all: $(LIB_FILENAME)
 

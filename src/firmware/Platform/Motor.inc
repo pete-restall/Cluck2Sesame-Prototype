@@ -14,6 +14,8 @@ MOTOR_FLAG_PREVENT_OVERLOAD equ 4 + MOTOR_FLAG_OVERLOAD
 MOTOR_FLAG_PREVENT_NOMINALLOAD equ 4 + MOTOR_FLAG_NOMINALLOAD
 MOTOR_FLAG_PREVENT_NOLOAD equ 4 + MOTOR_FLAG_NOLOAD
 
+MOTOR_PSTRCON_OUTPUT_MASK equ (1 << STRA) | (1 << STRB)
+
 	#ifndef __CLUCK2SESAME_PLATFORM_MOTOR_FLAGSONLY
 	.externalVariable motorFlags
 
@@ -25,6 +27,7 @@ MOTOR_FLAG_PREVENT_NOLOAD equ 4 + MOTOR_FLAG_NOLOAD
 	extern turnMotorClockwise
 	extern turnMotorAntiClockwise
 	extern stopMotor
+	extern isMotorFullyTurning
 	#endif
 
 	#endif

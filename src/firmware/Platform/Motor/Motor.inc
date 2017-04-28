@@ -1,7 +1,10 @@
 	#ifndef __CLUCK2SESAME_PLATFORM_MOTOR_MOTOR_INC
 	#define __CLUCK2SESAME_PLATFORM_MOTOR_MOTOR_INC
 	#include "Platform.inc"
+
+	#ifndef __CLUCK2SESAME_PLATFORM_MOTOR_ISR_INC
 	#include "Flags.inc"
+	#endif
 
 	radix decimal
 
@@ -34,9 +37,11 @@ NUMBER_OF_TICKS_SOFTSTART equ NUMBER_OF_TICKS_10MS
 NUMBER_OF_TICKS_SOFTSTOP equ NUMBER_OF_TICKS_10MS
 
 	#ifndef __CLUCK2SESAME_PLATFORM_MOTOR_REGISTERS_ASM
+	#ifndef __CLUCK2SESAME_PLATFORM_MOTOR_ISR_INC
 	.externalVariable enableMotorVddCount
 	.externalVariable motorFlags
 	.externalVariable motorCounter
+	#endif
 	#endif
 
 	#endif

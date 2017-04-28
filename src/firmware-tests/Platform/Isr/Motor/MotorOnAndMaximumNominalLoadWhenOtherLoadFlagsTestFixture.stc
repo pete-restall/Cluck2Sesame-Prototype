@@ -6,7 +6,7 @@ adcResult=0x7f
 initialPstrcon=0x1f
 initialMotorFlags=0xfd
 expectedMotorFlags=0xfa
-expectedPstrcon=0x10
+expectedPstrcon=0x1c
 
 run
 quit

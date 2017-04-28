@@ -7,6 +7,9 @@
 
 	radix decimal
 
+INITIAL_PSTRCON equ 0x1f
+EXPECTED_PSTRCON equ INITIAL_PSTRCON & ~MOTOR_PSTRCON_OUTPUT_MASK
+
 	extern isr
 
 	udata
@@ -54,8 +57,8 @@ testAct:
 
 testAssert:
 	.aliasForAssert PSTRCON, _a
-	.aliasLiteralForAssert 1 << STRSYNC, _b
-	.assert "_a == _b, 'Expected PSTRCON to have all outputs disabled.'"
+	.aliasLiteralForAssert EXPECTED_PSTRCON, _b
+	.assert "_a == _b, 'Expected PSTRCON to have all motor outputs disabled.'"
 
 	.aliasForAssert motorFlags, _a
 	.aliasForAssert expectedMotorFlags, _b

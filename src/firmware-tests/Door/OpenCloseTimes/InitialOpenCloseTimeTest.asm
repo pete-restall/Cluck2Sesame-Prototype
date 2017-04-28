@@ -1,5 +1,6 @@
 	#include "Mcu.inc"
 	#include "FarCalls.inc"
+	#include "PollChain.inc"
 	#include "Door.inc"
 	#include "../DoorStates.inc"
 	#include "Clock.inc"
@@ -39,7 +40,9 @@ testArrange:
 
 testAct:
 	fcall pollSunriseSunset
+	#if POLL_AFTER_SUNRISESUNSET != pollDoor
 	fcall pollDoor
+	#endif
 
 	banksel doorState
 	movlw DOOR_STATE_OPEN

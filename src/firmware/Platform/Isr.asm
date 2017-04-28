@@ -1,9 +1,9 @@
 	#include "Platform.inc"
 	#include "TailCalls.inc"
 	#include "Lcd/Isr.inc"
-	#include "PowerManagement/PowerManagement.inc"
+	#include "PowerManagement/Isr.inc"
 	#include "Clock.inc"
-	#include "Motor.inc"
+	#include "Motor/Isr.inc"
 	#include "InitialisationChain.inc"
 
 	radix decimal
@@ -12,7 +12,8 @@
 
 MOTOR_ADC_CHANNEL equ b'00011100'
 MOTOR_LOAD_FLAGS_MASK equ (1 << MOTOR_FLAG_NOLOAD) | (1 << MOTOR_FLAG_NOMINALLOAD) | (1 << MOTOR_FLAG_OVERLOAD)
-MOTOR_PSTRCON_OUTPUT_MASK equ ~(1 << STRSYNC)
+
+ADRESH_90MA equ 23
 
 	udata_shr
 contextSavingW res 1
@@ -28,9 +29,6 @@ Isr code 0x0004
 	; SEEMINGLY RANDOMLY, TURNING OFF THE LCD.  VOLTAGE IS ROCK SOLID UNTIL
 	; IT HAPPENS, AND THERE IS NO CONSISTENT TIME UNTIL IT HAPPENS...
 
-	; TODO: MIGHT NEED TO BUMP MCU FREQUENCY TO 8MHz - 83 CYCLES (OR
-	; THEREABOUTS) OUT OF 88 USED IN WORST-CASE, INCLUDING CLOCK TICK...
-
 isr:
 	movwf contextSavingW
 	swapf contextSavingW
@@ -40,21 +38,19 @@ isr:
 	movwf contextSavingPclath
 	clrf PCLATH
 
-adcSampled:
-	.safelySetBankFor ADCON0
-	bsf ADCON0, GO
-
 preventSleepForSinglePollLoopIteration:
 	.setBankFor powerManagementFlags
 	bsf powerManagementFlags, POWER_FLAG_PREVENTSLEEP
 
-	.setBankFor PIR1
+adcSampled:
+	.safelySetBankFor PIR1
 	btfss PIR1, ADIF
 	goto clockTicked
 	bcf PIR1, ADIF
 
 disableMotorOutputsIfNotMonitoringCurrent:
 	.setBankFor ADCON0
+	bsf ADCON0, GO
 	movlw b'00111100'
 	andwf ADCON0, W
 	xorlw MOTOR_ADC_CHANNEL
@@ -70,27 +66,33 @@ motorCurrentMonitoring:
 
 setMotorFlags:
 	.setBankFor ADRESH
-	movlw 1 << MOTOR_FLAG_NOLOAD
-	btfsc ADRESH, 6
-	movlw 1 << MOTOR_FLAG_NOMINALLOAD
+	movlw ADRESH_90MA
+	subwf ADRESH, W
+	movlw ~MOTOR_LOAD_FLAGS_MASK | (1 << MOTOR_FLAG_NOLOAD)
+	btfsc STATUS, C
+	movlw ~MOTOR_LOAD_FLAGS_MASK | (1 << MOTOR_FLAG_NOMINALLOAD)
 	btfsc ADRESH, 7
-	movlw 1 << MOTOR_FLAG_OVERLOAD
+	movlw ~MOTOR_LOAD_FLAGS_MASK | (1 << MOTOR_FLAG_OVERLOAD)
 
 	.setBankFor motorFlags
-	iorwf motorFlags
-	xorlw 0xff
-	xorlw MOTOR_LOAD_FLAGS_MASK
 	andwf motorFlags
+	andlw MOTOR_LOAD_FLAGS_MASK
+	iorwf motorFlags
 
 disableMotorOutputsIfFlagsMasked:
 	swapf motorFlags, W
 	andlw MOTOR_LOAD_FLAGS_MASK
 	andwf motorFlags, W
-	movlw 0xff
-	btfss STATUS, Z
+	btfsc STATUS, Z
+	goto endOfMotorCurrentMonitoring
+
 disableMotorOutputs:
+	.safelySetBankFor MOTOR_PORT
+	bcf MOTOR_PORT, MOTOR_PWMA_PIN
+	bcf MOTOR_PORT, MOTOR_PWMB_PIN
+
+	.setBankFor PSTRCON
 	movlw ~MOTOR_PSTRCON_OUTPUT_MASK
-	.safelySetBankFor PSTRCON
 	andwf PSTRCON
 
 endOfMotorCurrentMonitoring:
@@ -103,11 +105,10 @@ lcdDeltaSigmaContrastControl:
 	addwf lcdContrastAccumulator
 
 	.setBankFor LCD_CONTRAST_PORT
-	movf LCD_CONTRAST_PORT, W
-	andlw ~LCD_CONTRAST_PIN_MASK
+	btfss STATUS, C
+	bcf LCD_CONTRAST_PORT, LCD_CONTRAST_PIN
 	btfsc STATUS, C
-	iorlw LCD_CONTRAST_PIN_MASK
-	movwf LCD_CONTRAST_PORT
+	bsf LCD_CONTRAST_PORT, LCD_CONTRAST_PIN
 
 clockTicked:
 	.safelySetBankFor PIR1

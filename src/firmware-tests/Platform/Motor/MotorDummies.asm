@@ -16,6 +16,7 @@ MotorDummies code
 	global turnMotorClockwise
 	global turnMotorAntiClockwise
 	global stopMotor
+	global isMotorFullyTurning
 
 initialiseMotor:
 enableMotorVdd:
@@ -27,6 +28,7 @@ stopMotor:
 	return
 
 isMotorVddEnabled:
+isMotorFullyTurning:
 	retlw 0
 
 	end

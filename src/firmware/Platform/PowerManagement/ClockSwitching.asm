@@ -1,5 +1,6 @@
 	#include "Platform.inc"
 	#include "PowerManagement.inc"
+	#include "Timer0.inc"
 
 	radix decimal
 
@@ -21,6 +22,18 @@ ensureFastClock:
 waitUntilHfintoscIsStable:
 	btfss OSCCON, HTS
 	goto waitUntilHfintoscIsStable
+
+clearSlowTmr0OverflowIfFastClockFirstTime:
+	.setBankFor fastClockCount
+	decfsz fastClockCount, W
+	return
+
+	.setBankFor slowTmr0
+	extern tmr0Overflow
+	clrf tmr0Overflow
+
+	.setBankFor TMR0
+	movf TMR0
 	return
 
 allowSlowClock:

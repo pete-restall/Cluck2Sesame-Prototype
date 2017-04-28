@@ -63,8 +63,11 @@ testAssert:
 assertOutputsDisabled:
 	fcall pollMotor
 
+	banksel PSTRCON
+	movlw ~MOTOR_PSTRCON_OUTPUT_MASK
+	andwf PSTRCON, W
+	.aliasWForAssert _b
 	.aliasForAssert PSTRCON, _a
-	.aliasLiteralForAssert (1 << STRSYNC), _b
 	.assert "_a == _b, 'Expected pulse steering outputs to be disabled.'"
 
 	banksel PORTC

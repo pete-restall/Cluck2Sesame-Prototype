@@ -1,0 +1,5 @@
+	#ifndef __CLUCK2SESAME_PLATFORM_POWERMANAGEMENT_ISR_INC
+	#define __CLUCK2SESAME_PLATFORM_POWERMANAGEMENT_ISR_INC
+	#include "PowerManagement/PowerManagement.inc"
+
+	#endif

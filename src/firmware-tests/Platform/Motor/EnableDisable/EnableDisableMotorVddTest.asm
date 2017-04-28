@@ -70,6 +70,38 @@ testAssert:
 
 	.assert "portValue == expectedPortValue, 'PORTC expectation failure.'"
 	.assert "trisValue == expectedTrisValue, 'TRISC expectation failure.'"
+
+	banksel trisValue
+	movf trisValue
+	btfsc STATUS, Z
+	goto assertThatMotorPwmPinsAreNotTristatedIfVddIsEnabled
+
+assertThatMotorPwmPinsAreTristatedIfVddIsNotEnabled:
+	banksel TRISC
+	movlw 0
+	btfsc TRISC, TRISC4
+	addlw 1
+	btfsc TRISC, TRISC5
+	addlw 1
+	.assert "W == 2, 'Expected P1A and P1B to be tri-stated when no MOTOR_VDD is present.'"
+	return
+
+assertThatMotorPwmPinsAreNotTristatedIfVddIsEnabled:
+	banksel TRISC
+	movlw 0
+	btfsc TRISC, TRISC4
+	addlw 1
+	btfsc TRISC, TRISC5
+	addlw 1
+	.assert "W == 0, 'Expected P1A and P1B to be outputs when MOTOR_VDD is present.'"
+
+	banksel PORTC
+	movlw 0
+	btfsc PORTC, TRISC4
+	addlw 1
+	btfsc PORTC, TRISC5
+	addlw 1
+	.assert "W == 0, 'Expected P1A and P1B to be held low when MOTOR_VDD is present.'"
 	return
 
 	end

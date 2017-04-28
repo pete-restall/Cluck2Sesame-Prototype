@@ -4,6 +4,8 @@ export OBJ_FILES=\
 	$(PLATFORM_CORE_OBJ_FILES) \
 	$(TEST_FIXTURE_OBJ_FILES) \
 	$(ASSERT_NO_ISR_OBJ_FILE) \
+	$(PLATFORM_DIR)/Timer0.a \
+	$(PLATFORM_TESTS_DIR)/Timer0/PollAfterTimer0Dummy.o \
 	$(CURDIR)/InitialiseAfterPowerManagementMock.o
 
 TEST_DOUBLE_OBJ_FILES=\

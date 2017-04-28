@@ -21,15 +21,14 @@ enableMotorVdd:
 	bcf MOTOR_TRIS, MOTOR_VDD_EN_PIN_TRIS
 
 	.setBankFor MOTOR_PORT
-	bcf MOTOR_PORT, MOTOR_VDD_EN_PIN
+	movlw (1 << MOTOR_VDD_EN_PIN) | (1 << MOTOR_PWMA_PIN) | (1 << MOTOR_PWMB_PIN)
+	andwf MOTOR_PORT
 
 	.setBankFor enableMotorVddCount
 	incf enableMotorVddCount
 
 returnIfNotFirstCallToEnableMotorVdd:
-	movlw 1
-	xorwf enableMotorVddCount, W
-	btfss STATUS, Z
+	decfsz enableMotorVddCount, W
 	return
 
 setMotorStateToIdle:
@@ -49,10 +48,9 @@ disableMotorVdd:
 	goto disableMotorVddReturn
 
 	.setBankFor MOTOR_TRIS
-	bsf MOTOR_TRIS, MOTOR_VDD_EN_PIN_TRIS
+	movlw (1 << MOTOR_VDD_EN_PIN_TRIS) | (1 << MOTOR_PWMA_PIN_TRIS) | (1 << MOTOR_PWMB_PIN_TRIS)
+	iorwf MOTOR_TRIS
 
-	; TODO: DISABLE PWM PINS - UN-NECESSARY IF MOTOR IS *ALWAYS* STOPPED PRIOR
-	; TO DISABLING THE MOTOR VDD
 	.setBankFor motorState
 	movlw MOTOR_STATE_DISABLED
 	movwf motorState

@@ -4,6 +4,9 @@ export OBJ_FILES=\
 	$(FIRMWARE_CORE_OBJ_FILES) \
 	$(TEST_FIXTURE_OBJ_FILES) \
 	$(ASSERT_NO_ISR_OBJ_FILE) \
+	$(PLATFORM_DIR)/Timer0.a \
+	$(PLATFORM_TESTS_DIR)/Timer0/InitialiseAfterTimer0Dummy.o \
+	$(PLATFORM_TESTS_DIR)/Timer0/PollAfterTimer0Dummy.o \
 	$(PLATFORM_TESTS_DIR)/Clock/ClockDummies.o \
 	$(PLATFORM_TESTS_DIR)/Motor/MotorDummies.o
 

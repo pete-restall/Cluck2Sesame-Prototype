@@ -12,12 +12,28 @@
 initialAdcChannel res 1
 attemptedAdcChannel res 1
 expectedAdcon0 res 1
+expectedW res 1
 
 SetAdcChannelWhenAlreadySetTest code
 	global testArrange
 
 testArrange:
 	fcall initialiseAdc
+
+	banksel initialAdcChannel
+	movf initialAdcChannel, W
+	xorwf attemptedAdcChannel, W
+	btfsc STATUS, Z
+	goto setExpectedWForSameChannels
+
+setExpectedWForDifferentChannels:
+	movlw SET_ADC_CHANNEL_FAILURE
+	movwf expectedW
+	goto setAdcChannelForTheFirstTime
+
+setExpectedWForSameChannels:
+	movlw SET_ADC_CHANNEL_SAME
+	movwf expectedW
 
 setAdcChannelForTheFirstTime:
 	banksel initialAdcChannel
@@ -36,7 +52,8 @@ testAct:
 
 testAssert:
 	.aliasWForAssert _a
-	.assert "_a == 0, 'Expected return value (W) to be false.'"
+	.aliasForAssert expectedW, _b
+	.assert "_a == _b, 'Expected return value (W) to be SET_ADC_CHANNEL_FAILURE or SET_ADC_CHANNEL_SAME.'"
 
 	.aliasForAssert ADCON0, _a
 	.aliasForAssert expectedAdcon0, _b
