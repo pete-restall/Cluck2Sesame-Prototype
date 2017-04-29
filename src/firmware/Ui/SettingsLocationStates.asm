@@ -2,6 +2,7 @@
 	#include "FarCalls.inc"
 	#include "Flash.inc"
 	#include "Lcd.inc"
+	#include "SunriseSunset.inc"
 	#include "States.inc"
 	#include "WaitButtonPressState.inc"
 
@@ -32,6 +33,13 @@
 
 
 	defineUiStateInSameSection UI_STATE_SETTINGS_LOCATION_ENTER
+		; TODO: REAL LOCATION (NOT LOCH NESS...)
+		.setBankFor latitudeOffset
+		movlw 23
+		movwf latitudeOffset
+		movlw -44
+		movwf longitudeOffset
+
 		setUiState UI_STATE_SETTINGS_DOORCALIBRATION
 		returnFromUiState
 

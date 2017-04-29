@@ -17,10 +17,8 @@ enableAdc:
 	fcall ensureFastClock
 
 	.safelySetBankFor enableAdcCount
-	incf enableAdcCount, W
 	incf enableAdcCount
-	sublw 1
-	btfss STATUS, Z
+	decfsz enableAdcCount, W
 	return
 
 enableAdcOnlyOnTheFirstCall:

@@ -7,6 +7,7 @@ HEX_FILES=\
 TEST_DOUBLE_OBJ_FILES=\
 	../PollAfterUiDummy.o \
 	$(FIRMWARE_TESTS_DIR)/Door/DoorDummies.o \
+	$(FIRMWARE_TESTS_DIR)/SunriseSunset/SunriseSunsetNonInitialiseAndPollDummies.o \
 	$(PLATFORM_TESTS_DIR)/Timer0/Timer0Dummies.o \
 	$(PLATFORM_TESTS_DIR)/PowerManagement/PowerManagementDummies.o \
 	$(PLATFORM_TESTS_DIR)/Lcd/LcdDummies.o \

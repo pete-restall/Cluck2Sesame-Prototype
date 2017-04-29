@@ -11,7 +11,7 @@
 
 	extern POLL_AFTER_SMPS
 
-NUMBER_OF_TICKS_1MS equ 8
+NUMBER_OF_TICKS_10MS equ 80
 
 SMPS_SHIFTREGISTER_HIGHPOWER equ 7
 
@@ -27,7 +27,7 @@ pollSmps:
 
 waitForVddToStabilise:
 	elapsedSinceTimer0 smpsEnabledTimestamp
-	sublw NUMBER_OF_TICKS_1MS - 1
+	sublw NUMBER_OF_TICKS_10MS - 1
 	btfsc STATUS, C
 	goto vddNotStableYet
 

@@ -78,8 +78,8 @@ motorShouldNotRaiseMuchMoreThanItLowered:
 motorStoppedByIsr:
 		.safelySetBankFor motorFlags
 		bcf motorFlags, MOTOR_FLAG_PREVENT_NOMINALLOAD
-		setDoorState DOOR_STATE_CLOSED
-		fcall stopMotor
+		setDoorState DOOR_STATE_MOTOR_DONE
+		setDoorNextState DOOR_STATE_CLOSED
 		returnFromDoorState
 
 
@@ -87,8 +87,6 @@ motorStoppedByIsr:
 		bsf doorFlags, DOOR_FLAG_CLOSED
 		bcf doorFlags, DOOR_FLAG_OPENED
 		setDoorState DOOR_STATE_WAIT_NEWDAY
-
-		fcall disableMotorVdd
 		returnFromDoorState
 
 	end

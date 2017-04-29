@@ -13,6 +13,7 @@ TEST_DOUBLE_OBJ_FILES=\
 	InitialiseAfterPowerManagementDummy.o \
 	PollAfterPowerManagementDummy.o \
 	PowerManagementDummies.o \
+	PowerManagementNonInitialiseAndPollDummies.o \
 	PowerManagementMocks.o
 
 all: $(TEST_DOUBLE_OBJ_FILES)

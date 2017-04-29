@@ -1,6 +1,7 @@
 	#include "Platform.inc"
 	#include "FarCalls.inc"
 	#include "Timer0.inc"
+	#include "PowerManagement.inc"
 	#include "Motor.inc"
 	#include "Door.inc"
 	#include "States.inc"
@@ -36,6 +37,27 @@ afterCallToTurn:
 		.setBankFor doorNextState
 		movf doorNextState, W
 		movwf doorState
+		returnFromDoorState
+
+
+	defineDoorStateInSameSection DOOR_STATE_MOTOR_DONE
+		fcall stopMotor
+		setDoorState DOOR_STATE_MOTOR_WAITSTOP
+		returnFromDoorState
+
+
+	defineDoorStateInSameSection DOOR_STATE_MOTOR_WAITSTOP
+		.setBankFor CCPR1L
+		movf CCPR1L
+		btfss STATUS, Z
+		returnFromDoorState
+
+		.setBankFor doorNextState
+		movf doorNextState, W
+		movwf doorState
+
+		fcall disableMotorVdd
+		fcall preventSleep
 		returnFromDoorState
 
 	end

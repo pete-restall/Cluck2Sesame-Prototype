@@ -3,7 +3,7 @@ load i "../../../RandomiseRam.sti"
 load i "../../../PreventInfiniteLoops.sti"
 
 initialTmr0=63
-tmr0Increment=8
+tmr0Increment=80
 expectIsSmpsEnabled=1
 
 run

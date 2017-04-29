@@ -13,3 +13,10 @@ doorDown.color="red"
 doorDown.ActiveState="high"
 node p1b
 attach p1b portc4 doorDown.in
+
+module load pullup isense
+isense.xpos=270
+isense.ypos=432
+isense.voltage=0
+node an7
+attach an7 isense.pin pin(7)

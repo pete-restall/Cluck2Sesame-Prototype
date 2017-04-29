@@ -57,6 +57,9 @@ ifAlreadyTurningThenInitialStateIsForReversal:
 	goto reverseMotor
 
 startMotor:
+	.setBankFor CCPR1L
+	clrf CCPR1L
+
 	.setBankFor PSTRCON
 	btfsc STATUS, C
 	bsf PSTRCON, STRA
@@ -90,6 +93,12 @@ isMotorFullyTurning:
 
 
 	defineMotorStateInSameSection MOTOR_STATE_TURNING
-	returnFromMotorState
+		.setBankFor PSTRCON
+		movlw MOTOR_PSTRCON_OUTPUT_MASK
+		andwf PSTRCON, W
+		btfss STATUS, Z
+		returnFromMotorState
+		setMotorState MOTOR_STATE_STOPPED
+		returnFromMotorState
 
 	end

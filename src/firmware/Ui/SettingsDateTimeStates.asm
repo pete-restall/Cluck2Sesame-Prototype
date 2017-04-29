@@ -1,6 +1,7 @@
 	#include "Platform.inc"
 	#include "FarCalls.inc"
 	#include "Flash.inc"
+	#include "Clock.inc"
 	#include "Lcd.inc"
 	#include "States.inc"
 	#include "WaitButtonPressState.inc"
@@ -32,6 +33,25 @@
 
 
 	defineUiStateInSameSection UI_STATE_SETTINGS_DATETIME_ENTER
+		; TODO: USE THE REAL TIME !
+		.setBankFor dayOfYearHigh
+		clrf dayOfYearHigh
+		movlw 118
+		movwf dayOfYearLow
+		movlw 0x17
+		movwf clockYearBcd
+		movlw 0x04
+		movwf clockMonthBcd
+		movlw 0x29
+		movwf clockDayBcd
+
+		movlw 0x19
+		movwf clockHourBcd
+		movlw 0x49
+		movwf clockMinuteBcd
+		movlw 0x00
+		movwf clockSecondBcd
+
 		setUiState UI_STATE_SETTINGS_OPENCLOSEOFFSETS
 		returnFromUiState
 

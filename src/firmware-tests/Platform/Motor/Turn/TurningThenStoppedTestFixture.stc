@@ -1,0 +1,10 @@
+load "TurningThenStoppedTest.cod"
+load i "../../../../RandomiseRam.sti"
+load i "../../../../PreventInfiniteLoops.sti"
+load i "../MotorStates.sti"
+
+initialPstrcon=0x10
+expectedMotorState=MOTOR_STATE_STOPPED
+
+run
+quit

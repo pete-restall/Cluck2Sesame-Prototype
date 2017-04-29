@@ -6,6 +6,7 @@ POLL_CHAIN_OBJ_FILES=\
 	../InitialiseAfterUiDummy.o \
 	../PollAfterUiMock.o \
 	$(FIRMWARE_TESTS_DIR)/Door/DoorDummies.o \
+	$(FIRMWARE_TESTS_DIR)/SunriseSunset/SunriseSunsetNonInitialiseAndPollDummies.o \
 	$(PLATFORM_TESTS_DIR)/Timer0/Timer0Dummies.o \
 	$(PLATFORM_TESTS_DIR)/PowerManagement/PowerManagementDummies.o \
 	$(PLATFORM_TESTS_DIR)/Lcd/LcdDummies.o \

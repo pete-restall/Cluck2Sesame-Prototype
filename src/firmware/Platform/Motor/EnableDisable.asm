@@ -8,6 +8,9 @@
 
 	radix decimal
 
+MOTOR_TRIS_MASK equ (1 << MOTOR_VDD_EN_PIN_TRIS) | (1 << MOTOR_PWMA_PIN_TRIS) | (1 << MOTOR_PWMB_PIN_TRIS)
+MOTOR_PORT_MASK equ (1 << MOTOR_VDD_EN_PIN) | (1 << MOTOR_PWMA_PIN) | (1 << MOTOR_PWMB_PIN)
+
 Motor code
 	global enableMotorVdd
 	global disableMotorVdd
@@ -18,10 +21,11 @@ enableMotorVdd:
 	fcall enableAdc
 
 	.setBankFor MOTOR_TRIS
-	bcf MOTOR_TRIS, MOTOR_VDD_EN_PIN_TRIS
+	movlw ~MOTOR_TRIS_MASK
+	andwf MOTOR_TRIS
 
 	.setBankFor MOTOR_PORT
-	movlw (1 << MOTOR_VDD_EN_PIN) | (1 << MOTOR_PWMA_PIN) | (1 << MOTOR_PWMB_PIN)
+	movlw ~MOTOR_PORT_MASK
 	andwf MOTOR_PORT
 
 	.setBankFor enableMotorVddCount
@@ -48,7 +52,7 @@ disableMotorVdd:
 	goto disableMotorVddReturn
 
 	.setBankFor MOTOR_TRIS
-	movlw (1 << MOTOR_VDD_EN_PIN_TRIS) | (1 << MOTOR_PWMA_PIN_TRIS) | (1 << MOTOR_PWMB_PIN_TRIS)
+	movlw MOTOR_TRIS_MASK
 	iorwf MOTOR_TRIS
 
 	.setBankFor motorState
@@ -68,11 +72,6 @@ isMotorVddEnabled:
 	movf enableMotorVddCount
 	btfsc STATUS, Z
 	return
-
-	; TODO: PROBABLY BEST TO WAIT FOR A FEW MILLISECONDS FOR THE VDD_MOTOR LINE
-	; TO BECOME STABLE BEFORE RETURNING 'TRUE'.  ALSO, DUE TO THE TIMING OF THE
-	; DELAY, IT WILL BE NECESSARY TO PREVENT SLEEPING AND CLOCK SWITCHING...
-
 	tcall isSmpsEnabled
 
 	end

@@ -15,6 +15,7 @@ NUMBER_OF_SAMPLES equ 50
 
 	udata
 dutyCycleSamples res NUMBER_OF_SAMPLES
+initialDutyCycle res 1
 
 PwmDutyCycleFromRestTestFixture code
 	global testArrange
@@ -44,6 +45,12 @@ waitUntilMotorVddIsEnabled:
 	xorlw 0
 	btfsc STATUS, Z
 	goto waitUntilMotorVddIsEnabled
+
+setRandomInitialDutyCycle:
+	banksel initialDutyCycle
+	movf initialDutyCycle, W
+	banksel CCPR1L
+	movwf CCPR1L
 
 callTurnInTest:
 	fcall testAct

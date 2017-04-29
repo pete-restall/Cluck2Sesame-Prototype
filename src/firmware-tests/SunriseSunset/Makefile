@@ -16,7 +16,8 @@ TEST_DOUBLE_OBJ_FILES=\
 	InitialiseAfterSunriseSunsetDummy.o \
 	PollAfterSunriseSunsetMock.o \
 	PollAfterSunriseSunsetDummy.o \
-	SunriseSunsetDummies.o
+	SunriseSunsetDummies.o \
+	SunriseSunsetNonInitialiseAndPollDummies.o
 
 all: $(TEST_DOUBLE_OBJ_FILES)
 	$(MAKE) -C Initialisation all
