@@ -28,11 +28,12 @@ as the verbosity of the language.  The tests are run in gpsim with bash
 scripts for glue.  They are run as part of the automated Travis build.
 
 ## Pictures
-![Stuffed PCB][stuffed-pcb-top-small]
-
-Freshly baked and stuffed PCB.
+| Freshly baked and stuffed PCB         | Attached to the Coop                        |
+----------------------------------------|----------------------------------------------
+| ![Stuffed PCB][stuffed-pcb-top-small] | ![Attached to Coop][attached-to-coop-small] |
 
 ## Build
 [![Build Status](https://travis-ci.org/pete-restall/Cluck2Sesame.svg?branch=master)](https://travis-ci.org/pete-restall/Cluck2Sesame)
 
 [stuffed-pcb-top-small]: doc/github/images/pcb-stuffed-top-400x228.png "Stuffed PCB (top)"
+[attached-to-coop-small]: doc/github/images/attached-to-coop-304x228.png "Attached to Coop"
