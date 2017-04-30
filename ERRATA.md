@@ -7,6 +7,11 @@
   a cut-off of about 600mA; the firmware cut-off is about 500mA.  Don't forget
   to re-calculate R110 for the new quiescent current !
 
+- The PIC16F685 was really the wrong choice for this application, but it was
+  chosen because it was lying around.  More program space would have eased
+  the firmware constraints.  More pins would have allowed the shift register
+  to be removed.
+
 ## Spool
 - The tie-hole on the spool was increased from 0.5mm to 0.8mm to accomodate
   the multi-stranded line.  Multi-stranded line has less stretch and is a
