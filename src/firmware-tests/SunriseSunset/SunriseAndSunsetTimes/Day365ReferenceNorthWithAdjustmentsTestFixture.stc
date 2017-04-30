@@ -3,16 +3,16 @@ load i "../../RandomiseRam.sti"
 load i "../../PreventInfiniteLoops.sti"
 
 initialDayOfYearHigh=0x01
-initialDayOfYearLow=0x57
-initialLatitudeOffset=0
+initialDayOfYearLow=0x6d
+initialLatitudeOffset=50
 initialLongitudeOffset=0
-initialSunriseAdjustmentMinutes=0
-initialSunsetAdjustmentMinutes=0
+initialSunriseAdjustmentMinutes=(-15 & 0xff)
+initialSunsetAdjustmentMinutes=8
 
 expectedSunriseHourBcd=0x08
-expectedSunriseMinuteBcd=0x21
+expectedSunriseMinuteBcd=0x59
 expectedSunsetHourBcd=0x15
-expectedSunsetMinuteBcd=0x24
+expectedSunsetMinuteBcd=0x01
 
 run
 quit

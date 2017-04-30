@@ -6,13 +6,13 @@ initialDayOfYearHigh=0
 initialDayOfYearLow=0
 initialLatitudeOffset=0
 initialLongitudeOffset=(-1 & 0xff)
-initialSunriseAdjustmentMinutes=0
-initialSunsetAdjustmentMinutes=0
+initialSunriseAdjustmentMinutes=27
+initialSunsetAdjustmentMinutes=(-35 & 0xff)
 
-expectedSunriseHourBcd=0x08
-expectedSunriseMinuteBcd=0x33
+expectedSunriseHourBcd=0x09
+expectedSunriseMinuteBcd=0x00
 expectedSunsetHourBcd=0x15
-expectedSunsetMinuteBcd=0x35
+expectedSunsetMinuteBcd=0x00
 
 run
 quit

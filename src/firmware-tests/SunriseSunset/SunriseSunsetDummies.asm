@@ -5,6 +5,8 @@
 SunriseSunsetRam udata
 	global latitudeOffset
 	global longitudeOffset
+	global sunriseAdjustmentMinutes
+	global sunsetAdjustmentMinutes
 	global sunriseHourBcd
 	global sunriseMinuteBcd
 	global sunsetHourBcd
@@ -12,6 +14,8 @@ SunriseSunsetRam udata
 
 latitudeOffset res 1
 longitudeOffset res 1
+sunriseAdjustmentMinutes res 1
+sunsetAdjustmentMinutes res 1
 sunriseHourBcd res 1
 sunriseMinuteBcd res 1
 sunsetHourBcd res 1

@@ -8,6 +8,8 @@
 
 	.externalVariable latitudeOffset
 	.externalVariable longitudeOffset
+	.externalVariable sunriseAdjustmentMinutes
+	.externalVariable sunsetAdjustmentMinutes
 	.externalVariable sunriseHourBcd
 	.externalVariable sunriseMinuteBcd
 	.externalVariable sunsetHourBcd

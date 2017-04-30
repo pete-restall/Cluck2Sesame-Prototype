@@ -12,6 +12,7 @@
 SunriseSunset code
 	global loadAccumulatorIntoA
 	global loadAccumulatorIntoB
+	global loadWIntoB
 	global loadDayOfYearIntoA
 	global loadFirstLookupReferenceMinuteIntoB
 	global loadFirstLookupDeltaMinutesNorthIntoB
@@ -85,9 +86,8 @@ loadFirstLookupDeltaMinutesNorthIntoB:
 loadWIntoB:
 	.safelySetBankFor RBD
 	movwf RBD
-	rlf RBD, W
 	clrw
-	btfsc STATUS, C
+	btfsc RBD, 7
 	movlw 0xff
 	movwf RBC
 	movwf RBB
@@ -119,9 +119,8 @@ loadSecondLookupDeltaMinutesNorthIntoA:
 loadWIntoA:
 	.safelySetBankFor RAD
 	movwf RAD
-	rlf RAD, W
 	clrw
-	btfsc STATUS, C
+	btfsc RAD, 7
 	movlw 0xff
 	movwf RAC
 	movwf RAB

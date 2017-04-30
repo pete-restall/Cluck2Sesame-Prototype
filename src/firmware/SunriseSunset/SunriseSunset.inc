@@ -15,6 +15,8 @@ LOOKUP_LATITUDE_DELTA equ LOOKUP_LATITUDE_DELTA_DEGREES * 10
 	extern sunriseLookupTable
 	extern sunsetLookupTable
 
+	.externalVariable adjustmentMinutes
+
 	.externalVariable lookupIndex
 	.externalVariable lookupIndexHigh
 	.externalVariable lookupIndexLow
@@ -47,6 +49,7 @@ LOOKUP_LATITUDE_DELTA equ LOOKUP_LATITUDE_DELTA_DEGREES * 10
 	#ifndef __CLUCK2SESAME_SUNRISESUNSET_REGISTERLOADANDANDSTORE_ASM
 	extern loadAccumulatorIntoA
 	extern loadAccumulatorIntoB
+	extern loadWIntoB
 	extern loadDayOfYearIntoA
 	extern loadFirstLookupReferenceMinuteIntoB
 	extern loadFirstLookupDeltaMinutesNorthIntoB

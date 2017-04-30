@@ -7,12 +7,15 @@
 	radix decimal
 
 	defineSunriseSunsetState SUN_STATE_CALCULATESUNSET
+		movf sunsetAdjustmentMinutes, W
+		movwf adjustmentMinutes
+
+		setSunriseSunsetState SUN_STATE_SUNSET_LOADLOOKUPS
+
 		call loadDayOfYearIntoA
 		call loadLookupStepIntoLowerB
 		fcall div32x16
 		call storeLookupIndexFromA
-
-		setSunriseSunsetState SUN_STATE_SUNSET_LOADLOOKUPS
 		returnFromSunriseSunsetState
 
 	end

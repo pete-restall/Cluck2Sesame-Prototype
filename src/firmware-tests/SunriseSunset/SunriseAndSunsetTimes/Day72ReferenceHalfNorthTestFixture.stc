@@ -6,6 +6,8 @@ initialDayOfYearHigh=0
 initialDayOfYearLow=72
 initialLatitudeOffset=25
 initialLongitudeOffset=0
+initialSunriseAdjustmentMinutes=0
+initialSunsetAdjustmentMinutes=0
 
 expectedSunriseHourBcd=0x06
 expectedSunriseMinuteBcd=0x25

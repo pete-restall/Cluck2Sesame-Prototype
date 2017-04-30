@@ -11,6 +11,8 @@
 	global initialLongitudeOffset
 	global initialDayOfYearHigh
 	global initialDayOfYearLow
+	global initialSunriseAdjustmentMinutes
+	global initialSunsetAdjustmentMinutes
 	global expectedSunriseHourBcd
 	global expectedSunriseMinuteBcd
 	global expectedSunsetHourBcd
@@ -20,6 +22,8 @@ initialLatitudeOffset res 1
 initialLongitudeOffset res 1
 initialDayOfYearHigh res 1
 initialDayOfYearLow res 1
+initialSunriseAdjustmentMinutes res 1
+initialSunsetAdjustmentMinutes res 1
 expectedSunriseHourBcd res 1
 expectedSunriseMinuteBcd res 1
 expectedSunsetHourBcd res 1
@@ -52,6 +56,17 @@ setLocation:
 	movf initialLongitudeOffset, W
 	banksel longitudeOffset
 	movwf longitudeOffset
+
+setAdjustments:
+	banksel initialSunriseAdjustmentMinutes
+	movf initialSunriseAdjustmentMinutes, W
+	banksel sunriseAdjustmentMinutes
+	movwf sunriseAdjustmentMinutes
+
+	banksel initialSunsetAdjustmentMinutes
+	movf initialSunsetAdjustmentMinutes, W
+	banksel sunsetAdjustmentMinutes
+	movwf sunsetAdjustmentMinutes
 
 testAct:
 	fcall calculateSunriseAndSunset

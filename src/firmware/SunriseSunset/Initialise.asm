@@ -18,6 +18,8 @@ initialiseSunriseSunset:
 	clrf sunriseSunsetState
 	clrf latitudeOffset
 	clrf longitudeOffset
+	clrf sunriseAdjustmentMinutes
+	clrf sunsetAdjustmentMinutes
 	clrf sunriseHourBcd
 	clrf sunriseMinuteBcd
 	clrf sunsetHourBcd

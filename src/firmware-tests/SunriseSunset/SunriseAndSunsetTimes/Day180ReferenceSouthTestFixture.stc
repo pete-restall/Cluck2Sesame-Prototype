@@ -4,8 +4,10 @@ load i "../../PreventInfiniteLoops.sti"
 
 initialDayOfYearHigh=0x00
 initialDayOfYearLow=0xb4
-initialLatitudeOffset=-50
+initialLatitudeOffset=(-50 & 0xff)
 initialLongitudeOffset=0
+initialSunriseAdjustmentMinutes=0
+initialSunsetAdjustmentMinutes=0
 
 expectedSunriseHourBcd=0x04
 expectedSunriseMinuteBcd=0x01
