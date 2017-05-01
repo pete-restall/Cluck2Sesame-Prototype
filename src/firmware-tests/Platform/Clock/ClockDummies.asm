@@ -26,9 +26,13 @@ dayOfYearLow res 1
 ClockDummies code
 	global initialiseClock
 	global pollClock
+	global isDaylightSavingsTime
 
 initialiseClock:
 pollClock:
 	return
+
+isDaylightSavingsTime:
+	retlw 0
 
 	end

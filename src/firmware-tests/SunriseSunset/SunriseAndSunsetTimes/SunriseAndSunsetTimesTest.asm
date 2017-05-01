@@ -3,10 +3,12 @@
 	#include "Clock.inc"
 	#include "SunriseSunset.inc"
 	#include "TestFixture.inc"
+	#include "../../Platform/Clock/ClockStubs.inc"
 
 	radix decimal
 
 	udata
+	global isDaylightSavingsTimeResult
 	global initialLatitudeOffset
 	global initialLongitudeOffset
 	global initialDayOfYearHigh
@@ -18,6 +20,7 @@
 	global expectedSunsetHourBcd
 	global expectedSunsetMinuteBcd
 
+isDaylightSavingsTimeResult res 1
 initialLatitudeOffset res 1
 initialLongitudeOffset res 1
 initialDayOfYearHigh res 1
@@ -34,6 +37,10 @@ SunriseAndSunsetTimesTest code
 
 testArrange:
 	fcall initialiseSunriseSunset
+
+	banksel isDaylightSavingsTimeResult
+	movf isDaylightSavingsTimeResult, W
+	fcall initialiseIsDaylightSavingsTimeStub
 
 setDayOfYear:
 	banksel initialDayOfYearHigh

@@ -1,0 +1,6 @@
+	#ifndef __CLUCK2SESAME_TESTS_PLATFORM_CLOCK_CLOCKSTUBS_INC
+	#define __CLUCK2SESAME_TESTS_PLATFORM_CLOCK_CLOCKSTUBS_INC
+
+	extern initialiseIsDaylightSavingsTimeStub
+
+	#endif

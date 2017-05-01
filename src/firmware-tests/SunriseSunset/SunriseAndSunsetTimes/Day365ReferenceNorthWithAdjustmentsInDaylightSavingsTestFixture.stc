@@ -1,0 +1,19 @@
+load "SunriseAndSunsetTimesTest.cod"
+load i "../../RandomiseRam.sti"
+load i "../../PreventInfiniteLoops.sti"
+
+isDaylightSavingsTimeResult=1
+initialDayOfYearHigh=0x01
+initialDayOfYearLow=0x6d
+initialLatitudeOffset=50
+initialLongitudeOffset=0
+initialSunriseAdjustmentMinutes=(-15 & 0xff)
+initialSunsetAdjustmentMinutes=8
+
+expectedSunriseHourBcd=0x09
+expectedSunriseMinuteBcd=0x59
+expectedSunsetHourBcd=0x16
+expectedSunsetMinuteBcd=0x01
+
+run
+quit

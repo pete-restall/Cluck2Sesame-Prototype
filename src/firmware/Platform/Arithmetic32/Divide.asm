@@ -35,7 +35,7 @@ subtractionLoop:
 
 doSubtraction:
 	call subtractDivisorFromDividendMostSignificantWord
-	bsf RAD, W
+	bsf RAD, 0
 
 nextIteration:
 	decfsz RZA

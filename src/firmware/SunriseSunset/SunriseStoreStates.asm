@@ -22,8 +22,14 @@
 
 
 	defineSunriseSunsetStateInSameSection SUN_STATE_SUNRISE_STOREASBCD
-		; TODO: CONVERT sunriseHourBcd TO BCD - ALTHOUGH NOT NECESSARY IN THE
-		; UK (50-60 DEGREES LATITUDE) AS ALL TIMES ARE BEFORE 10:00 !
+		.setBankFor sunriseHourBcd
+		movf sunriseHourBcd, W
+		.setBankFor RAA
+		movwf RAA
+		fcall binaryToBcd
+		.setBankFor sunriseHourBcd
+		movwf sunriseHourBcd
+
 		.setBankFor sunriseMinuteBcd
 		movf sunriseMinuteBcd, W
 		.setBankFor RAA

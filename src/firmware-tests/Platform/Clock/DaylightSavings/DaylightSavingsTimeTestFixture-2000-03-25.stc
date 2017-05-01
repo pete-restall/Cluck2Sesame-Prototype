@@ -1,0 +1,17 @@
+load "DaylightSavingsTimeTest.cod"
+load i "../../../RandomiseRam.sti"
+load i "../../../PreventInfiniteLoops.sti"
+
+dayOfYearHigh=0
+dayOfYearLow=84
+clockYearBcd=0x00
+clockMonthBcd=0x03
+clockDayBcd=0x25
+clockHourBcd=0x23
+clockMinuteBcd=0x59
+clockSecondBcd=0x59
+
+expectedIsDaylightSavingsTime=0
+
+run
+quit

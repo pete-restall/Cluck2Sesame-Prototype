@@ -5,6 +5,7 @@ all:
 	$(MAKE) -C mean all
 	$(MAKE) -C trigonometry all
 	$(MAKE) -C sunrise-sunset all
+	$(MAKE) -C daylight-savings all
 
 clean:
 	$(MAKE) -C gpsim2tuple clean
@@ -13,3 +14,4 @@ clean:
 	$(MAKE) -C mean clean
 	$(MAKE) -C trigonometry clean
 	$(MAKE) -C sunrise-sunset clean
+	$(MAKE) -C daylight-savings clean

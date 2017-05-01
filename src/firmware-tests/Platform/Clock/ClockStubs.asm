@@ -22,13 +22,26 @@ clockMinuteBcd res 1
 clockSecondBcd res 1
 dayOfYearHigh res 1
 dayOfYearLow res 1
+isDaylightSavingsTimeResult res 1
 
 ClockStubs code
+	global initialiseIsDaylightSavingsTimeStub
 	global initialiseClock
 	global pollClock
+	global isDaylightSavingsTime
+
+initialiseIsDaylightSavingsTimeStub:
+	banksel isDaylightSavingsTimeResult
+	movwf isDaylightSavingsTimeResult
+	return
 
 initialiseClock:
 pollClock:
+	return
+
+isDaylightSavingsTime:
+	banksel isDaylightSavingsTimeResult
+	movf isDaylightSavingsTimeResult, W
 	return
 
 	end

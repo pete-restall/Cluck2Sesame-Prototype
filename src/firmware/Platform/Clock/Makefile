@@ -3,7 +3,9 @@ OBJ_FILES=\
 	Registers.o \
 	Initialise.o \
 	Poll.o \
-	DaysInMonth.o
+	DaysInMonth.o \
+	DaylightSavingsTime.o \
+	DaylightSavingsTimeLookupTable.o
 
 all: $(LIB_FILENAME)
 

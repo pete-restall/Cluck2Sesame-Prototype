@@ -21,6 +21,7 @@ CLOCK_FLAG_TICKED equ 0
 	#ifndef __CLUCK2SESAME_PLATFORM_CLOCK_ASM
 	extern initialiseClock
 	extern pollClock
+	extern isDaylightSavingsTime
 	#endif
 
 	#endif

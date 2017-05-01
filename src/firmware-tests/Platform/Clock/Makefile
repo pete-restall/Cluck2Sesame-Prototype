@@ -4,6 +4,7 @@ export OBJ_FILES=\
 	$(PLATFORM_CORE_OBJ_FILES) \
 	$(PLATFORM_DIR)/Arithmetic4.o \
 	$(PLATFORM_DIR)/ArithmeticBcd.a \
+	$(PLATFORM_DIR)/Flash.o \
 	$(TEST_FIXTURE_OBJ_FILES) \
 	$(CURDIR)/InitialiseAfterClockMock.o \
 	$(CURDIR)/../Isr/InitialiseAfterIsrDummy.o
@@ -20,6 +21,7 @@ all: $(TEST_DOUBLE_OBJ_FILES)
 	$(MAKE) -C TimerWiring all
 	$(MAKE) -C Poll all
 	$(MAKE) -C DayOfYear all
+	$(MAKE) -C DaylightSavings all
 
 clean:
 	$(RM) -f $(BUILD_ARTEFACT_PATTERN)
@@ -27,5 +29,6 @@ clean:
 	$(MAKE) -C TimerWiring clean
 	$(MAKE) -C Poll clean
 	$(MAKE) -C DayOfYear clean
+	$(MAKE) -C DaylightSavings clean
 
 include $(MAKEFILE_RULES)

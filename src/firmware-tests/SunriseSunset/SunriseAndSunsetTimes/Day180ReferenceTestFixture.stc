@@ -2,6 +2,7 @@ load "SunriseAndSunsetTimesTest.cod"
 load i "../../RandomiseRam.sti"
 load i "../../PreventInfiniteLoops.sti"
 
+isDaylightSavingsTimeResult=0
 initialDayOfYearHigh=0x00
 initialDayOfYearLow=0xb4
 initialLatitudeOffset=0

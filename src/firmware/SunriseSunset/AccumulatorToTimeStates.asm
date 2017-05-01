@@ -1,6 +1,7 @@
 	#include "Platform.inc"
 	#include "FarCalls.inc"
 	#include "Arithmetic32.inc"
+	#include "Clock.inc"
 	#include "SunriseSunset.inc"
 	#include "States.inc"
 
@@ -9,9 +10,15 @@
 	defineSunriseSunsetState SUN_STATE_ACCUMULATORTOHOURS
 		setSunriseSunsetState SUN_STATE_ACCUMULATORTOHOURS2
 
+adjustAccumulatorByAnHourIfDaylightSavingsTimeIsInEffect:
+		fcall isDaylightSavingsTime
+		xorlw 0
+		btfss STATUS, Z
+		movlw 60
+
 adjustAccumulatorBySpecifiedNumberOfMinutes:
 		.setBankFor adjustmentMinutes
-		movf adjustmentMinutes, W
+		addwf adjustmentMinutes, W
 		call loadWIntoB
 		call loadAccumulatorIntoA
 		fcall add32
