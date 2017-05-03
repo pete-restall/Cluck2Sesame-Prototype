@@ -45,6 +45,8 @@ incrementAndThenReturnIfNotOverflowed macro dateTimePartBcd
 	endm
 
 pollClock:
+	; TODO: TAKE INTO ACCOUNT DAYLIGHT SAVINGS TIME !!!
+
 	.safelySetBankFor clockFlags
 	btfss clockFlags, CLOCK_FLAG_TICKED
 	goto pollNext

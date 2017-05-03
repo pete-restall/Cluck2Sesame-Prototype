@@ -4,7 +4,7 @@ load i "../../../PreventInfiniteLoops.sti"
 
 numberOfEnsureFastClockCalls=1
 numberOfAllowSlowClockCalls=0
-expectedOsccon=0b01100101
+expectedOsccon=0b01101101
 
 run
 quit

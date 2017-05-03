@@ -7,7 +7,7 @@
 
 	radix decimal
 
-OSCCON_LFINTOSC_31KHZ equ (1 << SCS) | (1 << LTS)
+OSCCON_LFINTOSC_31KHZ equ (1 << OSTS) | (1 << SCS) | (1 << LTS)
 
 IsEnabledPowerManagementTest code
 	global testArrange
