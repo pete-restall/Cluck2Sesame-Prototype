@@ -22,6 +22,7 @@ NonMotorAdcChannelTest code
 	global testArrange
 
 testArrange:
+	fcall initialiseIsr
 	fcall initialiseAdc
 
 	banksel adcChannel

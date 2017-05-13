@@ -1,0 +1,19 @@
+load "ButtonChangeWakesFromSleepTest.cod"
+load i "../../../RandomiseRam.sti"
+load i "../../../PreventInfiniteLoops.sti"
+
+stimulus asynchronous_stimulus
+	initial_state 1
+	start_cycle 0
+	period 1000000
+	{
+		95000, 0
+	}
+	name buttonPulse
+	end
+
+node button
+attach button portb6 buttonPulse
+
+run
+quit

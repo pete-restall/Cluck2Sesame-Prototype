@@ -4,7 +4,6 @@ HEX_FILES=\
 
 TEST_DOUBLE_OBJ_FILES=\
 	../InitialiseAfterIsrDummy.o \
-	../../PowerManagement/PowerManagementDummies.o \
 	../../Smps/SmpsDummies.o \
 	$(PLATFORM_DIR)/Adc.a
 

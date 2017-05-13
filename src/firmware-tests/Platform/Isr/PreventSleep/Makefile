@@ -3,7 +3,9 @@ HEX_FILES=\
 
 PREVENT_SLEEP_OBJ_FILES=\
 	PreventSleepTest.o \
-	../InitialiseAfterIsrDummy.o
+	../InitialiseAfterIsrDummy.o \
+	$(PLATFORM_TESTS_DIR)/PowerManagement/InitialiseAfterPowerManagementDummy.o \
+	$(PLATFORM_TESTS_DIR)/PowerManagement/PollAfterPowerManagementDummy.o
 
 all: $(HEX_FILES)
 

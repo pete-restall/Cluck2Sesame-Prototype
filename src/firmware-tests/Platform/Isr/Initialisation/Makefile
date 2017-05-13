@@ -3,7 +3,9 @@ HEX_FILES=\
 
 INITIALISATION_CHAIN_OBJ_FILES=\
 	InitialisationChainTest.o \
-	../InitialiseAfterIsrMock.o
+	../InitialiseAfterIsrMock.o \
+	$(PLATFORM_TESTS_DIR)/PowerManagement/InitialiseAfterPowerManagementDummy.o \
+	$(PLATFORM_TESTS_DIR)/PowerManagement/PollAfterPowerManagementDummy.o
 
 all: $(HEX_FILES)
 

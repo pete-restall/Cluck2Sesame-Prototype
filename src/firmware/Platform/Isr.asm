@@ -28,6 +28,11 @@ Isr code 0x0004
 	; TODO: BUG (HERE ?) - LCD CONTRAST GOES FROM ABOUT 1.24V TO 2.38V
 	; SEEMINGLY RANDOMLY, TURNING OFF THE LCD.  VOLTAGE IS ROCK SOLID UNTIL
 	; IT HAPPENS, AND THERE IS NO CONSISTENT TIME UNTIL IT HAPPENS...
+	;
+	; *** UPDATE: I THINK THIS IS BECAUSE UNDER CERTAIN (UNKNOWN) CONDITIONS,
+	; THE ADC IS TURNED OFF - PORTC5=1, TRISC=0x88, PSTRCON=0x11, CCPR1L=0xff,
+	; ADCON=0x1f, ADCON1=0x20, motorState=0x05.  NOTICED DURING RAISING OF THE
+	; DOOR DURING SIMULATION.
 
 isr:
 	movwf contextSavingW
@@ -45,7 +50,7 @@ preventSleepForSinglePollLoopIteration:
 adcSampled:
 	.safelySetBankFor PIR1
 	btfss PIR1, ADIF
-	goto clockTicked
+	goto endOfAdcBlock
 	bcf PIR1, ADIF
 
 disableMotorOutputsIfNotMonitoringCurrent:
@@ -99,7 +104,7 @@ endOfMotorCurrentMonitoring:
 lcdDeltaSigmaContrastControl:
 	.safelySetBankFor lcdFlags
 	btfss lcdFlags, LCD_FLAG_ENABLED
-	goto clockTicked
+	goto endOfContrastControl
 
 	movf lcdContrast, W
 	addwf lcdContrastAccumulator
@@ -110,14 +115,25 @@ lcdDeltaSigmaContrastControl:
 	btfsc STATUS, C
 	bsf LCD_CONTRAST_PORT, LCD_CONTRAST_PIN
 
+endOfContrastControl:
+endOfAdcBlock:
 clockTicked:
 	.safelySetBankFor PIR1
 	btfss PIR1, TMR1IF
-	goto endOfIsr
+	goto endOfClockTicked
 	bcf PIR1, TMR1IF
 
 	.setBankFor clockFlags
 	bsf clockFlags, CLOCK_FLAG_TICKED
+
+endOfClockTicked:
+clearButtonFlagIfJustWokenUp:
+	.safelySetBankFor powerManagementFlags
+	btfss powerManagementFlags, POWER_FLAG_SLEEPING
+	goto endOfIsr
+
+	.setBankFor INTCON
+	bcf INTCON, RABIF
 
 endOfIsr:
 	movf contextSavingPclath, W
